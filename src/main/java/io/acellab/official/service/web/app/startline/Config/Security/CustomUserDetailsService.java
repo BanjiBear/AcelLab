@@ -54,7 +54,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             for (byte b : hashedPassword) {
                 sb.append(String.format("%02x", b));
             }
-            
+
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error occurred while hashing password", e);
