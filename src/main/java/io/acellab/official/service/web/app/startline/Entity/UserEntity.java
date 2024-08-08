@@ -32,8 +32,7 @@ public class UserEntity {
     @Column(name = "nickname", nullable = true)
     private String nickname;
 
-    @Column(name = "roleid", nullable = true)
-    private String roleId;
+
 
 
 }
