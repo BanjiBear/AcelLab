@@ -27,15 +27,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-/*        http.csrf().disable().authorizeHttpRequests()
-                .requestMatchers("/register").permitAll()
-                .requestMatchers("home").permitAll()
-                .and().formLogin().loginPage("/login")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/home", true)
-                .permitAll().and().logout().invalidateHttpSession(true)
-                .clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout").permitAll();*/
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
@@ -57,7 +48,6 @@ public class SecurityConfig {
         ;
 
         return http.build();
-
     }
 
     @Autowired

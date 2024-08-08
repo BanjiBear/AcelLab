@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import io.acellab.official.service.web.app.startline.Entity.UserEntity;
 import io.acellab.official.service.web.app.startline.Repository.UserRepository;
 
@@ -14,12 +17,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
