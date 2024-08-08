@@ -1,7 +1,6 @@
 package io.acellab.official.service.web.app.startline.DataSource;
 
 import java.util.Properties;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,11 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-
 @Configuration
 @ComponentScan(basePackages = "io.acellab.official.service.web.app.startline")
-@PropertySource({"classpath:application.properties"})
-@EnableJpaRepositories(basePackages = "io.acellab.official.service.web.app.startline.Repository")
 @EntityScan(basePackages = "io.acellab.official.service.web.app.startline.Entity")
+@EnableJpaRepositories("io.acellab.official.service.web.app.startline.Repository")
+@PropertySource({"classpath:application.properties"})
 public class JPAConfig {
 
     @Autowired
@@ -52,8 +50,7 @@ public class JPAConfig {
     }
 
     private Properties hibernateProperties() {
-        Properties properties;
-        properties = new Properties();
+        Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
         properties.setProperty("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
 
@@ -66,7 +63,4 @@ public class JPAConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
-
-
-
 }

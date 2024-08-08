@@ -1,6 +1,5 @@
 package io.acellab.official.service.web.app.startline.Entity;
 
-
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "crm_user")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +31,9 @@ public class User {
 
     @Column(name = "nickname", nullable = true)
     private String nickname;
+
+    @Column(name = "roleid", nullable = true)
+    private String roleId;
 
 
 }
