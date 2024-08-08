@@ -43,7 +43,7 @@
 <div class="dashboard">
     <h1 class="dashboard_title">Welcome to the Dashboard </h1>
     <div class="dashboard_user">
-        <h2 th:text="${userdetail.fullname}" class="dashboard_user_name"></h2>
+        <h2 th:text="${userdetail.username}" class="dashboard_user_name"></h2>
     </div>
     <div class="span-text">
         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">Logout</a></span>

@@ -26,9 +26,6 @@ public class UserEntity {
     @Column(name = "passwd", nullable = true, length = 32)
     private String password;
 
-    @Column(name = "salt", nullable = true, length = 32)
-    private String passwordSalt;
-
     @Column(name = "roleid", nullable = true)
     private Integer roleId;
 
