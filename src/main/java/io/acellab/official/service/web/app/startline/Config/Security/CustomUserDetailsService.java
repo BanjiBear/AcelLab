@@ -1,23 +1,19 @@
 package io.acellab.official.service.web.app.startline.Config.Security;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import io.acellab.official.service.web.app.startline.Entity.UserEntity;
 import io.acellab.official.service.web.app.startline.Repository.UserRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

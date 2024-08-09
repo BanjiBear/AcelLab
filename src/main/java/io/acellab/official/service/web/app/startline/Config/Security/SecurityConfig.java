@@ -40,7 +40,10 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/logout?logout"))
+                        .logoutSuccessUrl("/login")
+                )
+                        //after logout successful , go to logout page .
+                        /*.logoutSuccessUrl("/logout?logout"))*/
 
         ;
 

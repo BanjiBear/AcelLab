@@ -51,6 +51,7 @@ public class JPAConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
+
         properties.setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
         properties.setProperty("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
 
