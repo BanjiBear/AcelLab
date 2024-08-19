@@ -29,6 +29,8 @@ public class UserController {
         return "login";
     }
 
+    
+
     @GetMapping("/home")
     public String home(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());

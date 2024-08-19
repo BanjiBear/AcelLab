@@ -35,5 +35,23 @@ public class UserServiceImpl implements UserService{
         //return ResponseUtil.createResponse(Status.TESTING , user);
     }
 
+    @Override
+    @Transactional
+    public ResponseFactory<UserEntity> userRegister(String username, String password) {
+
+        UserEntity responseUser = new UserEntity();
+        responseUser.setUsername(username);
+        responseUser.setPassword(passwordEncoder.encode(password));
+
+        int result = userRepository.createUser(username, passwordEncoder.encode(password));
+
+        if (result == -1) {
+            return ResponseUtil.createResponse(Status.DATA_UNIQUE_EXIST, responseUser);
+        }else{
+            return ResponseUtil.createResponse(Status.DATA_CREATED , responseUser);
+        }
+
+    }
+
 
 }

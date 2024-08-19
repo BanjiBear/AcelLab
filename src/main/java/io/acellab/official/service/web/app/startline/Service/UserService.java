@@ -11,4 +11,5 @@ public interface UserService {
 
     public ResponseFactory<UserEntity> findByUsername(String username);
 
+    public ResponseFactory<UserEntity> userRegister(String username , String password);
 }
