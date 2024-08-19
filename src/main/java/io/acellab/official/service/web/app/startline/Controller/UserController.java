@@ -1,6 +1,7 @@
 package io.acellab.official.service.web.app.startline.Controller;
 
 import io.acellab.official.service.web.app.startline.Dto.User.UserDto;
+import io.acellab.official.service.web.app.startline.Entity.UserEntity;
 import io.acellab.official.service.web.app.startline.Status.ResponseFactory;
 import io.acellab.official.service.web.app.startline.Service.UserService;
 
@@ -29,10 +30,23 @@ public class UserController {
         return "login";
     }
 
+    //Enter to register page
     @GetMapping("/register")
     public String register(Model model, UserDto userDto) {
         model.addAttribute("user", userDto);
         return "register";
+    }
+
+    //Doing registration action
+    @PostMapping("/register")
+    public String registerSava(@ModelAttribute("user") UserDto userDto, Model model) {
+        String searchResultMessage = userService.findByUsername(userDto.getUsername()).getStatusMessage();
+        if (searchResultMessage.equals("DATA_FOUND")) {
+            model.addAttribute("Userexist",  userDto.getUsername());
+            return "register";
+        }
+        userService.userRegister(userDto);
+        return "redirect:/register?success";
     }
 
     @GetMapping("/home")
