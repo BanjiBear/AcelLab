@@ -29,7 +29,11 @@ public class UserController {
         return "login";
     }
 
-
+    @GetMapping("/register")
+    public String register(Model model, UserDto userDto) {
+        model.addAttribute("user", userDto);
+        return "register";
+    }
 
     @GetMapping("/home")
     public String home(Model model, Principal principal) {
