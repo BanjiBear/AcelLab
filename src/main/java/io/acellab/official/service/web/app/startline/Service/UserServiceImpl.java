@@ -5,6 +5,7 @@ import io.acellab.official.service.web.app.startline.Entity.UserEntity;
 import io.acellab.official.service.web.app.startline.Repository.UserRepository;
 import io.acellab.official.service.web.app.startline.Status.ResponseFactory;
 import io.acellab.official.service.web.app.startline.Status.Status;
+import io.acellab.official.service.web.app.startline.Util.FunctionUtil;
 import io.acellab.official.service.web.app.startline.Util.ResponseUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -30,9 +31,21 @@ public class UserServiceImpl implements UserService{
 
         Optional<UserEntity> user = userRepository.findUserByUserName(username);
 
-        if ( user.isPresent() ) {
+        if (user.isPresent()) {
             return ResponseUtil.createResponse(Status.DATA_FOUND, user.get());
-        }else{
+        } else {
+            return ResponseUtil.createResponse(Status.DATA_NOT_FOUND, new UserEntity());
+        }
+    }
+
+    @Override
+    @Transactional
+    public ResponseFactory<UserEntity> findByEmail(String email) {
+        Optional<UserEntity> user = userRepository.findUserByEmail(email);
+
+        if (user.isPresent()) {
+            return ResponseUtil.createResponse(Status.DATA_FOUND, user.get());
+        } else {
             return ResponseUtil.createResponse(Status.DATA_NOT_FOUND, new UserEntity());
         }
     }
@@ -41,18 +54,30 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public ResponseFactory<UserEntity> userRegister(UserDto userDto) {
 
+        /*The purpose of responseUser data only for frontend check what user data passed to this service ,
+        this responseUser data is meaningless in backend side*/
         UserEntity responseUser = new UserEntity();
         responseUser.setUsername(userDto.getUsername());
-        responseUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        responseUser.setEmail(userDto.getEmail());
 
-        int result = userRepository.createUser(userDto.getUsername(), passwordEncoder.encode(userDto.getPassword()));
+        int result = userRepository.createUser(userDto.getUsername(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()));
 
         if (result == -1) {
             return ResponseUtil.createResponse(Status.DATA_UNIQUE_EXIST, responseUser);
-        }else{
-            return ResponseUtil.createResponse(Status.DATA_CREATED , responseUser);
+        } else {
+            return ResponseUtil.createResponse(Status.DATA_CREATED, responseUser);
         }
 
+    }
+
+    @Override
+    @Transactional
+    public ResponseFactory<String> passwordValidation(String password) {
+        if(FunctionUtil.isValidPassword(password)){
+            return ResponseUtil.createResponse(Status.USER_VALID_PASSWORD_FORMAT, password);
+        }else{
+            return ResponseUtil.createResponse(Status.USER_INVALID_PASSWORD_FORMAT, password);
+        }
     }
 
 

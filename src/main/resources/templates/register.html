@@ -88,6 +88,10 @@
     <h2>Registration</h2>
     <form th:action="@{/register}" method="post" role="form" th:object="${user}">
 
+        <label for="username">Email:</label>
+        <input th:field="*{email}" type="email" id="email" name="email" placeholder="Enter your email"
+               required>
+
         <label for="username">Username:</label>
         <input th:field="*{username}" type="text" id="username" name="username" placeholder="Enter your Username"
                required>
@@ -99,12 +103,14 @@
         <button type="submit">Register</button>
     </form>
     <div>
-        <span th:if="${Userexist}" style="color: red;">Username is Taken</span>
+        <div><span th:if="${UsernameExist}" style="color: red;">Username is Taken</span></div>
+        <div><span th:if="${EmailExist}" style="color: red;">Email is Taken</span></div>
+        <div><span th:if="${PasswordFormatInvalid != null}" style="color: red;"
+                   th:text="${PasswordFormatInvalid}"></span></div>
+        <div>
+            <span class="form-footer">Already have an account? <a th:href="@{/login1}">Login</a>here.</span>
+        </div>
     </div>
-    <div>
-        <span class="form-footer">Already have an account? <a th:href="@{/login1}">Login</a>here.</span>
-    </div>
-</div>
 </body>
 
 </html>
