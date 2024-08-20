@@ -44,12 +44,11 @@ public class UserController {
         String searchUsernameResultMessage = userService.findByUsername(userDto.getUsername()).getStatusMessage();
         String searchEmailResultMessage = userService.findByEmail(userDto.getEmail()).getStatusMessage();
         String PasswordValidation = userService.passwordValidation(userDto.getPassword()).getStatusMessage();
-        String passwordRuleMessage = "at least 8 characters, at least one lowercase letter & number & special character (@、$、!、%、*、?、&).";
 
         if (searchUsernameResultMessage.equals("DATA_FOUND") || searchEmailResultMessage.equals("DATA_FOUND") || PasswordValidation.equals("USER_INVALID_PASSWORD_FORMAT")) {
             if(searchUsernameResultMessage.equals("DATA_FOUND")) model.addAttribute("UsernameExist", userDto.getUsername());
             if(searchEmailResultMessage.equals("DATA_FOUND")) model.addAttribute("EmailExist", userDto.getEmail());
-            if(PasswordValidation.equals("USER_INVALID_PASSWORD_FORMAT")) model.addAttribute("PasswordFormatInvalid", passwordRuleMessage);
+            if(PasswordValidation.equals("USER_INVALID_PASSWORD_FORMAT")) model.addAttribute("PasswordFormatInvalid", "");
             return "register";
         }
 

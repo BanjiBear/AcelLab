@@ -105,8 +105,9 @@
     <div>
         <div><span th:if="${UsernameExist}" style="color: red;">Username is Taken</span></div>
         <div><span th:if="${EmailExist}" style="color: red;">Email is Taken</span></div>
-        <div><span th:if="${PasswordFormatInvalid != null}" style="color: red;"
-                   th:text="${PasswordFormatInvalid}"></span></div>
+        <div><span th:if="${PasswordFormatInvalid}" style="color: red;">
+            at least 8 characters, at least one lowercase letter & number & special character (@、$、!、%、*、?、&).
+        </span></div>
         <div>
             <span class="form-footer">Already have an account? <a th:href="@{/login1}">Login</a>here.</span>
         </div>
