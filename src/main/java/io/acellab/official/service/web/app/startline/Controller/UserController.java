@@ -1,8 +1,6 @@
 package io.acellab.official.service.web.app.startline.Controller;
 
 import io.acellab.official.service.web.app.startline.Dto.User.UserDto;
-import io.acellab.official.service.web.app.startline.Entity.UserEntity;
-import io.acellab.official.service.web.app.startline.Status.ResponseFactory;
 import io.acellab.official.service.web.app.startline.Service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,15 +50,22 @@ public class UserController {
             return "register";
         }
 
-        userService.userRegister(userDto).getStatusMessage();
+        userService.userRegister(userDto);
         return "redirect:/register?success";
     }
 
-    @GetMapping("/home")
-    public String home(Model model, Principal principal) {
+    @GetMapping("/company-home")
+    public String companyUserHome(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("userdetail", userDetails);
-        return "home";
+        return "companyUserHome";
+    }
+
+    @GetMapping("/startup-home")
+    public String StartUpUserHome(Model model, Principal principal) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+        model.addAttribute("userdetail", userDetails);
+        return "startUpUserHome";
     }
 
 }
