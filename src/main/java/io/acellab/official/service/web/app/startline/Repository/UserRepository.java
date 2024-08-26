@@ -17,11 +17,18 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
     Optional<UserEntity> findUserByUserName(@Param("username") String username);
 
     @Modifying
-    @Query(value = "INSERT INTO crm_user (username ,email, passwd) VALUES (:username ,:email, :password )",nativeQuery = true)
-    int createUser( @Param("username") String username,
-                    @Param("email") String email,
-                    @Param("password") String password);
+    @Query(value = "INSERT INTO crm_user (username ,email, passwd , roleid) VALUES (:username ,:email, :password, :roleId)", nativeQuery = true)
+    int createUser(@Param("username") String username,
+                   @Param("email") String email,
+                   @Param("password") String password,
+                   @Param("roleId") String roleId);
 
     @Query(value = "SELECT * FROM crm_user WHERE email = :email", nativeQuery = true)
     Optional<UserEntity> findUserByEmail(@Param("email") String email);
+
+    @Query(value = "SELECT position FROM role INNER JOIN crm_user ON role.Id = crm_user.roleid WHERE crm_user.username = :username", nativeQuery = true)
+    Optional<String> findRoleByUsername(@Param("username") String username);
+
+    @Query(value = "SELECT Id FROM role WHERE position = :position", nativeQuery = true)
+    Optional<String> findRoleIdByPosition(@Param("position") String position);
 }
