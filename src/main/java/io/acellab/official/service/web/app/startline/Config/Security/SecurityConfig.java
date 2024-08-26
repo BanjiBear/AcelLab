@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -27,14 +28,15 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/home").permitAll()
+                        .requestMatchers("/startup-home").hasRole("STARTUP_USER")
+                        .requestMatchers("/company-home").hasRole("COMPANY_USER")
                         .requestMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .successHandler(customSuccessHandler())
                         .permitAll()
                 )
                 .logout((logout) -> logout
@@ -51,8 +53,15 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public AuthenticationSuccessHandler customSuccessHandler() {
+        return new CustomAuthenticationSuccessHandler();
+    }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
+
+
 }
