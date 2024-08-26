@@ -52,20 +52,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseFactory<UserEntity> userRegister(UserDto userDto) {
+    public ResponseFactory<UserDto> userRegister(UserDto userDto) {
 
-        /*The purpose of responseUser data only for frontend check what user data passed to this service ,
-        this responseUser data is meaningless in backend side*/
-        UserEntity responseUser = new UserEntity();
-        responseUser.setUsername(userDto.getUsername());
-        responseUser.setEmail(userDto.getEmail());
 
-        int result = userRepository.createUser(userDto.getUsername(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()));
+        int result = userRepository.createUser(
+                userDto.getUsername(),
+                userDto.getEmail(),
+                passwordEncoder.encode(userDto.getPassword()),
+                userRepository.findRoleIdByPosition(userDto.getUserType()).get()
+        );
 
         if (result == -1) {
-            return ResponseUtil.createResponse(Status.DATA_UNIQUE_EXIST, responseUser);
+            return ResponseUtil.createResponse(Status.DATA_UNIQUE_EXIST, userDto);
         } else {
-            return ResponseUtil.createResponse(Status.DATA_CREATED, responseUser);
+            return ResponseUtil.createResponse(Status.DATA_CREATED, userDto);
         }
 
     }

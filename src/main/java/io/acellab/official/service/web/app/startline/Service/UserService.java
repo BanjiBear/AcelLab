@@ -10,7 +10,7 @@ public interface UserService {
 
     public ResponseFactory<UserEntity> findByEmail(String email);
 
-    public ResponseFactory<UserEntity> userRegister(UserDto userDto);
+    public ResponseFactory<UserDto> userRegister(UserDto userDto);
 
     public ResponseFactory<String> passwordValidation(String password);
 }
