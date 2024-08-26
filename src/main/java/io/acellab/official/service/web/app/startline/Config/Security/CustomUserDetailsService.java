@@ -30,11 +30,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new CustomUserDetails(user.get().getUsername(),user.get().getPassword(), authorities());
+        String userRole = userRepository.findRoleByUsername(username).get();
+
+        return new CustomUserDetails(user.get().getUsername(),user.get().getPassword(), authorities(userRole));
     }
 
-    public Collection<? extends GrantedAuthority> authorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+    public Collection<? extends GrantedAuthority> authorities(String userRole) {
+        return Arrays.asList(new SimpleGrantedAuthority(dataToAuthorityRole(userRole)));
     }
+
+    public String dataToAuthorityRole(String role) {
+        return UserRole.getAuthorityName(role);
+    }
+
 
 }
