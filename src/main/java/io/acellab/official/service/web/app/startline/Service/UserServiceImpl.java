@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
                 userDto.getUsername(),
                 userDto.getEmail(),
                 passwordEncoder.encode(userDto.getPassword()),
-                userRepository.findRoleIdByPosition(userDto.getUserType()).get()
+                userRepository.findRoleIdByPermission(userDto.getUserType()).get()
         );
 
         if (result == -1) {

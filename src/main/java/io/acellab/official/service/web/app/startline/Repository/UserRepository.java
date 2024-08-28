@@ -26,9 +26,9 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
     @Query(value = "SELECT * FROM crm_user WHERE email = :email", nativeQuery = true)
     Optional<UserEntity> findUserByEmail(@Param("email") String email);
 
-    @Query(value = "SELECT position FROM role INNER JOIN crm_user ON role.Id = crm_user.roleid WHERE crm_user.username = :username", nativeQuery = true)
+    @Query(value = "SELECT permission FROM role INNER JOIN crm_user ON role.Id = crm_user.roleid WHERE crm_user.username = :username", nativeQuery = true)
     Optional<String> findRoleByUsername(@Param("username") String username);
 
-    @Query(value = "SELECT Id FROM role WHERE position = :position", nativeQuery = true)
-    Optional<String> findRoleIdByPosition(@Param("position") String position);
+    @Query(value = "SELECT Id FROM role WHERE permission = :permission", nativeQuery = true)
+    Optional<String> findRoleIdByPermission(@Param("permission") String permission);
 }

@@ -45,9 +45,6 @@ public class SecurityConfig {
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login")
                 )
-                        //after logout successful , go to logout page .
-                        /*.logoutSuccessUrl("/logout?logout"))*/
-
         ;
 
         return http.build();
