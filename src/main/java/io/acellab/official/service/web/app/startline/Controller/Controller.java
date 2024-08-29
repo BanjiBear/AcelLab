@@ -1,23 +1,28 @@
 package io.acellab.official.service.web.app.startline.Controller;
 
+import io.acellab.official.service.web.app.startline.Dto.Company.CompanyMemberDto;
 import io.acellab.official.service.web.app.startline.Dto.User.UserDto;
-import io.acellab.official.service.web.app.startline.Service.UserService;
+import io.acellab.official.service.web.app.startline.Service.Company.CompanyService;
+import io.acellab.official.service.web.app.startline.Service.User.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.security.Principal;
+import java.util.List;
 
-@Controller
-public class UserController {
+@org.springframework.stereotype.Controller
+public class Controller {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CompanyService companyService;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -44,9 +49,11 @@ public class UserController {
         String PasswordValidation = userService.passwordValidation(userDto.getPassword()).getStatusMessage();
 
         if (searchUsernameResultMessage.equals("DATA_FOUND") || searchEmailResultMessage.equals("DATA_FOUND") || PasswordValidation.equals("USER_INVALID_PASSWORD_FORMAT")) {
-            if(searchUsernameResultMessage.equals("DATA_FOUND")) model.addAttribute("UsernameExist", userDto.getUsername());
-            if(searchEmailResultMessage.equals("DATA_FOUND")) model.addAttribute("EmailExist", userDto.getEmail());
-            if(PasswordValidation.equals("USER_INVALID_PASSWORD_FORMAT")) model.addAttribute("PasswordFormatInvalid", "");
+            if (searchUsernameResultMessage.equals("DATA_FOUND"))
+                model.addAttribute("UsernameExist", userDto.getUsername());
+            if (searchEmailResultMessage.equals("DATA_FOUND")) model.addAttribute("EmailExist", userDto.getEmail());
+            if (PasswordValidation.equals("USER_INVALID_PASSWORD_FORMAT"))
+                model.addAttribute("PasswordFormatInvalid", "");
             return "register";
         }
 
@@ -67,5 +74,19 @@ public class UserController {
         model.addAttribute("userdetail", userDetails);
         return "startUpUserHome";
     }
+
+    @GetMapping("/company-members")
+    public String getCompanyMembers(Model model, Principal principal) {
+
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        List<CompanyMemberDto> memberList = companyService.findCompanyMembersByUsername(principal.getName()).getItems();
+        model.addAttribute("memberList", memberList);
+
+        return "companyMemberList";
+    }
+
 
 }
