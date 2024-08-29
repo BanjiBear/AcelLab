@@ -1,4 +1,4 @@
-package io.acellab.official.service.web.app.startline.Service;
+package io.acellab.official.service.web.app.startline.Service.User;
 
 import io.acellab.official.service.web.app.startline.Dto.User.UserDto;
 import io.acellab.official.service.web.app.startline.Entity.UserEntity;
@@ -9,7 +9,6 @@ import io.acellab.official.service.web.app.startline.Util.FunctionUtil;
 import io.acellab.official.service.web.app.startline.Util.ResponseUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

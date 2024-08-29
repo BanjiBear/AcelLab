@@ -1,4 +1,4 @@
-package io.acellab.official.service.web.app.startline.Service;
+package io.acellab.official.service.web.app.startline.Service.User;
 
 import io.acellab.official.service.web.app.startline.Entity.UserEntity;
 import io.acellab.official.service.web.app.startline.Status.ResponseFactory;
