@@ -50,9 +50,6 @@ public class UserEntity {
     @Column(name = "phone", nullable = true, length = 255)
     private String phone;
 
-    @Column(name = "company", nullable = true, length = 100)
-    private String company;
-
     @Column(name = "job", nullable = true, length = 50)
     private String job;
 
