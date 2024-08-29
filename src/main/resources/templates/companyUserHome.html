@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -36,6 +36,22 @@
             text-align: right;
             color: black;
         }
+
+        .member-list-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #c299d0;
+            color: #5e057e;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .member-list-link:hover {
+            background-color: #a970c3;
+        }
     </style>
 </head>
 
@@ -45,6 +61,7 @@
     <div class="dashboard_user">
         <h2 th:text="${userdetail.username}" class="dashboard_user_name"></h2>
     </div>
+    <a th:href="@{/company-members(username=${userdetail.username})}" class="member-list-link">View Member List</a>
     <div class="span-text">
         <span sec:authorize="isAuthenticated" style="color: white;"><a th:href="@{/logout}">Logout</a></span>
     </div>
