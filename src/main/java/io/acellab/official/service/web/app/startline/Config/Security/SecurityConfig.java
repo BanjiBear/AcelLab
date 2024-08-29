@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/startup-home").hasRole("STARTUP_USER")
                         .requestMatchers("/company-home").hasRole("COMPANY_USER")
+                        .requestMatchers("/company-members").hasRole("COMPANY_USER")
                         .requestMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                 )
