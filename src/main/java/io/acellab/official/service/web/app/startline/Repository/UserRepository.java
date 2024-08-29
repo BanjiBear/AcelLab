@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository("userRepository")
@@ -31,4 +32,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     @Query(value = "SELECT Id FROM role WHERE permission = :permission", nativeQuery = true)
     Optional<String> findRoleIdByPermission(@Param("permission") String permission);
+
 }
