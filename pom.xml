@@ -8,11 +8,11 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.acellab.service.web.app.startline.official</groupId>
-	<artifactId>acelLab</artifactId>
+	<groupId>io.acellab.service.web.app.startline</groupId>
+	<artifactId>Startline</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>acelLab</name>
-	<description>starling website project for Spring Boot</description>
+	<name>startline</name>
+	<description>Startline</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -75,12 +75,6 @@
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
 		</dependency>
 
 		<dependency>
