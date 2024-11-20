@@ -1,0 +1,236 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" th:href="@{./css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a href="/aboutus">Why Startline</a>
+					<a href="/price">Price</a>
+					<article class="dropdown">
+						<span>Resources</span>
+						<div class="dropdown-content">
+							<a href="/support">Support</a><br />
+							<a href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<article class="dropdown_language">
+						<img th:src="@{/images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<a href="">English</a><br />
+							<a href="">Chinese</a><br />
+							<a href="">한국어</a><br />
+							<a href="">Japanese</a>
+						</div>
+					</article>
+					<a href="loginStartup.html" class="nav_login">Login</a>
+					<a href="join.html" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="pricing">
+			<br />
+			<br />
+			<p class="page_title"><img th:src="@{/images/Pricing.png}" class="page_title_ICON" />PRICING</p>
+			<br />
+			<p class="pricing_subtitle">Choose the plan that matches your needs</p>
+			<article class="pricing1">
+				<article class="pricing2">
+					<p class="pricing2_1">Free Forever</p>
+					<br />
+					<p class="pricing2_2">$0/month</p>
+					<br />
+					<p class="pricing2_3">Global Database</p>
+					<br />
+					<p class="pricing2_3"></p>
+					<br />
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to Startline's AI Matching Feature</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to 3 company profiles per day</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to basic information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Search filters to find your ideal technology, usage scenario, country and more.</p>
+					</article>
+				</article>
+				<article class="pricing2">
+					<p class="pricing2_1">Business</p>
+					<br />
+					<p class="pricing2_2">$49/month</p>
+					<br />
+					<p class="pricing2_3">Global Database</p>
+					<br />
+					<p class="pricing2_3">Data Customization</p>
+					<br />
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to Startline's AI Matching Feature</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to 20 company profiles per day</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to basic information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to fundraising information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to contact information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to product information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Search filters to find your ideal technology, usage scenario, country and more.</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Single user account</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Free upgrade to future platform features</p>
+					</article>
+				</article>
+				<article class="pricing2">
+					<p class="pricing2_1">Enterprise</p>
+					<br />
+					<p class="pricing2_2">$199/month</p>
+					<br />
+					<p class="pricing2_3">Global Database</p>
+					<br />
+					<p class="pricing2_3">Data Customization</p>
+					<br />
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to Startline's AI Matching Feature</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to unlimited company profiles</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to basic information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to fundraising information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to contact information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Access to product information</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Search filters to find your ideal technology, usage scenario, country and more.</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Team account (1 admin account + 4 member account)</p>
+					</article>
+					<article class="flex_left">
+						<img th:src="@{/images/check.png}" class="checkIcon" />
+						<p class="pricing2_4">Free upgrade to future platform features</p>
+					</article>
+				</article>
+			</article>
+			<br />
+			<br />
+			<p class="pricing_label">All prices are in USD</p>
+		</div>
+		<div class="footer1">
+			<div class="footer1_1">
+				<h3>Questions? Talk to us</h3>
+				<h4>We are here around the clock to assist you</h4>
+			</div>
+			<br />
+			<br />
+			<br />
+			<div class="footer1_2">
+				<a href="join.html" class="trystartlinenow_btn">Try Startline Now</a>
+				<a href="/contact" class="contactus_btn">Contact Us</a>
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="footer2_1">
+				<article class="footer2_11">
+					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
+					<br />
+					<p class="footer_logo_content">
+						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
+					</p>
+				</article>
+				<article class="footer2_12">
+					<p class="footer_title">Product</p>
+					<br />
+					<p class="footer_content"><a href="/aboutus"> Why Startline</a></p>
+					<br />
+					<p class="footer_content"><a href="/price">What we offer</a></p>
+				</article>
+				<article class="footer2_12">
+					<p class="footer_title">Resources</p>
+					<br />
+					<p class="footer_content"><a href="/support">Support</a></p>
+					<br />
+					<p class="footer_content"><a href="/contact">Contact</a></p>
+				</article>
+				<article class="footer2_12">
+					<p class="footer_title">Company</p>
+					<br />
+					<p class="footer_content"><a href="/aboutus">About</a></p>
+					<br />
+					<p class="footer_content"><a href="/">Terms</a></p>
+					<br />
+					<p class="footer_content"><a href="/">Privacy</a></p>
+				</article>
+			</div>
+			<br />
+			<br />
+			<div class="footer2_2"></div>
+			<br />
+			<div class="footer2_3">
+				<p class="footer2_31">© 2024 Startline. Icons by Cristian MuÑoz, licensed under CC BY 4.0 All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{/js/smoothScroll.js}"></script>
+	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{/js/features.js}"></script>
+</html>

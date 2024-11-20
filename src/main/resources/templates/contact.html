@@ -1,0 +1,132 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" th:href="@{./css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a href="/aboutus">Why Startline</a>
+					<a href="/price">Price</a>
+					<article class="dropdown">
+						<span>Resources</span>
+						<div class="dropdown-content">
+							<a href="/support">Support</a><br />
+							<a href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<a href="loginStartup.html" class="nav_login">Login</a>
+					<a href="join.html" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="contact">
+			<br />
+			<br />
+			<p class="contact_title">Contact</p>
+			<article class="contact1">
+				<!-- <p><img src="Logo/High Resolution Logo Files/Original on Transparent.png" class="footer_logo" /></p> -->
+				<article class="contact_form_placeholder"></article>
+				<article class="contact_form">
+					<!-- <form action="action_page.php"> -->
+					<form>
+						<!-- <label for="reason">asdf</label> -->
+						<select id="reason" name="reason" class="contact_reason" required>
+							<option value="reason">Please choose the reason for reaching out</option>
+							<option value="canada">Seeking detailed market information</option>
+							<option value="usa">Exploring potential strategic partnership opportunities</option>
+							<option value="usa">Interested in reviewing additional services</option>
+							<option value="usa">Providing feedback on the platform/service</option>
+							<option value="usa">Other inquiries (please specifiy)</option>
+						</select>
+						<br />
+						<!-- <label for="fname">asdf</label> -->
+						<input type="text" id="fname" name="firstname" placeholder="First Name*" class="short_blk" required />
+						<!-- <label for="lname">asdf</label> -->
+						<input type="text" id="lname" name="lastname" placeholder="Last Name*" class="short_blk" required /> <br />
+						<!-- <label for="cname">asdf</label> -->
+						<input type="text" id="cname" name="companyname" placeholder="Company Name*" class="long_blk" required /><br />
+						<!-- <label for="pnumber">asdf</label> -->
+						<input type="tel" id="pnumber" name="phonenumber" placeholder="Phone*" class="short_blk" required />
+						<!-- <label for="email">asdf</label> -->
+						<input type="email" id="email" name="emailaddress" placeholder="Email*" class="short_blk" required /> <br />
+						<!-- <label for="message">asdf</label> -->
+						<input type="text" id="message" name="message" placeholder="Message*" class="long_blk" required />
+						<input type="submit" value="Submit" class="login_btn" />
+					</form>
+				</article>
+			</article>
+		</div>
+		<div class="footer1">
+			<div class="footer1_1">
+				<h3>Ready to get started?</h3>
+				<h4>Kickstart innovation with us</h4>
+			</div>
+			<br />
+			<br />
+			<br />
+			<div class="footer1_2">
+				<a href="join.html" class="trystartlinenow_btn">Try Startline Now</a>
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="footer2_1">
+				<article class="footer2_11">
+					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
+					<br />
+					<p class="footer_logo_content">
+						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
+					</p>
+				</article>
+				<article class="footer2_12">
+					<p class="footer_title">Product</p>
+					<br />
+					<p class="footer_content"><a href="/aboutus"> Why Startline</a></p>
+					<br />
+					<p class="footer_content"><a href="/price">What we offer</a></p>
+				</article>
+				<article class="footer2_12">
+					<p class="footer_title">Resources</p>
+					<br />
+					<p class="footer_content"><a href="/support">Support</a></p>
+					<br />
+					<p class="footer_content"><a href="/contact">Contact</a></p>
+				</article>
+				<article class="footer2_12">
+					<p class="footer_title">Company</p>
+					<br />
+					<p class="footer_content"><a href="/aboutus">About</a></p>
+					<br />
+					<p class="footer_content"><a href="/">Terms</a></p>
+					<br />
+					<p class="footer_content"><a href="/">Privacy</a></p>
+				</article>
+			</div>
+			<br />
+			<br />
+			<div class="footer2_2"></div>
+			<br />
+			<div class="footer2_3">
+				<p class="footer2_31">© 2024 Startline. Icons by Cristian MuÑoz, licensed under CC BY 4.0 All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{/js/smoothScroll.js}"></script>
+	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
+</html>

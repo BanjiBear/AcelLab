@@ -28,11 +28,14 @@ public class SecurityConfig {
 
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests((authz) -> authz
-						.requestMatchers("/startup-home").hasAuthority("STARTUP_USER")
-						.requestMatchers("/company-home").hasAuthority("COMPANY_USER")
-						.requestMatchers("/company-members").hasAuthority("COMPANY_USER")
-						.requestMatchers("/register").permitAll()
-						.anyRequest().authenticated()
+						//.requestMatchers("/startup-home").hasAuthority("STARTUP_USER")
+						//.requestMatchers("/company-home").hasAuthority("COMPANY_USER")
+						//.requestMatchers("/company-members").hasAuthority("COMPANY_USER")
+						.requestMatchers("/*").permitAll()
+						.requestMatchers("/images/**").permitAll()
+						.requestMatchers("/css/**").permitAll()
+						.requestMatchers("/js/**").permitAll()
+						//.anyRequest().authenticated()
 				)
 				.formLogin(form -> form
 						.loginPage("/login")
@@ -46,7 +49,7 @@ public class SecurityConfig {
 						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 						.logoutSuccessUrl("/login")
 				).exceptionHandling(exception -> exception
-						.accessDeniedPage("...")
+						.accessDeniedPage("/error")
 				);
 		
 		
