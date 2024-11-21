@@ -25,8 +25,11 @@ public class UserInfo{
 	@Column(name = "password", length = 32, nullable = false)
 	private String password;
 	
-	@Column(name = "name", length = 255, nullable = false)
-	private String name;
+	@Column(name = "firstname", length = 255, nullable = false)
+	private String firstname;
+	
+	@Column(name = "lastname", length = 255, nullable = false)
+	private String lastname;
 	
 	@ManyToOne
 	@JoinColumn(name = "company_id")
@@ -62,8 +65,11 @@ public class UserInfo{
 	public void setPassword(String password) {this.password = password;}
 	public String getPassword() {return this.password;}
 	
-	public void setName(String name) {this.name = name;}
-	public String getName() {return this.name;}
+	public void setFirstname(String name) {this.firstname = name;}
+	public String getFirstname() {return this.firstname;}
+	
+	public void setLastname(String name) {this.lastname = name;}
+	public String getLastname() {return this.lastname;}
 	
 	public void setCompany(CompanyInfo company) {this.company = company;}
 	public CompanyInfo getCompany() {return company;}

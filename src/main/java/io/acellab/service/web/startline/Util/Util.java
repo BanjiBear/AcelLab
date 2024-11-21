@@ -15,12 +15,25 @@ public class Util {
 		return responseFactory;
 	}
 	
-	public static boolean isValidPassword(String password) {
-		String passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{12,}$";
-		//Minimum 12 letters
-		//At least one Upper
-		//At least one special
-		return password.matches(passwordRegex);
+	public static <T> ResponseFactory<T> responseFormation(Status status) {
+		ResponseFactory<T> responseFactory = new ResponseFactory<>();
+		responseFactory.setStatus(status);
+		return responseFactory;
+	}
+	
+	public static Boolean isValidUsername(String username) {
+		String regex = "^[A-Za-z0-9_]+$";
+		return username.matches(regex);
+	}
+	
+	public static Boolean isValidPassword(String password) {
+		String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[@$!%*?&#<>])(?=.*[0-9])[A-Za-z0-9@$!%*?&#<>]{12,}$";
+		return password.matches(regex);
+	}
+	
+	public static Boolean isValidEmailFormat(String email) {
+		String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+		return email.matches(regex);
 	}
 
 }

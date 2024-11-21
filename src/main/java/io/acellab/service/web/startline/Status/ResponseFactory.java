@@ -5,7 +5,7 @@ import java.util.List;
 public class ResponseFactory<T> {
 	
 	private Status status;
-	private List<T> returnDataList;
+	private List<T> returnDataList = null;
 	
 	
 	//Example access: Status.ERROR.getStatusCode()

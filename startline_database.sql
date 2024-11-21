@@ -113,25 +113,26 @@ CREATE TABLE user (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
     company_id BIGINT,
     department VARCHAR(255),
     role VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
     phone VARCHAR(255),
     linkedIn VARCHAR(255),
-    isStartup BOOLEAN,
-    business_plan_id INTEGER,
+    isStartup BOOLEAN NOT NULL,
+    business_plan_id INTEGER NOT NULL,
     FOREIGN KEY (company_id) REFERENCES company(id),
     FOREIGN KEY (business_plan_id) REFERENCES businessplan(id)
 );
 
 -- Insert example data into user table
-INSERT INTO user (username, password, name, company_id, department, role, email, phone, linkedIn, isStartup, business_plan_id)
-VALUES 
-('tommy', 'password123', 'Tommy CHEN', 1, 'Engineering', 'Software Engineer', 'tommy@techinnovators.com', '123-456-7890', 'https://www.linkedin.com/in/test', TRUE, 1),
-('jeffrey', 'password123', 'Jeffrey Kim', 1, 'Engineering', 'Software Engineer', 'jeffrey@techinnovators.com', '123-456-7890', 'https://www.linkedin.com/in/test', TRUE, 1),
-('lucas', 'password456', 'Banjibear', 2, 'Marketing', 'Marketing Manager', 'lucas@greenenergy.com', '987-654-3210', 'https://www.linkedin.com/in/test', FALSE, 3);
+-- INSERT INTO user (username, password, name, company_id, department, role, email, phone, linkedIn, isStartup, business_plan_id)
+-- VALUES 
+-- ('tommy', 'password123', 'Tommy CHEN', 1, 'Engineering', 'Software Engineer', 'tommy@techinnovators.com', '123-456-7890', 'https://www.linkedin.com/in/test', TRUE, 1),
+-- ('jeffrey', 'password123', 'Jeffrey Kim', 1, 'Engineering', 'Software Engineer', 'jeffrey@techinnovators.com', '123-456-7890', 'https://www.linkedin.com/in/test', TRUE, 1),
+-- ('lucas', 'password456', 'Banjibear', 2, 'Marketing', 'Marketing Manager', 'lucas@greenenergy.com', '987-654-3210', 'https://www.linkedin.com/in/test', FALSE, 3);
 
 
 -- $2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Zf4a2E4Zs7tq9j9S8K6eW
