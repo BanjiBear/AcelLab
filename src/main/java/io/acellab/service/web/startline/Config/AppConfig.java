@@ -14,4 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 	
 	//Define Beans here
+	
+	
+	// This class is currently not used
 }

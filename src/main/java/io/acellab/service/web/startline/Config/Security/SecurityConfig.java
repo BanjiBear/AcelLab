@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -19,6 +20,8 @@ public class SecurityConfig {
 
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
+	@Autowired
+    private CustomRequestFilter requestFilter;
 
 	@Bean
 	public static PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
@@ -35,6 +38,10 @@ public class SecurityConfig {
 						.requestMatchers("/images/**").permitAll()
 						.requestMatchers("/css/**").permitAll()
 						.requestMatchers("/js/**").permitAll()
+						
+						.requestMatchers("/startup/login").permitAll()
+						.requestMatchers("/corporate/login").permitAll()
+
 						//.anyRequest().authenticated()
 				)
 				.formLogin(form -> form
@@ -52,6 +59,7 @@ public class SecurityConfig {
 						.accessDeniedPage("/error")
 				);
 		
+		http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
 	}

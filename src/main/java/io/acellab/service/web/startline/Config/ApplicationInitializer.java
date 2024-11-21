@@ -8,6 +8,8 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import io.acellab.service.web.startline.DataSource.JPAConfig;
+
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 	
@@ -17,7 +19,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext container) throws ServletException{
 		// Create the root Context
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.register(AppConfig.class);
+		rootContext.register(JPAConfig.class);
 		
 		// Manage Lifecycle of the root Context (????)
 		/*

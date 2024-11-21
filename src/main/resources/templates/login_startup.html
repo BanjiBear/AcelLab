@@ -11,7 +11,7 @@
 			rel="stylesheet"
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" th:href="@{./css/style.css}" />
+		<link rel="stylesheet" th:href="@{../css/style.css}" />
 	</head>
 	<body>
 		<div class="navigationbar">
@@ -43,58 +43,41 @@
 				</div>
 			</div>
 		</div>
-		<div class="support">
-			<article class="support_navbar">
-				<p>Welcome to</p>
-				<p class="support_navbar_MainTitle">Startline Support</p>
-				<br />
-				<p class="support_navbar_title">GETTING STARTED</p>
-				<p class="support_navbar_subtitle">Plan and pricing</p>
-				<p class="support_navbar_subtitle">Creating an account</p>
-				<br />
-
-				<p class="support_navbar_title">FEATURES</p>
-				<p class="support_navbar_subtitle">Feature 1</p>
-				<p class="support_navbar_subtitle">Feature 2</p>
-				<p class="support_navbar_subtitle">Feature 3</p>
-				<br />
-
-				<p class="support_navbar_title">ACCOUNT SETTINGS</p>
-				<p class="support_navbar_subtitle">Managing profile information</p>
-				<p class="support_navbar_subtitle">Password settings</p>
-				<p class="support_navbar_subtitle">Language settings</p>
-				<br />
-
-				<p class="support_navbar_title">TEAM SETTINGS</p>
-				<p class="support_navbar_subtitle">Managing team information</p>
-				<p class="support_navbar_subtitle">Adding/ removing team members</p>
-				<p class="support_navbar_subtitle">Member roles</p>
-				<p class="support_navbar_subtitle">Editing member roles</p>
+		<div class="login">
+			<br />
+			<br />
+			<br />
+			<br />
+			<article class="join_title_btn">
+				<p class="join_btn1"><a href="#">STARTUP</a></p>
+				<p class="join_btn2"><a href="/corporate/login">CORPORATE</a></p>
 			</article>
-			<article class="support_content">
-				<p>Startline Support</p>
-				<p>Welcome to our Help Centre, where you can explore how to use the app and master superpowers to level up your business.</p>
-				<p>Get Started</p>
-				<p>We've put together some guides for you to get setup with our product quickly and easily.</p>
-				<p>Plan and Pricing</p>
-				<p>Creating an account</p>
+			<article class="join_main">
+				<p class="join_main1">Welcome Back</p>
+				<p class="join_main2">To championing your solutions</p>
+				<br />
+
+				<div class="container">
+					<label for="uname" class="login_label">Work Email</label> <br />
+
+					<input type="text" placeholder="name@company.com" name="uname" class="longin_label_content" required />
+					<br />
+					<label for="psw" class="login_label">Password</label> <br />
+					<div class="password-input">
+						<input type="password" id="pwordInput" placeholder="At least 8 characters" name="psw" class="longin_label_content" required />
+						<img th:src="@{/images/password.png}" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" class="nav_language" />
+					</div>
+				</div>
+				<div class="container">
+					<label> <input type="checkbox" checked="checked" name="remember" class="checkbox" /> Remember me </label>
+					<span class="psw"><a href="/register">Forgot password?</a></span>
+				</div>
+				<button type="submit" class="login_btn"><a href="./Platform/GetStarted.html">Sign In</a></button>
+				<p class="join_main3">
+					Don't have an account?<span class="signup"><a href="/register"> Sign up</a></span>
+				</p>
 			</article>
 		</div>
-
-		<div class="footer1">
-			<div class="footer1_1">
-				<h3>Questions? Talk to us</h3>
-				<h4>We are here around the clock to assist you</h4>
-			</div>
-			<br />
-			<br />
-			<br />
-			<div class="footer1_2">
-				<a href="/register" class="trystartlinenow_btn">Try Startline Now</a>
-				<a href="/contact" class="contactus_btn">Contact Us</a>
-			</div>
-		</div>
-
 		<div class="footer2">
 			<div class="footer2_1">
 				<article class="footer2_11">
@@ -138,6 +121,7 @@
 		</div>
 	</body>
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-	<script th:src="@{/js/smoothScroll.js}"></script>
-	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/smoothScroll.js}"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features.js}"></script>
 </html>
