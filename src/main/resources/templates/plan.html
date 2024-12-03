@@ -1,0 +1,147 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
+	</head>
+	<body>
+		<div class="platform">
+			<article class="menu">
+				<article class="menu_top">
+					<a href="/"
+						><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_menu"
+					/></a>
+					<br />
+					<p class="menu_title_2">
+						<a href="/home"><img th:src="@{../images/icon/GetStarted.png}" class="icon_menu" />Get Started</a>
+					</p>
+					<p class="menu_title_2">
+						<a href="/profile/startup"><img th:src="@{../images/icon/Profile.png}" class="icon_menu" />Profile</a>
+					</p>
+					<p class="menu_title_2">
+						<a href="/search"><img th:src="@{../images/icon/Search.png}" class="icon_menu" />Search</a>
+					</p>
+				</article>
+				<article class="menu_middle">
+					<article class="upgradeAds">
+						<img th:src="@{../images/icon/Ads.png}" class="icon_menu" />
+						<p class="Ad_line1">Unlock data customization with our Business Plan!</p>
+						<p class="Ad_line2">Get a personalized solution for your business needs.</p>
+						<a href=""><p class="Ad_button">Upgrade your plan</p></a>
+					</article>
+				</article>
+				<article class="menu_bottom">
+					<p class="menu_title_4">User Nameasdfasdfsaasdfasdfasd</p>
+					<p class="menu_title_5"><span class="menu_title_5_1">Plan Name</span><span class="menu_title_5_2">1/5 seats</span></p>
+					<p class="menu_title_2">
+						<a href="/support"><img th:src="@{../images/icon/Support.png}" class="icon_menu" />Support</a>
+					</p>
+					<p class="menu_title_1">
+						<a href=""><img th:src="@{../images/icon/Settings_blue.png}" class="icon_menu" />Settings</a>
+					</p>
+					<p class="menu_title_2"><img th:src="@{../images/icon/Logout.png}" class="icon_menu" />Logout</p>
+				</article>
+			</article>
+			<article class="CustomerType">
+				<article class="CustomerType2">
+					<a href="/settings/account">
+						<p class="CustomerType_title">Account Settings</p>
+						<p class="CustomerType_description">Edit your account's personal profile and billing method</p>
+					</a>
+				</article>
+				<article class="CustomerType2">
+					<a href="/settings/team">
+						<p class="CustomerType_title">Team Settings</p>
+						<p class="CustomerType_description">Manage your team members and information</p>
+					</a>
+				</article>
+				<article class="CustomerType2">
+					<a href="/settings/bookmark">
+						<p class="CustomerType_title">Bookmark Settings</p>
+						<p class="CustomerType_description">Create, edit and delete bookmarks</p>
+					</a>
+				</article>
+				<article class="CustomerType1">
+					<a href="">
+						<p class="CustomerType_title">Plan Settings</p>
+						<p class="CustomerType_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					</a>
+				</article>
+			</article>
+			<article class="profile">
+				<br /><br />
+				<p class="Search_title">Plan Settings</p>
+				<p class="CustomerType_description">Manage your plan</p>
+				<form>
+					<article class="plan">
+						<article class="flex_left">
+							<article class="plans">My plan</article>
+							<article>
+								<article class="flex_withBox">
+									<article><input type="radio" name="priceTier" onchange="toggleBorder(this)" /></article>
+									<article>
+										<p class="PriceTier">Free</p>
+										<p class="PriceTier_description">
+											Access 100 company profiles for essential information such as website links and employee numbers at no cost.
+										</p>
+									</article>
+									<article class="Price">$0/month</article>
+								</article>
+								<article class="flex_withBox">
+									<article><input type="radio" name="priceTier" onchange="toggleBorder(this)" /></article>
+									<article>
+										<p class="PriceTier">Business</p>
+										<p class="PriceTier_description">
+											Dive deeper with 600 company profiles featuring basic, product, finance, and contact information for comprehensive
+											insights.
+										</p>
+									</article>
+									<article class="Price">$49/month</article>
+								</article>
+								<article class="flex_withBox">
+									<article><input type="radio" name="priceTier" onchange="toggleBorder(this)" /></article>
+									<article>
+										<p class="PriceTier">Corporate</p>
+										<p class="PriceTier_description">
+											Unlock unlimited company profile views with detailed basic, product, finance, and contact information for extensive
+											exploration. Added with a personalized consultation service from industry experts
+										</p>
+									</article>
+									<article class="Price">$199/month</article>
+								</article>
+							</article>
+						</article>
+						<button type="submit" class="button">Save</button>
+						<!-- <p class="Search_title">Unsubscribe</p>
+					<p class="Settings_bookmark_subtitle">Modify the messages below to unsubscribe</p>
+					<br />
+					<form class="flex_left">
+						<label for="unsubscription" class="profile_heading2">Reason for unsubscription</label>
+						<select id="country" name="country" class="filters3">
+							<option value="reason">Choose a reason</option>
+							<option value="canada">Canada</option>
+							<option value="usa">USA</option>
+						</select>
+					</form>
+					<br />
+					<p class="button_right">Unsubscribe</p>
+					<br /> -->
+					</article>
+				</form>
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/smoothScroll.js}"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features1.js}"></script>
+</html>

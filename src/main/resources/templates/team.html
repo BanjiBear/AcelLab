@@ -1,0 +1,184 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
+	</head>
+	<body>
+		<div class="platform">
+			<article class="menu">
+				<article class="menu_top">
+					<a href="/"
+						><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_menu"
+					/></a>
+					<br />
+					<p class="menu_title_2">
+						<a href="/home"><img th:src="@{../images/icon/GetStarted.png}" class="icon_menu" />Get Started</a>
+					</p>
+					<p class="menu_title_2">
+						<a href="/profile/startup"><img th:src="@{../images/icon/Profile.png}" class="icon_menu" />Profile</a>
+					</p>
+					<p class="menu_title_2">
+						<a href="/search"><img th:src="@{../images/icon/Search.png}" class="icon_menu" />Search</a>
+					</p>
+				</article>
+				<article class="menu_middle">
+					<article class="upgradeAds">
+						<img th:src="@{../images/icon/Ads.png}" class="icon_menu" />
+						<p class="Ad_line1">Unlock data customization with our Business Plan!</p>
+						<p class="Ad_line2">Get a personalized solution for your business needs.</p>
+						<a href="/settings/plan"><p class="Ad_button">Upgrade your plan</p></a>
+					</article>
+				</article>
+				<article class="menu_bottom">
+					<p class="menu_title_4">User Nameasdfasdfsaasdfasdfasd</p>
+					<p class="menu_title_5"><span class="menu_title_5_1">Plan Name</span><span class="menu_title_5_2">1/5 seats</span></p>
+					<p class="menu_title_2">
+						<a href="/support"><img th:src="@{../images/icon/Support.png}" class="icon_menu" />Support</a>
+					</p>
+					<p class="menu_title_1">
+						<a href=""><img th:src="@{../images/icon/Settings_blue.png}" class="icon_menu" />Settings</a>
+					</p>
+					<p class="menu_title_2"><img th:src="@{../images/icon/Logout.png}" class="icon_menu" />Logout</p>
+				</article>
+			</article>
+			<article class="CustomerType">
+				<article class="CustomerType2">
+					<a href="/settings/account">
+						<p class="CustomerType_title">Account Settings</p>
+						<p class="CustomerType_description">Edit your account's personal profile and billing method</p>
+					</a>
+				</article>
+				<article class="CustomerType1">
+					<a href="">
+						<p class="CustomerType_title">Team Settings</p>
+						<p class="CustomerType_description">Manage your team members and information</p>
+					</a>
+				</article>
+				<article class="CustomerType2">
+					<a href="/settings/bookmark">
+						<p class="CustomerType_title">Bookmark Settings</p>
+						<p class="CustomerType_description">Create, edit and delete bookmarks</p>
+					</a>
+				</article>
+				<article class="CustomerType2">
+					<a href="/settings/plan">
+						<p class="CustomerType_title">Plan Settings</p>
+						<p class="CustomerType_description">Manage your plan</p>
+					</a>
+				</article>
+			</article>
+			<article class="profile">
+				<br /><br />
+				<p class="Search_title">Members</p>
+				<form>
+					<article class="team">
+						<article class="flex_left_space">
+							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
+							<article>
+								<p class="member">Name</p>
+								<p class="member">Role</p>
+							</article>
+							<article>
+								<p class="member">Permission</p>
+								<select id="status" name="status" class="filters_members" required>
+									<option value="selectStatus">Select permission</option>
+									<option value="admin" class="admin">Admin</option>
+									<option value="member" class="admin">Member</option>
+								</select>
+							</article>
+							<article>
+								<p class="member">Status</p>
+								<select id="status" name="status" class="filters_members" required>
+									<option value="selectStatus">Select status</option>
+									<option value="Active" class="active">Active</option>
+									<option value="Inactive" class="inactive">Inactive</option>
+								</select>
+							</article>
+						</article>
+						<article class="flex_left_space">
+							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
+							<article>
+								<p class="member">Name</p>
+								<p class="member">Role</p>
+							</article>
+							<article>
+								<p class="member">Permission</p>
+								<select id="status" name="status" class="filters_members" required>
+									<option value="selectStatus">Select permission</option>
+									<option value="admin" class="admin">Admin</option>
+									<option value="member" class="admin">Member</option>
+								</select>
+							</article>
+							<article>
+								<p class="member">Status</p>
+								<select id="status" name="status" class="filters_members" required>
+									<option value="selectStatus">Select status</option>
+									<option value="Active" class="active">Active</option>
+									<option value="Inactive" class="inactive">Inactive</option>
+								</select>
+							</article>
+						</article>
+						<article class="flex_left_space">
+							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
+							<article>
+								<p class="member">Name</p>
+								<p class="member">Role</p>
+							</article>
+							<article>
+								<p class="member">Permission</p>
+								<select id="status" name="status" class="filters_members" required>
+									<option value="selectStatus">Select permission</option>
+									<option value="admin" class="admin">Admin</option>
+									<option value="member" class="admin">Member</option>
+								</select>
+							</article>
+							<article>
+								<p class="member">Status</p>
+								<select id="status" name="status" class="filters_members" required>
+									<option value="selectStatus">Select status</option>
+									<option value="Active" class="active">Active</option>
+									<option value="Inactive" class="inactive">Inactive</option>
+								</select>
+							</article>
+						</article>
+						<p class="Search_title">Team Details</p>
+						<br />
+
+						<article class="flex_left">
+							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
+							<p class="Members_companyName">Company Name</p>
+						</article>
+						<!-- <label for="reason">asdf</label> -->
+						<br />
+						<label for="email" class="profile_heading1">CEO's Work Email*</label>
+						<input type="email" id="email" name="email" placeholder="name@company.com" class="filters2" required />
+						<br />
+						<label for="phone" class="profile_heading1">CEO's Work Phone*</label>
+						<input type="number" id="phone" name="phone" placeholder="xxxx-xxxx" class="filters2" required />
+						<br />
+						<br />
+						<br />
+					</article>
+
+					<button type="submit" class="button">Save</button>
+				</form>
+				<br />
+				<br />
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/smoothScroll.js}"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features1.js}"></script>
+</html>
