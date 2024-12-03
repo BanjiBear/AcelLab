@@ -1,3 +1,14 @@
+/*
+ * 
+ * 
+ * 
+ * This Custom Handler is currently not in use
+ * Default redirection after success authentication is defined directly in SecurityConfig
+ * 
+ * 
+ * 
+ * */
+
 package io.acellab.service.web.startline.Config.Security;
 
 

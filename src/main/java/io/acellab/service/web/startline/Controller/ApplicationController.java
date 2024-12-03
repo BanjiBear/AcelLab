@@ -87,11 +87,17 @@ public class ApplicationController {
 		return "login_startup";
 	}
 	
+	
+	/****************************************************************/
+	
 	@GetMapping("/corporate/login")
 	public String loginCorporatePage(Model model) {
 		//loginCorporate --> login_corporate
 		return "login_corporate";
 	}
+	
+	
+	/****************************************************************/
 	
 	@GetMapping("/register")
 	public String registerPage(Model model) {

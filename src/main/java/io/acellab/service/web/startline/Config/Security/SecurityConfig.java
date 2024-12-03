@@ -14,6 +14,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import io.acellab.service.web.startline.Util.UserPlan;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -31,9 +33,6 @@ public class SecurityConfig {
 
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests((authz) -> authz
-						//.requestMatchers("/startup-home").hasAuthority("STARTUP_USER")
-						//.requestMatchers("/company-home").hasAuthority("COMPANY_USER")
-						//.requestMatchers("/company-members").hasAuthority("COMPANY_USER")
 						.requestMatchers("/*").permitAll()
 						.requestMatchers("/images/**").permitAll()
 						.requestMatchers("/css/**").permitAll()
@@ -41,13 +40,33 @@ public class SecurityConfig {
 						
 						.requestMatchers("/startup/login").permitAll()
 						.requestMatchers("/corporate/login").permitAll()
-
+						
+						
+						//.requestMatchers("/home").hasAuthority(UserPlan.STARTUP.getPlanName())
+						.requestMatchers("/home").authenticated()
+						.requestMatchers("/search").authenticated()
+						
+						.requestMatchers("/profile/startup").authenticated()
+						.requestMatchers("/profile/corporate").authenticated()
+						
+						.requestMatchers("/settings/account").authenticated()
+						.requestMatchers("/settings/team").authenticated()
+						.requestMatchers("/settings/bookmark").authenticated()
+						.requestMatchers("/settings/plan").authenticated()
+						
+						.requestMatchers("/company/info").authenticated()
+						.requestMatchers("/company/products").authenticated()
+						.requestMatchers("/company/finance").authenticated()
+						.requestMatchers("/company/contact").authenticated()
+						.anyRequest().authenticated()
 						//.anyRequest().authenticated()
 				)
 				.formLogin(form -> form
-						.loginPage("/login")
-						.loginProcessingUrl("/login")
-						.successHandler(customSuccessHandler())
+						.loginPage("/startup/login")
+						.loginProcessingUrl("/startup/login")
+						.defaultSuccessUrl("/home", true)
+						.failureUrl("/startup/login?error=true")
+						//.successHandler(customSuccessHandler())
 						.permitAll()
 				)
 				.logout((logout) -> logout
@@ -56,7 +75,7 @@ public class SecurityConfig {
 						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 						.logoutSuccessUrl("/login")
 				).exceptionHandling(exception -> exception
-						.accessDeniedPage("/error")
+						.accessDeniedPage("/debug?message=")
 				);
 		
 		http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
