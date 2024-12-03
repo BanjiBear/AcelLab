@@ -14,7 +14,7 @@
 		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
 	</head>
 	<body>
-		<div class="platform">
+		<div class="platform" th:object="${user}">
 			<article class="menu">
 				<article class="menu_top">
 					<a href="./"
@@ -25,7 +25,8 @@
 						<a href="/home"><img th:src="@{../images/icon/GetStarted.png}" class="icon_menu" />Get Started</a>
 					</p>
 					<p class="menu_title_2">
-						<a href="/profile/startup"><img th:src="@{../images/icon/Profile.png}" class="icon_menu" />Profile</a>
+						<a href="/profile/startup" th:if="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Startup</a>
+						<a href="/profile/startup" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
 					</p>
 					<p class="menu_title_1">
 						<a href="/search"><img th:src="@{../images/icon/Search_blue.png}" class="icon_menu" />Search</a>
@@ -40,8 +41,14 @@
 					</article>
 				</article>
 				<article class="menu_bottom">
-					<p class="menu_title_4">User Nameasdfasdfsaasdfasdfasd</p>
-					<p class="menu_title_5"><span class="menu_title_5_1">Plan Name</span><span class="menu_title_5_2">1/5 seats</span></p>
+					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
+					<p class="menu_title_5">
+						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
+						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan().getPlanName()}"></span>
+						
+						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
+						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
+					</p>
 					<p class="menu_title_2">
 						<a href="/support"><img th:src="@{../images/icon/Support.png}" class="icon_menu" />Support</a>
 					</p>
