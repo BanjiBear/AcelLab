@@ -22,7 +22,7 @@ public class Util {
 	}
 	
 	public static Boolean isValidUsername(String username) {
-		String regex = "^[A-Za-z0-9_]+$";
+		String regex = "^(?![_\\d])[A-Za-z0-9_]{5,50}$";
 		return username.matches(regex);
 	}
 	
