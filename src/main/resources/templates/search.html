@@ -26,7 +26,7 @@
 					</p>
 					<p class="menu_title_2">
 						<a href="/profile/startup" th:if="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Startup</a>
-						<a href="/profile/startup" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
+						<a href="/profile/corporate" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
 					</p>
 					<p class="menu_title_1">
 						<a href=""><img th:src="@{/images/icon/Search_blue.png}" class="icon_menu" />Search</a>
@@ -493,11 +493,81 @@
 							<input type="reset" value="Clear all" class="clearall" />
 						</article>
 					</form>
-					<p class="notification">We've found <span class="blueText">100 </span>companies</p>
+					<p class="notification">We've found <span class="blueText" th:text="${response.getReturnDataList().size()}"></span> companies</p>
 				</article>
 				<article class="Search2">
 					<article class="flex_center">
-						<article class="card">
+						<article class="card" th:each="company: ${response.getReturnDataList()}">
+							<article class="card_top">
+								<img th:src="@{${company.getLogo()}}" class="logo" />
+								<article class="card_right">
+									<p class="card_heading_AIRecommend" th:text="${company.getCompanyName()}"></p>
+									<p class="card_content_AIRecommend" th:text="${company.getHQ()}"></p>
+									<p class="card_technology_AIRecommend" th:text="${company.getIndustry()}"></p>
+								</article>
+								<img th:src="@{/images/icon/bookmark.png}" class="logo_bookmark" />
+							</article>
+							<p class="card_heading_AIRecommend">Description</p>
+							<p class="card_content_AIRecommend" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" th:text="${company.getIntro()}"></p>
+							<p class="card_heading_AIRecommend">Tags</p>
+							<article class="card_flex">
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag0() != null and !#strings.isEmpty(company.getTag0())}"
+								th:text="${company.getTag0()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag0()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag1() != null and !#strings.isEmpty(company.getTag1())}"
+								th:text="${company.getTag1()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag1()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag2() != null and !#strings.isEmpty(company.getTag2())}"
+								th:text="${company.getTag2()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag2()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag3() != null and !#strings.isEmpty(company.getTag3())}"
+								th:text="${company.getTag3()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag3()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag4() != null and !#strings.isEmpty(company.getTag4())}"
+								th:text="${company.getTag4()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag4()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag5() != null and !#strings.isEmpty(company.getTag5())}"
+								th:text="${company.getTag5()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag5()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag6() != null and !#strings.isEmpty(company.getTag6())}"
+								th:text="${company.getTag6()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag6()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag7() != null and !#strings.isEmpty(company.getTag7())}"
+								th:text="${company.getTag7()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag7()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag8() != null and !#strings.isEmpty(company.getTag8())}"
+								th:text="${company.getTag8()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag8()}"></span>
+								</p>
+								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
+								th:if="${company.getTag9() != null and !#strings.isEmpty(company.getTag9())}"
+								th:text="${company.getTag9()}">
+									<span class="target_AIRecommend_hover" th:text="${company.getTag9()}"></span>
+								</p>
+							</article>
+							<a href="/company/info">
+								<p class="card_bottomright">More Details</p>
+							</a>
+						</article>
+
+						<!-- <article class="card">
 							<article class="card_top">
 								<img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
 								<article class="card_right">
@@ -643,56 +713,7 @@
 							<a href="/company/info">
 								<p class="card_bottomright">More Details</p>
 							</a>
-						</article>
-						<article class="card">
-							<article class="card_top">
-								<img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
-								<article class="card_right">
-									<p class="card_heading_AIRecommend">Company</p>
-									<p class="card_content_AIRecommend">Region</p>
-									<p class="card_technology_AIRecommend">Technology</p>
-								</article>
-								<img th:src="@{/images/icon/bookmark.png}" class="logo_bookmark" />
-							</article>
-							<p class="card_heading_AIRecommend">Description</p>
-							<p class="card_content_AIRecommend">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<p class="card_heading_AIRecommend">Tags</p>
-							<article class="card_flex">
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-							</article>
-							<a href="/company/info">
-								<p class="card_bottomright">More Details</p>
-							</a>
-						</article>
+						</article> -->
 					</article>
 				</article>
 			</article>

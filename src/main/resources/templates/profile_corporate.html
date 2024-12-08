@@ -26,7 +26,7 @@
 					</p>
 					<p class="menu_title_2">
 						<a href="/profile/startup" th:if="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Startup</a>
-						<a href="/profile/startup" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
+						<a href="/profile/corporate" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
 					</p>
 					<p class="menu_title_2">
 						<a href="/search"><img th:src="@{../images/icon/Search.png}" class="icon_menu" />Search</a>
@@ -59,18 +59,15 @@
 				</article>
 			</article>
 			<article class="CustomerType">
-				<a href="/profile/startup">
-					<article class="CustomerType2">
-						<p class="CustomerType_title">Startup</p>
-						<p class="CustomerType_description">Update your startup information to share it with companies from all around the world!</p>
-					</article>
-				</a>
-				<a href="">
-					<article class="CustomerType1">
-						<p class="CustomerType_title">Corporate</p>
-						<p class="CustomerType_description">Update your corporate needs so that we can find the technology thats just right for you!</p>
-					</article>
-				</a>
+				<article class="CustomerType2">
+					<p class="CustomerType_title">Startup</p>
+					<p class="CustomerType_description">Update your startup information to share it with companies from all around the world!</p>
+				</article>
+				
+				<article class="CustomerType1">
+					<p class="CustomerType_title">Corporate</p>
+					<p class="CustomerType_description">Update your corporate needs so that we can find the technology thats just right for you!</p>
+				</article>
 			</article>
 			<article class="profile">
 				<br />

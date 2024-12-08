@@ -26,7 +26,7 @@
 					</p>
 					<p class="menu_title_2">
 						<a href="/profile/startup" th:if="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Startup</a>
-						<a href="/profile/startup" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
+						<a href="/profile/corporate" th:unless="${user.getAccountType()}"><img th:src="@{/images/icon/Profile.png}" class="icon_menu" />My Company</a>
 					</p>
 					<p class="menu_title_2">
 						<a href="/search"><img th:src="@{../images/icon/Search.png}" class="icon_menu" />Search</a>
