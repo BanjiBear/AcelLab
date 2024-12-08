@@ -14,7 +14,7 @@
 		<link rel="stylesheet" th:href="@{./css/style.css}" />
 	</head>
 	<body>
-		<div class="navigationbar">
+		<div class="navigationbar" th:object="${user}">
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
@@ -29,8 +29,10 @@
 					</article>
 				</div>
 				<div class="nav">
-					<a href="/startup/login" class="nav_login">Login</a>
-					<a href="/register" class="nav_join">Join</a>
+					<a href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
+					<a href="/home" class="nav_login" th:unless="${user == null}">Home</a>
+					<a href="/register" class="nav_join" th:if="${user == null}">Join</a>
+					<a href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
 				</div>
 			</div>
 		</div>

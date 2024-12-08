@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
 import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
@@ -32,30 +34,70 @@ public class ApplicationController {
 	private UserDetailsService userDetailsService;
 
 	@GetMapping("/")
-	public String home(Model model) {
+	public String home(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user;
+		if(customUserDetails != null) {
+			user = customUserDetails.getUser();
+		} else {
+			user = null;
+		}
+		model.addAttribute("user", user);
 		return "index";
 	}
 	
 	@GetMapping("/price")
-	public String pricePage(Model model) {
+	public String pricePage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user;
+		if(customUserDetails != null) {
+			user = customUserDetails.getUser();
+		} else {
+			user = null;
+		}
+		model.addAttribute("user", user);
 		model.addAttribute("businessplan", businessPlanInfo);
 		return "price";
 	}
 	
 	@GetMapping("/aboutus")
-	public String aboutPage(Model model) {
+	public String aboutPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//whystartline --> about
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user;
+		if(customUserDetails != null) {
+			user = customUserDetails.getUser();
+		} else {
+			user = null;
+		}
+		model.addAttribute("user", user);
 		return "about";
 	}
 	
 	@GetMapping("/contact")
-	public String contactPage(Model model) {
+	public String contactPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//contactus --> contact
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user;
+		if(customUserDetails != null) {
+			user = customUserDetails.getUser();
+		} else {
+			user = null;
+		}
+		model.addAttribute("user", user);
 		return "contact";
 	}
 	
 	@GetMapping("/support")
-	public String supportPage(Model model) {
+	public String supportPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user;
+		if(customUserDetails != null) {
+			user = customUserDetails.getUser();
+		} else {
+			user = null;
+		}
+		model.addAttribute("user", user);
 		return "support";
 	}
 	
