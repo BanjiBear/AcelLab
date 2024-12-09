@@ -9,10 +9,8 @@ public enum Status {
 	DATA_DELETED(203, ""),
 	
 	//General Error
-	ERROR (404, "No query records or results found! Please verify the submitted information"),
-	INVALID_INPUT_FORMAT(405, ""),
-	OUT_OF_QUOTA_ERROR(406, ""),
-	UNEXPECTED_ERROR (407, "Unexpected Error Occur, currently cannot provide any results!"),
+	NOT_RESULT_FOUND_ERROR (404, "Query results not found!"),
+	UNEXPECTED_ERROR (405, "Unexpected Error Occur, currently cannot provide any results!"),
 	
 	//User Related Error
 	EXISTING_USERNAME(99, ""),

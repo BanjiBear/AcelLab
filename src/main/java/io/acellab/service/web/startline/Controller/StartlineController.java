@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,9 @@ import org.springframework.ui.Model;
 import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
 import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
+import io.acellab.service.web.startline.Entity.CompanyInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
+import io.acellab.service.web.startline.Service.Company.CompanyService;
 import io.acellab.service.web.startline.Status.ResponseFactory;
 
 @Controller
@@ -25,6 +28,9 @@ public class StartlineController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CompanyService companyService;
 
 	
 	@GetMapping("/home")
@@ -41,7 +47,9 @@ public class StartlineController {
 		//Search --> search
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
+		
 		model.addAttribute("user", user);
+		model.addAttribute("response", companyService.getCompaniesList());
 		return "search";
 	}
 	
@@ -69,6 +77,7 @@ public class StartlineController {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("newUser", user);
 		return "account";
 	}
 	
@@ -133,6 +142,21 @@ public class StartlineController {
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		return "company_contact";
+	}
+	
+	
+	/****************************************************************/
+	
+	@PostMapping("/updateuserinfo")
+	public String updateUserInfo(@AuthenticationPrincipal UserDetails userDetails, UserInfo newUser, Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo oldUser = customUserDetails.getUser();
+		ResponseFactory<?> response = userService.updateUser(oldUser, newUser);
+		if(response.getStatusCode() != 202) {
+			return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+		}
+		
+		return "redirect:/settings/account";
 	}
 
 

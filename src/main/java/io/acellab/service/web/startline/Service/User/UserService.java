@@ -7,4 +7,6 @@ public interface UserService {
 		
 	public <T> ResponseFactory<T> createNewUser(UserInfo userInfo);
 	
+	public <T> ResponseFactory<T> updateUser(UserInfo oldUser, UserInfo newUser);
+	
 }

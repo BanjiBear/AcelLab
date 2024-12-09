@@ -96,7 +96,7 @@
 				<article class="flex_left">
 					<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_startup" />
 					<article class="bottom">
-						<p class="member">Name</p>
+						<p class="member" th:text="${user.getFirstname()} + ' ' + ${user.getLastname()}">Name</p>
 						<p class="member">Company Name</p>
 					</article>
 					<article class="bottom">
@@ -104,33 +104,70 @@
 						<p class="member">Admin</p>
 					</article>
 				</article>
-				<form>
+				<form th:action="@{/updateuserinfo}" th:object="${newUser}" method="post">
 					<br />
-					<label for="name" class="profile_heading">Name*</label>
-					<input type="text" id="email" name="email" placeholder="Input your full name" class="filters2" required />
+					<label for="name" class="profile_heading">First Name*</label>
+					<input type="text" id="firstname" name="firstname" 
+						placeholder="Update your first name" 
+						th:value="${!#strings.isEmpty(user.getFirstname())} ? ${user.getFirstname()}" 
+						th:field="*{firstname}" 
+						class="filters2" required />
+					<br />
+					<label for="name" class="profile_heading">Last Name*</label>
+					<input type="text" id="lastname" name="lastname" 
+						placeholder="Update your last name" 
+						th:value="${!#strings.isEmpty(user.getLastname())} ? ${user.getLastname()}" 
+						th:field="*{lastname}" 
+						class="filters2" required />
 					<br />
 					<label for="department" class="profile_heading">Department*</label>
-					<input type="text" id="phone" name="phone" placeholder="Input the department you are from" class="filters2" required />
+					<input type="text" id="department" name="department" 
+						placeholder="Update the department you are from" 
+						th:value="${!#strings.isEmpty(user.getDepartment())} ? ${user.getDepartment()}" 
+						th:field="*{department}" 
+						class="filters2" required />
 					<br />
 					<label for="role" class="profile_heading">Role*</label>
-					<input type="text" id="website" name="website" placeholder="Input your role at your company" class="filters2" required />
+					<input type="text" id="role" name="role" 
+						placeholder="Update your role at your company" 
+						th:value="${!#strings.isEmpty(user.getRole())} ? ${user.getRole()}" 
+						th:field="*{role}" 
+						class="filters2" required />
 					<br />
-					<label for="email" class="profile_heading">Work Email</label>
-					<input type="email" name="email-input" placeholder="Input your email" class="filters2" required />
+					<label for="email" class="profile_heading">Work Email*</label>
+					<input type="email" name="email-input" 
+						placeholder="Update your email"  
+						th:value="${!#strings.isEmpty(user.getEmail())} ? ${user.getEmail()}" 
+						th:field="*{email}" 
+						class="filters2" required />
 					<br />
 					<label for="foundingyr" class="profile_heading">Work No.*</label>
-					<input type="number." id="foundingyr" name="foundingyr" placeholder="Input your contact number" class="filters2" required />
+					<input type="number." id="phone" name="phone" 
+						placeholder="Update your contact number" 
+						th:value="${!#strings.isEmpty(user.getPhone())} ? ${user.getPhone()}" 
+						th:field="*{phone}" 
+						class="filters2" required />
 					<br />
-					<label for="linkedin" class="profile_heading">Linkedin URL</label>
-					<input type="url" id="linkedin" name="linkedin" placeholder="Input your Linkedin profile URL" class="filters2" />
-
+					<label for="linkedIn" class="profile_heading">Linkedin URL*</label>
+					<input type="url" id="linkedIn" name="linkedIn" 
+						placeholder="Update your Linkedin profile URL" 
+						th:value="${!#strings.isEmpty(user.getLinkedIn())} ? ${user.getLinkedIn()}" 
+						th:field="*{linkedIn}" 
+						class="filters2" required />
 					<br />
 					<label for="uname" class="profile_heading">Username*</label>
-					<input type="text" id="uname" name="uname" placeholder="Input your username" class="filters2" required />
+					<input type="text" id="uname" name="uname" 
+						placeholder="Update your username" 
+						th:value="${!#strings.isEmpty(user.getUsername())} ? ${user.getUsername()}" 
+						th:field="*{username}" 
+						class="filters2" required />
 					<br />
-					<label for="pword" class="profile_heading">Password*</label>
+					<label for="pword" class="profile_heading">Password</label>
 					<span class="password-input">
-						<input type="password" id="pwordInput" placeholder="Input your password" name="psw" class="filters2" required />
+						<input type="password" id="pwordInput" 
+						placeholder="Update your password" 
+						th:field="*{password}" 
+						name="psw" class="filters2" />
 						<img th:src="@{../images/icon/Password.png}" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" class="nav_language" />
 					</span>
 					<br />
@@ -150,4 +187,20 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
+	<script>
+		const fieldsToTest = ['firstname', 'lastname', 'deparment', 'role'];
+		const inputFields = document.querySelectorAll('input');
+
+		inputFields.forEach(inputField => {
+			if (fieldsToTest.includes(inputField.id)) {
+				inputField.addEventListener('input', function(event) {
+					const regex = /^[a-zA-Z\s]*$/;
+					const inputValue = event.target.value;
+					if (!regex.test(inputValue)) {
+						event.target.value = inputValue.slice(0, -1);
+					}
+				});
+			}
+		});
+	</script>
 </html>
