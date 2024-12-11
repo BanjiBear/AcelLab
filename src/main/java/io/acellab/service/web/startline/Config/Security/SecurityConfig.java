@@ -3,7 +3,7 @@ package io.acellab.service.web.startline.Config.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,18 +29,17 @@ public class SecurityConfig {
 	public static PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	@Order(1)
+	public SecurityFilterChain StartupSecurityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests((authz) -> authz
-						.requestMatchers("/*").permitAll()
+						.requestMatchers("/**").permitAll()
 						.requestMatchers("/images/**").permitAll()
 						.requestMatchers("/css/**").permitAll()
 						.requestMatchers("/js/**").permitAll()
 						
 						.requestMatchers("/startup/login").permitAll()
-						.requestMatchers("/corporate/login").permitAll()
-						
 						
 						//.requestMatchers("/home").hasAuthority(UserPlan.STARTUP.getPlanName())
 						.requestMatchers("/home").authenticated()
@@ -63,17 +62,69 @@ public class SecurityConfig {
 				)
 				.formLogin(form -> form
 						.loginPage("/startup/login")
-						.loginProcessingUrl("/startup/login")
-						.defaultSuccessUrl("/home", true)
+						.loginProcessingUrl("/login")
+						.successHandler(customSuccessHandler())
 						.failureUrl("/startup/login?error=true")
-						//.successHandler(customSuccessHandler())
 						.permitAll()
 				)
 				.logout((logout) -> logout
 						.invalidateHttpSession(true)
 						.clearAuthentication(true)
 						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-						.logoutSuccessUrl("/login")
+						.logoutSuccessUrl("/startup/login")
+				).exceptionHandling(exception -> exception
+						.accessDeniedPage("/debug?message=")
+				);
+		
+		http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
+		
+		return http.build();
+	}
+	
+	@Bean
+	@Order(2)
+	public SecurityFilterChain CorporateSecurityFilterChain(HttpSecurity http) throws Exception {
+
+		http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests((authz) -> authz
+						.requestMatchers("/**").permitAll()
+						.requestMatchers("/images/**").permitAll()
+						.requestMatchers("/css/**").permitAll()
+						.requestMatchers("/js/**").permitAll()
+						
+						.requestMatchers("/corporate/login").permitAll()
+						
+						//.requestMatchers("/home").hasAuthority(UserPlan.STARTUP.getPlanName())
+						.requestMatchers("/home").authenticated()
+						.requestMatchers("/search").authenticated()
+						
+						.requestMatchers("/profile/startup").authenticated()
+						.requestMatchers("/profile/corporate").authenticated()
+						
+						.requestMatchers("/settings/account").authenticated()
+						.requestMatchers("/settings/team").authenticated()
+						.requestMatchers("/settings/bookmark").authenticated()
+						.requestMatchers("/settings/plan").authenticated()
+						
+						.requestMatchers("/company/info").authenticated()
+						.requestMatchers("/company/products").authenticated()
+						.requestMatchers("/company/finance").authenticated()
+						.requestMatchers("/company/contact").authenticated()
+						.anyRequest().authenticated()
+						//.anyRequest().authenticated()
+				)
+				.formLogin(form -> form
+						.loginPage("/corporate/login")
+						.loginProcessingUrl("/login")
+						.successHandler(customSuccessHandler())
+						.failureUrl("/corporate/login?error=true")
+						.permitAll()
+				)
+				.logout((logout) -> logout
+						.invalidateHttpSession(true)
+						.clearAuthentication(true)
+						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+						.logoutSuccessUrl("/corporate/login")
 				).exceptionHandling(exception -> exception
 						.accessDeniedPage("/debug?message=")
 				);

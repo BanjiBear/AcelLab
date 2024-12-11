@@ -21,6 +21,7 @@ import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
 import io.acellab.service.web.startline.Status.ResponseFactory;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ApplicationController {
@@ -124,8 +125,13 @@ public class ApplicationController {
 	
 	
 	@GetMapping("/startup/login")
-	public String loginStartupPage(Model model) {
+	public String loginStartupPage(HttpServletRequest request, @AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//loginStartup --> login_startup
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails != null) {
+			return "redirect:/home";
+		}
+		request.getSession().setAttribute("loginPath", "/startup/login");
 		return "login_startup";
 	}
 	
@@ -133,17 +139,39 @@ public class ApplicationController {
 	/****************************************************************/
 	
 	@GetMapping("/corporate/login")
-	public String loginCorporatePage(Model model) {
+	public String loginCorporatePage(HttpServletRequest request, @AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//loginCorporate --> login_corporate
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails != null) {
+			return "redirect:/home";
+		}
+		request.getSession().setAttribute("loginPath", "/corporate/login");
 		return "login_corporate";
 	}
 	
 	
 	/****************************************************************/
 	
+//	@GetMapping("/login")
+//	public String loginPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+//		//loginCorporate --> login_corporate
+//		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+//		if(customUserDetails != null) {
+//			return "redirect:/home";
+//		}
+//		return "login";
+//	}
+	
+	
+	/****************************************************************/
+	
 	@GetMapping("/register")
-	public String registerPage(Model model) {
+	public String registerPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//join --> register
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails != null) {
+			return "redirect:/home";
+		}
 		model.addAttribute("userinfo", new UserInfo());
 		return "register";
 	}
