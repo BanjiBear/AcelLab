@@ -68,7 +68,8 @@
 				<article class="weeklyStats">
 					<article class="weeklyStats_left">
 						<p class="weeklyStats_title">THIS WEEK ON STARTLINE</p>
-						<p class="weeklyStats_subtitle">9,162 companies +162 (1.8%)</p>
+						<!-- <p class="weeklyStats_subtitle">9,162 companies +162 (1.8%)</p> -->
+						<p class="weeklyStats_subtitle" th:text="${response.getReturnDataList().size()} + ' verified companies'"></p>
 						<a href="/search"><p class="weeklyStats_button">Start learning more</p></a>
 					</article>
 					<article class="weeklyStats_right">

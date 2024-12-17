@@ -60,7 +60,7 @@
 						<br />
 						<label for="psw" class="login_label">Password*</label> <br />
 						<div class="password-input">
-							<input type="password" id="pwordInput" placeholder="At least 8 characters" th:field="*{password}" name="psw" class="longin_label_content" required />
+							<input type="password" id="pwordInput" placeholder="At least 12 characters" th:field="*{password}" name="psw" class="longin_label_content" required />
 							<img th:src="@{/images/password.png}" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" class="nav_language" />
 						</div>
 						<br />
@@ -68,8 +68,11 @@
 						<input type="text" placeholder="First Name" th:field="*{firstname}" class="short_label_content" required />
 						<input type="text" placeholder="Last Name" th:field="*{lastname}" class="short_label_content" required />
 						<br />
+						<br />
 						<label for="email" class="login_label">Work Email*</label> <br />
-						<input type="text" placeholder="name@company.com" th:field="*{email}" name="email" class="longin_label_content" required />
+						<input type="email" placeholder="Input your email" th:field="*{email}" name="email" class="longin_label_content" required />
+						<br />
+						<br />
 					</div>
 					<div class="container">
 						<label> <input type="checkbox" checked="checked" name="remember" class="checkbox" /> Remember me </label>
