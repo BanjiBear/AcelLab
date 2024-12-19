@@ -67,7 +67,7 @@
 					<article class="line">
 						<input id="search" type="text" placeholder="Search by company or keywords" name="search" class="Searchfilters" />
 						<select id="location" name="location" class="Searchfilters">
-							<option value="">All Locations</option>
+							<option value="">Filter by headquarters</option>
 							<option value="Afghanistan">Afghanistan</option>
 							<option value="Albania">Albania</option>
 							<option value="Algeria">Algeria</option>
@@ -505,13 +505,23 @@
 								<img th:src="@{${company.getLogo()}}" class="logo" />
 								<article class="card_right">
 									<p class="card_heading_AIRecommend" th:text="${company.getCompanyName()}"></p>
-									<p class="card_content_AIRecommend" th:text="${company.getHQ()}"></p>
+									<p class="card_content_AIRecommend" th:text="${company.getHeadquarter()}"></p>
 									<p class="card_technology_AIRecommend" th:text="${company.getIndustry()}"></p>
 								</article>
-								<img th:src="@{/images/icon/bookmark.png}" class="logo_bookmark" />
+								<form id="addbookmark" th:action="@{/addbookmark}" th:object="${bookmarked_company}" method="post">
+									<!-- Hidden input fields to store the company properties -->
+									<input type="hidden" th:field="*{id}" id="hiddenIdInput"/>
+									<img 
+										th:src="@{/images/icon/bookmark.png}" 
+										class="logo_bookmark" 
+										style="cursor: pointer;" 
+										onclick="addbookmark(this.getAttribute('data-company-id'))" 
+										th:attr="data-company-id=${company.getId()}"/>
+								</form>
 							</article>
 							<p class="card_heading_AIRecommend">Description</p>
-							<p class="card_content_AIRecommend" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" th:text="${company.getIntro()}"></p>
+							<p class="card_content_AIRecommend" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" th:text="${company.getIntroduction()}"></p>
+							<br>
 							<p class="card_heading_AIRecommend">Tags</p>
 							<article class="card_flex">
 								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas"
@@ -569,154 +579,6 @@
 								<p class="card_bottomright">More Details</p>
 							</a>
 						</article>
-
-						<!-- <article class="card">
-							<article class="card_top">
-								<img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
-								<article class="card_right">
-									<p class="card_heading_AIRecommend">Company</p>
-									<p class="card_content_AIRecommend">Region</p>
-									<p class="card_technology_AIRecommend">Technology</p>
-								</article>
-								<img th:src="@{/images/icon/bookmark.png}" class="logo_bookmark" />
-							</article>
-							<p class="card_heading_AIRecommend">Description</p>
-							<p class="card_content_AIRecommend">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<p class="card_heading_AIRecommend">Tags</p>
-							<article class="card_flex">
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-							</article>
-							<a href="/company/info">
-								<p class="card_bottomright">More Details</p>
-							</a>
-						</article>
-						<article class="card">
-							<article class="card_top">
-								<img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
-								<article class="card_right">
-									<p class="card_heading_AIRecommend">Company</p>
-									<p class="card_content_AIRecommend">Region</p>
-									<p class="card_technology_AIRecommend">Technology</p>
-								</article>
-								<img th:src="@{/images/icon/bookmark.png}" class="logo_bookmark" />
-							</article>
-							<p class="card_heading_AIRecommend">Description</p>
-							<p class="card_content_AIRecommend">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<p class="card_heading_AIRecommend">Tags</p>
-							<article class="card_flex">
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-							</article>
-							<a href="/company/info">
-								<p class="card_bottomright">More Details</p>
-							</a>
-						</article>
-						<article class="card">
-							<article class="card_top">
-								<img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
-								<article class="card_right">
-									<p class="card_heading_AIRecommend">Company</p>
-									<p class="card_content_AIRecommend">Region</p>
-									<p class="card_technology_AIRecommend">Technology</p>
-								</article>
-								<img th:src="@{/images/icon/bookmark.png}" class="logo_bookmark" />
-							</article>
-							<p class="card_heading_AIRecommend">Description</p>
-							<p class="card_content_AIRecommend">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<p class="card_heading_AIRecommend">Tags</p>
-							<article class="card_flex">
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-								<p class="target_AIRecommend" data-text="tag-1asdfsdasdfaasdfasdfasdfadasdfasfdas">
-									Smart City<span class="target_AIRecommend_hover">Smart City</span>
-								</p>
-							</article>
-							<a href="/company/info">
-								<p class="card_bottomright">More Details</p>
-							</a>
-						</article> -->
 					</article>
 				</article>
 			</article>
@@ -759,5 +621,10 @@
 			document.getElementById('fundinground').value = '';
 			document.getElementById('bookmark').value = '';
 		});
+
+		function addbookmark(id) {
+			document.getElementById("hiddenIdInput").value = id;
+			document.getElementById('addbookmark').submit();
+		}
 	</script>
 </html>

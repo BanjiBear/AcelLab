@@ -16,6 +16,9 @@ import io.acellab.service.web.startline.Entity.UserInfo;
 @Repository("userRepository")
 public interface UserRepository extends CrudRepository<UserInfo, Long> {
 
+	@Query(value = "SELECT * FROM user WHERE id = :id", nativeQuery = true)
+	Optional<UserInfo> findUserById(@Param("id") String id);
+	
 	@Query(value = "SELECT * FROM user WHERE username = :username", nativeQuery = true)
 	Optional<UserInfo> findUserByUsername(@Param("username") String username);
 	

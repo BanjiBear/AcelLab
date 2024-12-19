@@ -3,6 +3,7 @@ package io.acellab.service.web.startline.Util;
 
 import java.util.List;
 
+
 import io.acellab.service.web.startline.Status.ResponseFactory;
 import io.acellab.service.web.startline.Status.Status;
 
@@ -11,7 +12,7 @@ public class Util {
 	public static <T> ResponseFactory<T> responseFormation(Status status, List<T> resultList) {
 		ResponseFactory<T> responseFactory = new ResponseFactory<>();
 		responseFactory.setStatus(status);
-		responseFactory.setreturnDataList(resultList);
+		responseFactory.setReturnDataList(resultList);
 		return responseFactory;
 	}
 	
@@ -34,6 +35,11 @@ public class Util {
 	public static Boolean isValidEmailFormat(String email) {
 		String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 		return email.matches(regex);
+	}
+	
+	public static Boolean isValidSearchInput(String input) {
+		String regex = "^[\\p{L}\\p{N}\\s]*$";
+		return input.matches(regex);
 	}
 
 }

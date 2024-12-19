@@ -25,6 +25,9 @@ public class CompanyInfo{
 	@OneToMany(mappedBy = "company")
     private List<UserInfo> users;
 	
+	//setId() only for returning company info from model purposes
+	public void setId(Long id) {this.id = id;}
+	public Long getId() {return this.id;}
 	
 	public void setUsers(List<UserInfo> users) {this.users = users;}
 	public List<UserInfo> getUsers() {return users;}
@@ -38,7 +41,7 @@ public class CompanyInfo{
 	 ***************************/
 
 	@Column(name = "company_name", nullable = false, length = 255)
-	private String company_name;
+	private String companyName;
 	
 	@Column(name = "website", nullable = false)
 	private String website;
@@ -77,17 +80,17 @@ public class CompanyInfo{
 	private String location5;
 	
 	@Column(name = "year_found", columnDefinition = "INTEGER")
-	private Integer year_found;
+	private Integer yearFound;
 	
 	@Column(name = "founders", length = 255)
 	private String founders;
 	
 	@Column(name = "company_size", length = 50)
-	private String company_size;
+	private String companySize;
 	
     
-	public void setCompanyName(String name) {this.company_name = name;}
-	public String getCompanyName() {return this.company_name;}
+	public void setCompanyName(String name) {this.companyName = name;}
+	public String getCompanyName() {return this.companyName;}
 	
 	public void setWebsite(String website) {this.website = website;}
 	public String getWebsite() {return this.website;}
@@ -95,14 +98,14 @@ public class CompanyInfo{
 	public void setLogo(String path) {this.logo = path;}
 	public String getLogo() {return this.logo;}
 	
-	public void setIntro(String intro) {this.introduction = intro;}
-	public String getIntro() {return this.introduction;}
+	public void setIntroduction(String intro) {this.introduction = intro;}
+	public String getIntroduction() {return this.introduction;}
 	
 	public void setIndustry(String industry) {this.industry = industry;}
 	public String getIndustry() {return this.industry;}
 	
-	public void setHQ(String hq) {this.headquarter = hq;}
-	public String getHQ() {return this.headquarter;}
+	public void setHeadquarter(String hq) {this.headquarter = hq;}
+	public String getHeadquarter() {return this.headquarter;}
 	
 	public void setLocation1(String location) {this.location1 = location;}
 	public String getLocation1() {return this.location1;}
@@ -119,14 +122,14 @@ public class CompanyInfo{
 	public void setLocation5(String location) {this.location5 = location;}
 	public String getLocation5() {return this.location5;}
 	
-	public void setFoundYear(Integer year) {this.year_found = year;}
-	public Integer getFoundYear() {return this.year_found;}
+	public void setFoundYear(Integer year) {this.yearFound = year;}
+	public Integer getFoundYear() {return this.yearFound;}
 	
 	public void setFounders(String founders) {this.founders = founders;}
 	public String getFounders() {return this.founders;}
 	
-	public void setCompanySize(String size) {this.company_size = size;}
-	public String getCompanySize() {return this.company_size;}
+	public void setCompanySize(String size) {this.companySize = size;}
+	public String getCompanySize() {return this.companySize;}
 	
 	
 	/**************************************************
@@ -340,27 +343,27 @@ public class CompanyInfo{
 	private String email2;
 	
 	@Column(name = "linkedIn_link", length = 255)
-	private String linkedIn_link;
+	private String linkedInLink;
 	
 	@Column(name = "instagram_link", length = 255)
-	private String instagram_link;
+	private String instagramLink;
 	
 	@Column(name = "twitter_link", length = 255)
-	private String twitter_link;
+	private String twitterLink;
 
 	@Column(name = "admin_name1", length = 255)
-	private String admin_name1;
+	private String adminName1;
 	@Column(name = "admin_position1", length = 255)
-	private String admin_position1;
+	private String adminPosition1;
 	@Column(name = "admin_email1", length = 255)
-	private String admin_email1;
+	private String adminEmail1;
 	
 	@Column(name = "admin_name2", length = 255)
-	private String admin_name2;
+	private String adminName2;
 	@Column(name = "admin_position2", length = 255)
-	private String admin_position2;
+	private String adminPosition2;
 	@Column(name = "admin_email2", length = 255)
-	private String admin_email2;
+	private String adminEmail2;
 	
 
 	public void setPhone(String phone) {this.phone = phone;}
@@ -372,32 +375,32 @@ public class CompanyInfo{
 	public void setEmail2(String email) {this.email2 = email;}
 	public String getEmail2() {return this.email2;}
 	
-	public void setLinkedIn(String link) {this.linkedIn_link = link;}
-	public String getLinkedIn() {return this.linkedIn_link;}
+	public void setLinkedInLink(String link) {this.linkedInLink = link;}
+	public String getLinkedInLink() {return this.linkedInLink;}
 	
-	public void setInstagram(String link) {this.instagram_link = link;}
-	public String getInstagram() {return this.instagram_link;}
+	public void setInstagramLink(String link) {this.instagramLink = link;}
+	public String getInstagramLink() {return this.instagramLink;}
 	
-	public void setTwitter(String link) {this.twitter_link = link;}
-	public String getTwitter() {return this.twitter_link;}
+	public void setTwitterLink(String link) {this.twitterLink = link;}
+	public String getTwitterLink() {return this.twitterLink;}
 	
-	public void setAdmin1Name(String name) {this.admin_name1 = name;}
-	public String getAdmin1Name() {return this.admin_name1;}
+	public void setAdminName1(String name) {this.adminName1 = name;}
+	public String getAdminName1() {return this.adminName1;}
 	
-	public void setAdmin2Name(String name) {this.admin_name2 = name;}
-	public String getAdmin2Name() {return this.admin_name2;}
+	public void setAdminName2(String name) {this.adminName2 = name;}
+	public String getAdminName2() {return this.adminName2;}
 	
-	public void setAdmin1Position(String position) {this.admin_position1 = position;}
-	public String getAdmin1Position() {return this.admin_position1;}
+	public void setAdminPosition1(String position) {this.adminPosition1 = position;}
+	public String getAdmin1Position1() {return this.adminPosition1;}
 	
-	public void setAdmin2Position(String position) {this.admin_position2 = position;}
-	public String getAdmin2Position() {return this.admin_position2;}
+	public void setAdminPosition2(String position) {this.adminPosition2 = position;}
+	public String getAdmin2Position2() {return this.adminPosition2;}
 	
-	public void setAdmin1Email(String email) {this.admin_email1 = email;}
-	public String getAdmin1Email() {return this.admin_email1;}
+	public void setAdminEmail1(String email) {this.adminEmail1 = email;}
+	public String getAdminEmail1() {return this.adminEmail1;}
 	
-	public void setAdmin2Email(String email) {this.admin_email2 = email;}
-	public String getAdmin2Email() {return this.admin_email2;}
+	public void setAdminEmail2(String email) {this.adminEmail2 = email;}
+	public String getAdminEmail2() {return this.adminEmail2;}
 	
 	
 	/************************
@@ -407,77 +410,77 @@ public class CompanyInfo{
 	 ************************/
 	
 	@Column(name = "total_funding_rounds", columnDefinition = "BIGINT")
-	private Long total_funding_rounds;
+	private Long totalFundingRounds;
 	
 	@Column(name = "total_funding_amount", length = 20)
-	private String total_funding_amount;
+	private String totalFundingAmount;
 	
 	@Column(name = "number_of_investors", columnDefinition = "BIGINT")
-	private Long number_of_investors;
+	private Long numberOfInvestors;
 	
 	@Column(name = "funding_amount1", length = 20)
-	private String funding_amount1;
+	private String fundingAmount1;
 	@Column(name = "funding_date1", length = 20)
-	private String funding_date1;
+	private String fundingDate1;
 	
 	@Column(name = "funding_amount2", length = 20)
-	private String funding_amount2;
+	private String fundingAmount2;
 	@Column(name = "funding_date2", length = 20)
-	private String funding_date2;
+	private String fundingDate2;
 	
 	@Column(name = "funding_amount3", length = 20)
-	private String funding_amount3;
+	private String fundingAmount3;
 	@Column(name = "funding_date3", length = 20)
-	private String funding_date3;
+	private String fundingDate3;
 	
 	@Column(name = "funding_amount4", length = 20)
-	private String funding_amount4;
+	private String fundingAmount4;
 	@Column(name = "funding_date4", length = 20)
-	private String funding_date4;
+	private String fundingDate4;
 	
 	@Column(name = "funding_amount5", length = 20)
-	private String funding_amount5;
+	private String fundingAmount5;
 	@Column(name = "funding_date5", length = 20)
-	private String funding_date5;
+	private String fundingDate5;
 	
 	
-	public void setTotalFundingRounds(Long numRounds) {this.total_funding_rounds = numRounds;}
-	public Long getTotalFundingRounds() {return this.total_funding_rounds;}
+	public void setTotalFundingRounds(Long numRounds) {this.totalFundingRounds = numRounds;}
+	public Long getTotalFundingRounds() {return this.totalFundingRounds;}
 	
-	public void setTotalFundingAmount(String amount) {this.total_funding_amount = amount;}
-	public String getTotalFundingAmount() {return this.total_funding_amount;}
+	public void setTotalFundingAmount(String amount) {this.totalFundingAmount = amount;}
+	public String getTotalFundingAmount() {return this.totalFundingAmount;}
 	
-	public void setNumOfInvestors(Long num) {this.number_of_investors = num;}
-	public Long getNumOfInvestors() {return this.number_of_investors;}
+	public void setNumberOfInvestors(Long num) {this.numberOfInvestors = num;}
+	public Long getNumberOfInvestors() {return this.numberOfInvestors;}
 	
-	public void setFunding1Amount(String amount) {this.funding_amount1 = amount;}
-	public String getFunding1Amount() {return this.funding_amount1;}
+	public void setFundingAmount1(String amount) {this.fundingAmount1 = amount;}
+	public String getFundingAmount1() {return this.fundingAmount1;}
 	
-	public void setFunding2Amount(String amount) {this.funding_amount2 = amount;}
-	public String getFunding2Amount() {return this.funding_amount2;}
+	public void setFundingAmount2(String amount) {this.fundingAmount2 = amount;}
+	public String getFundingAmount2() {return this.fundingAmount2;}
 	
-	public void setFunding3Amount(String amount) {this.funding_amount3 = amount;}
-	public String getFunding3Amount() {return this.funding_amount3;}
+	public void setFundingAmount3(String amount) {this.fundingAmount3 = amount;}
+	public String getFundingAmount3() {return this.fundingAmount3;}
 	
-	public void setFunding4Amount(String amount) {this.funding_amount4 = amount;}
-	public String getFunding4Amount() {return this.funding_amount4;}
+	public void setFundingAmount4(String amount) {this.fundingAmount4 = amount;}
+	public String getFundingAmount4() {return this.fundingAmount4;}
 	
-	public void setFunding5Amount(String amount) {this.funding_amount5 = amount;}
-	public String getFunding5Amount() {return this.funding_amount5;}
+	public void setFundingAmount5(String amount) {this.fundingAmount5 = amount;}
+	public String getFundingAmount5() {return this.fundingAmount5;}
 	
-	public void setFunding1Date(String date) {this.funding_date1 = date;}
-	public String getFunding1Date() {return this.funding_date1;}
+	public void setFundingDate1(String date) {this.fundingDate1 = date;}
+	public String getFundingDate1() {return this.fundingDate1;}
 	
-	public void setFunding2Date(String date) {this.funding_date2 = date;}
-	public String getFunding2Date() {return this.funding_date2;}
+	public void setFundingDate2(String date) {this.fundingDate2 = date;}
+	public String getFundingDate2() {return this.fundingDate2;}
 	
-	public void setFunding3Date(String date) {this.funding_date3 = date;}
-	public String getFunding3Date() {return this.funding_date3;}
+	public void setFundingDate3(String date) {this.fundingDate3 = date;}
+	public String getFundingDate3() {return this.fundingDate3;}
 	
-	public void setFunding4Date(String date) {this.funding_date4 = date;}
-	public String getFunding4Date() {return this.funding_date4;}
+	public void setFundingDate4(String date) {this.fundingDate4 = date;}
+	public String getFundingDate4() {return this.fundingDate4;}
 	
-	public void setFunding5Date(String date) {this.funding_date5 = date;}
-	public String getFunding5Date() {return this.funding_date5;}
+	public void setFundingDate5(String date) {this.fundingDate5 = date;}
+	public String getFundingDate5() {return this.fundingDate5;}
 
 }

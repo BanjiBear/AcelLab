@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -21,6 +23,7 @@ import io.acellab.service.web.startline.Entity.CompanyInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
 import io.acellab.service.web.startline.Service.Company.CompanyService;
 import io.acellab.service.web.startline.Status.ResponseFactory;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class StartlineController {
@@ -39,6 +42,7 @@ public class StartlineController {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("response", companyService.getCompaniesList());
 		return "home";
 	}
 	
@@ -49,7 +53,27 @@ public class StartlineController {
 		UserInfo user = customUserDetails.getUser();
 		
 		model.addAttribute("user", user);
+		model.addAttribute("bookmarked_company", new CompanyInfo());
 		model.addAttribute("response", companyService.getCompaniesList());
+		return "search";
+	}
+	
+	@GetMapping("/companies")
+	public String searchWithDataPage(
+			@AuthenticationPrincipal UserDetails userDetails,
+			@RequestParam(name = "search", defaultValue = "", required = true) String search,
+			@RequestParam(name = "location", defaultValue = "", required = true) String location,
+			@RequestParam(name = "industry", defaultValue = "", required = true) String industry,
+			@RequestParam(name = "fundinground", defaultValue = "", required = true) String fundinground,
+			@RequestParam(name = "bookmark", defaultValue = "", required = true) String bookmark,
+			Model model){
+		
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user = customUserDetails.getUser();
+		
+		model.addAttribute("user", user);
+		model.addAttribute("bookmarked_company", new CompanyInfo());
+		model.addAttribute("response", companyService.searchCompanies(search, location, industry, fundinground, bookmark));
 		return "search";
 	}
 	
@@ -157,6 +181,23 @@ public class StartlineController {
 		}
 		
 		return "redirect:/settings/account";
+	}
+	
+	@PostMapping("/addbookmark")
+	public String addCompanyBookmark(
+			HttpServletRequest request,
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@ModelAttribute("bookmarked_company") CompanyInfo bookmarked_company, 
+			Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user = customUserDetails.getUser();
+		//Consider if it is not necessary to pass userDetails
+		ResponseFactory<?> response = companyService.addCompanyToBookmark(userDetails, user.getUserId(), bookmarked_company.getId());
+		if(response.getStatusCode() != 202) {
+			return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+		}
+		
+		return "redirect:" + request.getHeader(HttpHeaders.REFERER).replace(request.getHeader(HttpHeaders.ORIGIN), "");
 	}
 
 
