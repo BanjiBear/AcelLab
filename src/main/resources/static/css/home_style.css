@@ -463,6 +463,10 @@ body {
   border-left: 5px solid #2962ff;
 }
 
+.CustomerType2.noAccessRight:hover {
+    border-left: 5px solid #ff2929;
+}
+
 .CustomerType_title {
   font-size: 25px;
   font-weight: 500;
