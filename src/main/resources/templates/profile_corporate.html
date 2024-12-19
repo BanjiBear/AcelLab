@@ -61,7 +61,7 @@
 				</article>
 			</article>
 			<article class="CustomerType">
-				<article class="CustomerType2">
+				<article class="CustomerType2" th:class="${user.getAccountType()} ? 'CustomerType2' : 'CustomerType2 noAccessRight'">
 					<p class="CustomerType_title">Startup</p>
 					<p class="CustomerType_description">Update your startup information to share it with companies from all around the world!</p>
 				</article>

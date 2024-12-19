@@ -66,7 +66,7 @@
 					<p class="CustomerType_description">Update your startup information to share it with companies from all around the world!</p>
 				</article>
 				
-				<article class="CustomerType2">
+				<article class="CustomerType2" th:class="${user.getAccountType()} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
 					<p class="CustomerType_title">Corporate</p>
 					<p class="CustomerType_description">Update your corporate needs so that we can find the technology thats just right for you!</p>
 				</article>
