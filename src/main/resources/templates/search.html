@@ -520,7 +520,7 @@
 								</form>
 							</article>
 							<p class="card_heading_AIRecommend">Description</p>
-							<p class="card_content_AIRecommend" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" th:text="${company.getIntroduction()}"></p>
+							<p class="card_content_AIRecommend" th:text="${company.getIntroduction()}"></p>
 							<br>
 							<p class="card_heading_AIRecommend">Tags</p>
 							<article class="card_flex">
@@ -575,7 +575,7 @@
 									th:text="${company.getTag9()}">
 								</p>
 							</article>
-							<a>
+							<a onclick="getDetails(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}">
 								<p class="card_bottomright">More Details</p>
 							</a>
 						</article>
@@ -600,6 +600,10 @@
 			var bookmark = document.getElementById('bookmark').value;
 			// search=&location=&industry=&fundinground=&bookmark=
 			window.location.replace("/companies?" + "search=" + search + "&location=" + location + "&industry=" + industry + "&fundinground=" + fundinground + "&bookmark=" + bookmark);
+		}
+
+		function getDetails(id) {
+			window.location.replace("/company/info?" + "id=" + id);
 		}
 
 		// Function to clear other fields if bookmark is filled in

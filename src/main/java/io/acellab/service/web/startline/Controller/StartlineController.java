@@ -133,39 +133,68 @@ public class StartlineController {
 	}
 	
 	@GetMapping("/company/info")
-	public String companyInfoPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String companyInfoPage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
+			Model model) {
 		//CompanyContent_BasicInformation --> company_info
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
+		System.out.println(companyService.getCompanyDetails(companyid).getReturnDataList().get(0).getIntroduction());
 		return "company_info";
 	}
 	
 	@GetMapping("/company/products")
-	public String companyProductPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String companyProductPage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
+			Model model) {
 		//CompanyContent_Product --> company_products
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
 		return "company_products";
 	}
 	
 	@GetMapping("/company/finance")
-	public String companyFinancePage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String companyFinancePage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
+			Model model) {
 		//CompanyContent_Finance --> company_finance
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
 		return "company_finance";
 	}
 	
-	@GetMapping("/company/contact")
-	public String companyContactPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	@GetMapping("/company/team")
+	public String companyContactPage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
+			Model model) {
 		//CompanyContent_Contacts --> company_contact
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
 		return "company_contact";
+	}
+	
+	@GetMapping("/company/location")
+	public String companyLocationPage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
+			Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user = customUserDetails.getUser();
+		model.addAttribute("user", user);
+		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
+		return "company_location";
 	}
 	
 	

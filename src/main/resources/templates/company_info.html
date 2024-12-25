@@ -17,7 +17,7 @@
 		<div class="platform" th:object="${user}">
 			<article class="menu">
 				<article class="menu_top">
-					<a href="./"
+					<a href="/"
 						><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_menu"
 					/></a>
 					<br />
@@ -61,24 +61,19 @@
 				</article>
 			</article>
 
-			<article class="Search">
+			<article class="Search" th:object="${company}">
 				<article class="Search1">
-					<p class="Search_title">Recent</p>
+					<p class="Search_title"></p>
 					<article class="flex_left">
 						<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
 						<article class="CompanyContent">
-							<p class="CompanyContent_CompanyName">Company Name</p>
-							<article class="card_flex">
-								<p class="target">tag-1</p>
-								<p class="target">tag-2</p>
-								<p class="target">tag-3</p>
-							</article>
-							<article class="flex_companycontentPreference">
+							<p class="CompanyContent_CompanyName" th:text="${company.getCompanyName()}"></p>
+							<!-- <article class="flex_companycontentPreference">
 								<img th:src="@{../images/icon/Like.png}" class="preferenceIcon" />
 								<p class="preference">Like</p>
 								<img th:src="@{../images/icon/Dislike.png}" class="preferenceIcon" />
 								<p class="preference">Dislike</p>
-							</article>
+							</article> -->
 						</article>
 						<article class="CompanyContent">
 							<p class="CompanyContent_info">Website</p>
@@ -86,73 +81,116 @@
 							<p class="CompanyContent_info">Founded on</p>
 						</article>
 						<article class="CompanyContent">
-							<p class="CompanyContent_info1">Website</p>
-							<p class="CompanyContent_info1">Employees</p>
-							<p class="CompanyContent_info1">Founded on</p>
+							<p class="CompanyContent_info1" th:text="${company.getWebsite()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getCompanySize()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getFoundYear()}"></p>
 						</article>
 						<article class="CompanyContent">
 							<p class="CompanyContent_info">Industry</p>
 							<p class="CompanyContent_info">Region</p>
+							<p class="CompanyContent_info">Founders</p>
 						</article>
 						<article class="CompanyContent">
-							<p class="CompanyContent_info1">Website</p>
-							<p class="CompanyContent_info1">Employees</p>
+							<p class="CompanyContent_info1" th:text="${company.getIndustry()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getHeadquarter()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getFounders()}"></p>
 						</article>
 					</article>
+					<br><br><br>
 					<article class="CompanyCardDetailTab">
-						<a href="/company/info" class="CompanyCardDetail_title1"> Basic Information </a>
-						<a href="/company/products" class="CompanyCardDetail_title"> Product </a>
-						<a href="/company/finance" class="CompanyCardDetail_title"> Finance </a>
-						<a href="/company/contact" class="CompanyCardDetail_title"> Contacts </a>
+						<a class="CompanyCardDetail_title1"> Basic Information </a>
+						<a onclick="getProducts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Product </a>
+						<a onclick="getFinance(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Finance </a>
+						<a onclick="getContacts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Team </a>
+						<a onclick="getLocations(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Locations </a>
 					</article>
-					<article>
+					<article class="card_flex">
+						<p class="target" 
+							th:if="${company.getTag0() != null and !#strings.isEmpty(company.getTag0())}"
+							th:text="${company.getTag0()}"></p>
+						<p class="target" 
+							th:if="${company.getTag1() != null and !#strings.isEmpty(company.getTag1())}"
+							th:text="${company.getTag1()}"></p>
+						<p class="target" 
+							th:if="${company.getTag2() != null and !#strings.isEmpty(company.getTag2())}"
+							th:text="${company.getTag2()}"></p>
+						<p class="target" 
+							th:if="${company.getTag3() != null and !#strings.isEmpty(company.getTag3())}"
+							th:text="${company.getTag3()}"></p>
+						<p class="target" 
+							th:if="${company.getTag4() != null and !#strings.isEmpty(company.getTag4())}"
+							th:text="${company.getTag4()}"></p>
+					</article>
+					<article class="card_flex">
+						<p class="target" 
+							th:if="${company.getTag5() != null and !#strings.isEmpty(company.getTag5())}"
+							th:text="${company.getTag5()}"></p>
+						<p class="target" 
+							th:if="${company.getTag6() != null and !#strings.isEmpty(company.getTag6())}"
+							th:text="${company.getTag6()}"></p>
+						<p class="target" 
+							th:if="${company.getTag7() != null and !#strings.isEmpty(company.getTag7())}"
+							th:text="${company.getTag7()}"></p>
+						<p class="target" 
+							th:if="${company.getTag8() != null and !#strings.isEmpty(company.getTag8())}"
+							th:text="${company.getTag8()}"></p>
+						<p class="target" 
+							th:if="${company.getTag9() != null and !#strings.isEmpty(company.getTag9())}"
+							th:text="${company.getTag9()}"></p>
+					</article>
+					<br>
+					<article style="max-height:30vh;overflow:auto;word-wrap: break-word;">
 						<p class="CompanyContent_description">Description</p>
-						<p class="CompanyContent_content">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a neque a magna sodales pharetra. Mauris eu lorem in orci
-							interdum elementum. Pellentesque feugiat risus sapien, ac vulputate ex euismod id. Pellentesque habitant morbi tristique
-							senectus et netus et malesuada fames ac turpis egestas. Sed et nisl mi. Curabitur condimentum efficitur est at consectetur.
-							Pellentesque ligula dui, viverra vitae lacus nec, ultrices ornare neque.
-						</p>
+						<p class="CompanyContent_content" th:utext="${company.getIntroduction()}"></p>
+						<p class="CompanyContent_description">Contacts</p>
+						<a 
+							th:if="${company.getPhone() != null and !#strings.isEmpty(company.getPhone())}" 
+							th:href="'tel:' + ${company.getPhone()}"
+							style="text-decoration: none;">
+							<img th:src="@{../images/icon/phone.png}" class="icon_menu" />
+						</a>
+						<!-- <a href="https://www.flaticon.com/free-icons/phone" title="phone icons">Phone icons created by Gregor Cresnar - Flaticon</a> -->
+						<a 
+							th:if="${company.getEmail1() != null and !#strings.isEmpty(company.getEmail1())}" 
+							th:href="'mailto:' + ${company.getEmail1()}"
+							style="text-decoration: none;">
+							<img th:src="@{../images/icon/email.png}" class="icon_menu" />
+						</a>
+						<!-- <a href="https://www.flaticon.com/free-icons/email" title="email icons">Email icons created by Freepik - Flaticon</a> -->
+						<a 
+							th:if="${company.getEmail2() != null and !#strings.isEmpty(company.getEmail2())}" 
+							th:href="'mailto:' + ${company.getEmail2()}"
+							style="text-decoration: none;">
+							<img th:src="@{../images/icon/mail.png}" class="icon_menu" />
+						</a>
+						<!-- <a href="https://www.flaticon.com/free-icons/email" title="email icons">Email icons created by Freepik - Flaticon</a> -->
+						<a 
+							th:if="${company.getLinkedInLink() != null and !#strings.isEmpty(company.getLinkedInLink())}" 
+							th:href="${company.getLinkedInLink()}"
+							style="text-decoration: none;">
+							<img th:src="@{../images/icon/linkedin.png}" class="icon_menu" />
+						</a>
+						<!-- <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by riajulislam - Flaticon</a> -->
+						<a 
+							th:if="${company.getInstagramLink() != null and !#strings.isEmpty(company.getInstagramLink())}" 
+							th:href="${company.getInstagramLink()}"
+							style="text-decoration: none;">
+							<img th:src="@{../images/icon/instagram.png}" class="icon_menu" />
+						</a>
+						<!-- <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Freepik - Flaticon</a> -->
+						<a 
+							th:if="${company.getTwitterLink() != null and !#strings.isEmpty(company.getTwitterLink())}" 
+							th:href="${company.getTwitterLink()}"
+							style="text-decoration: none;">
+							<img th:src="@{../images/icon/twitter.png}" class="icon_menu" />
+						</a>
+						<!-- <a href="https://www.flaticon.com/free-icons/tweet" title="tweet icons">Tweet icons created by Freepik - Flaticon</a> -->
 					</article>
+					<br><br><br>
 					<article class="menu_bottom_similarcompanies">
 						<p class="SimilarCompanies">Similiar Companies</p>
 						<article class="grid_similarcompanies">
 							<a href="/company/info">
-								<article class="card_similarcompanies">
-									<article class="card_top">
-										<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_sim" />
-										<article class="card_right_similarCompanies">
-											<p class="card_heading">Company</p>
-											<p class="card_content">Region</p>
-											<p class="card_technology_sim">Technology</p>
-										</article>
-									</article>
-								</article>
-							</a>
-							<a href="/company/info">
-								<article class="card_similarcompanies">
-									<article class="card_top">
-										<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_sim" />
-										<article class="card_right_similarCompanies">
-											<p class="card_heading">Company</p>
-											<p class="card_content">Region</p>
-											<p class="card_technology_sim">Technology</p>
-										</article>
-									</article>
-								</article>
-							</a>
-							<a href="/company/info">
-								<article class="card_similarcompanies">
-									<article class="card_top">
-										<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_sim" />
-										<article class="card_right_similarCompanies">
-											<p class="card_heading">Company</p>
-											<p class="card_content">Region</p>
-											<p class="card_technology_sim">Technology</p>
-										</article>
-									</article>
-								</article> </a
-							><a href="/company/info">
 								<article class="card_similarcompanies">
 									<article class="card_top">
 										<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo_sim" />
@@ -177,4 +215,21 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
+	<script>
+		function getProducts(id) {
+			window.location.replace("/company/products?" + "id=" + id);
+		}
+
+		function getFinance(id) {
+			window.location.replace("/company/finance?" + "id=" + id);
+		}
+
+		function getContacts(id) {
+			window.location.replace("/company/team?" + "id=" + id);
+		}
+
+		function getLocations(id) {
+			window.location.replace("/company/location?" + "id=" + id);
+		}
+	</script>
 </html>

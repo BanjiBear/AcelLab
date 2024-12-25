@@ -14,4 +14,6 @@ public interface CompanyService {
 	
 	public <T> ResponseFactory<T> addCompanyToBookmark(@AuthenticationPrincipal UserDetails userDetails, Long userId, Long companyId);
 	
+	public ResponseFactory<CompanyInfo> getCompanyDetails(Long companyId);
+	
 }

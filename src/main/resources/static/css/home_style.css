@@ -106,7 +106,7 @@ body {
 
 .menu_bottom_similarcompanies {
   position: fixed;
-  bottom: 3%;
+  bottom: 3vh;
   width: 75%;
 }
 
@@ -327,6 +327,7 @@ body {
 .weeklyStats_button:hover,
 .card_bottomright:hover,
 .card_bottomright_AIRecommend:hover {
+  cursor: pointer;
   color: #cfe0ff; /* Light blue text color on hover */
 }
 
@@ -945,8 +946,9 @@ body {
 }
 
 .contact_card {
-  width: max-content;
-  height: max-content;
+  width: auto;
+  max-width: 20vw;
+  height: auto;
   padding: 15px 20px 10px 20px;
   gap: 0px;
   border-radius: 30px;
@@ -1175,6 +1177,8 @@ body {
   height: fit-content;
   min-width: 40px;
   padding: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
   gap: 10px;
   border-radius: 13px;
   opacity: 0px;
@@ -1448,7 +1452,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 .SimilarCompanies {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 10px;
   text-align: left;
@@ -1484,6 +1488,9 @@ input[type="file"]::-webkit-file-upload-button {
   line-height: 31.25px;
   text-align: left;
   color: #171b23;
+  min-width: 15vw;
+  max-width: 15vw;
+  word-wrap: break-word;
 }
 
 .CompanyCardDetail_title {
@@ -1501,6 +1508,7 @@ input[type="file"]::-webkit-file-upload-button {
   opacity: 0px;
   background: transparent;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .CompanyCardDetail_title1 {
@@ -1518,10 +1526,12 @@ input[type="file"]::-webkit-file-upload-button {
   opacity: 0px;
   background: transparent;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .CompanyContent {
-  margin-left: 10px;
+  position: relative;
+  margin-left: 30px;
 }
 
 .Settings_bookmark_subtitle {
@@ -1617,9 +1627,8 @@ tr {
 }
 
 .grid_similarcompanies {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  display: flex;
+  overflow-x: scroll;
   margin-top: 2%;
   width: 75vw;
   column-gap: 30px;
@@ -1641,13 +1650,8 @@ tr {
 }
 
 .grid_contact {
-  margin: 0;
-  justify-content: flex-start;
-  display: flex;
-  scroll-behavior: smooth;
-  height: calc(100vh-300px);
-
-  white-space: nowrap; /* Prevent cards from wrapping to a new line */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
 }
 
 .grid_contact a {
@@ -1682,12 +1686,11 @@ tr {
 .CompanyContent_productName {
   font-size: 20px;
   font-weight: 600;
-  line-height: 60px;
-  letter-spacing: 0.10000000149011612px;
   text-align: left;
   color: #171b23;
   width: max-content;
-  min-width: 130px;
+  min-width: 10vw;
+  max-width: 10vw;
   padding-left: 20px;
 }
 
@@ -1705,7 +1708,6 @@ tr {
 .CompanyContent_description1 {
   font-size: 20px;
   font-weight: 600;
-  line-height: 40px;
   letter-spacing: 0.10000000149011612px;
   text-align: left;
   color: #171b23;
@@ -1733,7 +1735,8 @@ tr {
   text-align: left;
   color: #64758f;
   width: fit-content;
-  max-width: 85%;
+  min-width: 50vw;
+  max-width: 50vw;
   padding-left: 30px;
   padding-right: 10px;
 }
@@ -1947,6 +1950,7 @@ tr {
   margin: none;
   padding: none;
   border-collapse: collapse;
+  border-bottom: 1pt solid #64758f;
   overflow: hidden;
   box-shadow: none;
   background-color: inherit;
@@ -1959,6 +1963,9 @@ tr {
   width: max-content;
   background-color: #f9fbff;
   height: fit-content;
+  min-width: 8vw;
+  max-width: 8vw;
+  padding-top: 3vh;
 }
 
 .FinanceTable td {
@@ -1967,14 +1974,15 @@ tr {
   width: max-content;
   background-color: #f9fbff;
   height: fit-content;
+  min-width: 8vw;
+  max-width: 8vw;
+  padding-bottom: 3vh;
 }
-.CompanyContent_Finance_Round_number {
-  gap: 10px;
+th.CompanyContent_Finance_Round_number {
   opacity: 0px;
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  line-height: 23px;
   letter-spacing: 0.10000000149011612px;
   text-align: left;
   color: #2962ff;

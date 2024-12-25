@@ -95,4 +95,21 @@ public class CompanyServiceImpl implements CompanyService {
 		return Util.responseFormation(Status.DATA_UPDATED);
 	}
 
+	
+	@Override
+	public ResponseFactory<CompanyInfo> getCompanyDetails(Long companyId) {
+		ArrayList<CompanyInfo> return_list = new ArrayList<CompanyInfo>();
+		try {
+			Optional<CompanyInfo> company = companyRepository.getCompanyById(companyId);
+			if(company.isEmpty()) {
+				return Util.responseFormation(Status.NO_RESULT_FOUND_ERROR);
+			}
+			return_list.add(company.get());
+		} catch(Exception e) {
+			return Util.responseFormation(Status.UNEXPECTED_ERROR);
+		}
+		
+		return Util.responseFormation(Status.RESULT_FOUND, return_list);
+	}
+
 }

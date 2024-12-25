@@ -61,24 +61,19 @@
 				</article>
 			</article>
 
-			<article class="Search">
+			<article class="Search" th:object="${company}">
 				<article class="Search1">
-					<p class="Search_title">Recent</p>
+					<p class="Search_title"></p>
 					<article class="flex_left">
 						<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
 						<article class="CompanyContent">
-							<p class="CompanyContent_CompanyName">Company Name</p>
-							<article class="card_flex">
-								<p class="target">tag-1</p>
-								<p class="target">tag-2</p>
-								<p class="target">tag-3</p>
-							</article>
-							<article class="flex_companycontentPreference">
+							<p class="CompanyContent_CompanyName" th:text="${company.getCompanyName()}"></p>
+							<!-- <article class="flex_companycontentPreference">
 								<img th:src="@{../images/icon/Like.png}" class="preferenceIcon" />
 								<p class="preference">Like</p>
 								<img th:src="@{../images/icon/Dislike.png}" class="preferenceIcon" />
 								<p class="preference">Dislike</p>
-							</article>
+							</article> -->
 						</article>
 						<article class="CompanyContent">
 							<p class="CompanyContent_info">Website</p>
@@ -86,34 +81,38 @@
 							<p class="CompanyContent_info">Founded on</p>
 						</article>
 						<article class="CompanyContent">
-							<p class="CompanyContent_info1">Website</p>
-							<p class="CompanyContent_info1">Employees</p>
-							<p class="CompanyContent_info1">Founded on</p>
+							<p class="CompanyContent_info1" th:text="${company.getWebsite()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getCompanySize()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getFoundYear()}"></p>
 						</article>
 						<article class="CompanyContent">
 							<p class="CompanyContent_info">Industry</p>
 							<p class="CompanyContent_info">Region</p>
+							<p class="CompanyContent_info">Founders</p>
 						</article>
 						<article class="CompanyContent">
-							<p class="CompanyContent_info1">Website</p>
-							<p class="CompanyContent_info1">Employees</p>
-							<p class="CompanyContent_info1">Founded on</p>
+							<p class="CompanyContent_info1" th:text="${company.getIndustry()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getHeadquarter()}"></p>
+							<p class="CompanyContent_info1" th:text="${company.getFounders()}"></p>
 						</article>
 					</article>
+					<br><br><br>
 					<article class="CompanyCardDetailTab">
-						<a href="/company/info" class="CompanyCardDetail_title"> Basic Information </a>
-						<a href="/company/products" class="CompanyCardDetail_title"> Product </a>
-						<a href="/company/finance" class="CompanyCardDetail_title1"> Finance </a>
-						<a href="/company/contact" class="CompanyCardDetail_title"> Contacts </a>
+						<a onclick="getDetails(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Basic Information </a>
+						<a onclick="getProducts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Product </a>
+						<a class="CompanyCardDetail_title1"> Finance </a>
+						<a onclick="getContacts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Team </a>
+						<a onclick="getLocations(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Locations </a>
 					</article>
 					<div class="scroll">
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
+						<!-- <p class="CompanyContent_Finance_Round_number">Round 1</p> -->
 						<table class="FinanceTable">
 							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
+								<th class="CompanyContent_Finance_Round_number" rowspan="2">Round 1</th>
+								<th>Announced Date</th>
+								<th>Round</th>
+								<th>Amount Raised</th>
+								<th>Lead Investors</th>
 							</tr>
 							<tr>
 								<td>Oct. 4, 2023</td>
@@ -122,96 +121,7 @@
 								<td>Investor name, Investor Name</td>
 							</tr>
 						</table>
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
-						<table class="FinanceTable">
-							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
-							</tr>
-							<tr>
-								<td>Oct. 4, 2023</td>
-								<td>Pre-Seed</td>
-								<td>$ 1 million USD</td>
-								<td>Investor name, Investor Name</td>
-							</tr>
-						</table>
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
-						<table class="FinanceTable">
-							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
-							</tr>
-							<tr>
-								<td>Oct. 4, 2023</td>
-								<td>Pre-Seed</td>
-								<td>$ 1 million USD</td>
-								<td>Investor name, Investor Name</td>
-							</tr>
-						</table>
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
-						<table class="FinanceTable">
-							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
-							</tr>
-							<tr>
-								<td>Oct. 4, 2023</td>
-								<td>Pre-Seed</td>
-								<td>$ 1 million USD</td>
-								<td>Investor name, Investor Name</td>
-							</tr>
-						</table>
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
-						<table class="FinanceTable">
-							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
-							</tr>
-							<tr>
-								<td>Oct. 4, 2023</td>
-								<td>Pre-Seed</td>
-								<td>$ 1 million USD</td>
-								<td>Investor name, Investor Name</td>
-							</tr>
-						</table>
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
-						<table class="FinanceTable">
-							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
-							</tr>
-							<tr>
-								<td>Oct. 4, 2023</td>
-								<td>Pre-Seed</td>
-								<td>$ 1 million USD</td>
-								<td>Investor name, Investor Name</td>
-							</tr>
-						</table>
-						<p class="CompanyContent_Finance_Round_number">Round 1</p>
-						<table class="FinanceTable">
-							<tr>
-								<th style="width: 22%">Announced Date</th>
-								<th style="width: 15%">Round</th>
-								<th style="width: 25%">Amount Raised</th>
-								<th style="width: 42%">Lead Investors</th>
-							</tr>
-							<tr>
-								<td>Oct. 4, 2023</td>
-								<td>Pre-Seed</td>
-								<td>$ 1 million USD</td>
-								<td>Investor name, Investor Name</td>
-							</tr>
-						</table>
+						<br>
 					</div>
 					<article class="menu_bottom_similarcompanies">
 						<p class="SimilarCompanies">Similiar Companies</p>
@@ -241,4 +151,21 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
+	<script>
+		function getDetails(id) {
+			window.location.replace("/company/info?" + "id=" + id);
+		}
+
+		function getProducts(id) {
+			window.location.replace("/company/products?" + "id=" + id);
+		}
+
+		function getContacts(id) {
+			window.location.replace("/company/team?" + "id=" + id);
+		}
+
+		function getLocations(id) {
+			window.location.replace("/company/location?" + "id=" + id);
+		}
+	</script>
 </html>

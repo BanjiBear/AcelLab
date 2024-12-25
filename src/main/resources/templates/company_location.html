@@ -100,63 +100,79 @@
 						<a onclick="getDetails(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Basic Information </a>
 						<a onclick="getProducts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Product </a>
 						<a onclick="getFinance(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Finance </a>
-						<a class="CompanyCardDetail_title1"> Team </a>
-						<a onclick="getLocations(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Locations </a>
+						<a onclick="getContacts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Team </a>
+						<a class="CompanyCardDetail_title1"> Locations </a>
 					</article>
-					<div class="container" style="overflow: auto; max-height: 65vh;">
-						<article class="grid_contact">
-							<article class="contact_card">
-								<article class="card_top">
-									<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
-									<article class="card_right">
-										<p class="contact_card_heading">Name</p>
-										<p class="contact_card_content">Role</p>
-										<p class="contact_card_content">Region</p>
-									</article>
-								</article>
-								<article class="flex_left">
-									<article class="contact_spaceright">
-										<p class="contact_card_heading">Work email</p>
-										<p class="contact_card_heading">Work No.</p>
-									</article>
-									<article>
-										<p class="contact_card_content">Work No.</p>
-										<p class="contact_card_content">Work No.</p>
-									</article>
-								</article>
-								<div class="contact_card_viewmore" onclick="myFunction()">
-									View More
-									<span class="popuptext" id="myPopup">
-										<article class="contact_card">
-											<article class="card_top">
-												<img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
-												<article class="card_right">
-													<p class="contact_card_heading">Name</p>
-													<p class="contact_card_content">Company Name</p>
-												</article>
-											</article>
-											<article class="flex_left">
-												<article>
-													<p class="contact_popup_heading">Department</p>
-													<p class="contact_popup_heading">Role</p>
-													<p class="contact_popup_heading">Work Email</p>
-													<p class="contact_popup_heading">Work No.</p>
-													<p class="contact_popup_heading">Linkedin URL</p>
-												</article>
-												<article>
-													<p class="contact_popup_content">Your department</p>
-													<p class="contact_popup_content">Your company position</p>
-													<p class="contact_popup_content">name@company.com</p>
-													<p class="contact_popup_content">xxxx-xxxx</p>
-													<p class="contact_popup_content">www.linkedin.com</p>
-												</article>
-											</article>
-										</article>
-									</span>
-								</div>
-							</article>
+					<article style="max-height:65vh;overflow:auto;word-wrap: break-word;">
+						<article 
+						class="flex_left_product" 
+						style="cursor: pointer;" 
+						th:if="${company.getLocation1() != null and !#strings.isEmpty(company.getLocation1())}"
+						th:attr="data-location=${#strings.escapeJava(company.getLocation1())}"
+						onclick="showMap(this.getAttribute('data-location'))">
+							<img th:src="@{../images/icon/mapmark.png}" class="icon_menu" th:text="${company.getLocation1()}" />
+							<!-- <a href="https://www.flaticon.com/free-icons/pin" title="pin icons">Pin icons created by Freepik - Flaticon</a> -->
+							<img th:src="@{../images/icon/click.gif}" class="icon_menu" >
+							<!-- <a href="https://www.flaticon.com/free-animated-icons/finger" title="finger animated icons">Finger animated icons created by Freepik - Flaticon</a> -->
 						</article>
-					</div>
+						<br th:if="${company.getLocation1() != null and !#strings.isEmpty(company.getLocation1())}">
+						
+						<article 
+						class="flex_left_product" 
+						style="cursor: pointer;" 
+						th:if="${company.getLocation2() != null and !#strings.isEmpty(company.getLocation2())}"
+						th:attr="data-location=${#strings.escapeJava(company.getLocation2())}"
+						onclick="showMap(this.getAttribute('data-location'))">
+							<img th:src="@{../images/icon/mapmark.png}" class="icon_menu" th:text="${company.getLocation2()}" />
+							<!-- <a href="https://www.flaticon.com/free-icons/pin" title="pin icons">Pin icons created by Freepik - Flaticon</a> -->
+							<img th:src="@{../images/icon/click.gif}" class="icon_menu" >
+							<!-- <a href="https://www.flaticon.com/free-animated-icons/finger" title="finger animated icons">Finger animated icons created by Freepik - Flaticon</a> -->
+						</article>
+						<br th:if="${company.getLocation2() != null and !#strings.isEmpty(company.getLocation2())}">
+						
+						<article 
+						class="flex_left_product" 
+						style="cursor: pointer;" 
+						th:if="${company.getLocation3() != null and !#strings.isEmpty(company.getLocation3())}"
+						th:attr="data-location=${#strings.escapeJava(company.getLocation3())}"
+						onclick="showMap(this.getAttribute('data-location'))">
+							<img th:src="@{../images/icon/mapmark.png}" class="icon_menu" th:text="${company.getLocation3()}" />
+							<!-- <a href="https://www.flaticon.com/free-icons/pin" title="pin icons">Pin icons created by Freepik - Flaticon</a> -->
+							<img th:src="@{../images/icon/click.gif}" class="icon_menu" >
+							<!-- <a href="https://www.flaticon.com/free-animated-icons/finger" title="finger animated icons">Finger animated icons created by Freepik - Flaticon</a> -->
+						</article>
+						<br th:if="${company.getLocation3() != null and !#strings.isEmpty(company.getLocation3())}">
+
+						<article 
+						class="flex_left_product" 
+						style="cursor: pointer;" 
+						th:if="${company.getLocation4() != null and !#strings.isEmpty(company.getLocation4())}"
+						th:attr="data-location=${#strings.escapeJava(company.getLocation4())}"
+						onclick="showMap(this.getAttribute('data-location'))">
+							<img th:src="@{../images/icon/mapmark.png}" class="icon_menu" th:text="${company.getLocation4()}" />
+							<!-- <a href="https://www.flaticon.com/free-icons/pin" title="pin icons">Pin icons created by Freepik - Flaticon</a> -->
+							<img th:src="@{../images/icon/click.gif}" class="icon_menu" >
+							<!-- <a href="https://www.flaticon.com/free-animated-icons/finger" title="finger animated icons">Finger animated icons created by Freepik - Flaticon</a> -->
+						</article>
+						<br th:if="${company.getLocation4() != null and !#strings.isEmpty(company.getLocation4())}">
+
+						<article 
+						class="flex_left_product" 
+						style="cursor: pointer;" 
+						th:if="${company.getLocation5() != null and !#strings.isEmpty(company.getLocation5())}"
+						th:attr="data-location=${#strings.escapeJava(company.getLocation5())}"
+						onclick="showMap(this.getAttribute('data-location'))">
+							<img th:src="@{../images/icon/mapmark.png}" class="icon_menu" th:text="${company.getLocation5()}" />
+							<!-- <a href="https://www.flaticon.com/free-icons/pin" title="pin icons">Pin icons created by Freepik - Flaticon</a> -->
+							<img th:src="@{../images/icon/click.gif}" class="icon_menu" >
+							<!-- <a href="https://www.flaticon.com/free-animated-icons/finger" title="finger animated icons">Finger animated icons created by Freepik - Flaticon</a> -->
+						</article>
+						<br th:if="${company.getLocation5() != null and !#strings.isEmpty(company.getLocation5())}">
+
+						<!-- Free service provided by https://embedmap.org/ -->
+						<iframe style="display: none; height: 50vh; width: 100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?q=&amp;output=embed"></iframe>
+						<a href='https://www.acadoo.de/leistungen/ghostwriter-doktorarbeit/ghostwriter-dissertation-in-medizin/'>Medizin Doktorarbeit Ghostwriter</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=29856c861cac217ad990e43951e47193865f5e72'></script>
+					</article>
 
 					<!-- <article class="menu_bottom_similarcompanies">
 						<p class="SimilarCompanies">Similiar Companies</p>
@@ -199,8 +215,15 @@
 			window.location.replace("/company/finance?" + "id=" + id);
 		}
 
-		function getLocations(id) {
-			window.location.replace("/company/location?" + "id=" + id);
+		function getContacts(id) {
+			window.location.replace("/company/team?" + "id=" + id);
+		}
+
+		function showMap(location) {
+			var mapIframe = document.getElementById('gmap_canvas');
+			mapIframe.style.display = 'block';
+			var mapSrc = 'https://maps.google.com/maps?q=' + encodeURIComponent(location) + '&output=embed';
+			mapIframe.src = mapSrc;
 		}
 	</script>
 </html>
