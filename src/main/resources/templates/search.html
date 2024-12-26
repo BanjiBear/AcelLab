@@ -592,6 +592,14 @@
 	<script th:src="@{./js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{./js/features1.js}"></script>
 	<script>
+		document.getElementById('search').addEventListener('input', function(event) {
+			const regex = /^[\p{L}\p{N}\s]*$/u;
+			const inputValue = event.target.value;
+			if (!regex.test(inputValue)) {
+				event.target.value = inputValue.slice(0, -1);
+			}
+		});
+
 		function searchCompany(e) {
 			var search = document.getElementById('search').value;
 			var location = document.getElementById('location').value;
