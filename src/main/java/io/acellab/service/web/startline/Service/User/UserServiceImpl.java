@@ -113,6 +113,13 @@ public class UserServiceImpl implements UserService {
 				return Util.responseFormation(Status.USER_REGISTER_INVALID_EMAIL_FORMAT);
 			}
 		}
+		//firstname, lastname, department, role
+		if(!(Util.isValidAccountUpdateInputFormat(firstname) && 
+				Util.isValidAccountUpdateInputFormat(lastname) && 
+				Util.isValidAccountUpdateInputFormat(department) && 
+				Util.isValidAccountUpdateInputFormat(role))) {
+			return Util.responseFormation(Status.USER_ACCOUNT_UPDATE_INVALID_INPUT_FORMAT);
+		}
 		//Step 2: Update UserInfo
 		try {
 			if(password != "") {

@@ -37,6 +37,11 @@ public class Util {
 		return email.matches(regex);
 	}
 	
+	public static Boolean isValidAccountUpdateInputFormat(String field) {
+		String regex = "^[\\p{L}\\s]*$";
+		return field.matches(regex);
+	}
+	
 	public static Boolean isValidSearchInput(String input) {
 		String regex = "^[\\p{L}\\p{N}\\s]*$";
 		return input.matches(regex);

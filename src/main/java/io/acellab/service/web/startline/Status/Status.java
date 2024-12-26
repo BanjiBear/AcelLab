@@ -23,6 +23,7 @@ public enum Status {
 			+ "At least one digit\n"
 			+ "At least 12 characters long"),
 	USER_REGISTER_INVALID_EMAIL_FORMAT(103, "Invalid email format, please verify your input!"),
+	USER_ACCOUNT_UPDATE_INVALID_INPUT_FORMAT(104, "Invalid input format, allows only letters(support multiple language) and whitespaces for firstname, lastname, department, and role!"),
 	
 	//Company Related Error
 	COMPANY_SEARCH_INVALID_INPUT(704, "Invalid input format, allows only letters, digits, and spaces for company name or keywords!"),

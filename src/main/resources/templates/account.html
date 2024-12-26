@@ -188,13 +188,13 @@
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
 	<script>
-		const fieldsToTest = ['firstname', 'lastname', 'deparment', 'role'];
+		const fieldsToTest = ['firstname', 'lastname', 'department', 'role'];
 		const inputFields = document.querySelectorAll('input');
 
 		inputFields.forEach(inputField => {
 			if (fieldsToTest.includes(inputField.id)) {
 				inputField.addEventListener('input', function(event) {
-					const regex = /^[a-zA-Z\s]*$/;
+					const regex = /^[\p{L}\s]*$/u;
 					const inputValue = event.target.value;
 					if (!regex.test(inputValue)) {
 						event.target.value = inputValue.slice(0, -1);
