@@ -19,7 +19,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext container) throws ServletException{
 		// Create the root Context
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.register(JPAConfig.class);
+		rootContext.register(AppConfig.class, JPAConfig.class);
 		
 		// Manage Lifecycle of the root Context (????)
 		/*

@@ -35,12 +35,11 @@ public interface UserRepository extends CrudRepository<UserInfo, Long> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "INSERT INTO user (username, password, firstname, lastname, company_id, department, role, email, phone, linkedIn, isStartup, business_plan_id) "
+	@Query(value = "INSERT INTO user (username, password, firstname, lastname, department, role, email, phone, linkedIn, isStartup, business_plan_id) "
 	+ "VALUES(:username, "
 			+ ":password, "
 			+ ":fname, "
 			+ ":lname, "
-			+ "NULL, "
 			+ "NULL, "
 			+ "NULL, "
 			+ ":email, "

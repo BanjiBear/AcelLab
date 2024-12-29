@@ -587,8 +587,9 @@ body {
   border: 2px 0px 0px 0px;
   opacity: 1;
   line-height: 23.44px;
-  margin-right: 10px; /* Adjust the margin as needed */
+  margin-left: 10px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .Financials_title {
@@ -623,18 +624,15 @@ body {
   width: max-content;
   height: max-content;
   padding: 10px 20px 10px 20px;
-  gap: 15px;
   border-radius: 20px;
-  opacity: 0px;
   background: linear-gradient(274.87deg, #2962ff -0.25%, #3676ff 51.72%, #4b97ff 99.75%);
   font-size: 20px;
   font-weight: 700;
   line-height: 20.83px;
-  letter-spacing: 0.10000000149011612px;
   text-align: left;
   color: #ffffff;
-  margin-top: 0px;
   border: none;
+  cursor: pointer;
 }
 
 .button1 {
@@ -659,19 +657,17 @@ body {
   width: max-content;
   height: max-content;
   padding: 10px 20px 10px 20px;
-  gap: 15px;
   border-radius: 10px;
-  opacity: 0px;
   color: #2962ff;
   font-size: 17px;
   font-weight: 700;
   line-height: 20.83px;
-  letter-spacing: 0.10000000149011612px;
   text-align: left;
   background: transparent;
-  margin-top: 0px;
   border: none;
+  cursor: pointer;
 }
+
 
 .AddRow:hover {
   color: #5f96fc; /* Light blue text color on hover */
@@ -1427,6 +1423,9 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: left;
   color: #171b23;
   padding-left: 3%;
+  min-width: 15vw;
+  max-width: 15vw;
+  word-wrap: normal;
 }
 
 .clearall {

@@ -14,16 +14,14 @@ import jakarta.persistence.GenerationType;
 
 
 @Entity
-@Table(name = "company")
-public class CompanyInfo{
+@Table(name = "startup")
+public class StartupInfo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
-	//setId() only for returning company info from model purposes
-	public void setId(Long id) {this.id = id;}
 	public Long getId() {return this.id;}
 	
 	
@@ -34,8 +32,8 @@ public class CompanyInfo{
 	 *                         * 
 	 ***************************/
 
-	@Column(name = "company_name", nullable = false, length = 255)
-	private String companyName;
+	@Column(name = "startup_name", nullable = false, length = 255)
+	private String startupName;
 	
 	@Column(name = "website", nullable = false)
 	private String website;
@@ -79,12 +77,15 @@ public class CompanyInfo{
 	@Column(name = "founders", length = 255)
 	private String founders;
 	
-	@Column(name = "company_size", length = 50)
-	private String companySize;
+	@Column(name = "startup_size", length = 50)
+	private String startupSize;
+	
+	@OneToMany(mappedBy = "startup")
+    private List<StartupTeamInfo> members;
 	
     
-	public void setCompanyName(String name) {this.companyName = name;}
-	public String getCompanyName() {return this.companyName;}
+	public void setStartupName(String name) {this.startupName = name;}
+	public String getStartupName() {return this.startupName;}
 	
 	public void setWebsite(String website) {this.website = website;}
 	public String getWebsite() {return this.website;}
@@ -122,8 +123,11 @@ public class CompanyInfo{
 	public void setFounders(String founders) {this.founders = founders;}
 	public String getFounders() {return this.founders;}
 	
-	public void setCompanySize(String size) {this.companySize = size;}
-	public String getCompanySize() {return this.companySize;}
+	public void setStartupSize(String size) {this.startupSize = size;}
+	public String getStartupSize() {return this.startupSize;}
+	
+	public List<StartupTeamInfo> getMembers() {return this.members;}
+	public void setMembers(List<StartupTeamInfo> members) {this.members = members;}
 	
 	
 	/**************************************************
@@ -166,8 +170,8 @@ public class CompanyInfo{
 	@Column(name = "tag9", length = 30)
 	private String tag9;
 	
-	@OneToMany(mappedBy = "company")
-    private List<CompanyProductInfo> products;
+	@OneToMany(mappedBy = "startup")
+    private List<StartupProductInfo> products;
 	
 	public void setSolution(String solution) {this.solution = solution;}
 	public String getSolution() {return this.solution;}
@@ -202,8 +206,8 @@ public class CompanyInfo{
 	public void setTag9(String tag) {this.tag9 = tag;}
 	public String getTag9() {return this.tag9;}
 	
-	public List<CompanyProductInfo> getProducts() {return this.products;}
-	public void setProducts(List<CompanyProductInfo> products) {this.products = products;}
+	public List<StartupProductInfo> getProducts() {return this.products;}
+	public void setProducts(List<StartupProductInfo> products) {this.products = products;}
 	
 	
 	/***********************
@@ -297,8 +301,8 @@ public class CompanyInfo{
 	@Column(name = "number_of_investors", columnDefinition = "BIGINT")
 	private Long numberOfInvestors;
 	
-	@OneToMany(mappedBy = "company")
-    private List<CompanyFundingInfo> fundings;
+	@OneToMany(mappedBy = "startup")
+    private List<StartupFundingInfo> fundings;
 	
 	
 	public void setTotalFundingRounds(Long numRounds) {this.totalFundingRounds = numRounds;}
@@ -310,7 +314,7 @@ public class CompanyInfo{
 	public void setNumberOfInvestors(Long num) {this.numberOfInvestors = num;}
 	public Long getNumberOfInvestors() {return this.numberOfInvestors;}
 
-    public List<CompanyFundingInfo> getFundings() {return this.fundings;}
-    public void setFundings(List<CompanyFundingInfo> fundings) {this.fundings = fundings;}
+    public List<StartupFundingInfo> getFundings() {return this.fundings;}
+    public void setFundings(List<StartupFundingInfo> fundings) {this.fundings = fundings;}
 
 }

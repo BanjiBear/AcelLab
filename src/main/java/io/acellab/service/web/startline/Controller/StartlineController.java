@@ -1,6 +1,13 @@
 package io.acellab.service.web.startline.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +28,13 @@ import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
 import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
 import io.acellab.service.web.startline.Entity.CompanyInfo;
+import io.acellab.service.web.startline.Entity.StartupFundingInfo;
+import io.acellab.service.web.startline.Entity.StartupInfo;
+import io.acellab.service.web.startline.Entity.StartupProductInfo;
+import io.acellab.service.web.startline.Entity.StartupTeamInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
 import io.acellab.service.web.startline.Service.Company.CompanyService;
+import io.acellab.service.web.startline.Service.Startup.StartupService;
 import io.acellab.service.web.startline.Status.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -34,6 +47,21 @@ public class StartlineController {
 	
 	@Autowired
 	private CompanyService companyService;
+	
+	@Autowired
+	private StartupService startupService;
+	
+	@Autowired
+	private ArrayList<String> countriesList;
+	
+	@Autowired
+	private ArrayList<String> industriesList;
+	
+	@Autowired
+	private ArrayList<String> countryCodesList;
+	
+	@Autowired
+	private ArrayList<String> fundingsRoundList;
 
 	
 	@GetMapping("/home")
@@ -82,7 +110,21 @@ public class StartlineController {
 		//ProfileStartup --> profile_startup
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo user = customUserDetails.getUser();
+		StartupInfo startup = startupService.getUserStartup(user).getReturnDataList().get(0);
+		List<StartupProductInfo> products = startupService.getStartupProducts(user).getReturnDataList();
+		List<StartupFundingInfo> fundings = startupService.getStartupFundings(user).getReturnDataList();
+		List<StartupTeamInfo> members = startupService.getStartupTeam(user).getReturnDataList();
+		
 		model.addAttribute("user", user);
+		model.addAttribute("startup", startup);
+		model.addAttribute("products", products);
+		model.addAttribute("fundings", fundings);
+		model.addAttribute("members", members);
+		
+		model.addAttribute("countries", countriesList);
+		model.addAttribute("industries", industriesList);
+		model.addAttribute("countrycodes", countryCodesList);
+		model.addAttribute("fundingrounds", fundingsRoundList);
 		return "profile_startup";
 	}
 	
@@ -227,6 +269,30 @@ public class StartlineController {
 		}
 		
 		return "redirect:" + request.getHeader(HttpHeaders.REFERER).replace(request.getHeader(HttpHeaders.ORIGIN), "");
+	}
+	
+	@PostMapping("/updatestartupinfo")
+	public String updateStartupInfo(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam("dataMap") String startupInfoString,
+			Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user = customUserDetails.getUser();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			Map<String, String> startupInfoMap = mapper.readValue(startupInfoString, new TypeReference<Map<String, String>>() {});
+			//for (Map.Entry<String, String> entry : startupInfoMap.entrySet()) {
+			//	System.out.println(entry.getKey() + " : " + entry.getValue());
+			//}
+			ResponseFactory<?> response = startupService.updateUserStartup(userDetails, user, startupInfoMap);
+			if(response.getStatusCode() != 202) {
+				return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/profile/startup";
 	}
 
 

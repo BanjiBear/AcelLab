@@ -20,16 +20,14 @@ public interface CompanyRepository extends CrudRepository<CompanyInfo, Long> {
 	@Query(value = "SELECT * FROM company", nativeQuery = true)
 	ArrayList<CompanyInfo> getAllCompany();
 	
-	@Query(value = "SELECT * FROM company WHERE " +
-	           "(:company_name = '' OR company_name LIKE %:company_name% "
-	           				+ "OR introduction LIKE %:company_name%) AND " +
-	           "(:location = '' OR headquarter LIKE %:location%) AND " +
-	           "(:industry = '' OR industry LIKE %:industry%) AND " +
-	           "(:funding_round = '' OR funding_round1 = :funding_round "
-	           				+ "OR funding_round2 = :funding_round "
-	           				+ "OR funding_round3 = :funding_round "
-	           				+ "OR funding_round4 = :funding_round "
-	           				+ "OR funding_round5 = :funding_round)", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT c.* FROM company c "
+			+ "JOIN companyfundings cf ON c.id = cf.company_id WHERE "
+			+ "(:company_name = '' "
+				+ "OR c.company_name LIKE %:company_name% "
+				+ "OR c.introduction LIKE %:company_name%) "
+			+ "AND (:location = '' OR c.headquarter LIKE %:location%) "
+			+ "AND (:industry = '' OR c.industry LIKE %:industry%) "
+			+ "AND (:funding_round = '' OR cf.funding_round = :funding_round)", nativeQuery = true)
 	ArrayList<CompanyInfo> getCompaniesBySearchParams(
 			@Param("company_name") String company_name,
 			@Param("location") String location,

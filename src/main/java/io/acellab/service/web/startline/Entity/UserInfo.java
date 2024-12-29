@@ -31,10 +31,6 @@ public class UserInfo{
 	@Column(name = "lastname", length = 255, nullable = false)
 	private String lastname;
 	
-	@ManyToOne
-	@JoinColumn(name = "company_id")
-	private CompanyInfo company;
-	
 	@Column(name = "department", length = 255)
 	private String department;
 	
@@ -51,11 +47,19 @@ public class UserInfo{
 	private String linkedIn;
 	
 	@Column(name = "isStartup")
-    private Boolean isStartup;
+	private Boolean isStartup;
+	
+	@ManyToOne
+	@JoinColumn(name = "startup_id")
+	private StartupInfo startup;
 
-    @ManyToOne
-    @JoinColumn(name = "business_plan_id")
-    private BusinessPlanInfo businessPlan;
+	//@ManyToOne
+	//@JoinColumn(name = "corporate_id")
+	//private CorporateInfo corporate;
+
+	@ManyToOne
+	@JoinColumn(name = "business_plan_id", nullable = false)
+	private BusinessPlanInfo businessPlan;
 	
 	public Long getUserId() {return this.userId;}
 		
@@ -70,9 +74,6 @@ public class UserInfo{
 	
 	public void setLastname(String name) {this.lastname = name;}
 	public String getLastname() {return this.lastname;}
-	
-	public void setCompany(CompanyInfo company) {this.company = company;}
-	public CompanyInfo getCompany() {return company;}
 	
 	public void setDepartment(String department) {this.department = department;}
 	public String getDepartment() {return this.department;}
@@ -91,6 +92,12 @@ public class UserInfo{
 	
 	public void setAccountType(Boolean isStartup) {this.isStartup = isStartup;}
 	public Boolean getAccountType() {return this.isStartup;}
+	
+	public StartupInfo getStartup() {return this.startup;}
+	public void setStartup(StartupInfo startup) {this.startup = startup;}
+
+	//public CorporateInfo getCorporate() {return corporate;}
+	//public void setCorporate(CorporateInfo corporate) {this.corporate = corporate;}
 	
 	public void setBusinessPlan(BusinessPlanInfo businessPlan) {this.businessPlan = businessPlan;}
 	public BusinessPlanInfo getBusinessPlan() {return businessPlan;}
