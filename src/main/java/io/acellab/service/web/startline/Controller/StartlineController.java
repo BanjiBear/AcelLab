@@ -68,6 +68,9 @@ public class StartlineController {
 	public String homePage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//GetStarted --> home
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("response", companyService.getCompaniesList());
@@ -78,6 +81,9 @@ public class StartlineController {
 	public String searchPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//Search --> search
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		
 		model.addAttribute("user", user);
@@ -97,6 +103,9 @@ public class StartlineController {
 			Model model){
 		
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		
 		model.addAttribute("user", user);
@@ -109,6 +118,9 @@ public class StartlineController {
 	public String profileStartupPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//ProfileStartup --> profile_startup
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		StartupInfo startup = startupService.getUserStartup(user).getReturnDataList().get(0);
 		List<StartupProductInfo> products = startupService.getStartupProducts(user).getReturnDataList();
@@ -132,6 +144,9 @@ public class StartlineController {
 	public String profileCorporatePage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//ProfileCorporate --> profile_corporate
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		return "profile_corporate";
@@ -141,6 +156,9 @@ public class StartlineController {
 	public String settingsAccountPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//Settings_account_billing --> account
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("newUser", user);
@@ -151,6 +169,9 @@ public class StartlineController {
 	public String settingsTeamPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//Settings_team --> team
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		return "team";
@@ -160,6 +181,9 @@ public class StartlineController {
 	public String settingsBookmarkPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//Settings_bookmark --> bookmark
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		return "bookmark";
@@ -169,6 +193,9 @@ public class StartlineController {
 	public String settingsPlanPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//Settings_plan --> plan
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		return "plan";
@@ -181,6 +208,9 @@ public class StartlineController {
 			Model model) {
 		//CompanyContent_BasicInformation --> company_info
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
@@ -195,6 +225,9 @@ public class StartlineController {
 			Model model) {
 		//CompanyContent_Product --> company_products
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
@@ -208,6 +241,9 @@ public class StartlineController {
 			Model model) {
 		//CompanyContent_Finance --> company_finance
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
@@ -221,6 +257,9 @@ public class StartlineController {
 			Model model) {
 		//CompanyContent_Contacts --> company_contact
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
@@ -233,6 +272,9 @@ public class StartlineController {
 			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
 			Model model) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		model.addAttribute("user", user);
 		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
@@ -245,6 +287,9 @@ public class StartlineController {
 	@PostMapping("/updateuserinfo")
 	public String updateUserInfo(@AuthenticationPrincipal UserDetails userDetails, UserInfo newUser, Model model) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo oldUser = customUserDetails.getUser();
 		ResponseFactory<?> response = userService.updateUser(oldUser, newUser);
 		if(response.getStatusCode() != 202) {
@@ -261,6 +306,9 @@ public class StartlineController {
 			@ModelAttribute("bookmarked_company") CompanyInfo bookmarked_company, 
 			Model model) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		//Consider if it is not necessary to pass userDetails
 		ResponseFactory<?> response = companyService.addCompanyToBookmark(userDetails, user.getUserId(), bookmarked_company.getId());
@@ -277,6 +325,9 @@ public class StartlineController {
 			@RequestParam("dataMap") String startupInfoString,
 			Model model) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
 		UserInfo user = customUserDetails.getUser();
 		ObjectMapper mapper = new ObjectMapper();
 		try {
