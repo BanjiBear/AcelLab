@@ -47,53 +47,53 @@ public class Util {
 	}
 	
 	
-	// Startup Update Info Checking
-	public static Boolean isValidStartupUpdateNameFormat(String startupname) {
+	// Startup/Corporate Update Info Checking
+	public static Boolean isValidOrgUpdateNameFormat(String startupname) {
 		String regex = "^[\\p{L}\\s]*$";
 		return startupname.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdatePhoneFormat(String phone) {
+	public static Boolean isValidOrgUpdatePhoneFormat(String phone) {
 		String regex = "^\\d*$";
 		return phone.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateSizeFormat(String startupsize) {
+	public static Boolean isValidOrgUpdateSizeFormat(String startupsize) {
 		String regex = "^[\\d-]+$";
 		return startupsize.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateProductNameFormat(String productname) {
+	public static Boolean isValidOrgUpdateProductNameFormat(String productname) {
 		String regex = "^[\\p{L}\\p{N}\\s]*$";
 		return productname.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateFundingAmountFormat(String amount) {
+	public static Boolean isValidOrgUpdateFundingAmountFormat(String amount) {
 		String regex = "^[\\p{L}\\p{N}\\s]*$";
 		return amount.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateInvestorsFormat(String investors) {
+	public static Boolean isValidOrgUpdateInvestorsFormat(String investors) {
 		String regex = "^[\\p{L}\\s,]*$"; // allows comma
 		return investors.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateMemberNameFormat(String name) {
+	public static Boolean isValidOrgUpdateMemberNameFormat(String name) {
 		String regex = "^[\\p{L}\\s]*$";
 		return name.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateMemberDeptFormat(String dept) {
+	public static Boolean isValidOrgUpdateMemberDeptFormat(String dept) {
 		String regex = "^[\\p{L}\\s]*$";
 		return dept.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateMemberPosFormat(String pos) {
+	public static Boolean isValidOrgUpdateMemberPosFormat(String pos) {
 		String regex = "^[\\p{L}\\p{N}\\s]*$";
 		return pos.matches(regex);
 	}
 	
-	public static Boolean isValidStartupUpdateMemberPhoneFormat(String phone) {
+	public static Boolean isValidOrgUpdateMemberPhoneFormat(String phone) {
 		String regex = "^\\d*$";
 		return phone.matches(regex);
 	}

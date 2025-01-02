@@ -95,30 +95,30 @@
 				<form id="updatestartupinfo" th:action="@{/updatestartupinfo}" method="post">
 					<p class="profile_title">Basic Information</p>
 					<br />
-					<label for="startup_name" class="profile_heading1">Company Name*</label>
+					<label for="organization_name" class="profile_heading1">Company Name*</label>
 					<input 
 						type="text" 
-						id="startup_name" 
-						name="startup_name" 
+						id="organization_name" 
+						name="organization_name" 
 						placeholder="Input your company name" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(startup.getStartupName())} ? ${startup.getStartupName()}"/>
 					<br />
 					<label for="introduction" style="vertical-align: top;" class="profile_heading1">Company Introduction*</label>
-					<textarea id="startup_introduction" name="introduction" rows="5" class="filters2" required 
+					<textarea id="organization_introduction" name="introduction" rows="5" class="filters2" required 
 						th:text="${!#strings.isEmpty(startup.getIntroduction())} ? ${startup.getIntroduction()}"></textarea>
 					<br />
 					<label for="email" class="profile_heading1">Company Email*</label>
 					<input 
 						type="email" 
-						id="startup_email" 
+						id="organization_email" 
 						name="email" 
 						placeholder="Input your email" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(startup.getEmail1())} ? ${startup.getEmail1()}"/>
 					<br />
 					<label for="phone" class="profile_heading1">Company Phone*</label>
-					<select id="startup_areacode" name="areaCode" class="filters">
+					<select id="organization_areacode" name="areaCode" class="filters">
 						<option 
 							th:each="code : ${countrycodes}"
 							th:value="${code}"
@@ -128,7 +128,7 @@
 					<!-- th:value="${!#strings.isEmpty(startup.getPhone())} ? ${#strings.substringBefore(startup.getPhone(), '-') : ''}" -->
 					<input 
 						type="tel" 
-						id="startup_phone" 
+						id="organization_phone" 
 						name="phone" 
 						placeholder="12345678" 
 						class="filters5" required 
@@ -137,7 +137,7 @@
 					<label for="website" class="profile_heading1">Company Website*</label>
 					<input 
 						type="url" 
-						id="startup_website" 
+						id="organization_website" 
 						name="website" 
 						placeholder="www.startline.vip" 
 						class="filters2" required 
@@ -146,7 +146,7 @@
 					<label for="employee" class="profile_heading1">Company Size*</label>
 					<div style="position: relative; display: inline-block;">
 						<input 
-							type="text" id="startup_size" name="employee" 
+							type="text" id="organization_size" name="employee" 
 							placeholder="201-500" 
 							class="filters2" required 
 							th:value="${!#strings.isEmpty(startup.getStartupSize())} ? ${startup.getStartupSize()}"/>
@@ -162,14 +162,14 @@
 					<label for="foundingyr" class="profile_heading1">Founded Year*</label>
 					<input 
 						type="number" min="1800" max="2100" step="1" 
-						id="startup_foundedyear" 
+						id="organization_foundedyear" 
 						name="foundingyr" 
 						placeholder="2024" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(startup.getFoundYear())} ? ${startup.getFoundYear()}"/>
 					<div>
 						<label for="industry" class="profile_heading1">Industry*</label>
-						<select id="startup_industry" name="industry" class="filters2" required>
+						<select id="organization_industry" name="industry" class="filters2" required>
 							<option value="">Select Industry</option>
 							<option 
 								th:each="industry : ${industries}"
@@ -181,7 +181,7 @@
 					</div>
 					<div>
 						<label for="headquarter" class="profile_heading1">Headquarter Location*</label>
-						<select id="startup_headquarter" name="headquarter" class="filters2" required>
+						<select id="organization_headquarter" name="headquarter" class="filters2" required>
 							<option value="">Select Country</option>
 							<option 
 								th:each="country : ${countries}"
@@ -423,5 +423,8 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
-	<script th:src="@{../js/startup_input_validation.js}"></script>
+	<script th:src="@{../js/organization_profile_update.js}"></script>
+	<script>
+		updateOrganizationFormSubmit('updatestartupinfo');
+	</script>
 </html>

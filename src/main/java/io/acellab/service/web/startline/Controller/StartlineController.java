@@ -28,12 +28,17 @@ import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
 import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
 import io.acellab.service.web.startline.Entity.CompanyInfo;
+import io.acellab.service.web.startline.Entity.CorporateFundingInfo;
+import io.acellab.service.web.startline.Entity.CorporateInfo;
+import io.acellab.service.web.startline.Entity.CorporateProductInfo;
+import io.acellab.service.web.startline.Entity.CorporateTeamInfo;
 import io.acellab.service.web.startline.Entity.StartupFundingInfo;
 import io.acellab.service.web.startline.Entity.StartupInfo;
 import io.acellab.service.web.startline.Entity.StartupProductInfo;
 import io.acellab.service.web.startline.Entity.StartupTeamInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
 import io.acellab.service.web.startline.Service.Company.CompanyService;
+import io.acellab.service.web.startline.Service.Corporate.CorporateService;
 import io.acellab.service.web.startline.Service.Startup.StartupService;
 import io.acellab.service.web.startline.Status.ResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
@@ -50,6 +55,9 @@ public class StartlineController {
 	
 	@Autowired
 	private StartupService startupService;
+	
+	@Autowired
+	private CorporateService corporateService;
 	
 	@Autowired
 	private ArrayList<String> countriesList;
@@ -145,10 +153,24 @@ public class StartlineController {
 		//ProfileCorporate --> profile_corporate
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
-			return "redirect:/startup/login";
+			return "redirect:/corporate/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		CorporateInfo corporate = corporateService.getUserCorporate(user).getReturnDataList().get(0);
+		List<CorporateProductInfo> products = corporateService.getCorporateProducts(user).getReturnDataList();
+		List<CorporateFundingInfo> fundings = corporateService.getCorporateFundings(user).getReturnDataList();
+		List<CorporateTeamInfo> members = corporateService.getCorporateTeam(user).getReturnDataList();
+		
 		model.addAttribute("user", user);
+		model.addAttribute("corporate", corporate);
+		model.addAttribute("products", products);
+		model.addAttribute("fundings", fundings);
+		model.addAttribute("members", members);
+		
+		model.addAttribute("countries", countriesList);
+		model.addAttribute("industries", industriesList);
+		model.addAttribute("countrycodes", countryCodesList);
+		model.addAttribute("fundingrounds", fundingsRoundList);
 		return "profile_corporate";
 	}
 	
@@ -344,6 +366,48 @@ public class StartlineController {
 		}
 		
 		return "redirect:/profile/startup";
+	}
+	
+	
+	@PostMapping("/updatecorporateinfo")
+	public String updateCorporateInfo(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam("dataMap") String corporateInfoString,
+			Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/corporate/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			Map<String, String> corporateInfoMap = mapper.readValue(corporateInfoString, new TypeReference<Map<String, String>>() {});
+			ResponseFactory<?> response = corporateService.updateUserCorporate(userDetails, user, corporateInfoMap);
+			if(response.getStatusCode() != 202) {
+				return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/profile/corporate";
+	}
+	
+	@PostMapping("/finetunerecommendationmodel")
+	public String updateAIModelParam(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam("answer1") String answer1, 
+			@RequestParam("answer2") String answer2, 
+			Model model) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/corporate/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		//System.out.println("answer1 : " + answer1);
+		//System.out.println("answer2 : " + answer2);
+		
+		return "redirect:/profile/corporate";
 	}
 
 

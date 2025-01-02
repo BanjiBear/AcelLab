@@ -30,22 +30,22 @@ public enum Status {
 	SECURITY_INVALID_OPERATION_CREATE_BOOKMARK_INVLAID_ID(705, "Unable to add company to bookmark, failed to get the company information, please try again..."),
 	SECURITY_INVALID_OPERATION_CREATE_BOOKMARK_NOT_CURRENT_USER(706, "This seems to be a prohibited operation, please try again or contact us for support..."),
 	
-	//Startup Related Error
-	UPDATE_STARTUP_INVALID_STARTUP_NAME_FORMAT(804, "Invalid company name format, allows only letters(support multiple language) and whitespaces!"),
-	UPDATE_STARTUP_INVALID_STARTUP_PHONE_FORMAT(805, "Invalid phone number format, allows only digits!"),
-	UPDATE_STARTUP_INVALID_STARTUP_SIZE_FORMAT(806, "Invalid company size format, allows only digits and hyphens!"),
+	//Startup and Corporate Related Common Error
+	UPDATE_ORG_INVALID_ORG_NAME_FORMAT(804, "Invalid company name format, allows only letters(support multiple language) and whitespaces!"),
+	UPDATE_ORG_INVALID_ORG_PHONE_FORMAT(805, "Invalid phone number format, allows only digits!"),
+	UPDATE_ORG_INVALID_ORG_SIZE_FORMAT(806, "Invalid company size format, allows only digits and hyphens!"),
 	
-	UPDATE_STARTUP_INVALID_PRODUCT_NAME_FORMAT(807, "Invalid product name format, allows only letters(support multiple language), digits, and whitespaces!"),
+	UPDATE_ORG_INVALID_PRODUCT_NAME_FORMAT(807, "Invalid product name format, allows only letters(support multiple language), digits, and whitespaces!"),
 	
-	UPDATE_STARTUP_INVALID_FUNDING_AMOUNT_FORMAT(808, "Invalid funding amount format, allows only letters(support multiple language), digits, and whitespaces!"),
-	UPDATE_STARTUP_INVALID_INVESTORS_FORMAT(809, "Invalid product name format, allows only letters(support multiple language), commas, and whitespaces!"),
+	UPDATE_ORG_INVALID_FUNDING_AMOUNT_FORMAT(808, "Invalid funding amount format, allows only letters(support multiple language), digits, and whitespaces!"),
+	UPDATE_ORG_INVALID_INVESTORS_FORMAT(809, "Invalid product name format, allows only letters(support multiple language), commas, and whitespaces!"),
 	
-	UPDATE_STARTUP_INVALID_MEMBER_NAME_FORMAT(810, "Invalid team member name format, allows only letters(support multiple language) and whitespaces!"),
-	UPDATE_STARTUP_INVALID_MEMBER_DEPT_FORMAT(811, "Invalid department name format, allows only letters(support multiple language) and whitespaces!"),
-	UPDATE_STARTUP_INVALID_MEMBER_POS_FORMAT(812, "Invalid team member position format, allows only letters(support multiple language), digits, and whitespaces!"),
-	UPDATE_STARTUP_INVALID_MEMBER_PHONE_FORMAT(813, "Invalid team member phone number format, allows only digits!"),
+	UPDATE_ORG_INVALID_MEMBER_NAME_FORMAT(810, "Invalid team member name format, allows only letters(support multiple language) and whitespaces!"),
+	UPDATE_ORG_INVALID_MEMBER_DEPT_FORMAT(811, "Invalid department name format, allows only letters(support multiple language) and whitespaces!"),
+	UPDATE_ORG_INVALID_MEMBER_POS_FORMAT(812, "Invalid team member position format, allows only letters(support multiple language), digits, and whitespaces!"),
+	UPDATE_ORG_INVALID_MEMBER_PHONE_FORMAT(813, "Invalid team member phone number format, allows only digits!"),
 	
-	SECURITY_INVALID_OPERATION_UPDATE_STARTUP_NOT_CURRENT_USER(814, "This seems to be a prohibited operation, please try again or contact us for support...");
+	SECURITY_INVALID_OPERATION_UPDATE_ORG_NOT_CURRENT_USER(814, "This seems to be a prohibited operation, please try again or contact us for support...");
 
 	private int status_code;
 	private String status_message;

@@ -556,14 +556,12 @@ body {
 }
 
 .profile_heading_survey {
-  width: fit-content;
+  min-width: 35vw;
+  max-width: 35vw;
+  word-wrap: normal;
   height: 21px;
-  gap: 0px;
-  opacity: 0px;
   font-size: 16px;
   font-weight: 500;
-  line-height: 40px;
-  text-align: left;
   color: #64758f;
   display: inline-block;
 }

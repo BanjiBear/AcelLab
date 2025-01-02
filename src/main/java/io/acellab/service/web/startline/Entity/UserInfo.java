@@ -53,9 +53,9 @@ public class UserInfo{
 	@JoinColumn(name = "startup_id")
 	private StartupInfo startup;
 
-	//@ManyToOne
-	//@JoinColumn(name = "corporate_id")
-	//private CorporateInfo corporate;
+	@ManyToOne
+	@JoinColumn(name = "corporate_id")
+	private CorporateInfo corporate;
 
 	@ManyToOne
 	@JoinColumn(name = "business_plan_id", nullable = false)
@@ -96,8 +96,8 @@ public class UserInfo{
 	public StartupInfo getStartup() {return this.startup;}
 	public void setStartup(StartupInfo startup) {this.startup = startup;}
 
-	//public CorporateInfo getCorporate() {return corporate;}
-	//public void setCorporate(CorporateInfo corporate) {this.corporate = corporate;}
+	public CorporateInfo getCorporate() {return corporate;}
+	public void setCorporate(CorporateInfo corporate) {this.corporate = corporate;}
 	
 	public void setBusinessPlan(BusinessPlanInfo businessPlan) {this.businessPlan = businessPlan;}
 	public BusinessPlanInfo getBusinessPlan() {return businessPlan;}

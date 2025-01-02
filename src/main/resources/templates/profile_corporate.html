@@ -71,19 +71,8 @@
 					<p class="CustomerType_description">Update your corporate needs so that we can find the technology thats just right for you!</p>
 				</article>
 			</article>
-			<article class="profile">
-				<br />
-				<br />
-				<br />
-				<article class="flex_left_profile">
-					<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_startup" />
-					<p class="CompanyName">Company Name</p>
-					<p class="fas fa-edit" style="color: #5176f6"></p>
-				</article>
-				<br />
-				<br />
-				<br />
-				<p class="profile_title">CEO Contact</p>
+			<article class="profile" th:object="${corporate}">
+				<!-- <p class="profile_title">CEO Contact</p>
 				<br />
 				<br />
 				<label for="email" class="profile_heading1">CEO's Work Email*</label>
@@ -297,686 +286,386 @@
 					<option value="996">+996</option>
 					<option value="998">+998</option>
 				</select>
-				<input type="text" id="phone" name="phone" placeholder="1234-5678" class="filters5" required /> <br />
+				<input type="text" id="phone" name="phone" placeholder="1234-5678" class="filters5" required /> -->
 				<br />
 				<br />
 				<br />
-				<p class="profile_title">Basic Information</p>
-				<form>
+				<article class="flex_left_profile">
+					<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_startup" />
+					<p 
+						class="CompanyName" 
+						th:if="${#strings.isEmpty(corporate.getCorporateName())}">
+						<i>Tell us about your company</i></p>
+					<p 
+						class="CompanyName" 
+						th:if="${!#strings.isEmpty(corporate.getCorporateName())}" 
+						th:text="${corporate.getCorporateName()}"></p>
+					<p class="fas fa-edit" style="color: #5176f6"></p>
+				</article>
+				<br />
+				<br />
+				<br />
+				<br />
+				
+				<form id="updatecorporateinfo" th:action="@{/updatecorporateinfo}" method="post">
+					<p class="profile_title">Basic Information</p>
 					<br />
-					<label for="name" class="profile_heading1">Contact Name*</label>
-					<input type="text" id="email" name="email" placeholder="Input your primary contact name" class="filters2" required />
+					<label for="organization_name" class="profile_heading1">Company Name*</label>
+					<input 
+						type="text" 
+						id="organization_name" 
+						name="organization_name" 
+						placeholder="Input your company name" 
+						class="filters2" required 
+						th:value="${!#strings.isEmpty(corporate.getCorporateName())} ? ${corporate.getCorporateName()}"/>
 					<br />
-					<label for="email" class="profile_heading1">Contact Email*</label>
-					<input type="email" name="email-input" placeholder="Input your email" class="filters2" required />
+					<label for="introduction" style="vertical-align: top;" class="profile_heading1">Company Introduction*</label>
+					<textarea id="organization_introduction" name="introduction" rows="5" class="filters2" required 
+						th:text="${!#strings.isEmpty(corporate.getIntroduction())} ? ${corporate.getIntroduction()}"></textarea>
 					<br />
-					<label for="phonenumber" class="profile_heading1">Contact No.*</label>
-					<select id="areaCode" name="areaCode" class="filters">
-						<option value="1">+1</option>
-						<option value="7">+7</option>
-						<option value="20">+20</option>
-						<option value="27">+27</option>
-						<option value="30">+30</option>
-						<option value="31">+31</option>
-						<option value="32">+32</option>
-						<option value="33">+33</option>
-						<option value="34">+34</option>
-						<option value="36">+36</option>
-						<option value="39">+39</option>
-						<option value="40">+40</option>
-						<option value="41">+41</option>
-						<option value="43">+43</option>
-						<option value="44">+44</option>
-						<option value="45">+45</option>
-						<option value="46">+46</option>
-						<option value="47">+47</option>
-						<option value="48">+48</option>
-						<option value="49">+49</option>
-						<option value="51">+51</option>
-						<option value="52">+52</option>
-						<option value="53">+53</option>
-						<option value="54">+54</option>
-						<option value="55">+55</option>
-						<option value="56">+56</option>
-						<option value="57">+57</option>
-						<option value="58">+58</option>
-						<option value="60">+60</option>
-						<option value="61">+61</option>
-						<option value="62">+62</option>
-						<option value="63">+63</option>
-						<option value="64">+64</option>
-						<option value="65">+65</option>
-						<option value="66">+66</option>
-						<option value="81">+81</option>
-						<option value="82">+82</option>
-						<option value="84">+84</option>
-						<option value="86">+86</option>
-						<option value="90">+90</option>
-						<option value="91">+91</option>
-						<option value="92">+92</option>
-						<option value="93">+93</option>
-						<option value="94">+94</option>
-						<option value="95">+95</option>
-						<option value="98">+98</option>
-						<option value="211">+211</option>
-						<option value="212">+212</option>
-						<option value="213">+213</option>
-						<option value="216">+216</option>
-						<option value="218">+218</option>
-						<option value="220">+220</option>
-						<option value="221">+221</option>
-						<option value="222">+222</option>
-						<option value="223">+223</option>
-						<option value="224">+224</option>
-						<option value="225">+225</option>
-						<option value="226">+226</option>
-						<option value="227">+227</option>
-						<option value="228">+228</option>
-						<option value="229">+229</option>
-						<option value="230">+230</option>
-						<option value="231">+231</option>
-						<option value="232">+232</option>
-						<option value="233">+233</option>
-						<option value="234">+234</option>
-						<option value="235">+235</option>
-						<option value="236">+236</option>
-						<option value="237">+237</option>
-						<option value="238">+238</option>
-						<option value="239">+239</option>
-						<option value="240">+240</option>
-						<option value="241">+241</option>
-						<option value="242">+242</option>
-						<option value="243">+243</option>
-						<option value="244">+244</option>
-						<option value="245">+245</option>
-						<option value="246">+246</option>
-						<option value="248">+248</option>
-						<option value="249">+249</option>
-						<option value="250">+250</option>
-						<option value="251">+251</option>
-						<option value="252">+252</option>
-						<option value="253">+253</option>
-						<option value="254">+254</option>
-						<option value="255">+255</option>
-						<option value="256">+256</option>
-						<option value="257">+257</option>
-						<option value="258">+258</option>
-						<option value="260">+260</option>
-						<option value="261">+261</option>
-						<option value="262">+262</option>
-						<option value="262">+262</option>
-						<option value="263">+263</option>
-						<option value="264">+264</option>
-						<option value="265">+265</option>
-						<option value="266">+266</option>
-						<option value="267">+267</option>
-						<option value="268">+268</option>
-						<option value="269">+269</option>
-						<option value="290">+290</option>
-						<option value="291">+291</option>
-						<option value="297">+297</option>
-						<option value="298">+298</option>
-						<option value="299">+299</option>
-						<option value="350">+350</option>
-						<option value="351">+351</option>
-						<option value="352">+352</option>
-						<option value="353">+353</option>
-						<option value="354">+354</option>
-						<option value="355">+355</option>
-						<option value="356">+356</option>
-						<option value="357">+357</option>
-						<option value="358">+358</option>
-						<option value="359">+359</option>
-						<option value="370">+370</option>
-						<option value="371">+371</option>
-						<option value="372">+372</option>
-						<option value="373">+373</option>
-						<option value="374">+374</option>
-						<option value="375">+375</option>
-						<option value="376">+376</option>
-						<option value="377">+377</option>
-						<option value="378">+378</option>
-						<option value="379">+379</option>
-						<option value="380">+380</option>
-						<option value="381">+381</option>
-						<option value="382">+382</option>
-						<option value="383">+383</option>
-						<option value="385">+385</option>
-						<option value="386">+386</option>
-						<option value="387">+387</option>
-						<option value="389">+389</option>
-						<option value="420">+420</option>
-						<option value="421">+421</option>
-						<option value="423">+423</option>
-						<option value="500">+500</option>
-						<option value="501">+501</option>
-						<option value="502">+502</option>
-						<option value="503">+503</option>
-						<option value="504">+504</option>
-						<option value="505">+505</option>
-						<option value="506">+506</option>
-						<option value="507">+507</option>
-						<option value="508">+508</option>
-						<option value="509">+509</option>
-						<option value="590">+590</option>
-						<option value="591">+591</option>
-						<option value="592">+592</option>
-						<option value="593">+593</option>
-						<option value="595">+595</option>
-						<option value="597">+597</option>
-						<option value="598">+598</option>
-						<option value="599">+599</option>
-						<option value="670">+670</option>
-						<option value="672">+672</option>
-						<option value="673">+673</option>
-						<option value="674">+674</option>
-						<option value="675">+675</option>
-						<option value="676">+676</option>
-						<option value="677">+677</option>
-						<option value="678">+678</option>
-						<option value="679">+679</option>
-						<option value="680">+680</option>
-						<option value="681">+681</option>
-						<option value="682">+682</option>
-						<option value="683">+683</option>
-						<option value="685">+685</option>
-						<option value="686">+686</option>
-						<option value="687">+687</option>
-						<option value="688">+688</option>
-						<option value="689">+689</option>
-						<option value="690">+690</option>
-						<option value="691">+691</option>
-						<option value="692">+692</option>
-						<option value="850">+850</option>
-						<option value="852">+852</option>
-						<option value="853">+853</option>
-						<option value="855">+855</option>
-						<option value="856">+856</option>
-						<option value="880">+880</option>
-						<option value="886">+886</option>
-						<option value="960">+960</option>
-						<option value="961">+961</option>
-						<option value="962">+962</option>
-						<option value="963">+963</option>
-						<option value="964">+964</option>
-						<option value="965">+965</option>
-						<option value="966">+966</option>
-						<option value="967">+967</option>
-						<option value="968">+968</option>
-						<option value="970">+970</option>
-						<option value="971">+971</option>
-						<option value="972">+972</option>
-						<option value="973">+973</option>
-						<option value="974">+974</option>
-						<option value="975">+975</option>
-						<option value="976">+976</option>
-						<option value="977">+977</option>
-						<option value="992">+992</option>
-						<option value="993">+993</option>
-						<option value="994">+994</option>
-						<option value="995">+995</option>
-						<option value="996">+996</option>
-						<option value="998">+998</option>
+					<label for="email" class="profile_heading1">Company Email*</label>
+					<input 
+						type="email" 
+						id="organization_email" 
+						name="email" 
+						placeholder="Input your email" 
+						class="filters2" required 
+						th:value="${!#strings.isEmpty(corporate.getEmail1())} ? ${corporate.getEmail1()}"/>
+					<br />
+					<label for="phone" class="profile_heading1">Company Phone*</label>
+					<select id="organization_areacode" name="areaCode" class="filters">
+						<option 
+							th:each="code : ${countrycodes}"
+							th:value="${code}"
+							th:text="${code}"
+							th:selected="${#strings.substringBefore(corporate.getPhone(), '-') == code}"></option>
 					</select>
-					<input type="text" id="phone" name="phone" placeholder="1234-5678" class="filters5" required /> <br />
+					<input 
+						type="tel" 
+						id="organization_phone" 
+						name="phone" 
+						placeholder="12345678" 
+						class="filters5" required 
+						th:value="${!#strings.isEmpty(corporate.getPhone())} ? ${#strings.substringAfter(corporate.getPhone(), '-')} : ''"/>
 					<br />
-					<label for="employee" class="profile_heading1">Headquarter Location*</label>
-					<input
-						type="number"
-						id="employee"
-						name="employee"
-						placeholder="Input the location of your headquarter"
-						class="filters2"
-						required
-					/>
+					<label for="website" class="profile_heading1">Company Website*</label>
+					<input 
+						type="url" 
+						id="organization_website" 
+						name="website" 
+						placeholder="www.startline.vip" 
+						class="filters2" required 
+						th:value="${!#strings.isEmpty(corporate.getWebsite())} ? ${corporate.getWebsite()}"/>
 					<br />
+					<label for="employee" class="profile_heading1">Company Size*</label>
+					<div style="position: relative; display: inline-block;">
+						<input 
+							type="text" id="organization_size" name="employee" 
+							placeholder="201-500" 
+							class="filters2" required 
+							th:value="${!#strings.isEmpty(corporate.getCorporateSize())} ? ${corporate.getCorporateSize()}"/>
+						<span class="suffix" style="
+						position: absolute;
+						right: 10%;
+						top: 50%;
+						transform: translateY(-50%);
+						font-size: 12px;
+						color: #555;">employees</span>
+					</div>
+					<br />
+					<label for="foundingyr" class="profile_heading1">Founded Year*</label>
+					<input 
+						type="number" min="1800" max="2100" step="1" 
+						id="organization_foundedyear" 
+						name="foundingyr" 
+						placeholder="2024" 
+						class="filters2" required 
+						th:value="${!#strings.isEmpty(corporate.getFoundYear())} ? ${corporate.getFoundYear()}"/>
 					<div>
 						<label for="industry" class="profile_heading1">Industry*</label>
-						<select id="industry" name="country" class="filters2" required>
-							<option value="selectIndustry">Select Industry</option>
-							<option value="Agriculture - Dairy">Agriculture - Dairy</option>
-							<option value="Agriculture - Farming">Agriculture - Farming</option>
-							<option value="Agriculture - Fishery">Agriculture - Fishery</option>
-							<option value="Agriculture - Ranching">Agriculture - Ranching</option>
-							<option value="Arts - Arts & Crafts">Arts - Arts & Crafts</option>
-							<option value="Arts - Fine Art">Arts - Fine Art</option>
-							<option value="Arts - Performing Arts">Arts - Performing Arts</option>
-							<option value="Arts - Photography">Arts - Photography</option>
-							<option value="Carbon Management - Carbon Capture">Carbon Management - Carbon Capture</option>
-							<option value="Carbon Management - Carbon Trading">Carbon Management - Carbon Trading</option>
-							<option value="Carbon Management - Embodied Carbon Calculations">Carbon Management - Embodied Carbon Calculations</option>
-							<option value="Carbon Management - Emission Management">Carbon Management - Emission Management</option>
-							<option value="Carbon Management - LCA Consultation">Carbon Management - LCA Consultation</option>
-							<option value="Construction - BIM">Construction - BIM</option>
-							<option value="Construction - Building Materials">Construction - Building Materials</option>
-							<option value="Construction - Civil Engineering">Construction - Civil Engineering</option>
-							<option value="Construction - Construction Robots">Construction - Construction Robots</option>
-							<option value="Construction - Contractor / sub-contractor">Construction - Contractor / sub-contractor</option>
-							<option value="Construction - Digital Twins">Construction - Digital Twins</option>
-							<option value="Construction - Green Materials">Construction - Green Materials</option>
-							<option value="Construction - Modular Construction">Construction - Modular Construction</option>
-							<option value="Construction - Smart Office">Construction - Smart Office</option>
-							<option value="Construction - Surveyor">Construction - Surveyor</option>
-							<option value="Construction - Waste Management">Construction - Waste Management</option>
-							<option value="Consumer Goods - Apparel & Fashion">Consumer Goods - Apparel & Fashion</option>
-							<option value="Consumer Goods - Consumer Electronics">Consumer Goods - Consumer Electronics</option>
-							<option value="Consumer Goods - Consumer Services">Consumer Goods - Consumer Services</option>
-							<option value="Consumer Goods - Cosmetics">Consumer Goods - Cosmetics</option>
-							<option value="Consumer Goods - FMCG">Consumer Goods - FMCG</option>
-							<option value="Consumer Goods - Food & Beverages">Consumer Goods - Food & Beverages</option>
-							<option value="Consumer Goods - Furniture">Consumer Goods - Furniture</option>
-							<option value="Consumer Goods - Luxury Goods & Jewellery">Consumer Goods - Luxury Goods & Jewellery</option>
-							<option value="Consumer Goods - Sporting Goods">Consumer Goods - Sporting Goods</option>
-							<option value="Consumer Goods - Tobacco">Consumer Goods - Tobacco</option>
-							<option value="Corporate Services - Accounting Services">Corporate Services - Accounting Services</option>
-							<option value="Corporate Services - Business Supplies & Equipment">Corporate Services - Business Supplies & Equipment</option>
-							<option value="Corporate Services - Environmental Services">Corporate Services - Environmental Services</option>
-							<option value="Corporate Services - Events Services">Corporate Services - Events Services</option>
-							<option value="Corporate Services - Executive Office">Corporate Services - Executive Office</option>
-							<option value="Corporate Services - Facilities Services">Corporate Services - Facilities Services</option>
-							<option value="Corporate Services - Human Resources">Corporate Services - Human Resources</option>
-							<option value="Corporate Services - Information Services">Corporate Services - Information Services</option>
-							<option value="Corporate Services - Management Consulting">Corporate Services - Management Consulting</option>
-							<option value="Corporate Services - Outsourcing/Offshoring">Corporate Services - Outsourcing/Offshoring</option>
-							<option value="Corporate Services - Professional Training & Coaching">
-								Corporate Services - Professional Training & Coaching
-							</option>
-							<option value="Corporate Services - Security & Investigations">Corporate Services - Security & Investigations</option>
-							<option value="Corporate Services - Staffing & Recruiting">Corporate Services - Staffing & Recruiting</option>
-							<option value="Design - Architecture & Planning">Design - Architecture & Planning</option>
-							<option value="Design - Design">Design - Design</option>
-							<option value="Design - Graphic Design">Design - Graphic Design</option>
-							<option value="eCommerce - Online Shop">eCommerce - Online Shop</option>
-							<option value="eCommerce - Payment Gateway">eCommerce - Payment Gateway</option>
-							<option value="Education - Education Management">Education - Education Management</option>
-							<option value="Education - E-Learning">Education - E-Learning</option>
-							<option value="Education - Higher Education">Education - Higher Education</option>
-							<option value="Education - Primary / Secondary Education">Education - Primary / Secondary Education</option>
-							<option value="Education - Research">Education - Research</option>
-							<option value="Energy and Mining - Mining & Metals">Energy and Mining - Mining & Metals</option>
-							<option value="Energy and Mining - Oil & Energy">Energy and Mining - Oil & Energy</option>
-							<option value="Energy and Mining - Utilities">Energy and Mining - Utilities</option>
-							<option value="Entertainment - Animation">Entertainment - Animation</option>
-							<option value="Entertainment - Broadcast Media">Entertainment - Broadcast Media</option>
-							<option value="Entertainment - Computer Games">Entertainment - Computer Games</option>
-							<option value="Entertainment - Entertainment">Entertainment - Entertainment</option>
-							<option value="Entertainment - Media Production">Entertainment - Media Production</option>
-							<option value="Entertainment - Mobile Games">Entertainment - Mobile Games</option>
-							<option value="Entertainment - Motion Pictures & Film">Entertainment - Motion Pictures & Film</option>
-							<option value="Entertainment - Music">Entertainment - Music</option>
-							<option value="Finance - Banking">Finance - Banking</option>
-							<option value="Finance - Capital Markets">Finance - Capital Markets</option>
-							<option value="Finance - Family Office">Finance - Family Office</option>
-							<option value="Finance - Financial Services">Finance - Financial Services</option>
-							<option value="Finance - Insurance Brokage">Finance - Insurance Brokage</option>
-							<option value="Finance - Investment Banking">Finance - Investment Banking</option>
-							<option value="Finance - Investment Management">Finance - Investment Management</option>
-							<option value="Finance - Re-Insurance Service">Finance - Re-Insurance Service</option>
-							<option value="Finance - Venture Capital & Private Equity">Finance - Venture Capital & Private Equity</option>
-							<option value="Hardware and Networking - Computer Hardware">Hardware and Networking - Computer Hardware</option>
-							<option value="Hardware and Networking - Computer Networking">Hardware and Networking - Computer Networking</option>
-							<option value="Hardware and Networking - Nanotechnology">Hardware and Networking - Nanotechnology</option>
-							<option value="Hardware and Networking - Semiconductors">Hardware and Networking - Semiconductors</option>
-							<option value="Hardware and Networking - Telecommunications">Hardware and Networking - Telecommunications</option>
-							<option value="Hardware and Networking - Wireless Product & Technology">
-								Hardware and Networking - Wireless Product & Technology
-							</option>
-							<option value="Healthcare - Biotechnology">Healthcare - Biotechnology</option>
-							<option value="Healthcare - Hospital & Health Care">Healthcare - Hospital & Health Care</option>
-							<option value="Healthcare - Medical Device">Healthcare - Medical Device</option>
-							<option value="Healthcare - Medical Practice">Healthcare - Medical Practice</option>
-							<option value="Healthcare - Mental Health Care">Healthcare - Mental Health Care</option>
-							<option value="Healthcare - Pharmaceuticals">Healthcare - Pharmaceuticals</option>
-							<option value="Healthcare - Veterinary">Healthcare - Veterinary</option>
-							<option value="Legal - Alternative Dispute Resolution">Legal - Alternative Dispute Resolution</option>
-							<option value="Legal - Law Practice">Legal - Law Practice</option>
-							<option value="Legal - Legal Services">Legal - Legal Services</option>
-							<option value="Manufacturing - Automotive">Manufacturing - Automotive</option>
-							<option value="Manufacturing - Aviation & Aerospace">Manufacturing - Aviation & Aerospace</option>
-							<option value="Manufacturing - Chemicals">Manufacturing - Chemicals</option>
-							<option value="Manufacturing - Defense & Space">Manufacturing - Defense & Space</option>
-							<option value="Manufacturing - Electrical & Electronic Manufacturing">
-								Manufacturing - Electrical & Electronic Manufacturing
-							</option>
-							<option value="Manufacturing - Food Production">Manufacturing - Food Production</option>
-							<option value="Manufacturing - Glass, Ceramics & Concrete">Manufacturing - Glass, Ceramics & Concrete</option>
-							<option value="Manufacturing - Industrial Automation">Manufacturing - Industrial Automation</option>
-							<option value="Manufacturing - Machinery">Manufacturing - Machinery</option>
-							<option value="Manufacturing - Mechanical or Industrial Engineering">
-								Manufacturing - Mechanical or Industrial Engineering
-							</option>
-							<option value="Manufacturing - Packaging & Containers">Manufacturing - Packaging & Containers</option>
-							<option value="Manufacturing - Paper & Forest Products">Manufacturing - Paper & Forest Products</option>
-							<option value="Manufacturing - Plastics">Manufacturing - Plastics</option>
-							<option value="Manufacturing - Railroad Manufacture">Manufacturing - Railroad Manufacture</option>
-							<option value="Manufacturing - Renewables & Environment">Manufacturing - Renewables & Environment</option>
-							<option value="Manufacturing - Shipbuilding">Manufacturing - Shipbuilding</option>
-							<option value="Media and Communications - Market Research">Media and Communications - Market Research</option>
-							<option value="Media and Communications - Marketing & Advertising">Media and Communications - Marketing & Advertising</option>
-							<option value="Media and Communications - Newspapers">Media and Communications - Newspapers</option>
-							<option value="Media and Communications - Online Media">Media and Communications - Online Media</option>
-							<option value="Media and Communications - Printing">Media and Communications - Printing</option>
-							<option value="Media and Communications - Public Relations & Communications">
-								Media and Communications - Public Relations & Communications
-							</option>
-							<option value="Media and Communications - Publishing">Media and Communications - Publishing</option>
-							<option value="Media and Communications - Translation & Localization">
-								Media and Communications - Translation & Localization
-							</option>
-							<option value="Media and Communications - Writing & Editing">Media and Communications - Writing & Editing</option>
-							<option value="Nonprofit - Civic & Social Organization">Nonprofit - Civic & Social Organization</option>
-							<option value="Nonprofit - Fundraising">Nonprofit - Fundraising</option>
-							<option value="Nonprofit - Individual & Family Services">Nonprofit - Individual & Family Services</option>
-							<option value="Nonprofit - International Trade & Development">Nonprofit - International Trade & Development</option>
-							<option value="Nonprofit - Libraries">Nonprofit - Libraries</option>
-							<option value="Nonprofit - Museums & Institutions">Nonprofit - Museums & Institutions</option>
-							<option value="Nonprofit - Non-Profit Organization Management">Nonprofit - Non-Profit Organization Management</option>
-							<option value="Nonprofit - Philanthropy">Nonprofit - Philanthropy</option>
-							<option value="Nonprofit - Program Development">Nonprofit - Program Development</option>
-							<option value="Nonprofit - Religious Institutions">Nonprofit - Religious Institutions</option>
-							<option value="Nonprofit - Think Tanks">Nonprofit - Think Tanks</option>
-							<option value="Public administration - Government Administration">Public administration - Government Administration</option>
-							<option value="Public administration - Government Relations">Public administration - Government Relations</option>
-							<option value="Public administration - International Affairs">Public administration - International Affairs</option>
-							<option value="Public administration - Judiciary">Public administration - Judiciary</option>
-							<option value="Public administration - Legislative Office">Public administration - Legislative Office</option>
-							<option value="Public administration - Political Organization">Public administration - Political Organization</option>
-							<option value="Public administration - Public Policy">Public administration - Public Policy</option>
-							<option value="Public Safety - Law Enforcement">Public Safety - Law Enforcement</option>
-							<option value="Public Safety - Military">Public Safety - Military</option>
-							<option value="Public Safety - Public Safety">Public Safety - Public Safety</option>
-							<option value="Real Estate - Commercial Real Estate">Real Estate - Commercial Real Estate</option>
-							<option value="Real Estate - Property Management Services">Real Estate - Property Management Services</option>
-							<option value="Real Estate - Real Estate Broker / Agent">Real Estate - Real Estate Broker / Agent</option>
-							<option value="Real Estate - Residential Real Estate">Real Estate - Residential Real Estate</option>
-							<option value="Recreation and Travel - Airlines/Aviation">Recreation and Travel - Airlines/Aviation</option>
-							<option value="Recreation and Travel - Gambling & Casinos">Recreation and Travel - Gambling & Casinos</option>
-							<option value="Recreation and Travel - Hospitality">Recreation and Travel - Hospitality</option>
-							<option value="Recreation and Travel - Leisure, Travel & Tourism">Recreation and Travel - Leisure, Travel & Tourism</option>
-							<option value="Recreation and Travel - Recreational Facilities & Services">
-								Recreation and Travel - Recreational Facilities & Services
-							</option>
-							<option value="Recreation and Travel - Restaurants">Recreation and Travel - Restaurants</option>
-							<option value="Recreation and Travel - Sports">Recreation and Travel - Sports</option>
-							<option value="Recycle Business - Recycle Park">Recycle Business - Recycle Park</option>
-							<option value="Recycle Business - Upcycling Product">Recycle Business - Upcycling Product</option>
-							<option value="Recycle Business - Waste Collection">Recycle Business - Waste Collection</option>
-							<option value="Retail - Retailer">Retail - Retailer</option>
-							<option value="Retail - Supermarkets">Retail - Supermarkets</option>
-							<option value="Retail - Wholesaler">Retail - Wholesaler</option>
-							<option value="Smart City - City Information Modelling">Smart City - City Information Modelling</option>
-							<option value="Smart City - Emergency Management">Smart City - Emergency Management</option>
-							<option value="Smart City - Geographic Information System">Smart City - Geographic Information System</option>
-							<option value="Smart City - Smart Industry Park">Smart City - Smart Industry Park</option>
-							<option value="Smart City - Smart Parking">Smart City - Smart Parking</option>
-							<option value="Smart City - Smart Security">Smart City - Smart Security</option>
-							<option value="Software and IT Services - Computer & Network Security">
-								Software and IT Services - Computer & Network Security
-							</option>
-							<option value="Software and IT Services - Computer Software">Software and IT Services - Computer Software</option>
-							<option value="Software and IT Services - Information Technology & Services">
-								Software and IT Services - Information Technology & Services
-							</option>
-							<option value="Software and IT Services - Internet">Software and IT Services - Internet</option>
-							<option value="Textiles - Design">Textiles - Design</option>
-							<option value="Textiles - Knitting">Textiles - Knitting</option>
-							<option value="Textiles - Materials Development">Textiles - Materials Development</option>
-							<option value="Transportation and Logistics - Import & Export">Transportation and Logistics - Import & Export</option>
-							<option value="Transportation and Logistics - Logistics & Supply Chain">
-								Transportation and Logistics - Logistics & Supply Chain
-							</option>
-							<option value="Transportation and Logistics - Maritime">Transportation and Logistics - Maritime</option>
-							<option value="Transportation and Logistics - Package/Freight Delivery">
-								Transportation and Logistics - Package/Freight Delivery
-							</option>
-							<option value="Transportation and Logistics - Transportation/Trucking/Railroad">
-								Transportation and Logistics - Transportation/Trucking/Railroad
-							</option>
-							<option value="Transportation and Logistics - Warehousing">Transportation and Logistics - Warehousing</option>
-							<option value="Wellness and Fitness - Alternative Medicine">Wellness and Fitness - Alternative Medicine</option>
-							<option value="Wellness and Fitness - Personal Coach / Trainer">Wellness and Fitness - Personal Coach / Trainer</option>
-							<option value="Wine and Spirits - Brewery">Wine and Spirits - Brewery</option>
-							<option value="Wine and Spirits - Importer / Exporter">Wine and Spirits - Importer / Exporter</option>
-							<option value="Wine and Spirits - Vine Yard">Wine and Spirits - Vine Yard</option>
-							<option value="Others - Please specify">Others - Please specify</option>
+						<select id="organization_industry" name="industry" class="filters2" required>
+							<option value="">Select Industry</option>
+							<option 
+								th:each="industry : ${industries}"
+								th:value="${industry}"
+								th:text="${industry}"
+								th:selected="${corporate.getIndustry() == industry}"></option>
+							<option value="Others">Others</option>
 						</select>
 					</div>
-
 					<div>
-						<label for="country" class="profile_heading1">Headquarter Location*</label>
-						<select id="country" name="country" class="filters2" required>
-							<option value="Afghanistan">Afghanistan</option>
-							<option value="Albania">Albania</option>
-							<option value="Algeria">Algeria</option>
-							<option value="Andorra">Andorra</option>
-							<option value="Angola">Angola</option>
-							<option value="Antigua and Barbuda">Antigua and Barbuda</option>
-							<option value="Argentina">Argentina</option>
-							<option value="Armenia">Armenia</option>
-							<option value="Australia">Australia</option>
-							<option value="Austria">Austria</option>
-							<option value="Azerbaijan">Azerbaijan</option>
-							<option value="Bahamas">Bahamas</option>
-							<option value="Bahrain">Bahrain</option>
-							<option value="Bangladesh">Bangladesh</option>
-							<option value="Barbados">Barbados</option>
-							<option value="Belarus">Belarus</option>
-							<option value="Belgium">Belgium</option>
-							<option value="Belize">Belize</option>
-							<option value="Benin">Benin</option>
-							<option value="Bhutan">Bhutan</option>
-							<option value="Bolivia">Bolivia</option>
-							<option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-							<option value="Botswana">Botswana</option>
-							<option value="Brazil">Brazil</option>
-							<option value="Brunei">Brunei</option>
-							<option value="Bulgaria">Bulgaria</option>
-							<option value="Burkina Faso">Burkina Faso</option>
-							<option value="Burundi">Burundi</option>
-							<option value="Côte d'Ivoire">Côte d'Ivoire</option>
-							<option value="Cabo Verde">Cabo Verde</option>
-							<option value="Cambodia">Cambodia</option>
-							<option value="Cameroon">Cameroon</option>
-							<option value="Canada">Canada</option>
-							<option value="Central African Republic">Central African Republic</option>
-							<option value="Chad">Chad</option>
-							<option value="Chile">Chile</option>
-							<option value="China">China</option>
-							<option value="Colombia">Colombia</option>
-							<option value="Comoros">Comoros</option>
-							<option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
-							<option value="Costa Rica">Costa Rica</option>
-							<option value="Croatia">Croatia</option>
-							<option value="Cuba">Cuba</option>
-							<option value="Cyprus">Cyprus</option>
-							<option value="Czechia">Czechia</option>
-							<option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
-							<option value="Denmark">Denmark</option>
-							<option value="Djibouti">Djibouti</option>
-							<option value="Dominica">Dominica</option>
-							<option value="Dominican Republic">Dominican Republic</option>
-							<option value="Ecuador">Ecuador</option>
-							<option value="Egypt">Egypt</option>
-							<option value="El Salvador">El Salvador</option>
-							<option value="Equatorial Guinea">Equatorial Guinea</option>
-							<option value="Eritrea">Eritrea</option>
-							<option value="Estonia">Estonia</option>
-							<option value="Eswatini">Eswatini</option>
-							<option value="Ethiopia">Ethiopia</option>
-							<option value="Fiji">Fiji</option>
-							<option value="Finland">Finland</option>
-							<option value="France">France</option>
-							<option value="Gabon">Gabon</option>
-							<option value="Gambia">Gambia</option>
-							<option value="Georgia">Georgia</option>
-							<option value="Germany">Germany</option>
-							<option value="Ghana">Ghana</option>
-							<option value="Greece">Greece</option>
-							<option value="Grenada">Grenada</option>
-							<option value="Guatemala">Guatemala</option>
-							<option value="Guinea">Guinea</option>
-							<option value="Guinea-Bissau">Guinea-Bissau</option>
-							<option value="Guyana">Guyana</option>
-							<option value="Haiti">Haiti</option>
-							<option value="Holy See">Holy See</option>
-							<option value="Honduras">Honduras</option>
-							<option value="HongKong">Hong Kong</option>
-							<option value="Hungary">Hungary</option>
-							<option value="Iceland">Iceland</option>
-							<option value="India">India</option>
-							<option value="Indonesia">Indonesia</option>
-							<option value="Iran">Iran</option>
-							<option value="Iraq">Iraq</option>
-							<option value="Ireland">Ireland</option>
-							<option value="Israel">Israel</option>
-							<option value="Italy">Italy</option>
-							<option value="Jamaica">Jamaica</option>
-							<option value="Japan">Japan</option>
-							<option value="Jordan">Jordan</option>
-							<option value="Kazakhstan">Kazakhstan</option>
-							<option value="Kenya">Kenya</option>
-							<option value="Kiribati">Kiribati</option>
-							<option value="Kuwait">Kuwait</option>
-							<option value="Kyrgyzstan">Kyrgyzstan</option>
-							<option value="Laos">Laos</option>
-							<option value="Latvia">Latvia</option>
-							<option value="Lebanon">Lebanon</option>
-							<option value="Lesotho">Lesotho</option>
-							<option value="Liberia">Liberia</option>
-							<option value="Libya">Libya</option>
-							<option value="Liechtenstein">Liechtenstein</option>
-							<option value="Lithuania">Lithuania</option>
-							<option value="Luxembourg">Luxembourg</option>
-							<option value="Madagascar">Madagascar</option>
-							<option value="Malawi">Malawi</option>
-							<option value="Malaysia">Malaysia</option>
-							<option value="Maldives">Maldives</option>
-							<option value="Mali">Mali</option>
-							<option value="Malta">Malta</option>
-							<option value="Marshall Islands">Marshall Islands</option>
-							<option value="Mauritania">Mauritania</option>
-							<option value="Mauritius">Mauritius</option>
-							<option value="Mexico">Mexico</option>
-							<option value="Micronesia">Micronesia</option>
-							<option value="Moldova">Moldova</option>
-							<option value="Monaco">Monaco</option>
-							<option value="Mongolia">Mongolia</option>
-							<option value="Montenegro">Montenegro</option>
-							<option value="Morocco">Morocco</option>
-							<option value="Mozambique">Mozambique</option>
-							<option value="Myanmar">Myanmar</option>
-							<option value="Namibia">Namibia</option>
-							<option value="Nauru">Nauru</option>
-							<option value="Nepal">Nepal</option>
-							<option value="Netherlands">Netherlands</option>
-							<option value="New Zealand">New Zealand</option>
-							<option value="Nicaragua">Nicaragua</option>
-							<option value="Niger">Niger</option>
-							<option value="Nigeria">Nigeria</option>
-							<option value="North Korea">North Korea</option>
-							<option value="North Macedonia">North Macedonia</option>
-							<option value="Norway">Norway</option>
-							<option value="Oman">Oman</option>
-							<option value="Pakistan">Pakistan</option>
-							<option value="Palau">Palau</option>
-							<option value="Palestine State">Palestine State</option>
-							<option value="Panama">Panama</option>
-							<option value="Papua New Guinea">Papua New Guinea</option>
-							<option value="Paraguay">Paraguay</option>
-							<option value="Peru">Peru</option>
-							<option value="Philippines">Philippines</option>
-							<option value="Poland">Poland</option>
-							<option value="Portugal">Portugal</option>
-							<option value="Qatar">Qatar</option>
-							<option value="Romania">Romania</option>
-							<option value="Russia">Russia</option>
-							<option value="Rwanda">Rwanda</option>
-							<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-							<option value="Saint Lucia">Saint Lucia</option>
-							<option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-							<option value="Samoa">Samoa</option>
-							<option value="San Marino">San Marino</option>
-							<option value="Sao Tome and Principe">Sao Tome and Principe</option>
-							<option value="Saudi Arabia">Saudi Arabia</option>
-							<option value="Senegal">Senegal</option>
-							<option value="Serbia">Serbia</option>
-							<option value="Seychelles">Seychelles</option>
-							<option value="Sierra Leone">Sierra Leone</option>
-							<option value="Singapore">Singapore</option>
-							<option value="Slovakia">Slovakia</option>
-							<option value="Slovenia">Slovenia</option>
-							<option value="Solomon Islands">Solomon Islands</option>
-							<option value="Somalia">Somalia</option>
-							<option value="South Africa">South Africa</option>
-							<option value="South Korea">South Korea</option>
-							<option value="South Sudan">South Sudan</option>
-							<option value="Spain">Spain</option>
-							<option value="Sri Lanka">Sri Lanka</option>
-							<option value="Sudan">Sudan</option>
-							<option value="Suriname">Suriname</option>
-							<option value="Sweden">Sweden</option>
-							<option value="Switzerland">Switzerland</option>
-							<option value="Syria">Syria</option>
-							<option value="Taiwan">Taiwan</option>
-							<option value="Tajikistan">Tajikistan</option>
-							<option value="Tanzania">Tanzania</option>
-							<option value="Thailand">Thailand</option>
-							<option value="Timor-Leste">Timor-Leste</option>
-							<option value="Togo">Togo</option>
-							<option value="Tonga">Tonga</option>
-							<option value="Trinidad and Tobago">Trinidad and Tobago</option>
-							<option value="Tunisia">Tunisia</option>
-							<option value="Turkey">Turkey</option>
-							<option value="Turkmenistan">Turkmenistan</option>
-							<option value="Tuvalu">Tuvalu</option>
-							<option value="Uganda">Uganda</option>
-							<option value="Ukraine">Ukraine</option>
-							<option value="United Arab Emirates">United Arab Emirates</option>
-							<option value="United Kingdom">United Kingdom</option>
-							<option value="United States of America">United States of America</option>
-							<option value="Uruguay">Uruguay</option>
-							<option value="Uzbekistan">Uzbekistan</option>
-							<option value="Vanuatu">Vanuatu</option>
-							<option value="Venezuela">Venezuela</option>
-							<option value="Vietnam">Vietnam</option>
-							<option value="Yemen">Yemen</option>
-							<option value="Zambia">Zambia</option>
-							<option value="Zimbabwe">Zimbabwe</option>
+						<label for="headquarter" class="profile_heading1">Headquarter Location*</label>
+						<select id="organization_headquarter" name="headquarter" class="filters2" required>
+							<option value="">Select Country</option>
+							<option 
+								th:each="country : ${countries}"
+								th:value="${country}"
+								th:text="${country}"
+								th:selected="${corporate.getHeadquarter() == country}"></option>
 						</select>
-					<br />
-					<br />
-					<br />
 					</div>
-					<p class="profile_title">Team Member Invitation</p>
-					<form id="emailForm">
-						<br />
-						<label for="email" class="profile_heading1">Team Member Email</label>
-						<input type="email" name="email" placeholder="Input your team member's email" class="filters2" required />
-						<input type="submit" value="Send Invitation" class="Valbutton" />
-					</form>
+					<label for="tag" class="profile_heading1">Tags*</label>
+					<div class="tags-input">
+						<ul id="tags">
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag0())}" 
+								th:text="${corporate.getTag0()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag0())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag1())}" 
+								th:text="${corporate.getTag1()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag1())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag2())}" 
+								th:text="${corporate.getTag2()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag2())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag3())}" 
+								th:text="${corporate.getTag3()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag3())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag4())}" 
+								th:text="${corporate.getTag4()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag4())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag5())}" 
+								th:text="${corporate.getTag5()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag5())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag6())}" 
+								th:text="${corporate.getTag6()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag6())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag7())}" 
+								th:text="${corporate.getTag7()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag7())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag8())}" 
+								th:text="${corporate.getTag8()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag8())}">X</button>
+							</li>
+							<li 
+								th:if="${!#strings.isEmpty(corporate.getTag9())}" 
+								th:text="${corporate.getTag9()}">
+								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag9())}">X</button>
+							</li>
+						</ul>
+						<input type="text" id="input-tag" placeholder="tag1" />
+					</div>
 					<br />
 					<br />
-					<p class="profile_title">AI Fine-Tuning</p>
-					<!-- <label for="reason">asdf</label> -->
+					<!-- ========================================================================== -->
+					<p class="profile_title">Team Information</p>
+					<div id="TeamContainer">
+						<!-- Members -->
+						<div class="TeamInfo" th:each="member, stat : ${members}">
+							<br />
+							<p class="Member_title">
+								<span th:text="'Member ' + ${stat.count}"></span>
+								<a onclick="deleteElementByAncestor('TeamInfo')">
+									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
+								</a>
+							</p>
+							<label for="member_name" class="profile_heading1">Name*</label>
+							<input 
+								type="text" 
+								name="member_name" 
+								placeholder="Input your full name" 
+								class="filters2" required 
+								th:value="${!#strings.isEmpty(member.getName())} ? ${member.getName()}"
+								th:attr="data-member-id=${member.getId() != null} ? ${member.getId()} : '-1'"/>
+							<br />
+							<label for="member_department" class="profile_heading1">Department*</label>
+							<input
+								type="text"
+								name="member_department"
+								placeholder="Input the department you belong to"
+								class="filters2" required
+								th:value="${!#strings.isEmpty(member.getDepartment())} ? ${member.getDepartment()}"/>
+							<br />
+							<label for="member_position" class="profile_heading1">Position*</label>
+							<input 
+								type="text" 
+								name="member_position" 
+								placeholder="Tell us your role or position" 
+								class="filters2" required 
+								th:value="${!#strings.isEmpty(member.getRole())} ? ${member.getRole()}"/>
+							<br />
+							<label for="member_email" class="profile_heading1">Contact Email*</label>
+							<input 
+								type="email" 
+								name="member_email" 
+								placeholder="Input your email" 
+								class="filters2" required 
+								th:value="${!#strings.isEmpty(member.getEmail())} ? ${member.getEmail()}"/>
+							<br />
+							<label for="member_phone" class="profile_heading1">Contact Number*</label>
+							<select name="member_areaCode" class="filters">
+								<option 
+									th:each="code : ${countrycodes}"
+									th:value="${code}"
+									th:text="${code}"
+									th:selected="${#strings.substringBefore(member.getPhone(), '-') == code}">
+								</option>
+							</select>
+							<input 
+								type="tel" 
+								name="member_phone" 
+								placeholder="12345678" 
+								class="filters5" required 
+								th:value="${!#strings.isEmpty(member.getPhone())} ? ${#strings.substringAfter(member.getPhone(), '-')} : ''"/>
+							<br />
+							<label for="member_linkedin" class="profile_heading1">Linkedin URL</label>
+							<input
+								type="url"
+								name="member_linkedin"
+								placeholder="https://linkedin.com/company/acel-lab-limited"
+								class="filters2"
+								th:value="${!#strings.isEmpty(member.getLinkedin())} ? ${member.getLinkedin()}"/>
+							<br />
+						</div>
+					</div>
+					<p class="AddRow" onclick="addTeamMembers()">+ Add Member</p>
 					<br />
-					<label for="survey" class="profile_heading_survey">What is the biggest challenge your company faces today?*</label><br />
-					<input
-						type="message"
-						id="survey"
-						name="survey"
-						placeholder="User experience, cost effectiveness, comeptition"
-						class="filters2"
-						required
-					/>
 					<br />
-					<label for="survey" class="profile_heading_survey">What type of category of technology are you looking for?*</label> <br />
-					<input type="message" id="survey" name="survey" placeholder="Data engineering" class="filters2" required />
+					<!-- ========================================================================== -->
+					<p class="profile_title">Product List</p>
+					<div id="productsContainer">
+						<!-- Products -->
+						<div class="product" th:each="product, stat : ${products}">
+							<br />
+							<p class="Products_title">
+								<span th:text="'Product ' + ${stat.count}"></span>
+								<a onclick="deleteElementByAncestor('product')">
+									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
+								</a>
+							</p>
+							<input type="file" id="fileInput1" name="filename1" /> <input type="file" id="fileInput2" name="filename2" />
+							<br />
+							<label for="product_name" class="profile_heading1">Product*</label>
+							<input 
+								type="text" 
+								name="product_name" 
+								placeholder="Product Name" 
+								class="filters2" required 
+								th:value="${!#strings.isEmpty(product.getProductName())} ? ${product.getProductName()}"
+								th:attr="data-product-id=${product.getId() != null} ? ${product.getId()} : '-1'"/>
+							<br />
+							<label for="product_description" style="vertical-align: top;" class="profile_heading1">Description*</label>
+							<textarea 
+								name="product_description" 
+								rows="5" 
+								class="filters2" required
+								th:text="${!#strings.isEmpty(product.getProductDescription())} ? ${product.getProductDescription()}"></textarea>
+							<br />
+						</div>
+					</div>
+					<p class="AddRow" onclick="addProducts()">+ Add more products</p>
 					<br />
 					<br />
-					<button type="submit" class="button">Activate</button>
+					<!-- ========================================================================== -->
+					<p class="profile_title">Financials</p>
+					<div id="sectionsContainer">
+						<!-- Sections -->
+						<div class="section" th:each="funding, stat : ${fundings}">
+							<br />
+							<p class="Financials_title">
+								<span th:text="'Round ' + ${stat.count}"></span>
+								<a onclick="deleteElementByAncestor('section')">
+									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
+								</a>
+							</p>
+							<label for="announcedDate" class="profile_heading1">Announced Date*</label>
+							<input 
+								type="date" 
+								name="announcedDate" 
+								placeholder="YYYY-MM-DD" 
+								class="filters2" required
+								th:value="${!#strings.isEmpty(funding.getFundingDate())} ? ${#strings.substringBefore(funding.getFundingDate(), ' ')}"/>
+							<br />
+							<label for="roundInfo" class="profile_heading1">Round Info*</label>
+							<select name="roundInfo" class="filters2" th:attr="data-funding-id=${funding.getId() != null} ? ${funding.getId()} : '-1'">
+								<option value="">Select funding round</option>
+								<option 
+									th:each="round : ${fundingrounds}"
+									th:value="${round}"
+									th:text="${round}"
+									th:selected="${funding.getFundingRound() == round}"
+									></option>
+							</select>
+							<br />
+							<label for="amountRaised" class="profile_heading1">Amount Raised*</label>
+							<input 
+								type="text" 
+								name="amountRaised" 
+								placeholder="Amount raised in USD" 
+								class="filters2" required
+								th:value="${!#strings.isEmpty(funding.getFundingAmount())} ? ${funding.getFundingAmount()}"/>
+							<br />
+							<label for="leadInvestors" class="profile_heading1">Lead Investors*</label>
+							<input 
+								type="text" 
+								name="leadInvestors" 
+								placeholder="Lead investors' names" 
+								class="filters2" required
+								th:value="${!#strings.isEmpty(funding.getFundingInvestors())} ? ${funding.getFundingInvestors()}"/>
+							<br />
+						</div>
+					</div>
+					<p class="AddRow" onclick="addFinancialRounds()">+ Add financial round</p>
+					<br />
+					<button type="submit" class="button">Save</button>
+					<a class="Valbutton">Verify Account</a>
 				</form>
 				<br />
 				<br />
+				<br />
+
+
+				<p class="profile_title">Team Member Invitation</p>
+				<form id="emailForm">
+					<br />
+					<label for="email" class="profile_heading1">Team Member Email</label>
+					<input type="email" name="email" placeholder="Input your team member's email" class="filters2" required />
+					<input type="submit" value="Send Invitation" class="Valbutton" />
+				</form>
+				<br />
+				<br />
+
+				<form th:action="@{/finetunerecommendationmodel}" method="post">
+					<p class="profile_title">Company recommendation AI Fine-Tuning</p>
+					<br />
+					<br />
+					<label for="answer1" class="profile_heading_survey">Precisely and consicely describe the key pain points you would want to solve*</label>
+					<br />
+					<input
+						type="text"
+						id="survey1"
+						name="answer1"
+						placeholder="User experience, cost effectiveness, comeptition"
+						class="filters2" required/>
+					<br />
+					<br />
+					<label for="answer2" class="profile_heading_survey">What type of category of technology/solutions are you looking for?*</label>
+					<br />
+					<input 
+						type="text" 
+						id="survey2" 
+						name="answer2" 
+						placeholder="Data engineering" 
+						class="filters2" required />
+					<br />
+					<br />
+					<button type="submit" class="button">Fine-Tune</button>
+				</form>
 				<br />
 				<br />
 				<br />
@@ -990,4 +679,8 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
+	<script th:src="@{../js/organization_profile_update.js}"></script>
+	<script>
+		updateOrganizationFormSubmit('updatecorporateinfo');
+	</script>
 </html>

@@ -128,7 +128,7 @@ public class StartupServiceImpl implements StartupService {
 		 ************************/
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		UserInfo current_user = customUserDetails.getUser();
-		if(current_user.getUserId() != user.getUserId()) return Util.responseFormation(Status.SECURITY_INVALID_OPERATION_UPDATE_STARTUP_NOT_CURRENT_USER);
+		if(current_user.getUserId() != user.getUserId()) return Util.responseFormation(Status.SECURITY_INVALID_OPERATION_UPDATE_ORG_NOT_CURRENT_USER);
 		
 		StartupInfo startup = null;
 		if(user.getStartup() != null) {
@@ -147,20 +147,20 @@ public class StartupServiceImpl implements StartupService {
 		 ***********************/
 		
 		// Check for input format
-		if(!Util.isValidStartupUpdateNameFormat(startupInfoMap.get("Name"))) {
-			return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_STARTUP_NAME_FORMAT);
+		if(!Util.isValidOrgUpdateNameFormat(startupInfoMap.get("Name"))) {
+			return Util.responseFormation(Status.UPDATE_ORG_INVALID_ORG_NAME_FORMAT);
 		}
 		if(startupInfoMap.get("Phone").indexOf('-') == -1) {
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);
 		} else {
 			String phone = startupInfoMap.get("Phone");
 			phone = phone.substring(startupInfoMap.get("Phone").indexOf('-') + 1);
-			if(!Util.isValidStartupUpdatePhoneFormat(phone)) {
-				return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_STARTUP_PHONE_FORMAT);
+			if(!Util.isValidOrgUpdatePhoneFormat(phone)) {
+				return Util.responseFormation(Status.UPDATE_ORG_INVALID_ORG_PHONE_FORMAT);
 			}
 		}
-		if(!Util.isValidStartupUpdateSizeFormat(startupInfoMap.get("Size"))) {
-			return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_STARTUP_SIZE_FORMAT);
+		if(!Util.isValidOrgUpdateSizeFormat(startupInfoMap.get("Size"))) {
+			return Util.responseFormation(Status.UPDATE_ORG_INVALID_ORG_SIZE_FORMAT);
 		}
 		startup.setStartupName(startupInfoMap.get("Name"));
 		startup.setIntroduction(startupInfoMap.get("Introduction"));
@@ -206,8 +206,8 @@ public class StartupServiceImpl implements StartupService {
 			// Setting up intermediate objects for products updating
 			for (String key : startupInfoMap.keySet()) {
 				if (key.trim().contains("Product Name")) {
-					if(!Util.isValidStartupUpdateProductNameFormat(startupInfoMap.get(key))) {
-						return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_PRODUCT_NAME_FORMAT);
+					if(!Util.isValidOrgUpdateProductNameFormat(startupInfoMap.get(key))) {
+						return Util.responseFormation(Status.UPDATE_ORG_INVALID_PRODUCT_NAME_FORMAT);
 					}
 				} else if(key.trim().contains("Product ID")) {
 					inputProductIDMap.put(key, Long.parseLong(startupInfoMap.get(key)));
@@ -256,8 +256,8 @@ public class StartupServiceImpl implements StartupService {
 			for(StartupProductInfo product : createdlist) {
 				finalProductList.add(product);
 			}
-			startup.setProducts(null);
-			startup.setProducts(finalProductList);
+			updatedStartup.setProducts(null);
+			updatedStartup.setProducts(finalProductList);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);
@@ -282,12 +282,12 @@ public class StartupServiceImpl implements StartupService {
 			// Setting up intermediate objects for products updating
 			for (String key : startupInfoMap.keySet()) {
 				if (key.trim().contains("Amount")) {
-					if(!Util.isValidStartupUpdateFundingAmountFormat(startupInfoMap.get(key))) {
-						return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_FUNDING_AMOUNT_FORMAT);
+					if(!Util.isValidOrgUpdateFundingAmountFormat(startupInfoMap.get(key))) {
+						return Util.responseFormation(Status.UPDATE_ORG_INVALID_FUNDING_AMOUNT_FORMAT);
 					}
 				} else if (key.trim().contains("Investors")) {
-					if(!Util.isValidStartupUpdateInvestorsFormat(startupInfoMap.get(key))) {
-						return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_INVESTORS_FORMAT);
+					if(!Util.isValidOrgUpdateInvestorsFormat(startupInfoMap.get(key))) {
+						return Util.responseFormation(Status.UPDATE_ORG_INVALID_INVESTORS_FORMAT);
 					}
 				} else if(key.trim().contains("Funding ID")) {
 					inputFundingIDMap.put(key, Long.parseLong(startupInfoMap.get(key)));
@@ -340,8 +340,8 @@ public class StartupServiceImpl implements StartupService {
 			for(StartupFundingInfo funding : createdlist) {
 				finalFundingList.add(funding);
 			}
-			startup.setFundings(null);
-			startup.setFundings(finalFundingList);
+			updatedStartup.setFundings(null);
+			updatedStartup.setFundings(finalFundingList);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);
@@ -365,16 +365,16 @@ public class StartupServiceImpl implements StartupService {
 			// Setting up intermediate objects for products updating
 			for (String key : startupInfoMap.keySet()) {
 				if (key.trim().contains("Member Name")) {
-					if(!Util.isValidStartupUpdateMemberNameFormat(startupInfoMap.get(key))) {
-						return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_MEMBER_NAME_FORMAT);
+					if(!Util.isValidOrgUpdateMemberNameFormat(startupInfoMap.get(key))) {
+						return Util.responseFormation(Status.UPDATE_ORG_INVALID_MEMBER_NAME_FORMAT);
 					}
 				} else if (key.trim().contains("Member Dept")) {
-					if(!Util.isValidStartupUpdateMemberDeptFormat(startupInfoMap.get(key))) {
-						return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_MEMBER_DEPT_FORMAT);
+					if(!Util.isValidOrgUpdateMemberDeptFormat(startupInfoMap.get(key))) {
+						return Util.responseFormation(Status.UPDATE_ORG_INVALID_MEMBER_DEPT_FORMAT);
 					}
 				} else if (key.trim().contains("Member Pos")) {
-					if(!Util.isValidStartupUpdateMemberPosFormat(startupInfoMap.get(key))) {
-						return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_MEMBER_POS_FORMAT);
+					if(!Util.isValidOrgUpdateMemberPosFormat(startupInfoMap.get(key))) {
+						return Util.responseFormation(Status.UPDATE_ORG_INVALID_MEMBER_POS_FORMAT);
 					}
 				} else if (key.trim().contains("Member Phone")) {
 					if(startupInfoMap.get(key).indexOf('-') == -1) {
@@ -382,8 +382,8 @@ public class StartupServiceImpl implements StartupService {
 					} else {
 						String phone = startupInfoMap.get(key);
 						phone = phone.substring(startupInfoMap.get(key).indexOf('-') + 1);
-						if(!Util.isValidStartupUpdateMemberPhoneFormat(phone)) {
-							return Util.responseFormation(Status.UPDATE_STARTUP_INVALID_MEMBER_PHONE_FORMAT);
+						if(!Util.isValidOrgUpdateMemberPhoneFormat(phone)) {
+							return Util.responseFormation(Status.UPDATE_ORG_INVALID_MEMBER_PHONE_FORMAT);
 						}
 					}
 				} else if(key.trim().contains("Member ID")) {
@@ -441,8 +441,8 @@ public class StartupServiceImpl implements StartupService {
 			for(StartupTeamInfo team : createdlist) {
 				finalTeamList.add(team);
 			}
-			startup.setMembers(null);
-			startup.setMembers(finalTeamList);
+			updatedStartup.setMembers(null);
+			updatedStartup.setMembers(finalTeamList);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);
