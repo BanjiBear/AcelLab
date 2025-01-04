@@ -35,7 +35,9 @@ public interface UserRepository extends CrudRepository<UserInfo, Long> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "INSERT INTO user (username, password, firstname, lastname, department, role, email, phone, linkedIn, isStartup, business_plan_id) "
+	@Query(value = "INSERT INTO user ("
+			+ "username, password, firstname, lastname, department, role, email, phone, linkedIn, isStartup, business_plan_id, "
+			+ "is_admin, is_system_generated, is_expired) "
 	+ "VALUES(:username, "
 			+ ":password, "
 			+ ":fname, "
@@ -46,8 +48,12 @@ public interface UserRepository extends CrudRepository<UserInfo, Long> {
 			+ "NULL, "
 			+ "NULL, "
 			+ ":isStartup, "
-			+ ":plan)", nativeQuery = true)
-	void createNewUserFromRegister(@Param("username") String username, @Param("password") String password, @Param("fname") String fname, @Param("lname") String lname, @Param("email") String email, @Param("isStartup") Boolean isStartup, @Param("plan") Integer plan);
+			+ ":plan, "
+			+ ":is_admin, "
+			+ ":is_system_gen, "
+			+ ":is_expired)", nativeQuery = true)
+	void createNewUserFromRegister(@Param("username") String username, @Param("password") String password, @Param("fname") String fname, @Param("lname") String lname, @Param("email") String email, @Param("isStartup") Boolean isStartup, @Param("plan") Integer plan, 
+			@Param("is_admin") Boolean is_admin, @Param("is_system_gen") Boolean is_system_gen, @Param("is_expired") Boolean is_expired);
 	
 	@Modifying
 	@Transactional

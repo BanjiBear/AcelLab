@@ -100,5 +100,18 @@ public class UserInfo{
 	
 	public void setBusinessPlan(Integer businessPlan) {this.businessPlan = businessPlan;}
 	public Integer getBusinessPlan() {return businessPlan;}
+	
+	
+	@Column(name = "is_admin")
+	private Boolean isAdmin;
+	
+	@Column(name = "is_expired")
+	private Boolean isExpired;
+	
+	public void setIsAdmin(Boolean isAdmin) {this.isAdmin = isAdmin;}
+	public Boolean getIsAdmin() {return this.isAdmin;}
+	
+	public void setIsExpired(Boolean isExpired) {this.isExpired = isExpired;}
+	public Boolean getIsExpired() {return this.isExpired;}
 
 }
