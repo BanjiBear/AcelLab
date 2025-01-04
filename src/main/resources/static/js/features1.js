@@ -80,9 +80,8 @@ function addFinancialRounds() {
       <option value="Product Crowdfunding">Product Crowdfunding</option>
       <option value="Registered Capital">Registered Capital</option>
       <option value="Secondary Market">Secondary Market</option>
-      <option value="Series Unknown">Series Unknown</option>
       <option value="Strategic Investment">Strategic Investment</option>
-      <option value="Venture">Venture</option>
+      <option value="Venture - Series Unknown">Venture - Series Unknown</option>
       <option value="ICO Pre-sale">ICO Pre-sale</option>
       <option value="Regulation Crowdfunding (Reg CF)">Regulation Crowdfunding (Reg CF)</option>
       <option value="Simple Agreement for Future Equity (SAFE)">Simple Agreement for Future Equity (SAFE)</option>

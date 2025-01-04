@@ -31,6 +31,7 @@ import io.acellab.service.web.startline.Repository.StartupTeamRepository;
 import io.acellab.service.web.startline.Repository.UserRepository;
 import io.acellab.service.web.startline.Status.ResponseFactory;
 import io.acellab.service.web.startline.Status.Status;
+import io.acellab.service.web.startline.Util.OneTimePasswordGenerator;
 import io.acellab.service.web.startline.Util.Util;
 
 @Service("StartupService")
@@ -458,6 +459,41 @@ public class StartupServiceImpl implements StartupService {
 		userRepository.save(user);
 		
 		return Util.responseFormation(Status.DATA_UPDATED);
+	}
+
+
+	@Override
+	@Transactional
+	public <T> ResponseFactory<T> addScheduledEmail(UserInfo user, String email, String type, Boolean payload) {
+		if(!Util.isValidEmailFormat(email)) {
+			return Util.responseFormation(Status.USER_REGISTER_INVALID_EMAIL_FORMAT);
+		} else if(type == "INVITATION") {
+			Optional<UserInfo> userinfo = userRepository.findUserByEmail(email);
+			if(!userinfo.isEmpty()) {
+				return Util.responseFormation(Status.EXISTING_EMAIL);
+			}
+		}
+		
+		try {
+			Long user_id = user.getUserId();
+			String user_firstname = user.getFirstname();
+			String user_email = user.getEmail();
+			String one_time_pwd = null;
+			
+			if(payload) {
+				one_time_pwd = OneTimePasswordGenerator.generateRandomString();
+				if(!Util.isValidPassword(one_time_pwd)) return Util.responseFormation(Status.UNEXPECTED_ERROR);
+			}
+			
+			startupRepository.addScheduledEmailByUserId(user_id, user_firstname, user_email, email, one_time_pwd, type, false, false);
+			
+			// Generate new UserInfo
+		} catch(Exception e) {
+			e.printStackTrace();
+			return Util.responseFormation(Status.UNEXPECTED_ERROR);
+		}
+		
+		return Util.responseFormation(Status.NEW_DATA_CREATED);
 	}
 
 

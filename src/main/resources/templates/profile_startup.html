@@ -4,13 +4,14 @@
 		<meta name="author" content="Jeffrey" />
 		<meta name="refresh" content="60" />
 		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
 		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
 						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan().getPlanName()}"></span>
+						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
 						
 						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
 						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
@@ -61,15 +62,19 @@
 				</article>
 			</article>
 			<article class="CustomerType">
-				<article class="CustomerType1">
-					<p class="CustomerType_title">Startup</p>
-					<p class="CustomerType_description">Update your startup information to share it with companies from all around the world!</p>
-				</article>
+				<a href="">
+					<article class="CustomerType1">
+						<p class="CustomerType_title">Startup</p>
+						<p class="CustomerType_description">Update your startup information to share it with companies from all around the world!</p>
+					</article>
+				</a>
 				
-				<article class="CustomerType2" th:class="${user.getAccountType()} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
-					<p class="CustomerType_title">Corporate</p>
-					<p class="CustomerType_description">Update your corporate needs so that we can find the technology thats just right for you!</p>
-				</article>
+				<a href="">
+					<article class="CustomerType2" th:class="${user.getAccountType()} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
+						<p class="CustomerType_title">Corporate</p>
+						<p class="CustomerType_description">Update your corporate needs so that we can find the technology thats just right for you!</p>
+					</article>
+				</a>
 			</article>
 			<article class="profile" th:object="${startup}">
 				<br />
@@ -409,7 +414,8 @@
 					<p class="AddRow" onclick="addFinancialRounds()">+ Add financial round</p>
 					<br />
 					<button type="submit" class="button">Save</button>
-					<a class="Valbutton">Verify Account</a>
+					<a th:if="${#strings.isEmpty(startup.getStartupName())}" id="Valbutton" class="Valbutton" onclick="promptSave('Startup')">Verify Account</a>
+					<a th:unless="${#strings.isEmpty(startup.getStartupName())}" id="Valbutton" class="Valbutton" onclick="verify(event, 'updatestartupinfo', '/verifystartup')">Verify Account</a>
 				</form>
 				<br />
 				<br />
@@ -420,7 +426,6 @@
 		<br />
 		<br />
 	</body>
-	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
 	<script th:src="@{../js/organization_profile_update.js}"></script>

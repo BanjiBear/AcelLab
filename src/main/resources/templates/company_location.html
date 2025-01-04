@@ -4,13 +4,14 @@
 		<meta name="author" content="Jeffrey" />
 		<meta name="refresh" content="60" />
 		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
 		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
 						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan().getPlanName()}"></span>
+						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
 						
 						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
 						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
@@ -90,12 +91,12 @@
 							<p class="CompanyContent_info">Founders</p>
 						</article>
 						<article class="CompanyContent">
-							<p class="CompanyContent_info1" th:text="${company.getIndustry()}"></p>
+							<p class="CompanyContent_info1" th:text="${#strings.substringAfter(company.getIndustry(), '-')}"></p>
 							<p class="CompanyContent_info1" th:text="${company.getHeadquarter()}"></p>
 							<p class="CompanyContent_info1" th:text="${company.getFounders()}"></p>
 						</article>
 					</article>
-					<br><br><br>
+					<br>
 					<article class="CompanyCardDetailTab">
 						<a onclick="getDetails(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Basic Information </a>
 						<a onclick="getProducts(this.getAttribute('data-company-id'))" th:attr="data-company-id=${company.getId()}" class="CompanyCardDetail_title"> Product </a>
@@ -170,8 +171,8 @@
 						<br th:if="${company.getLocation5() != null and !#strings.isEmpty(company.getLocation5())}">
 
 						<!-- Free service provided by https://embedmap.org/ -->
-						<iframe style="display: none; height: 50vh; width: 100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?q=&amp;output=embed"></iframe>
-						<a href='https://www.acadoo.de/leistungen/ghostwriter-doktorarbeit/ghostwriter-dissertation-in-medizin/'>Medizin Doktorarbeit Ghostwriter</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=29856c861cac217ad990e43951e47193865f5e72'></script>
+						<iframe style="height: 50vh; width: 100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?q=&amp;output=embed"></iframe>
+						<script type='text/javascript' th:src="@{../js/map.js}"></script>
 					</article>
 
 					<!-- <article class="menu_bottom_similarcompanies">

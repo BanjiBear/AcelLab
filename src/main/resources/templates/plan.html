@@ -4,13 +4,14 @@
 		<meta name="author" content="Jeffrey" />
 		<meta name="refresh" content="60" />
 		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
 		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
 						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan().getPlanName()}"></span>
+						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
 						
 						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
 						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
@@ -67,13 +68,13 @@
 						<p class="CustomerType_description">Edit your account's personal profile and billing method</p>
 					</a>
 				</article>
-				<article class="CustomerType2">
+				<article class="CustomerType2" th:class="${user.getBusinessPlan() != 3} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
 					<a href="/settings/team">
 						<p class="CustomerType_title">Team Settings</p>
 						<p class="CustomerType_description">Manage your team members and information</p>
 					</a>
 				</article>
-				<article class="CustomerType2">
+				<article class="CustomerType2" th:class="${user.getAccountType()} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
 					<a href="/settings/bookmark">
 						<p class="CustomerType_title">Bookmark Settings</p>
 						<p class="CustomerType_description">Create, edit and delete bookmarks</p>

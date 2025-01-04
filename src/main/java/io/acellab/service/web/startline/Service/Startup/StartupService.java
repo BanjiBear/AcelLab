@@ -23,5 +23,7 @@ public interface StartupService {
 	public ResponseFactory<StartupTeamInfo> getStartupTeam(UserInfo user);
 	
 	public <T> ResponseFactory<T> updateUserStartup(@AuthenticationPrincipal UserDetails userDetails, UserInfo user, Map<String, String> startupInfoMap);
+
+	public <T> ResponseFactory<T> addScheduledEmail(UserInfo user, String email, String type, Boolean payload);
 	
 }

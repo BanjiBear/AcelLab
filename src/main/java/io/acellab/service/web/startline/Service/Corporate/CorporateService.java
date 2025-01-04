@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import io.acellab.service.web.startline.Entity.CompanyInfo;
 import io.acellab.service.web.startline.Entity.CorporateFundingInfo;
 import io.acellab.service.web.startline.Entity.CorporateInfo;
 import io.acellab.service.web.startline.Entity.CorporateProductInfo;
@@ -23,6 +24,8 @@ public interface CorporateService {
 	public ResponseFactory<CorporateTeamInfo> getCorporateTeam(UserInfo user);
 	
 	public <T> ResponseFactory<T> updateUserCorporate(@AuthenticationPrincipal UserDetails userDetails, UserInfo user, Map<String, String> corporateInfoMap);
+
+	public <T> ResponseFactory<T> addScheduledEmail(UserInfo user, String email, String type, Boolean payload);
 	
 	//public <T> ResponseFactory<T> fineTuneRecommendation();
 	

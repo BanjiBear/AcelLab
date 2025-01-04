@@ -21,7 +21,7 @@ public interface CompanyRepository extends CrudRepository<CompanyInfo, Long> {
 	ArrayList<CompanyInfo> getAllCompany();
 	
 	@Query(value = "SELECT DISTINCT c.* FROM company c "
-			+ "JOIN companyfundings cf ON c.id = cf.company_id WHERE "
+			+ "LEFT JOIN companyfundings cf ON c.id = cf.company_id WHERE "
 			+ "(:company_name = '' "
 				+ "OR c.company_name LIKE %:company_name% "
 				+ "OR c.introduction LIKE %:company_name%) "
@@ -44,5 +44,20 @@ public interface CompanyRepository extends CrudRepository<CompanyInfo, Long> {
 	@Transactional
 	@Query(value = "INSERT INTO bookmark (user_id, company_id) VALUES (:userId, :companyId);", nativeQuery = true)
 	void addBookmarkByUserIdAndCompanyId(@Param("userId") Long userId, @Param("companyId") Long companyId);
+	
+	@Query(value = "SELECT DISTINCT cp.* FROM company cp "
+			+ "JOIN bookmark b ON b.company_id = cp.id "
+			+ "WHERE b.user_id = :id", nativeQuery = true)
+	ArrayList<CompanyInfo> getBookmarkCompanyListByUserID(@Param("id") Long id);
+	
+	@Query(value = "SELECT DISTINCT cp.id FROM company cp "
+			+ "JOIN bookmark b ON b.company_id = cp.id "
+			+ "WHERE b.user_id = :id", nativeQuery = true)
+	ArrayList<Long> getBookmarkCompanyIDsByUserID(@Param("id") Long id);
+
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM bookmark WHERE user_id = :user_id and company_id = :company_id", nativeQuery = true)
+	void deleteBookmarkByUserIDAndCompanyID(Long user_id, Long company_id);
 
 }

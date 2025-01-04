@@ -4,13 +4,14 @@
 		<meta name="author" content="Jeffrey" />
 		<meta name="refresh" content="60" />
 		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="icon" type="image/x-icon" th:href="@{/images/logo/Favicon/favicon.png}">
 		<link rel="stylesheet" th:href="@{./css/home_style.css}" />
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
 						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan().getPlanName()}"></span>
+						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
 						
 						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
 						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
@@ -483,11 +484,11 @@
 						</select>
 						<select id="fundinground" name="fundinground" class="Searchfilters">
 							<option value="">Filter by funding round</option>
-							<option value="Pre-Seed">Pre-Seed</option>
-							<option value="Series A">Series A</option>
-							<option value="Series B">Series B</option>
-							<option value="Series C">Series C</option>
-							<option value="IPO">IPO</option>
+							<option 
+									th:each="round : ${fundingrounds}"
+									th:value="${round}"
+									th:text="${round}"
+									></option>
 						</select>
 						<select id="bookmark" name="bookmark" class="Searchfilters">
 							<option value="">Filter by bookmarks</option>
@@ -502,16 +503,29 @@
 					<article class="flex_center">
 						<article class="card" th:each="company: ${response.getReturnDataList()}">
 							<article class="card_top">
-								<img th:src="@{${company.getLogo()}}" class="logo" />
+								<img 
+									th:if="${!#strings.isEmpty(company.getLogo())}"
+									th:src="@{${company.getLogo()}}" class="logo" />
+								<img 
+									th:unless="${!#strings.isEmpty(company.getLogo())}"
+									th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="logo" />
 								<article class="card_right">
 									<p class="card_heading_AIRecommend" th:text="${company.getCompanyName()}"></p>
-									<p class="card_content_AIRecommend" th:text="${company.getHeadquarter()}"></p>
-									<p class="card_technology_AIRecommend" th:text="${company.getIndustry()}"></p>
+									<p class="card_content_AIRecommend" th:text="${company.getHeadquarter()}" style="white-space:normal; word-wrap: normal;"></p>
+									<p class="card_technology_AIRecommend" th:text="${#strings.substringBefore(company.getIndustry(), '-')}"></p>
 								</article>
-								<form id="addbookmark" th:action="@{/addbookmark}" th:object="${bookmarked_company}" method="post">
+								<form id="addbookmark" th:unless="${user.getAccountType()}" th:action="@{/addbookmark}" th:object="${bookmarked_company}" method="post">
 									<!-- Hidden input fields to store the company properties -->
 									<input type="hidden" th:field="*{id}" id="hiddenIdInput"/>
 									<img 
+										th:object="${bookmarks}"
+										th:if="${#lists.contains(bookmarks, company.getId())}"
+										th:src="@{/images/icon/bookmarked.png}" 
+										class="logo_bookmark" 
+										style="cursor: pointer;"/>
+									<img 
+										th:object="${bookmarks}"
+										th:if="${!#lists.contains(bookmarks, company.getId())}"
 										th:src="@{/images/icon/bookmark.png}" 
 										class="logo_bookmark" 
 										style="cursor: pointer;" 
@@ -611,7 +625,8 @@
 		}
 
 		function getDetails(id) {
-			window.location.replace("/company/info?" + "id=" + id);
+			// To-Be Merged
+			window.location.href = "/company/info?id=" + id;
 		}
 
 		// Function to clear other fields if bookmark is filled in

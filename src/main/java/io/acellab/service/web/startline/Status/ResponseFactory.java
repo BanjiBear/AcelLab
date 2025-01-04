@@ -6,6 +6,7 @@ public class ResponseFactory<T> {
 	
 	private Status status;
 	private List<T> returnDataList = null;
+	private Object[] returnDataObjects = null;
 	
 	
 	//Example access: Status.ERROR.getStatusCode()
@@ -15,5 +16,8 @@ public class ResponseFactory<T> {
 
 	public void setReturnDataList(List<T> returnDataList) {this.returnDataList = returnDataList;}
 	public List<T> getReturnDataList() {return this.returnDataList;}
+	
+	public void setReturnDataObjects(Object[] objects) {this.returnDataObjects = objects;}
+	public Object[] getReturnDataObjects() {return this.returnDataObjects;}
 	
 }

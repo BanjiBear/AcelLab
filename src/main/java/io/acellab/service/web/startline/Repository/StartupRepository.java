@@ -20,6 +20,28 @@ public interface StartupRepository extends CrudRepository<StartupInfo, Long> {
 	
 	@Query(value = "SELECT * FROM startup WHERE id = :id", nativeQuery = true)
 	Optional<StartupInfo> getStartupById(@Param("id") Long id);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "INSERT INTO email (user_id, user_firstname, user_email, recipient_email, payload_opt, type, isSent, job_error) "
+			+ "VALUES ("
+			+ ":user_id, "
+			+ ":user_firstname, "
+			+ ":user_email, "
+			+ ":recipient_email, "
+			+ ":payload_opt, "
+			+ ":type, "
+			+ ":isSent, "
+			+ ":job_error)", nativeQuery = true)
+	void addScheduledEmailByUserId(
+			@Param("user_id") Long user_id, 
+			@Param("user_firstname") String user_firstname, 
+			@Param("user_email") String user_email, 
+			@Param("recipient_email") String recipient_email, 
+			@Param("payload_opt") String payload_opt, 
+			@Param("type") String type, 
+			@Param("isSent") Boolean isSent, 
+			@Param("job_error") Boolean job_error);
 
 
 }

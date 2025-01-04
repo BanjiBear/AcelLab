@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -70,33 +71,62 @@ public class StartlineController {
 	
 	@Autowired
 	private ArrayList<String> fundingsRoundList;
-
+	
+	
+	private Object[] CompanyObjectCache = null;
+	private Long companyIDCache = null;
 	
 	@GetMapping("/home")
-	public String homePage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String homePage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		//GetStarted --> home
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		ResponseFactory<?> response = companyService.getCompaniesList();
+		if(response.getStatusCode() != 200 && response.getStatusCode() != 404) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
 		model.addAttribute("user", user);
-		model.addAttribute("response", companyService.getCompaniesList());
+		model.addAttribute("response", response);
 		return "home";
 	}
 	
 	@GetMapping("/search")
-	public String searchPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String searchPage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		//Search --> search
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		ResponseFactory<?> response = companyService.getCompaniesList();
+		if(response.getStatusCode() != 200 && response.getStatusCode() != 404) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
 		
+		ResponseFactory<?> bookmarks = companyService.getBookmarkedCompanyID(user);
+		if(bookmarks.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", bookmarks.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", bookmarks.getStatusMessage());
+			return "redirect:/error";
+		}
 		model.addAttribute("user", user);
 		model.addAttribute("bookmarked_company", new CompanyInfo());
-		model.addAttribute("response", companyService.getCompaniesList());
+		model.addAttribute("response", response);
+		model.addAttribute("fundingrounds", fundingsRoundList);
+		model.addAttribute("bookmarks", bookmarks.getReturnDataList());
 		return "search";
 	}
 	
@@ -108,38 +138,75 @@ public class StartlineController {
 			@RequestParam(name = "industry", defaultValue = "", required = true) String industry,
 			@RequestParam(name = "fundinground", defaultValue = "", required = true) String fundinground,
 			@RequestParam(name = "bookmark", defaultValue = "", required = true) String bookmark,
-			Model model){
+			Model model, 
+			RedirectAttributes redirectAttributes){
 		
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		ResponseFactory<?> response = companyService.searchCompanies(search, location, industry, fundinground, bookmark);
+		if(response.getStatusCode() != 200 && response.getStatusCode() != 404){
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
 		
+		ResponseFactory<?> bookmarks = companyService.getBookmarkedCompanyID(user);
+		if(bookmarks.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", bookmarks.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", bookmarks.getStatusMessage());
+			return "redirect:/error";
+		}
 		model.addAttribute("user", user);
 		model.addAttribute("bookmarked_company", new CompanyInfo());
-		model.addAttribute("response", companyService.searchCompanies(search, location, industry, fundinground, bookmark));
+		model.addAttribute("response", response);
+		model.addAttribute("fundingrounds", fundingsRoundList);
+		model.addAttribute("bookmarks", bookmarks.getReturnDataList());
 		return "search";
 	}
 	
 	@GetMapping("/profile/startup")
-	public String profileStartupPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String profileStartupPage(@AuthenticationPrincipal UserDetails userDetails, Model model, RedirectAttributes redirectAttributes) {
 		//ProfileStartup --> profile_startup
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
-		if(customUserDetails == null) {
-			return "redirect:/startup/login";
-		}
+		if(customUserDetails == null) return "redirect:/startup/login";
 		UserInfo user = customUserDetails.getUser();
-		StartupInfo startup = startupService.getUserStartup(user).getReturnDataList().get(0);
-		List<StartupProductInfo> products = startupService.getStartupProducts(user).getReturnDataList();
-		List<StartupFundingInfo> fundings = startupService.getStartupFundings(user).getReturnDataList();
-		List<StartupTeamInfo> members = startupService.getStartupTeam(user).getReturnDataList();
-		
+		if(!user.getAccountType()) return "redirect:/profile/corporate";
 		model.addAttribute("user", user);
-		model.addAttribute("startup", startup);
-		model.addAttribute("products", products);
-		model.addAttribute("fundings", fundings);
-		model.addAttribute("members", members);
+		
+		ResponseFactory<?> response = startupService.getUserStartup(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("startup", response.getReturnDataList().get(0));
+		
+		response = startupService.getStartupProducts(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("products", response.getReturnDataList());
+		
+		response = startupService.getStartupFundings(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("fundings", response.getReturnDataList());
+		
+		response = startupService.getStartupTeam(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("members", response.getReturnDataList());		
 		
 		model.addAttribute("countries", countriesList);
 		model.addAttribute("industries", industriesList);
@@ -149,23 +216,45 @@ public class StartlineController {
 	}
 	
 	@GetMapping("/profile/corporate")
-	public String profileCorporatePage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String profileCorporatePage(@AuthenticationPrincipal UserDetails userDetails, Model model, RedirectAttributes redirectAttributes) {
 		//ProfileCorporate --> profile_corporate
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
-		if(customUserDetails == null) {
-			return "redirect:/corporate/login";
-		}
+		if(customUserDetails == null) return "redirect:/corporate/login";
 		UserInfo user = customUserDetails.getUser();
-		CorporateInfo corporate = corporateService.getUserCorporate(user).getReturnDataList().get(0);
-		List<CorporateProductInfo> products = corporateService.getCorporateProducts(user).getReturnDataList();
-		List<CorporateFundingInfo> fundings = corporateService.getCorporateFundings(user).getReturnDataList();
-		List<CorporateTeamInfo> members = corporateService.getCorporateTeam(user).getReturnDataList();
-		
+		if(user.getAccountType()) return "redirect:/profile/startup";
 		model.addAttribute("user", user);
-		model.addAttribute("corporate", corporate);
-		model.addAttribute("products", products);
-		model.addAttribute("fundings", fundings);
-		model.addAttribute("members", members);
+		
+		ResponseFactory<?> response = corporateService.getUserCorporate(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("corporate", response.getReturnDataList().get(0));
+		
+		response = corporateService.getCorporateProducts(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("products", response.getReturnDataList());
+		
+		response = corporateService.getCorporateFundings(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("fundings", response.getReturnDataList());
+		
+		response = corporateService.getCorporateTeam(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		model.addAttribute("members", response.getReturnDataList());
 		
 		model.addAttribute("countries", countriesList);
 		model.addAttribute("industries", industriesList);
@@ -191,23 +280,30 @@ public class StartlineController {
 	public String settingsTeamPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		//Settings_team --> team
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
-		if(customUserDetails == null) {
-			return "redirect:/startup/login";
-		}
+		if(customUserDetails == null) return "redirect:/corporate/login";
 		UserInfo user = customUserDetails.getUser();
+		if(!user.getAccountType() && user.getBusinessPlan() != 3) return "redirect:/settings/plan";
 		model.addAttribute("user", user);
 		return "team";
 	}
 	
 	@GetMapping("/settings/bookmark")
-	public String settingsBookmarkPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String settingsBookmarkPage(@AuthenticationPrincipal UserDetails userDetails, Model model, RedirectAttributes redirectAttributes) {
 		//Settings_bookmark --> bookmark
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
-		if(customUserDetails == null) {
-			return "redirect:/startup/login";
-		}
+		if(customUserDetails == null) return "redirect:/corporate/login";
 		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/settings/plan";
+		
+		ResponseFactory<CompanyInfo> response = companyService.getBookmarks(user);
+		if(response.getStatusCode() != 200){
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		
 		model.addAttribute("user", user);
+		model.addAttribute("bookmarks", response.getReturnDataList());
 		return "bookmark";
 	}
 	
@@ -227,16 +323,25 @@ public class StartlineController {
 	public String companyInfoPage(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
-			Model model) {
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		//CompanyContent_BasicInformation --> company_info
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(companyIDCache == null || companyid != companyIDCache) {
+			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
+			if(response.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
+			}
+			CompanyObjectCache = response.getReturnDataObjects();
+		}
 		model.addAttribute("user", user);
-		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
-		System.out.println(companyService.getCompanyDetails(companyid).getReturnDataList().get(0).getIntroduction());
+		model.addAttribute("company", CompanyObjectCache[0]);
 		return "company_info";
 	}
 	
@@ -244,15 +349,26 @@ public class StartlineController {
 	public String companyProductPage(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
-			Model model) {
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		//CompanyContent_Product --> company_products
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(companyIDCache == null || companyid != companyIDCache) {
+			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
+			if(response.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
+			}
+			CompanyObjectCache = response.getReturnDataObjects();
+		}
 		model.addAttribute("user", user);
-		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
+		model.addAttribute("company", CompanyObjectCache[0]);
+		model.addAttribute("products", CompanyObjectCache[1]);
 		return "company_products";
 	}
 	
@@ -260,15 +376,26 @@ public class StartlineController {
 	public String companyFinancePage(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
-			Model model) {
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		//CompanyContent_Finance --> company_finance
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(companyIDCache == null || companyid != companyIDCache) {
+			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
+			if(response.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
+			}
+			CompanyObjectCache = response.getReturnDataObjects();
+		}
 		model.addAttribute("user", user);
-		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
+		model.addAttribute("company", CompanyObjectCache[0]);
+		model.addAttribute("fundings", CompanyObjectCache[2]);
 		return "company_finance";
 	}
 	
@@ -276,15 +403,25 @@ public class StartlineController {
 	public String companyContactPage(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
-			Model model) {
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		//CompanyContent_Contacts --> company_contact
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(companyIDCache == null || companyid != companyIDCache) {
+			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
+			if(response.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
+			}
+			CompanyObjectCache = response.getReturnDataObjects();
+		}
 		model.addAttribute("user", user);
-		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
+		model.addAttribute("company", CompanyObjectCache[0]);
 		return "company_contact";
 	}
 	
@@ -292,14 +429,24 @@ public class StartlineController {
 	public String companyLocationPage(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam(name = "id", defaultValue = "", required = true) Long companyid,
-			Model model) {
+			Model model,
+			RedirectAttributes redirectAttributes) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(companyIDCache == null || companyid != companyIDCache) {
+			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
+			if(response.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
+			}
+			CompanyObjectCache = response.getReturnDataObjects();
+		}
 		model.addAttribute("user", user);
-		model.addAttribute("company", companyService.getCompanyDetails(companyid).getReturnDataList().get(0));
+		model.addAttribute("company", CompanyObjectCache[0]);
 		return "company_location";
 	}
 	
@@ -307,7 +454,11 @@ public class StartlineController {
 	/****************************************************************/
 	
 	@PostMapping("/updateuserinfo")
-	public String updateUserInfo(@AuthenticationPrincipal UserDetails userDetails, UserInfo newUser, Model model) {
+	public String updateUserInfo(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			UserInfo newUser, 
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
@@ -315,7 +466,9 @@ public class StartlineController {
 		UserInfo oldUser = customUserDetails.getUser();
 		ResponseFactory<?> response = userService.updateUser(oldUser, newUser);
 		if(response.getStatusCode() != 202) {
-			return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
 		}
 		
 		return "redirect:/settings/account";
@@ -326,31 +479,59 @@ public class StartlineController {
 			HttpServletRequest request,
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@ModelAttribute("bookmarked_company") CompanyInfo bookmarked_company, 
-			Model model) {
+			Model model,
+			RedirectAttributes redirectAttributes) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/error";
 		//Consider if it is not necessary to pass userDetails
 		ResponseFactory<?> response = companyService.addCompanyToBookmark(userDetails, user.getUserId(), bookmarked_company.getId());
 		if(response.getStatusCode() != 202) {
-			return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
 		}
 		
 		return "redirect:" + request.getHeader(HttpHeaders.REFERER).replace(request.getHeader(HttpHeaders.ORIGIN), "");
+	}
+	
+	@PostMapping("/deletebookmark")
+	public String deleteCompanyBookmark(
+			@AuthenticationPrincipal UserDetails userDetails,
+			@RequestParam("company_id") Long companyId, 
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/error";
+		
+		ResponseFactory<?> response = companyService.deleteBookmark(user, companyId);
+		if(response.getStatusCode() != 203) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		return "redirect:/settings/bookmark";
 	}
 	
 	@PostMapping("/updatestartupinfo")
 	public String updateStartupInfo(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam("dataMap") String startupInfoString,
-			Model model) {
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(!user.getAccountType()) return "redirect:/error";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Map<String, String> startupInfoMap = mapper.readValue(startupInfoString, new TypeReference<Map<String, String>>() {});
@@ -359,37 +540,113 @@ public class StartlineController {
 			//}
 			ResponseFactory<?> response = startupService.updateUserStartup(userDetails, user, startupInfoMap);
 			if(response.getStatusCode() != 202) {
-				return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "redirect:/error";
 		}
 		
 		return "redirect:/profile/startup";
 	}
 	
 	
+	
 	@PostMapping("/updatecorporateinfo")
 	public String updateCorporateInfo(
 			@AuthenticationPrincipal UserDetails userDetails, 
 			@RequestParam("dataMap") String corporateInfoString,
-			Model model) {
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/corporate/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/error";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Map<String, String> corporateInfoMap = mapper.readValue(corporateInfoString, new TypeReference<Map<String, String>>() {});
 			ResponseFactory<?> response = corporateService.updateUserCorporate(userDetails, user, corporateInfoMap);
 			if(response.getStatusCode() != 202) {
-				return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "redirect:/error";
 		}
 		
+		return "redirect:/profile/corporate";
+	}
+	
+	
+	@PostMapping("/inviteuser")
+	public String inviteUserEmail(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam("email") String email,
+			Model model, 
+			RedirectAttributes redirectAttributes) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/corporate/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/error";
+		
+		ResponseFactory<?> response = corporateService.addScheduledEmail(user, email, "INVITATION", true);
+		if(response.getStatusCode() != 201) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		return "redirect:/profile/corporate";
+	}
+	
+	
+	@PostMapping("/verifystartup")
+	public String verifyStartupEmail(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			Model model, 
+			RedirectAttributes redirectAttributes) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/startup/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		if(!user.getAccountType()) return "redirect:/error";
+		
+		ResponseFactory<?> response = startupService.addScheduledEmail(user, user.getEmail(), "VALIDATION", false);
+		if(response.getStatusCode() != 201) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		return "redirect:/profile/startup";
+	}
+	
+	
+	@PostMapping("/verifycorporate")
+	public String verifyCorporateEmail(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			Model model, 
+			RedirectAttributes redirectAttributes) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/corporate/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		if(!user.getAccountType()) return "redirect:/error";
+		
+		ResponseFactory<?> response = corporateService.addScheduledEmail(user, user.getEmail(), "VALIDATION", false);
+		if(response.getStatusCode() != 201) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
 		return "redirect:/profile/corporate";
 	}
 	
@@ -404,6 +661,7 @@ public class StartlineController {
 			return "redirect:/corporate/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/error";
 		//System.out.println("answer1 : " + answer1);
 		//System.out.println("answer2 : " + answer2);
 		

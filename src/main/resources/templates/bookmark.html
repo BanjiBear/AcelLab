@@ -4,13 +4,14 @@
 		<meta name="author" content="Jeffrey" />
 		<meta name="refresh" content="60" />
 		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
 		<link rel="stylesheet" th:href="@{../css/home_style.css}" />
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
 						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan().getPlanName()}"></span>
+						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
 						
 						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
 						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
@@ -67,13 +68,13 @@
 						<p class="CustomerType_description">Edit your account's personal profile and billing method</p>
 					</a>
 				</article>
-				<article class="CustomerType2">
+				<article class="CustomerType2" th:class="${user.getBusinessPlan() != 3} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
 					<a href="/settings/team">
 						<p class="CustomerType_title">Team Settings</p>
 						<p class="CustomerType_description">Manage your team members and information</p>
 					</a>
 				</article>
-				<article class="CustomerType1">
+				<article class="CustomerType1" th:class="${user.getAccountType()} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
 					<a href="">
 						<p class="CustomerType_title">Bookmark Settings</p>
 						<p class="CustomerType_description">Create, edit and delete bookmarks</p>
@@ -91,49 +92,32 @@
 				<p class="Search_title">Bookmark Management</p>
 				<p class="Settings_bookmark_subtitle">Create, edit, or delete bookmarks</p>
 				<br />
-				<input type="text" placeholder="Search for bookmark" name="search" class="BookmarkFilter" />
+				<input type="text" placeholder="Search for bookmark" id="search" name="search" class="BookmarkFilter" />
 				<br />
 				<br />
 				<table class="bookmark">
 					<tr>
 						<th>Company Name</th>
+						<th>Industry</th>
 						<th></th>
-						<th></th>
 					</tr>
-					<tr>
-						<td>Samsung</td>
+					<tr th:each="company : ${bookmarks}">
+						<td th:text="${company.getCompanyName()}"></td>
 						<td>
-							<p class="card_technology_AIRecommend">Industry</p>
+							<p class="card_technology_AIRecommend" th:text="${#strings.substringBefore(company.getIndustry(), '-')}"></p>
 						</td>
 						<td>
-							<img th:src="@{../images/icon/Trash.png}" class="icon" />
-						</td>
-					</tr>
-					<tr>
-						<td>JP Morgan</td>
-						<td>
-							<p class="card_technology_AIRecommend">Industry</p>
-						</td>
-						<td>
-							<img th:src="@{../images/icon/Trash.png}" class="icon" />
-						</td>
-					</tr>
-					<tr>
-						<td>Microsoft</td>
-						<td>
-							<p class="card_technology_AIRecommend">Industry</p>
-						</td>
-						<td>
-							<img th:src="@{../images/icon/Trash.png}" class="icon" />
-						</td>
-					</tr>
-					<tr>
-						<td>Bloomberg</td>
-						<td>
-							<p class="card_technology_AIRecommend">Industry</p>
-						</td>
-						<td>
-							<img th:src="@{../images/icon/Trash.png}" class="icon" />
+							<form id="deletebookmark" th:action="@{/deletebookmark}" method="post">
+								<!-- Hidden input fields to store the company properties -->
+								<input type="hidden" id="hiddenIdInput" name="company_id" />
+									<img 
+									th:src="@{../images/icon/Trash.png}" 
+									class="icon"
+									style="cursor: pointer;" 
+									onclick="deletebookmark(this.getAttribute('data-company-id'))" 
+									th:attr="data-company-id=${company.getId()}"/>
+								</a>
+							</form>
 						</td>
 					</tr>
 				</table>
@@ -147,4 +131,36 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
+	<script>
+		function deletebookmark(id) {
+			document.getElementById("hiddenIdInput").value = id;
+			document.getElementById('deletebookmark').submit();
+		}
+
+		function getDetails(id) {
+			// To-Be Merged
+			window.location.href = "/company/info?id=" + id;
+		}
+
+		// Get the input element and table rows
+		const search = document.getElementById('search');
+		const rows = document.querySelectorAll('table tr');
+		
+		// Add event listener for input changes
+		search.addEventListener('input', function() {
+			const searchText = search.value.toLowerCase();
+			
+			// Loop through each row starting from the second row
+			for (let i = 1; i < rows.length; i++) {
+				const row = rows[i];
+				const tdText = row.textContent.toLowerCase();
+				
+				if (tdText.includes(searchText)) {
+					row.style.display = '';
+				} else {
+					row.style.display = 'none';
+				}
+			}
+		});
+	</script>
 </html>

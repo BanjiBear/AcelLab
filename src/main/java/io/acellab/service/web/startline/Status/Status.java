@@ -5,8 +5,8 @@ public enum Status {
 	//Normal State
 	RESULT_FOUND (200, "Query results found!"),
 	NEW_DATA_CREATED(201, "New data successfully created!"),
-	DATA_UPDATED(202, "Data successfully updated!"),
-	//DATA_DELETED(203, ""),
+	DATA_UPDATED(202, "Data updated successfully!"),
+	DATA_DELETED(203, "Data removed successfully!"),
 	
 	//General Error
 	NO_RESULT_FOUND_ERROR (404, "Query results not found..."),

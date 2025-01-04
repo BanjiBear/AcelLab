@@ -9,9 +9,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
 import io.acellab.service.web.startline.Status.ResponseFactory;
+import io.acellab.service.web.startline.Status.Status;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -102,6 +105,30 @@ public class ApplicationController {
 		return "support";
 	}
 	
+	@GetMapping("/error")
+	public String errorPage(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@ModelAttribute("errorCode") Integer errorCode, 
+			@ModelAttribute("errorMsg") String errorMsg, 
+			Model model, 
+			HttpServletRequest request) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		UserInfo user;
+		if(customUserDetails != null) {
+			user = customUserDetails.getUser();
+		} else {
+			user = null;
+		}
+		model.addAttribute("user", user);
+		
+		if(errorCode == null) errorCode = 0;
+		if(errorMsg == null) errorMsg = "";
+		model.addAttribute("errorCode", errorCode);
+		model.addAttribute("errorMsg", errorMsg);
+		
+		return "error";
+	}
+	
 	@GetMapping("/debug")
 	@ResponseBody
 	public String debugPage(@RequestParam("message") String message) {
@@ -177,10 +204,12 @@ public class ApplicationController {
 	}
 	
 	@PostMapping("/register")
-	public String register(UserInfo userInfo, Model model) {
+	public String register(UserInfo userInfo, Model model, RedirectAttributes redirectAttributes) {
 		ResponseFactory<?> response = userService.createNewUser(userInfo);
 		if(response.getStatusCode() != 201) {
-			return "redirect:/debug?message=" + response.getStatusCode() + ": " + response.getStatusMessage();
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
 		}
 		return "redirect:/chooseplan";
 	}

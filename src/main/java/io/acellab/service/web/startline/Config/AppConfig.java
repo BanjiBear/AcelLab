@@ -681,9 +681,8 @@ public class AppConfig {
 		fundingrounds.add("Product Crowdfunding");
 		fundingrounds.add("Registered Capital");
 		fundingrounds.add("Secondary Market");
-		fundingrounds.add("Series Unknown");
 		fundingrounds.add("Strategic Investment");
-		fundingrounds.add("Venture");
+		fundingrounds.add("Venture - Series Unknown");
 		fundingrounds.add("ICO Pre-sale");
 		fundingrounds.add("Regulation Crowdfunding (Reg CF)");
 		fundingrounds.add("Simple Agreement for Future Equity (SAFE)");

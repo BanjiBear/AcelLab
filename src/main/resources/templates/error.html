@@ -1,0 +1,129 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" th:href="@{./css/style.css}" />
+		<style>
+		.navigationbar {
+			width: 100vw;
+			height: 35px;
+			padding: 20px 0px 20px 0px;
+			gap: 0px;
+			border: 0px 0px 1px 0px;
+			opacity: 1;
+			background: #ffffff;
+			border-bottom: 1px solid #e2ecff;
+			box-shadow: 0px 1px 2px 0px #1018280d;
+			margin: none;
+			position: fixed;
+			z-index: 999;
+		}
+		.navigationbox {
+			width: 100%;
+			height: 35px;
+			gap: 0px;
+			opacity: 1;
+			padding-left: 50px;
+			margin: none;
+			padding-right: none;
+			display: flex;
+			justify-content: space-between;
+		}
+		.nav {
+			width: max-content;
+			height: 35px;
+			padding: none;
+			gap: 0px;
+			opacity: 1;
+			margin-right: 100px;
+		}
+		.nav_logo {
+			width: 110px;
+			height: 30px;
+			gap: 0px;
+			opacity: 1;
+			padding: none;
+			margin: none;
+		}
+		.container {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+		}
+		.box {
+				text-align: center;
+				min-width: 45vw;
+				max-width: 45vw;
+		}
+		.error_text{
+			font-size: 36px;
+			font-weight: 600;
+			color: #171b23;
+			text-align: center;
+		}
+		a{
+			text-decoration: none;
+		}
+		.back_btn {
+			background: linear-gradient(274.87deg, #2962ff -0.25%, #3676ff 51.72%, #4b97ff 99.75%);
+			border: none;
+			width: max-content;
+			height: max-content;
+			padding: 14px 40px;
+			border-radius: 30px;
+			justify-content: center;
+			margin-left: auto;
+			margin-right: auto;
+			color: #ffffff;
+			font-size: 24px;
+			font-weight: 700;
+			text-align: center;
+			display: flex;
+			cursor: pointer;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/home"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="container">
+				<div class="box">
+					<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src="https://lottie.host/98ea15c0-1f7f-433e-833e-b7102f2e653f/7jQELrVpPh.lottie" background="transparent" speed="1"	loop autoplay></dotlottie-player>
+				</div>
+				<div class="box">
+						<p class="error_text" th:object="${errorCode}" th:text="'Error ' + ${errorCode}"></p>
+						<p class="error_text" th:object="${errorMsg}" th:text="${errorMsg}"></p>
+
+						<br><br><br>
+						<p>If you keep on encountering this error, please contact us at 
+							<a href="mailto:info@startline.vip ">info@startline.vip</a>
+						</p>
+						<p>Please provide any error code or message and let us know what happened</p>
+						<p>We appologize for all the inconvenience caused</p>
+				</div>
+			</div>
+			<a href="/home">
+				<button style="position: relative; margin-top: -10vh;" class="back_btn">Home</button>
+			</a>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script src="smoothScroll.js"></script>
+	<script src="lightbox-plus-jquery.js"></script>
+	<script src="features.js"></script>
+</html>

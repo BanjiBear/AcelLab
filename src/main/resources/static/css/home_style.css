@@ -1047,6 +1047,7 @@ body {
   line-height: 30px;
   text-align: left;
   color: #000000;
+  max-width: 8vw;
   white-space: nowrap; overflow: hidden;text-overflow: ellipsis;
 }
 
@@ -1096,9 +1097,7 @@ body {
   width: fit-content;
   height: fit-content;
   padding: 6px 8px 6px 8px;
-  gap: 0px;
   border-radius: 30px;
-  opacity: 0px;
   background: #e7eeff;
   font-size: 11px;
   font-weight: 600;
@@ -1106,7 +1105,9 @@ body {
   text-align: left;
   color: #2962ff;
   margin-top: 8px;
-  white-space: nowrap; overflow: hidden;text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contact_spaceright {
@@ -1686,8 +1687,8 @@ tr {
   text-align: left;
   color: #171b23;
   width: max-content;
-  min-width: 10vw;
-  max-width: 10vw;
+  min-width: 13vw;
+  max-width: 13vw;
   padding-left: 20px;
 }
 
@@ -1739,8 +1740,7 @@ tr {
 }
 
 .logo_startup {
-  width: 172px;
-  height: 172px;
+  width: 10vw;
   gap: 0px;
   border-radius: 20px;
   opacity: 0px;
@@ -2009,6 +2009,7 @@ th.CompanyContent_Finance_Round_number {
   opacity: 1;
   line-height: auto;
   padding: none;
+  cursor: pointer;
 }
 
 .icon_menu {

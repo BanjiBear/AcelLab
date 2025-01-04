@@ -1,3 +1,7 @@
+function promptSave(org){
+	alert(`Please Update and Save your ${org} profile first!`)
+}
+
 function updateOrganizationFormSubmit(elementId){
 	document.getElementById(elementId).addEventListener('submit', function(event) {
 		//Prevent default form submission
@@ -110,6 +114,19 @@ function updateOrganizationFormSubmit(elementId){
 		this.appendChild(hiddenInput);
 		this.submit();
 	});
+}
+
+function verify(event, elementId, actionPath) {
+	event.preventDefault();
+	var form = document.getElementById(elementId);
+	if (form.checkValidity()){
+		form.action = actionPath;
+		form.method = 'post';
+		form.submit();
+	}
+	else{
+		form.reportValidity();
+	}
 }
 
 function addInputValidation(elementId, regex) {

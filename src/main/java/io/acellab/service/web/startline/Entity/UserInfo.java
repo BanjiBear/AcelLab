@@ -57,9 +57,8 @@ public class UserInfo{
 	@JoinColumn(name = "corporate_id")
 	private CorporateInfo corporate;
 
-	@ManyToOne
-	@JoinColumn(name = "business_plan_id", nullable = false)
-	private BusinessPlanInfo businessPlan;
+	@Column(name = "business_plan_id", nullable = false)
+	private Integer businessPlan;
 	
 	public Long getUserId() {return this.userId;}
 		
@@ -99,7 +98,7 @@ public class UserInfo{
 	public CorporateInfo getCorporate() {return corporate;}
 	public void setCorporate(CorporateInfo corporate) {this.corporate = corporate;}
 	
-	public void setBusinessPlan(BusinessPlanInfo businessPlan) {this.businessPlan = businessPlan;}
-	public BusinessPlanInfo getBusinessPlan() {return businessPlan;}
+	public void setBusinessPlan(Integer businessPlan) {this.businessPlan = businessPlan;}
+	public Integer getBusinessPlan() {return businessPlan;}
 
 }

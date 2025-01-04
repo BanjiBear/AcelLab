@@ -32,13 +32,13 @@ public class CustomUserDetails implements UserDetails {
 		
 		// Not Startup Account
 		else {
-			if(this.user.getBusinessPlan().getPlanId() == UserPlan.FREE_PLAN.getPlanValue()) {
+			if(this.user.getBusinessPlan() == UserPlan.FREE_PLAN.getPlanValue()) {
 				return Collections.singleton(new SimpleGrantedAuthority(UserPlan.FREE_PLAN.getPlanName()));
 			}
-			else if(this.user.getBusinessPlan().getPlanId() == UserPlan.BUSINESS_PLAN.getPlanValue()) {
+			else if(this.user.getBusinessPlan() == UserPlan.BUSINESS_PLAN.getPlanValue()) {
 				return Collections.singleton(new SimpleGrantedAuthority(UserPlan.BUSINESS_PLAN.getPlanName()));
 			}
-			else if(this.user.getBusinessPlan().getPlanId() == UserPlan.ENTERPRISE_PLAN.getPlanValue()) {
+			else if(this.user.getBusinessPlan() == UserPlan.ENTERPRISE_PLAN.getPlanValue()) {
 				return Collections.singleton(new SimpleGrantedAuthority(UserPlan.ENTERPRISE_PLAN.getPlanName()));
 			}
 		}

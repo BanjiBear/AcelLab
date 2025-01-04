@@ -22,6 +22,13 @@ public class Util {
 		return responseFactory;
 	}
 	
+	public static ResponseFactory<Object> responseFormation(Status status, Object[] companyObjects) {
+		ResponseFactory<Object> responseFactory = new ResponseFactory<>();
+		responseFactory.setStatus(status);
+		responseFactory.setReturnDataObjects(companyObjects);
+		return responseFactory;
+	}
+	
 	
 	// Login/Register Checking
 	public static Boolean isValidUsername(String username) {
