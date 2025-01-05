@@ -52,10 +52,10 @@ public class CustomUserDetails implements UserDetails {
 	public String getUsername() { return this.user.getUsername(); }
 
 	@Override
-	public boolean isAccountNonExpired() { return true; }
+	public boolean isAccountNonExpired() { return !this.user.getIsExpired(); }
 
 	@Override
-	public boolean isAccountNonLocked() { return true; }
+	public boolean isAccountNonLocked() { return this.user.getIsActive(); }
 
 	@Override
 	public boolean isCredentialsNonExpired() { return true; }

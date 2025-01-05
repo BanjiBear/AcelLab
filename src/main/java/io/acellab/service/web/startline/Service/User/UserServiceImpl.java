@@ -60,14 +60,14 @@ public class UserServiceImpl implements UserService {
 		try {
 			userInfo.setPassword(new BCryptPasswordEncoder().encode(password));
 			
-			//userRepository.createNewUserFromRegister(username, password, firstname, lastname, email, isStartup, plan, is_admin, is_system_generated, is_expired);
+			//userRepository.createNewUserFromRegister(username, password, firstname, lastname, email, isStartup, plan, is_admin, is_active, is_system_generated, is_expired);
 			userRepository.createNewUserFromRegister(userInfo.getUsername(), 
 													userInfo.getPassword(), 
 													userInfo.getFirstname(), 
 													userInfo.getLastname(), 
 													userInfo.getEmail(),
 													true, 1,
-													true, false, false);
+													true, true, false, false);
 		} catch(Exception e) {
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);
 		}

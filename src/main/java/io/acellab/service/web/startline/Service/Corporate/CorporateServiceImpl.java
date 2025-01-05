@@ -2,6 +2,7 @@ package io.acellab.service.web.startline.Service.Corporate;
 
 
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -480,20 +482,85 @@ public class CorporateServiceImpl implements CorporateService {
 			String user_email = user.getEmail();
 			String one_time_pwd = null;
 			
-			if(payload) {
+			if(type == "INVITATION") {
 				one_time_pwd = OneTimePasswordGenerator.generateRandomString();
 				if(!Util.isValidPassword(one_time_pwd)) return Util.responseFormation(Status.UNEXPECTED_ERROR);
+				
+				// Generate new UserInfo
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+				String formattedTimestamp = sdf.format(timestamp);
+				
+				String username = "user_" + formattedTimestamp;
+				String firstname = "User";
+				String lastname = "lastname";
+				userRepository.createSystemGeneratedUserFromInvitation(
+						username, new BCryptPasswordEncoder().encode(one_time_pwd), firstname, lastname, email, false, 3, false, true, true, false);
+				userRepository.createCollaboratorsFromInvitation(user.getUserId(), username);
 			}
 			
 			corporateRepository.addScheduledEmailByUserId(user_id, user_firstname, user_email, email, one_time_pwd, type, false, false);
-			
-			// Generate new UserInfo
 		} catch(Exception e) {
 			e.printStackTrace();
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);
 		}
 		
 		return Util.responseFormation(Status.NEW_DATA_CREATED);
+	}
+
+
+	@Override
+	public ResponseFactory<UserInfo> getCollaborators(UserInfo user) {
+		ArrayList<Long> collabIDs = new ArrayList<Long>();
+		ArrayList<UserInfo> collaborators = new ArrayList<UserInfo>();
+		
+		try {
+			collabIDs = userRepository.getAllCollaboratorsIDsByUserID(user.getUserId());
+			Iterable<UserInfo> userInfoList = userRepository.findAllById(collabIDs);
+			for(UserInfo collab : userInfoList) {
+				collaborators.add(collab);
+			}
+		} catch(Exception e) {
+			return Util.responseFormation(Status.UNEXPECTED_ERROR);
+		}
+		
+		return Util.responseFormation(Status.RESULT_FOUND, collaborators);
+	}
+
+
+	@Override
+	public <T> ResponseFactory<T> updateCollaboratorsInfo(UserInfo user, Map<String, String> map) {
+		ArrayList<UserInfo> updatedUserList = new ArrayList<UserInfo>();
+		
+		if(!user.getIsAdmin()) {
+			return Util.responseFormation(Status.UPDATE_COLLABORATORS_USER_NOT_ADMIN);
+		}
+		
+		try {
+			for (String key : map.keySet()) {
+				if (key.trim().contains("Name")) {
+					String idx = key.replace("Name ", "");
+					String username = map.get(key);
+					String role = map.get("Role " + idx);
+					String status = map.get("Status " + idx);
+					
+					Optional<UserInfo> userinfo = userRepository.findUserByUsername(username);
+					if(userinfo.isEmpty()) {
+						return Util.responseFormation(Status.UPDATE_COLLABORATORS_USER_NOT_FOUND);
+					}
+					UserInfo collab = userinfo.get();
+					collab.setIsAdmin("admin".equals(role));
+					collab.setIsActive("Active".equals(status));
+					
+					updatedUserList.add(collab);
+				}
+			}
+			userRepository.saveAll(updatedUserList);
+		} catch(Exception e) {
+			return Util.responseFormation(Status.UNEXPECTED_ERROR);
+		}
+		
+		return Util.responseFormation(Status.DATA_UPDATED);
 	}
 
 

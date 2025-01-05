@@ -90,79 +90,61 @@
 			<article class="profile">
 				<br /><br />
 				<p class="Search_title">Members</p>
-				<form>
+				<form id="savecollabinfo" th:action="@{/savecollabinfo}" method="post">
 					<article class="team">
-						<article class="flex_left_space">
-							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
-							<article>
-								<p class="member">Name</p>
-								<p class="member">Role</p>
+						
+						<article class="flex_left_space" th:each="collaborator : ${collaborators}">
+							<img th:if="${collaborator.getIsAdmin()}" th:src="@{../images/icon/admin.png}" class="logo_members" />
+							<img th:unless="${collaborator.getIsAdmin()}" th:src="@{../images/icon/member.png}" class="logo_members" />
+							
+							<article th:if="${user.getIsAdmin()}">
+								<div style="min-height: 50%;">
+									<p class="member" th:text="${collaborator.getUsername()}"></p>
+								</div>
+								<div style="min-height: 50%;">
+									<select name="role" class="filters_members" required>
+										<option value="admin" class="admin" th:selected="${collaborator.getIsAdmin()}">Admin</option>
+										<option value="member" class="admin" th:selected="${!collaborator.getIsAdmin()}">Member</option>
+									</select>
+								</div>
 							</article>
-							<article>
-								<p class="member">Permission</p>
-								<select id="status" name="status" class="filters_members" required>
-									<option value="selectStatus">Select permission</option>
-									<option value="admin" class="admin">Admin</option>
-									<option value="member" class="admin">Member</option>
-								</select>
+							<article th:if="${user.getIsAdmin()}">
+								<div style="min-height: 50%;">
+									<p style="padding-top: 15px; margin-bottom: 5px;"></p>
+								</div>
+								<div style="min-height: 50%;">
+									<select name="status" class="filters_members" required>
+										<option value="Active" class="active" th:selected="${collaborator.getIsActive()}">Active</option>
+										<option value="Inactive" class="inactive" th:selected="${!collaborator.getIsActive()}">Inactive</option>
+									</select>
+								</div>
 							</article>
-							<article>
-								<p class="member">Status</p>
-								<select id="status" name="status" class="filters_members" required>
-									<option value="selectStatus">Select status</option>
-									<option value="Active" class="active">Active</option>
-									<option value="Inactive" class="inactive">Inactive</option>
-								</select>
-							</article>
-						</article>
-						<article class="flex_left_space">
-							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
-							<article>
-								<p class="member">Name</p>
-								<p class="member">Role</p>
-							</article>
-							<article>
-								<p class="member">Permission</p>
-								<select id="status" name="status" class="filters_members" required>
-									<option value="selectStatus">Select permission</option>
-									<option value="admin" class="admin">Admin</option>
-									<option value="member" class="admin">Member</option>
-								</select>
-							</article>
-							<article>
-								<p class="member">Status</p>
-								<select id="status" name="status" class="filters_members" required>
-									<option value="selectStatus">Select status</option>
-									<option value="Active" class="active">Active</option>
-									<option value="Inactive" class="inactive">Inactive</option>
-								</select>
-							</article>
-						</article>
-						<article class="flex_left_space">
-							<img th:src="@{../images/icon/blur_rectangle.png}" class="logo_members" />
-							<article>
-								<p class="member">Name</p>
-								<p class="member">Role</p>
-							</article>
-							<article>
-								<p class="member">Permission</p>
-								<select id="status" name="status" class="filters_members" required>
-									<option value="selectStatus">Select permission</option>
-									<option value="admin" class="admin">Admin</option>
-									<option value="member" class="admin">Member</option>
-								</select>
-							</article>
-							<article>
-								<p class="member">Status</p>
-								<select id="status" name="status" class="filters_members" required>
-									<option value="selectStatus">Select status</option>
-									<option value="Active" class="active">Active</option>
-									<option value="Inactive" class="inactive">Inactive</option>
-								</select>
-							</article>
-						</article>
-					</article>
 
+							<article th:unless="${user.getIsAdmin()}">
+								<div style="min-height: 50%;">
+									<p class="member" th:text="${collaborator.getUsername()}"></p>
+								</div>
+								<div style="min-height: 50%;">
+									<select name="role" class="filters_members" disabled>
+										<option value="admin" class="admin" th:selected="${collaborator.getIsAdmin()}">Admin</option>
+										<option value="member" class="admin" th:selected="${!collaborator.getIsAdmin()}">Member</option>
+									</select>
+								</div>
+							</article>
+							<article th:unless="${user.getIsAdmin()}">
+								<div style="min-height: 50%;">
+									<p style="padding-top: 15px; margin-bottom: 5px;"></p>
+								</div>
+								<div style="min-height: 50%;">
+									<select name="status" class="filters_members" disabled>
+										<option value="Active" class="active" th:selected="${collaborator.getIsActive()}">Active</option>
+										<option value="Inactive" class="inactive" th:selected="${!collaborator.getIsActive()}">Inactive</option>
+									</select>
+								</div>
+							</article>
+						</article>
+
+					</article>
 					<button type="submit" class="button">Save</button>
 				</form>
 				<br />
@@ -174,4 +156,5 @@
 	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features1.js}"></script>
+	<script th:src="@{../js/collaboratos.js}"></script>
 </html>

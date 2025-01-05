@@ -105,11 +105,17 @@ public class UserInfo{
 	@Column(name = "is_admin")
 	private Boolean isAdmin;
 	
+	@Column(name = "is_active")
+	private Boolean isActive;
+	
 	@Column(name = "is_expired")
 	private Boolean isExpired;
 	
 	public void setIsAdmin(Boolean isAdmin) {this.isAdmin = isAdmin;}
 	public Boolean getIsAdmin() {return this.isAdmin;}
+	
+	public void setIsActive(Boolean isActive) {this.isActive = isActive;}
+	public Boolean getIsActive() {return this.isActive;}
 	
 	public void setIsExpired(Boolean isExpired) {this.isExpired = isExpired;}
 	public Boolean getIsExpired() {return this.isExpired;}

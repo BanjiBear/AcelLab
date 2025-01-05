@@ -45,7 +45,12 @@ public enum Status {
 	UPDATE_ORG_INVALID_MEMBER_POS_FORMAT(812, "Invalid team member position format, allows only letters(support multiple language), digits, and whitespaces!"),
 	UPDATE_ORG_INVALID_MEMBER_PHONE_FORMAT(813, "Invalid team member phone number format, allows only digits!"),
 	
-	SECURITY_INVALID_OPERATION_UPDATE_ORG_NOT_CURRENT_USER(814, "This seems to be a prohibited operation, please try again or contact us for support...");
+	SECURITY_INVALID_OPERATION_UPDATE_ORG_NOT_CURRENT_USER(814, "This seems to be a prohibited operation, please try again or contact us for support..."),
+	
+	
+	//Corporate Related Error
+	UPDATE_COLLABORATORS_USER_NOT_ADMIN(904, "This seems to be a prohibited operation, users are not allowed to update collaborators info unless user has admin role in the team!"),
+	UPDATE_COLLABORATORS_USER_NOT_FOUND(905, "This seems to be an unexpected error, failed to find target user!");
 
 	private int status_code;
 	private String status_message;

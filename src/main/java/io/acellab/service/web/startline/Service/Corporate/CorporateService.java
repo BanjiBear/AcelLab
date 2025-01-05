@@ -26,6 +26,10 @@ public interface CorporateService {
 	public <T> ResponseFactory<T> updateUserCorporate(@AuthenticationPrincipal UserDetails userDetails, UserInfo user, Map<String, String> corporateInfoMap);
 
 	public <T> ResponseFactory<T> addScheduledEmail(UserInfo user, String email, String type, Boolean payload);
+
+	public ResponseFactory<UserInfo> getCollaborators(UserInfo user);
+
+	public <T> ResponseFactory<T> updateCollaboratorsInfo(UserInfo user, Map<String, String> map);
 	
 	//public <T> ResponseFactory<T> fineTuneRecommendation();
 	

@@ -277,13 +277,22 @@ public class StartlineController {
 	}
 	
 	@GetMapping("/settings/team")
-	public String settingsTeamPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String settingsTeamPage(@AuthenticationPrincipal UserDetails userDetails, Model model, RedirectAttributes redirectAttributes) {
 		//Settings_team --> team
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) return "redirect:/corporate/login";
 		UserInfo user = customUserDetails.getUser();
 		if(!user.getAccountType() && user.getBusinessPlan() != 3) return "redirect:/settings/plan";
+		
+		ResponseFactory<UserInfo> response = corporateService.getCollaborators(user);
+		if(response.getStatusCode() != 200) {
+			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+			return "redirect:/error";
+		}
+		
 		model.addAttribute("user", user);
+		model.addAttribute("collaborators", response.getReturnDataList());
 		return "team";
 	}
 	
@@ -604,6 +613,37 @@ public class StartlineController {
 			return "redirect:/error";
 		}
 		return "redirect:/profile/corporate";
+	}
+	
+	
+	@PostMapping("/savecollabinfo")
+	public String updateCollaboratorsInfo(
+			@AuthenticationPrincipal UserDetails userDetails, 
+			@RequestParam("dataMap") String collabInfoString,
+			Model model, 
+			RedirectAttributes redirectAttributes) {
+		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+		if(customUserDetails == null) {
+			return "redirect:/corporate/login";
+		}
+		UserInfo user = customUserDetails.getUser();
+		if(user.getAccountType()) return "redirect:/error";
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			Map<String, String> collaboratorsInfoMap = mapper.readValue(collabInfoString, new TypeReference<Map<String, String>>() {});
+			ResponseFactory<?> response = corporateService.updateCollaboratorsInfo(user, collaboratorsInfoMap);
+			if(response.getStatusCode() != 202) {
+				redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+				return "redirect:/error";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/error";
+		}
+		
+		return "redirect:/settings/team";
 	}
 	
 	

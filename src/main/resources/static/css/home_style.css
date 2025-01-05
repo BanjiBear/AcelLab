@@ -857,9 +857,6 @@ body {
   padding: 5px 10px 5px 5px;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: 500;
-  line-height: 20.83px;
-  text-align: left;
   color: #64758f;
   margin-top: 10px;
 }
@@ -1291,6 +1288,9 @@ body {
   display: flex;
   justify-content: left;
   gap: 5%;
+  /*border: 1px, black solid;*/
+  min-width: 45vw;
+  max-width: 45vw;
 }
 
 .flex_left_product {
@@ -1747,8 +1747,8 @@ tr {
 }
 
 .logo_members {
-  width: 100px;
-  height: 100px;
+  width: 10vw;
+  border-radius: 10px;
   margin-right: 0px;
   margin-bottom: 20px;
 }
