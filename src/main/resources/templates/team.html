@@ -70,8 +70,8 @@
 				</article>
 				<article class="CustomerType1" th:class="${user.getBusinessPlan() != 3} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
 					<a href="">
-						<p class="CustomerType_title">Team Settings</p>
-						<p class="CustomerType_description">Manage your team members and information</p>
+						<p class="CustomerType_title">Collaborator Settings</p>
+						<p class="CustomerType_description">Manage your account collaborators</p>
 					</a>
 				</article>
 				<article class="CustomerType2" th:class="${user.getAccountType()} ? 'CustomerType2 noAccessRight' : 'CustomerType2'">
@@ -145,7 +145,7 @@
 						</article>
 
 					</article>
-					<button type="submit" class="button">Save</button>
+					<button th:if="${user.getIsAdmin()}" type="submit" class="button">Save</button>
 				</form>
 				<br />
 				<br />
