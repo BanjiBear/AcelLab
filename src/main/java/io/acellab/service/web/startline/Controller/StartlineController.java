@@ -85,12 +85,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<?> companies = companyService.getCompaniesList();
@@ -120,12 +117,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<?> response = companyService.getCompaniesList();
@@ -169,12 +163,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<?> response = companyService.searchCompanies(search, location, industry, fundinground, bookmark);
@@ -210,12 +201,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<?> response = startupService.getUserStartup(user);
@@ -269,12 +257,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<?> response = corporateService.getUserCorporate(user);
@@ -328,12 +313,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		model.addAttribute("user", user);
@@ -352,12 +334,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<UserInfo> response = corporateService.getCollaborators(user);
@@ -383,12 +362,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		ResponseFactory<CompanyInfo> response = companyService.getBookmarks(user);
@@ -415,12 +391,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		model.addAttribute("user", user);
@@ -443,12 +416,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		if(companyIDCache == null || companyid != companyIDCache) {
@@ -481,12 +451,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		if(companyIDCache == null || companyid != companyIDCache) {
@@ -520,12 +487,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		if(companyIDCache == null || companyid != companyIDCache) {
@@ -559,12 +523,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		if(companyIDCache == null || companyid != companyIDCache) {
@@ -596,12 +557,9 @@ public class StartlineController {
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
-			if(collaborators.getStatusCode() != 200) {
-				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
-				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
-				return "redirect:/error";
+			if(collaborators.getStatusCode() == 200) {
+				enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 			}
-			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
 		}
 		
 		if(companyIDCache == null || companyid != companyIDCache) {
