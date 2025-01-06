@@ -64,12 +64,12 @@ public class StartlineController {
 	@Autowired
 	private ArrayList<String> fundingsRoundList;
 	
-	@Autowired
-	private CollaboratorsRepository collaboratorsRepository;
-	
 	
 	private Object[] CompanyObjectCache = null;
+	
 	private Long companyIDCache = null;
+	
+	private Integer enterprisePlanAvailableSeats = null;
 	
 	@GetMapping("/home")
 	public String homePage(
@@ -82,14 +82,27 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
-		ResponseFactory<?> response = companyService.getCompaniesList();
-		if(response.getStatusCode() != 200 && response.getStatusCode() != 404) {
-			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
-			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
+		ResponseFactory<?> companies = companyService.getCompaniesList();
+		if(companies.getStatusCode() != 200 && companies.getStatusCode() != 404) {
+			redirectAttributes.addFlashAttribute("errorCode", companies.getStatusCode());
+			redirectAttributes.addFlashAttribute("errorMsg", companies.getStatusMessage());
 			return "redirect:/error";
 		}
+		
 		model.addAttribute("user", user);
-		model.addAttribute("response", response);
+		model.addAttribute("companies", companies.getReturnDataList());
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "home";
 	}
 	
@@ -104,6 +117,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		ResponseFactory<?> response = companyService.getCompaniesList();
 		if(response.getStatusCode() != 200 && response.getStatusCode() != 404) {
 			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
@@ -122,6 +146,7 @@ public class StartlineController {
 		model.addAttribute("response", response);
 		model.addAttribute("fundingrounds", fundingsRoundList);
 		model.addAttribute("bookmarks", bookmarks.getReturnDataList());
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "search";
 	}
 	
@@ -141,6 +166,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		ResponseFactory<?> response = companyService.searchCompanies(search, location, industry, fundinground, bookmark);
 		if(response.getStatusCode() != 200 && response.getStatusCode() != 404){
 			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
@@ -159,6 +195,7 @@ public class StartlineController {
 		model.addAttribute("response", response);
 		model.addAttribute("fundingrounds", fundingsRoundList);
 		model.addAttribute("bookmarks", bookmarks.getReturnDataList());
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "search";
 	}
 	
@@ -170,6 +207,16 @@ public class StartlineController {
 		UserInfo user = customUserDetails.getUser();
 		if(!user.getAccountType()) return "redirect:/profile/corporate";
 		model.addAttribute("user", user);
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
 		
 		ResponseFactory<?> response = startupService.getUserStartup(user);
 		if(response.getStatusCode() != 200) {
@@ -207,6 +254,7 @@ public class StartlineController {
 		model.addAttribute("industries", industriesList);
 		model.addAttribute("countrycodes", countryCodesList);
 		model.addAttribute("fundingrounds", fundingsRoundList);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "profile_startup";
 	}
 	
@@ -218,6 +266,16 @@ public class StartlineController {
 		UserInfo user = customUserDetails.getUser();
 		if(user.getAccountType()) return "redirect:/profile/startup";
 		model.addAttribute("user", user);
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
 		
 		ResponseFactory<?> response = corporateService.getUserCorporate(user);
 		if(response.getStatusCode() != 200) {
@@ -255,19 +313,32 @@ public class StartlineController {
 		model.addAttribute("industries", industriesList);
 		model.addAttribute("countrycodes", countryCodesList);
 		model.addAttribute("fundingrounds", fundingsRoundList);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "profile_corporate";
 	}
 	
 	@GetMapping("/settings/account")
-	public String settingsAccountPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String settingsAccountPage(@AuthenticationPrincipal UserDetails userDetails, Model model, RedirectAttributes redirectAttributes) {
 		//Settings_account_billing --> account
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		model.addAttribute("user", user);
 		model.addAttribute("newUser", user);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "account";
 	}
 	
@@ -279,6 +350,16 @@ public class StartlineController {
 		UserInfo user = customUserDetails.getUser();
 		if(user.getAccountType() && user.getBusinessPlan() != 3) return "redirect:/settings/plan";
 		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		ResponseFactory<UserInfo> response = corporateService.getCollaborators(user);
 		if(response.getStatusCode() != 200) {
 			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
@@ -288,6 +369,7 @@ public class StartlineController {
 		
 		model.addAttribute("user", user);
 		model.addAttribute("collaborators", response.getReturnDataList());
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "team";
 	}
 	
@@ -299,6 +381,16 @@ public class StartlineController {
 		UserInfo user = customUserDetails.getUser();
 		if(user.getAccountType()) return "redirect:/settings/plan";
 		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		ResponseFactory<CompanyInfo> response = companyService.getBookmarks(user);
 		if(response.getStatusCode() != 200){
 			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
@@ -308,18 +400,31 @@ public class StartlineController {
 		
 		model.addAttribute("user", user);
 		model.addAttribute("bookmarks", response.getReturnDataList());
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "bookmark";
 	}
 	
 	@GetMapping("/settings/plan")
-	public String settingsPlanPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String settingsPlanPage(@AuthenticationPrincipal UserDetails userDetails, Model model, RedirectAttributes redirectAttributes) {
 		//Settings_plan --> plan
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		model.addAttribute("user", user);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "plan";
 	}
 	
@@ -335,6 +440,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		if(companyIDCache == null || companyid != companyIDCache) {
 			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
 			if(response.getStatusCode() != 200) {
@@ -346,6 +462,7 @@ public class StartlineController {
 		}
 		model.addAttribute("user", user);
 		model.addAttribute("company", CompanyObjectCache[0]);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "company_info";
 	}
 	
@@ -361,6 +478,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		if(companyIDCache == null || companyid != companyIDCache) {
 			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
 			if(response.getStatusCode() != 200) {
@@ -373,6 +501,7 @@ public class StartlineController {
 		model.addAttribute("user", user);
 		model.addAttribute("company", CompanyObjectCache[0]);
 		model.addAttribute("products", CompanyObjectCache[1]);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "company_products";
 	}
 	
@@ -388,6 +517,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		if(companyIDCache == null || companyid != companyIDCache) {
 			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
 			if(response.getStatusCode() != 200) {
@@ -400,6 +540,7 @@ public class StartlineController {
 		model.addAttribute("user", user);
 		model.addAttribute("company", CompanyObjectCache[0]);
 		model.addAttribute("fundings", CompanyObjectCache[2]);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "company_finance";
 	}
 	
@@ -415,6 +556,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		if(companyIDCache == null || companyid != companyIDCache) {
 			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
 			if(response.getStatusCode() != 200) {
@@ -426,6 +578,7 @@ public class StartlineController {
 		}
 		model.addAttribute("user", user);
 		model.addAttribute("company", CompanyObjectCache[0]);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "company_contact";
 	}
 	
@@ -440,6 +593,17 @@ public class StartlineController {
 			return "redirect:/startup/login";
 		}
 		UserInfo user = customUserDetails.getUser();
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		
 		if(companyIDCache == null || companyid != companyIDCache) {
 			ResponseFactory<?> response = companyService.getCompanyDetails(companyid);
 			if(response.getStatusCode() != 200) {
@@ -451,6 +615,7 @@ public class StartlineController {
 		}
 		model.addAttribute("user", user);
 		model.addAttribute("company", CompanyObjectCache[0]);
+		model.addAttribute("seats", enterprisePlanAvailableSeats);
 		return "company_location";
 	}
 	
@@ -607,6 +772,18 @@ public class StartlineController {
 			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
 			return "redirect:/error";
 		}
+		
+		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
+			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
+			if(collaborators.getStatusCode() != 200) {
+				redirectAttributes.addFlashAttribute("errorCode", collaborators.getStatusCode());
+				redirectAttributes.addFlashAttribute("errorMsg", collaborators.getStatusMessage());
+				return "redirect:/error";
+			}
+			enterprisePlanAvailableSeats = collaborators.getReturnDataList().size();
+		}
+		enterprisePlanAvailableSeats = enterprisePlanAvailableSeats + 1;
+		
 		return "redirect:/profile/corporate";
 	}
 	

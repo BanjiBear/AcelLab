@@ -5,6 +5,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import io.acellab.service.web.startline.Util.UserPlan;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -100,6 +101,20 @@ public class UserInfo{
 	
 	public void setBusinessPlan(Integer businessPlan) {this.businessPlan = businessPlan;}
 	public Integer getBusinessPlan() {return businessPlan;}
+	
+	public String getBusinessPlanName() {
+		if(this.getAccountType()) {
+			return UserPlan.STARTUP.getPlanName();
+		} else {
+			if(this.getBusinessPlan() == 1) {
+				return UserPlan.FREE_PLAN.getPlanName();
+			} else if(this.getBusinessPlan() == 2) {
+				return UserPlan.BUSINESS_PLAN.getPlanName();
+			} else {
+				return UserPlan.ENTERPRISE_PLAN.getPlanName();
+			}
+		}
+	}
 	
 	
 	@Column(name = "is_admin")

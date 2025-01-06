@@ -46,11 +46,10 @@
 					<p class="menu_title_3"><img th:src="@{/images/icon/PlanName.png}" class="icon_menu" />Plan Name</p> -->
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
-						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
+						<span class="menu_title_5_1" th:text="${user.getBusinessPlanName()}"></span>
 						
-						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
-						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
+						<span class="menu_title_5_2" th:if="${user.getAccountType() || user.getBusinessPlan() != 3}">1/1 seats</span>
+						<span class="menu_title_5_2" th:unless="${user.getAccountType()}" th:text="${seats} + '/5 seats'"></span>
 					</p>
 					<p class="menu_title_2">
 						<a href="/support"><img th:src="@{/images/icon/Support.png}" class="icon_menu" />Support</a>
@@ -70,7 +69,7 @@
 					<article class="weeklyStats_left">
 						<p class="weeklyStats_title">THIS WEEK ON STARTLINE</p>
 						<!-- <p class="weeklyStats_subtitle">9,162 companies +162 (1.8%)</p> -->
-						<p class="weeklyStats_subtitle" th:text="${response.getReturnDataList().size()} + ' verified companies'"></p>
+						<p class="weeklyStats_subtitle" th:text="${companies.size()} + ' verified companies'"></p>
 						<a href="/search"><p class="weeklyStats_button">Start learning more</p></a>
 					</article>
 					<article class="weeklyStats_right">

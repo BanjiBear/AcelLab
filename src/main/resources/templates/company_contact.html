@@ -44,11 +44,10 @@
 				<article class="menu_bottom">
 					<p class="menu_title_4" th:text="${user.getUsername()}"></p>
 					<p class="menu_title_5">
-						<span class="menu_title_5_1" th:if="${user.getAccountType()}">Startup</span>
-						<span class="menu_title_5_1" th:unless="${user.getAccountType()}" th:text="${user.getBusinessPlan()}"></span>
+						<span class="menu_title_5_1" th:text="${user.getBusinessPlanName()}"></span>
 						
-						<span class="menu_title_5_2" th:if="${user.getAccountType()}">1/1 seats</span>
-						<span class="menu_title_5_2" th:unless="${user.getAccountType()}">1/5 seats</span>
+						<span class="menu_title_5_2" th:if="${user.getAccountType() || user.getBusinessPlan() != 3}">1/1 seats</span>
+						<span class="menu_title_5_2" th:unless="${user.getAccountType()}" th:text="${seats} + '/5 seats'"></span>
 					</p>
 					<p class="menu_title_2">
 						<a href="/support"><img th:src="@{../images/icon/Support.png}" class="icon_menu" />Support</a>

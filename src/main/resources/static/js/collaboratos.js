@@ -23,17 +23,16 @@ document.getElementById("savecollabinfo").addEventListener('submit', function(ev
 
 	if(!hasAdmin){
 		alert("You must at least have an admin among your account collaborators!")
-	}
-	if(!hasActive){
+	} else if(!hasActive){
 		alert("You must at least have one active account among your account collaborators!")
+	} else{
+		let dataObject = Object.fromEntries(dataMap);
+		let hiddenInput = document.createElement('input');
+		hiddenInput.type = 'hidden';
+		hiddenInput.name = 'dataMap';
+		hiddenInput.value = JSON.stringify(dataObject);
+
+		this.appendChild(hiddenInput);
+		this.submit();
 	}
-
-	let dataObject = Object.fromEntries(dataMap);
-	let hiddenInput = document.createElement('input');
-	hiddenInput.type = 'hidden';
-	hiddenInput.name = 'dataMap';
-	hiddenInput.value = JSON.stringify(dataObject);
-
-	this.appendChild(hiddenInput);
-	this.submit();
 });

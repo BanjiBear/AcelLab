@@ -2,9 +2,9 @@ package io.acellab.service.web.startline.Util;
 
 public enum UserPlan {
 	STARTUP(1, "STARTUP"),
-	FREE_PLAN(1, "FREE_PLAN"),
-	BUSINESS_PLAN(2, "BUSINESS_PLAN"),
-	ENTERPRISE_PLAN(3, "ENTERPRISE_PLAN"),
+	FREE_PLAN(1, "FREE"),
+	BUSINESS_PLAN(2, "BUSINESS"),
+	ENTERPRISE_PLAN(3, "ENTERPRISE"),
 	ERROR(-1, "ERROR");
 
 	private Integer db_value;
