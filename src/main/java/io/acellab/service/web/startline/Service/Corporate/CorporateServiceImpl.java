@@ -19,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
 import io.acellab.service.web.startline.Config.Security.CustomUserDetailsService;
+import io.acellab.service.web.startline.Entity.CollaboratorsInfo;
 import io.acellab.service.web.startline.Entity.CompanyInfo;
 import io.acellab.service.web.startline.Entity.CorporateFundingInfo;
 import io.acellab.service.web.startline.Entity.CorporateInfo;
 import io.acellab.service.web.startline.Entity.CorporateProductInfo;
 import io.acellab.service.web.startline.Entity.CorporateTeamInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
+import io.acellab.service.web.startline.Repository.CollaboratorsRepository;
 import io.acellab.service.web.startline.Repository.CompanyRepository;
 import io.acellab.service.web.startline.Repository.CorporateFundingRepository;
 import io.acellab.service.web.startline.Repository.CorporateProductRepository;
@@ -56,6 +58,9 @@ public class CorporateServiceImpl implements CorporateService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private CollaboratorsRepository collaboratorsRepository;
 
 
 	@Override
@@ -483,20 +488,50 @@ public class CorporateServiceImpl implements CorporateService {
 			String one_time_pwd = null;
 			
 			if(type == "INVITATION") {
+				Optional<CollaboratorsInfo> optional = collaboratorsRepository.getAllCollaboratorsIDsByUserID(user.getUserId());
+				if(optional.isEmpty()) {
+					return Util.responseFormation(Status.INVITE_COLLABORATORS_NO_COLLAB_GROUP_INFO_FOR_USER);
+				} else {
+					if(optional.get().getCollabId1() != null && optional.get().getCollabId2() != null && optional.get().getCollabId3() != null && optional.get().getCollabId4() != null && optional.get().getCollabId5() != null) {
+						return Util.responseFormation(Status.INVITE_COLLABORATORS_OUT_OF_SEATS);
+					}
+				}
+				
 				one_time_pwd = OneTimePasswordGenerator.generateRandomString();
 				if(!Util.isValidPassword(one_time_pwd)) return Util.responseFormation(Status.UNEXPECTED_ERROR);
 				
 				// Generate new UserInfo
+				UserInfo tmp = new UserInfo();
 				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 				String formattedTimestamp = sdf.format(timestamp);
 				
-				String username = "user_" + formattedTimestamp;
-				String firstname = "User";
-				String lastname = "lastname";
-				userRepository.createSystemGeneratedUserFromInvitation(
-						username, new BCryptPasswordEncoder().encode(one_time_pwd), firstname, lastname, email, false, 3, false, true, true, false);
-				userRepository.createCollaboratorsFromInvitation(user.getUserId(), username);
+				tmp.setUsername("user_" + formattedTimestamp);
+				tmp.setPassword(new BCryptPasswordEncoder().encode(one_time_pwd));
+				tmp.setFirstname("User");
+				tmp.setLastname("lastname");
+				tmp.setEmail(email);
+				tmp.setAccountType(false);
+				tmp.setBusinessPlan(3);
+				tmp.setIsAdmin(false);
+				tmp.setIsActive(true);
+				tmp.setIsSystemGenerated(true);
+				tmp.setIsExpired(false);
+				UserInfo newuser = userRepository.save(tmp);
+				CollaboratorsInfo collaborators = optional.get();
+				if(collaborators.getCollabId1() == null) {
+					collaborators.setCollabId1(newuser);
+				} else if(collaborators.getCollabId2() == null) {
+					collaborators.setCollabId2(newuser);
+				} else if(collaborators.getCollabId3() == null) {
+					collaborators.setCollabId3(newuser);
+				} else if(collaborators.getCollabId4() == null) {
+					collaborators.setCollabId4(newuser);
+				} else if(collaborators.getCollabId5() == null) {
+					collaborators.setCollabId5(newuser);
+				}
+				CollaboratorsInfo newcollaborators = collaboratorsRepository.save(collaborators);
+				collaboratorsRepository.addCollaboratorsMappingInCollabGroupInfo(newuser.getUserId(), newcollaborators.getId());
 			}
 			
 			corporateRepository.addScheduledEmailByUserId(user_id, user_firstname, user_email, email, one_time_pwd, type, false, false);
@@ -511,14 +546,28 @@ public class CorporateServiceImpl implements CorporateService {
 
 	@Override
 	public ResponseFactory<UserInfo> getCollaborators(UserInfo user) {
-		ArrayList<Long> collabIDs = new ArrayList<Long>();
 		ArrayList<UserInfo> collaborators = new ArrayList<UserInfo>();
 		
 		try {
-			collabIDs = userRepository.getAllCollaboratorsIDsByUserID(user.getUserId());
-			Iterable<UserInfo> userInfoList = userRepository.findAllById(collabIDs);
-			for(UserInfo collab : userInfoList) {
-				collaborators.add(collab);
+			Optional<CollaboratorsInfo> optional = collaboratorsRepository.getAllCollaboratorsIDsByUserID(user.getUserId());
+			if(optional.isEmpty()) {
+				return Util.responseFormation(Status.INVITE_COLLABORATORS_NO_COLLAB_GROUP_INFO_FOR_USER);
+			}
+			CollaboratorsInfo collabs = optional.get();
+			if(collabs.getCollabId1() != null) {
+				collaborators.add(collabs.getCollabId1());
+			}
+			if(collabs.getCollabId2() != null) {
+				collaborators.add(collabs.getCollabId2());
+			}
+			if(collabs.getCollabId3() != null) {
+				collaborators.add(collabs.getCollabId3());
+			}
+			if(collabs.getCollabId4() != null) {
+				collaborators.add(collabs.getCollabId4());
+			}
+			if(collabs.getCollabId5() != null) {
+				collaborators.add(collabs.getCollabId5());
 			}
 		} catch(Exception e) {
 			return Util.responseFormation(Status.UNEXPECTED_ERROR);

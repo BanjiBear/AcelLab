@@ -76,24 +76,10 @@ public interface UserRepository extends CrudRepository<UserInfo, Long> {
 	void createSystemGeneratedUserFromInvitation(@Param("username") String username, @Param("password") String password, @Param("fname") String fname, @Param("lname") String lname, @Param("email") String email, @Param("isStartup") Boolean isStartup, @Param("plan") Integer plan, 
 			@Param("is_admin") Boolean is_admin, @Param("is_active") Boolean is_active, @Param("is_system_gen") Boolean is_system_gen, @Param("is_expired") Boolean is_expired);
 	
-	
 	@Modifying
 	@Transactional
-	@Query(value = "INSERT INTO collaborators (inviter_id, collab_id) "
-			+ "VALUES (:user_id, (SELECT id FROM user WHERE username = :newusername));", nativeQuery = true)
-	void createCollaboratorsFromInvitation(@Param("user_id") Long user_id, @Param("newusername") String newusername);
-	
-	@Query(value = "SELECT inviter_id FROM collaborators WHERE inviter_id = :userid "
-			+ "UNION "
-			+ "SELECT collab_id FROM collaborators WHERE inviter_id = :userid "
-			+ ""
-			+ "UNION "
-			+ ""
-			+ "SELECT inviter_id AS id FROM collaborators WHERE collab_id = :userid "
-			+ "UNION "
-			+ "SELECT collab_id AS id FROM collaborators WHERE inviter_id IN "
-			+ "(SELECT inviter_id FROM collaborators WHERE collab_id = :userid);", nativeQuery = true)
-	ArrayList<Long> getAllCollaboratorsIDsByUserID(@Param("userid") Long userid);
+	@Query(value = "UPDATE user SET is_system_generated = 0 WHERE id = :id;", nativeQuery = true)
+	void updateSystemUserStatusAfterLoginByID(@Param("id") Long id);
 	
 	
 	@Modifying

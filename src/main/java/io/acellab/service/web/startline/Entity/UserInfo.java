@@ -108,6 +108,10 @@ public class UserInfo{
 	@Column(name = "is_active")
 	private Boolean isActive;
 	
+	
+	@Column(name = "is_system_generated")
+	private Boolean isSystemGenerated;
+	
 	@Column(name = "is_expired")
 	private Boolean isExpired;
 	
@@ -116,6 +120,9 @@ public class UserInfo{
 	
 	public void setIsActive(Boolean isActive) {this.isActive = isActive;}
 	public Boolean getIsActive() {return this.isActive;}
+	
+	public void setIsSystemGenerated(Boolean isSystemGenerated) {this.isSystemGenerated = isSystemGenerated;}
+	public Boolean getIsSystemGenerated() {return this.isSystemGenerated;}
 	
 	public void setIsExpired(Boolean isExpired) {this.isExpired = isExpired;}
 	public Boolean getIsExpired() {return this.isExpired;}

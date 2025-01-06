@@ -49,8 +49,10 @@ public enum Status {
 	
 	
 	//Corporate Related Error
-	UPDATE_COLLABORATORS_USER_NOT_ADMIN(904, "This seems to be a prohibited operation, users are not allowed to update collaborators info unless user has admin role in the team!"),
-	UPDATE_COLLABORATORS_USER_NOT_FOUND(905, "This seems to be an unexpected error, failed to find target user!");
+	INVITE_COLLABORATORS_NO_COLLAB_GROUP_INFO_FOR_USER(904, "Failed to fetch your collaborators information, you won't be able to invite users/update your account collaborators at the moment, please contact us for support!"),
+	INVITE_COLLABORATORS_OUT_OF_SEATS(905, "You ran out of seats for collaborators! Please contact us if this is an error or if you need any further customized support."),
+	UPDATE_COLLABORATORS_USER_NOT_ADMIN(906, "This seems to be a prohibited operation, users are not allowed to update collaborators info unless user has admin role in the team!"),
+	UPDATE_COLLABORATORS_USER_NOT_FOUND(907, "This seems to be an unexpected error, failed to find target user!");
 
 	private int status_code;
 	private String status_message;

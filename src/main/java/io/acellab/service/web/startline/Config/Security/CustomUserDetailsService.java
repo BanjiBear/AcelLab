@@ -27,6 +27,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		if (user.isEmpty()) {
 			throw new UsernameNotFoundException("User not found");
+		} else {
+			userRepository.updateSystemUserStatusAfterLoginByID(user.get().getUserId());
 		}
 
 		return new CustomUserDetails(user.get());

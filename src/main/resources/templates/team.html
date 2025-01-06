@@ -97,7 +97,7 @@
 							<img th:if="${collaborator.getIsAdmin()}" th:src="@{../images/icon/admin.png}" class="logo_members" />
 							<img th:unless="${collaborator.getIsAdmin()}" th:src="@{../images/icon/member.png}" class="logo_members" />
 							
-							<article th:if="${user.getIsAdmin()}">
+							<article th:if="${user.getIsAdmin()}" style="white-space: nowrap; overflow: normal; min-width: 25%; max-width: 25%;">
 								<div style="min-height: 50%;">
 									<p class="member" th:text="${collaborator.getUsername()}"></p>
 								</div>
@@ -108,7 +108,7 @@
 									</select>
 								</div>
 							</article>
-							<article th:if="${user.getIsAdmin()}">
+							<article th:if="${user.getIsAdmin()}" style="white-space: nowrap; overflow: normal; min-width: 25%; max-width: 25%;">
 								<div style="min-height: 50%;">
 									<p style="padding-top: 15px; margin-bottom: 5px;"></p>
 								</div>
@@ -120,7 +120,7 @@
 								</div>
 							</article>
 
-							<article th:unless="${user.getIsAdmin()}">
+							<article th:unless="${user.getIsAdmin()}" style="white-space: nowrap; overflow: normal; min-width: 25%; max-width: 25%;">
 								<div style="min-height: 50%;">
 									<p class="member" th:text="${collaborator.getUsername()}"></p>
 								</div>
@@ -131,7 +131,7 @@
 									</select>
 								</div>
 							</article>
-							<article th:unless="${user.getIsAdmin()}">
+							<article th:unless="${user.getIsAdmin()}" style="white-space: nowrap; overflow: normal; min-width: 25%; max-width: 25%;">
 								<div style="min-height: 50%;">
 									<p style="padding-top: 15px; margin-bottom: 5px;"></p>
 								</div>

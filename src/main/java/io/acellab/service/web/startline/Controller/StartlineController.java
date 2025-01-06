@@ -26,17 +26,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
-import io.acellab.service.web.startline.Entity.BusinessPlanInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
+import io.acellab.service.web.startline.Repository.CollaboratorsRepository;
 import io.acellab.service.web.startline.Entity.CompanyInfo;
-import io.acellab.service.web.startline.Entity.CorporateFundingInfo;
-import io.acellab.service.web.startline.Entity.CorporateInfo;
-import io.acellab.service.web.startline.Entity.CorporateProductInfo;
-import io.acellab.service.web.startline.Entity.CorporateTeamInfo;
-import io.acellab.service.web.startline.Entity.StartupFundingInfo;
-import io.acellab.service.web.startline.Entity.StartupInfo;
-import io.acellab.service.web.startline.Entity.StartupProductInfo;
-import io.acellab.service.web.startline.Entity.StartupTeamInfo;
 import io.acellab.service.web.startline.Service.User.UserService;
 import io.acellab.service.web.startline.Service.Company.CompanyService;
 import io.acellab.service.web.startline.Service.Corporate.CorporateService;
@@ -71,6 +63,9 @@ public class StartlineController {
 	
 	@Autowired
 	private ArrayList<String> fundingsRoundList;
+	
+	@Autowired
+	private CollaboratorsRepository collaboratorsRepository;
 	
 	
 	private Object[] CompanyObjectCache = null;
