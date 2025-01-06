@@ -47,7 +47,7 @@
 						<span class="menu_title_5_1" th:text="${user.getBusinessPlanName()}"></span>
 						
 						<span class="menu_title_5_2" th:if="${user.getAccountType() || user.getBusinessPlan() != 3}">1/1 seats</span>
-						<span class="menu_title_5_2" th:unless="${user.getAccountType()}" th:text="${seats} + '/5 seats'"></span>
+						<span class="menu_title_5_2" th:if="${!user.getAccountType() && user.getBusinessPlan() == 3}" th:text="${seats} + '/5 seats'"></span>
 					</p>
 					<p class="menu_title_2">
 						<a href="/support"><img th:src="@{../images/icon/Support.png}" class="icon_menu" />Support</a>

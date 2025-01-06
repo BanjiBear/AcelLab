@@ -348,7 +348,7 @@ public class StartlineController {
 		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
 		if(customUserDetails == null) return "redirect:/corporate/login";
 		UserInfo user = customUserDetails.getUser();
-		if(user.getAccountType() && user.getBusinessPlan() != 3) return "redirect:/settings/plan";
+		if(user.getAccountType() || user.getBusinessPlan() != 3) return "redirect:/settings/plan";
 		
 		if(enterprisePlanAvailableSeats == null && !user.getAccountType() && user.getBusinessPlan() == 3) {			
 			ResponseFactory<UserInfo> collaborators = corporateService.getCollaborators(user);
