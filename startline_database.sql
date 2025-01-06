@@ -1,10 +1,10 @@
 -- Drop tables if they exist
 DROP TABLE IF EXISTS bookmark;
 DROP TABLE IF EXISTS email;
+DROP TABLE IF EXISTS collabgroupinfo;
 DROP TABLE IF EXISTS collaborators;
 DROP EVENT IF EXISTS check_system_gen_user_expire;
 DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS collabgroup;
 
 DROP TABLE IF EXISTS companyproducts;
 DROP TABLE IF EXISTS companyfundings;
@@ -2027,15 +2027,28 @@ DO
 
 -- SHOW EVENTS\G
 
-
-
 CREATE TABLE collaborators (
-    inviter_id BIGINT,
-    collab_id BIGINT,
-    PRIMARY KEY (inviter_id, collab_id),
-    FOREIGN KEY (inviter_id) REFERENCES user(id),
-    FOREIGN KEY (collab_id) REFERENCES user(id)
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    collab_id_1 BIGINT,
+    collab_id_2 BIGINT,
+    collab_id_3 BIGINT,
+    collab_id_4 BIGINT,
+    collab_id_5 BIGINT,
+    FOREIGN KEY (collab_id_1) REFERENCES user(id),
+    FOREIGN KEY (collab_id_2) REFERENCES user(id),
+    FOREIGN KEY (collab_id_3) REFERENCES user(id),
+    FOREIGN KEY (collab_id_4) REFERENCES user(id),
+    FOREIGN KEY (collab_id_5) REFERENCES user(id)
 );
+
+CREATE TABLE collabgroupinfo (
+    user_id BIGINT,
+    collaborators_id BIGINT,
+    PRIMARY KEY (user_id, collaborators_id),
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (collaborators_id) REFERENCES collaborators(id)
+);
+
 
 -- Create bookmark table to store bookmarks of users with different companies
 CREATE TABLE bookmark (
