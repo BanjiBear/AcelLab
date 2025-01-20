@@ -1,12 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy WAR app to Azure Web App - startlint-webservice-server
+name: Build and deploy WAR app to Azure Web App - startline-webservice-server
 
 on:
   push:
     branches:
-      - azureCD
+      - Azure_CD
   workflow_dispatch:
 
 jobs:
@@ -37,18 +37,30 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: java-app
       
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_518CAE4FF1D54C6DB81F2F2CFEBE5C99 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2F84843296D54A4CAB036EA22D2AD20A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_59278B540FDE4A67B49A2FD5D423DB33 }}
+
+      # - name: Rename war to ROOT
+      #   run: mv startline-0.0.1-SNAPSHOT.war ROOT.war
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
-          app-name: 'startlint-webservice-server'
+          app-name: 'startline-webservice-server'
           slot-name: 'Production'
           package: '*.war'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_65208FBCC3EC446F93DA0AEE01BA4775 }}
+          
