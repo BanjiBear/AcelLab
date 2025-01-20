@@ -1,0 +1,545 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+			rel="stylesheet"/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"/>
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
+		<link rel="stylesheet" th:href="@{../css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a id="nav1" href="/aboutus">Why Startline</a>
+					<a id="nav2" href="/price">Price</a>
+					<article class="dropdown">
+						<span id="nav3">Resources</span>
+						<div class="dropdown-content">
+							<a id="nav4" href="/support">Support</a><br />
+							<a id="nav5" href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<article class="dropdown_language">
+						<img th:src="@{../images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
+						</div>
+					</article>
+					<a id="nav6" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav7" href="/register" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="support">
+			<article class="support_navbar">
+				<p id="support_welcome">Welcome to</p>
+				<p class="support_navbar_MainTitle"><a id="support_startline_support" href="/support">Startline Support</a></p>
+				<br />
+				<p class="support_navbar_title"><a id="support_getting_started" href="/support/general">GETTING STARTED</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_plan_and_pricing" href="/support/general?show=PlanAndPricing">Plan and pricing</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_creating_an_account" href="/support/general?show=CreatingAnAccount">Creating an account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_setting_up_an_account" href="/support/general?show=SettingUpAccount">Setting up an account</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_features" href="/support/features">FEATURES</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_personalization" href="/support/features?show=Personalization">Personalization</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_technologytagging" href="/support/features?show=TechnologyTagging">Technology Tagging</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_daily_recommendations" href="/support/features?show=DailyRecommendations">Daily Recommendation</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_search" href="/support/features?show=Search">Search</a>
+				</p>
+
+				<p class="support_navbar_subtitle">
+					<a id="support_multi_account" href="/support/features?show=MultiAccount">Multi-Account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_create_company_card" href="/support/features?show=CreateCompanyCard">Create Company Card</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_location_identifier" href="/support/features?show=LocationIdentifier">Location Identifier</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_settings" href="/support/settings">SETTINGS</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_account_settings" href="/support/settings?show=accountSetting">Account Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_team_settings" href="/support/settings?show=teamSetting">Collaborators Settings</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_bookmark_settings" href="/support/settings?show=bookmarkSetting">Bookmark Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_plan_settings" href="/support/settings?show=planSetting">Plan Settings</a></p>
+				<br />
+				<p id="support_frequently_asked_questions" class="support_navbar_title">Frequently Asked Questions</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_choose_a_funding_round_i_belong" href="/faq/fundinground">Choosing a funding round I belong</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_how_to_verify_my_account" href="/faq/verification">How to verify my account</a>
+				</p>
+			</article>
+			<article class="support_content">
+				<article id="PlanAndPricing">
+					<p id="support_plan_pricing_1" class="StartlineSupportHeader1">Plan and Pricing</p>
+					<p id="support_multiple_plans" class="StartlineSupportContent">
+						Startline provides multiple plans to suit you and your business’s need. All plans are charged monthly with no contracts, no
+						setup fees, and no hidden gimmicks.
+					</p>
+					<br />
+					<p class="StartlineSupportContent">
+						<span id="support_price_plan"
+							>It is very important to identify what type of user you are when you create an account. Startline offers two different tracks
+							(Innovator and Corporate) to provide different type of solutions.
+						</span>
+						<br />
+						<br />
+						<b id="support_price_plan_startup">Innovator:</b>
+						<br />
+						<span id="support_price_plan_startup_content"
+							>Innovator accounts focus on showcasing company/ product information to potential clients or business partners. By utilizing
+							the "My Innovator" section, Innovator users can fill in their company information to create Company Cards on the Search page
+							so other users can view their company profile.</span>
+						<br /><br />
+						<span id="support_price_plan_startup_content_1"
+							>For Innovator users to have a glimps of what its like to be a corporate user, we have unlocked features of the free plan of
+							Corporate users for Startups users to enjoy!</span>
+						<br />
+						<br />
+						<b id="support_price_plan_corporate">Corporate:</b>
+						<br />
+						<span id="support_price_plan_corporate_content">
+							Corporate users have all features of Innovator accounts along with features to view detailed information of other companies on
+							the search page. By utilizing this feature, Corporate users are able to look for companies in specific technology verticals
+							that could be useful for the growth of their company.</span>
+						<br />
+						<span id="support_price_plan_content_compare"
+							>Check out the table to compare features between Innovator and Corporate accounts:</span>
+					</p>
+					<br />
+					<table class="StartlineSupportContent">
+						<tr>
+							<th id="support_price_plan_table_1">Features</th>
+							<th id="support_price_plan_table_startup">Innovator</th>
+							<th id="support_price_plan_table_corporate">Corporate</th>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_2">Create Company Card</td>
+							<td>O</td>
+							<td>O</td>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_3">Search other companies</td>
+							<td id="support_price_plan_table_4">100 searches per month</td>
+							<td id="support_price_plan_table_5">100 - unlimited searches per month</td>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_6">Received daily recommendations</td>
+							<td>X</td>
+							<td>O</td>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_7">Bookmark companies</td>
+							<td>X</td>
+							<td>O</td>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_8">Free upgrade to future platform features</td>
+							<td>X</td>
+							<td>O</td>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_9">Multiple Account Management System</td>
+							<td>X</td>
+							<td>O</td>
+						</tr>
+						<tr>
+							<td id="support_price_plan_table_10">Consulting service</td>
+							<td>X</td>
+							<td>O</td>
+						</tr>
+					</table>
+
+					<br />
+					<br />
+					<div class="greenbkg">
+						<span id="support_upgrade_downgrade">
+							You are free to upgrade or downgrade to any plan anytime. Plan changes will be made effective after the next billing
+							date</span>
+						<br /><br />
+						<span id="support_offer_monthly">We offer a monthly subscription service with no long-term contracts.</span>
+						<br />
+						<span id="support_billing_policy"
+							>Users are billed monthly for the upcoming month's service. The subscription can be terminated at any time before the next
+							billing date without any penalties or refunds.</span>
+						<br /><br />
+						<b id="support_termination_policy">Here's how our termination policy works:</b><br /><br />
+						<ol>
+							<li>
+								<b id="support_payment_cycle">Payment Cycle:</b>
+								<span id="support_payment_cycle_content"
+									>When a user signs up for our service, they are billed for the upcoming month. The subscription plan runs from the day of
+									payment until the day before the next payment date.</span>
+							</li>
+							<br />
+							<li>
+								<b id="support_refunds">Refunds:</b>
+								<span id="support_refunds_content"
+									>Once a payment date has passed, refunds are not provided for that billing cycle. Users are responsible for the full
+									monthly fee if they cancel after the payment date has passed.</span>
+							</li>
+							<br />
+							<li>
+								<b id="support_termination">Termination:</b>
+								<span id="support_termination_content"
+									>Upon cancellation, the subscription will remain active until the end of the current billing cycle and automatic renewal
+									will stop. Users will not be billed for the subsequent month.</span>
+							</li>
+						</ol>
+					</div>
+					<br /><br />
+					<p id="support_free" class="StartlineSupportSubHeading">Personal (Free Forever)</p>
+					<br />
+					<ul class="StartlineSupportContent">
+						<li id="support_free_unlock_ai">Unlock Startline's AI-powered Matching Features</li>
+						<li id="support_free_search_100">Search 100 company profiles per month with basic content</li>
+						<li id="support_free_basic">Access to basic information</li>
+					</ul>
+					<p id="support_business" class="StartlineSupportSubHeading">Business ($49/month)</p>
+					<br />
+					<ul class="StartlineSupportContent">
+						<li id="support_business_unlock_ai">Unlock Startline's AI-powered Matching Features</li>
+						<li id="support_business_search_600">Search 600 company profiles per month with full content </li>
+						<li id="support_business_customized_manager">Receive customized content from our dedicated success manager</li>
+						<li id="support_business_free_upgrade">Free upgrade to future platform features</span>
+					</ul>
+					<p id="support_enterprise" class="StartlineSupportSubHeading">Enterprise ($199/month)</p>
+					<br />
+					<ul class="StartlineSupportContent">
+						<li id="support_enterprise_unlock_ai">Unlock Startline's AI-powered Matching Features</li>
+						<li id="support_enterprise_search_unlimited">Access to unlimited company profiles with full results</li>
+						<li id="support_enterprise_customized_manager">Receive customized content from our assigned success manager</li>
+						<li id="support_enterprise_consulting_service">Get professional consulting support from industry renowned subject matter expert</li>
+						<li id="support_enterprise_free_upgrade">Free upgrade to future platform features</li>
+						<li id="support_enterprise_collaborate_account">Collaborate with up to 5 team members</li>
+					</ul>
+					
+					<p class="StartlineSupportContent">
+						<span id="support_enterprise_collaborate_account_content"
+							>By being able to collaborate with up to 5 team members, you are able to share your account, enabling unified access to AI
+							capabilities, shared company bookmarks, and streamlined account management.</span>
+						<span id="support_enterprise_collaborate_account_admin">Admin controls ensure efficient collaboration. Elevate your team's productivity today!</span>
+					</p>
+					<br />
+					<br />
+					<p id="support_plan_considering" class="greybkg" style="text-align: center">
+						Still considering? Try out our Personal plan! No credit card needed, no commitment, free forever.
+					</p>
+					<br />
+					<article class="flex_spacebetween">
+						<button class="StartlineSupport_button">
+							<a href="/support">
+								<b id="support_previous">Previous</b>
+								<br />
+								<span id="support_previous_startline_support">Startline Support</span>
+							</a>
+						</button>
+						<button
+							onclick="GettingStartedContent('CreatingAnAccount'); window.scrollTo({ top: 0, behavior: 'smooth' });"
+							class="StartlineSupport_button">
+							<b id="support_next">Next </b>
+							<br />
+							<span id="support_next_creating_account">Creating an account</span>
+						</button>
+					</article>
+					<br /><br /><br />
+				</article>
+
+				<!-- ====================================================================== -->
+
+				<article id="CreatingAnAccount">
+					<p id="support_create_account_1" class="StartlineSupportHeader1">Create an account</p>
+					<p id="support_create_account_1_content" class="StartlineSupportContent">
+						You can create a free account anytime without choosing a paid plan. With this account, you can try out the different features
+						that Startline offers and if we meet your needs, try upgrading!
+					</p>
+					<br />
+					<br />
+					<p class="redbkg">
+						<span id="support_create_account_1_question"> Hold on! Do you already have a co-worker that has a Startline account? </span>
+						<br /><br />
+						<span id="support_create_account_1_answer">
+							"If yes, ask your admin to send you a team invitation so that you can join their team. Do not create a new account from the
+							registration page. One account can only belong to one team.",</span>
+					</p>
+					<br /><br />
+					<p class="StartlineSupportContent">
+						<span id="support_create_account_signup">To start, head to our Sign Up page. Create an account with your work email and a new password. </span>
+						<br /><br />
+						<img th:src="@{../images/snapshot/register.png}" class="SupportPage_img" />
+						<br />
+					</p>
+					<br />
+					<br />
+					<br />
+					<p class="StartlineSupportContent">
+						<span id="support_pw_policy">Your password must be at least 12 characters long and consist of a combination of uppercase letters, lowercase letters,
+							digits, and the specific special characters</span>
+						<br /><br />
+						<span id="support_pw_uppercase">- At least one uppercase letter</span> <br />
+						<span id="support_pw_lowercase">- At least one lowercase letter</span> <br />
+						<span id="support_pw_special_char">- At least one special character from the the set &#64; &#36; &#33; &#37; &#42; &#63; &#38; &#35; &lt; &gt;</span>
+						<br />
+						<span id="support_pw_one_digit">- At least one digit</span> <br /><br />
+					</p>
+					<br />
+					<p class="StartlineSupportContent">
+						<span id="support_select_plan">After creating an account, select the plan that you would like to use</span>
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/chooseplan.png}" class="SupportPage_img" />
+					<br /><br />
+					<br />
+					<p class="greenbkg">
+						<span id="support_create_complete">And that’s it! Simple and easy. You have successfully created a new account on Startline.</span>
+						<br /><br />
+						<span id="support_next_setup_profile">Next up, you should set up your company profile!</span>
+					</p>
+					<br />
+					<article class="flex_spacebetween">
+						<button
+							onclick="GettingStartedContent('PlanAndPricing'); window.scrollTo({ top: 0, behavior: 'smooth' });"
+							class="StartlineSupport_button"
+							;>
+							<span id="support_previous_1"> Previous</span>
+							<br />
+							<span id="support_previous_1_plan_price">Plan and Price</span>
+						</button>
+						<button
+							onclick="GettingStartedContent('SettingUpAccount'); window.scrollTo({ top: 0, behavior: 'smooth' });"
+							class="StartlineSupport_button"
+							;>
+							<span id="support_next_1"> Next</span>
+							<br />
+							<span id="support_next_1_setting_account">Setting up an account</span>
+						</button>
+					</article>
+					<br /><br /><br />
+				</article>
+
+				<!-- ====================================================================== -->
+
+				<article id="SettingUpAccount">
+					<p id="support_setting_up_account" class="StartlineSupportHeader1">Setting up an account</p>
+					<p class="StartlineSupportContent">
+						<span id="support_setting_up_account_content"
+							>Once you have signed up for Startline, you should have already chosen whether you are a innovator or corporate user. If you
+							have done that yet, check out and make sure you sign up!</span>
+						<a
+							id="support_setting_up_account_content_click"
+							href="#"
+							onclick="GettingStartedContent('PlanAndPricing'); window.scrollTo({ top: 0, behavior: 'smooth' });"
+							class="link-style">Here</a>
+					</p>
+					<br />
+					<p class="redbkg">
+						<span id="support_setting_up_account_verify">
+							Did you know that you need to verify your account before being able to create your company card?</span>
+						<br /><br />
+						<span id="support_setting_up_account_verify_how">
+							To find out how to verify your account, check out and prepare the necessary documents before you proceed! </span>
+							<a id="support_setting_up_account_verify_how_click" href="/faq/verification">Here</a>
+					</p>
+					<article class="flex_spacebetween">
+						<p class="StartlineSupport_button">
+							<button id="support_startup" onclick="accountContent('startupContent')">Innovator</button>
+						</p>
+						<p class="StartlineSupport_button">
+							<button id="support_corporate" onclick="accountContent('corporateContent')">Corporate</button>
+						</p>
+					</article>
+					<br />
+					<article id="startupContent">
+						<p class="StartlineSupportContent">
+							<span id="support_startup_content">Innovator users will be directed to the innovator profile page where we require you to fill out your information. </span>
+							<br /><br />
+							<span id="support_startup_profile">The information you provide will be used to create your own company card on our platform.</span>
+						</p>
+						<br />
+						<img th:src="@{../images/snapshot/startup.png}" class="SupportPage_img" />
+						<br />
+						<p class="StartlineSupportContent">
+							<b id="support_startup_ceo">CEO Contact</b>
+							<br />
+							<span id="support_startup_ceo_content">This section facilitates direct communication with your CEO, allowing key clients to engage with your company's
+								leadership for valuable business opportunities. </span>
+							<br /><br />
+							<b id="support_startup_basic">Basic Information:</b>
+							<br />
+							<span id="support_startup_basic_content">Comprising key details such as contact information, website URL, company size, founding year, industry sector,
+								headquarters location, and descriptive tags, this section offers a comprehensive overview of your organization. </span>
+							<br /><br />
+							<b id="support_startup_team">Team Information:</b>
+							<br />
+							<span id="support_startup_team_content">
+								Enable potential customers to connect effortlessly by showcasing your dedicated team members and their roles within your
+								company.</span>
+							<br /><br />
+							<b id="support_startup_product">Product List:</b>
+							<br />
+							<span id="support_startup_product_content">
+								Presenting detailed product information such as product photos, brochures, names, and descriptions, this section offers
+								easy access to the array of offerings provided to your customers.</span>
+							<br /><br />
+							<b id="support_startup_financials">Financials:</b>
+							<span id="support_startup_financials_content"
+								>By detailing your funding stage, this section provides clients with insights into your company's stability and growth
+								trajectory, fostering confidence in your business.</span>
+							<br /><br />
+							<span id="support_startup_financials_choose">
+								To know more about the different funding rounds that you can choose from, check out the information</span><a href="/faq/fundinground">here</a>!
+							<br /><br />
+							<span id="support_startup_content_save"
+								>After entering your information, click on "Save" to store the inputted data. Subsequently, proceed to "Verify Account" to
+								confirm your association with the stated company, ensuring authentication and establishing credibility. </span>
+							<br /><br />
+						</p>
+						<p id="support_startup_verify_complete" class="greenbkg">
+							Upon verification, you gain the ability to craft a distinctive company card on our search page. This card serves as a
+							gateway for potential customers to explore and familiarize themselves with your business, enhancing visibility and
+							facilitating informed decision-making.
+						</p>
+						<br />
+					</article>
+					<article id="corporateContent">
+						<p class="StartlineSupportContent">
+							<span id="support_corporate_content"
+								>Corporate users will be directed to the corporate profile page where we require you to fill out your information.</span>
+							<br /><br />
+							<span id="support_corporate_profile">
+								The information you provide will be used to create your own company card on our platform.</span>
+						</p>
+						<br />
+						<img th:src="@{../images/snapshot/corporate.png}" class="SupportPage_img" />
+						<br />
+						<p class="StartlineSupportContent">
+							<b id="support_corporate_ceo">CEO Contact</b><br />
+							<span id="support_corporate_ceo_content"
+								>This section facilitates direct communication with your CEO, allowing key clients to engage with your company's
+								leadership for valuable business opportunities. </span>
+							<br /><br />
+							<b id="support_corporate_basic">Basic Information:</b>
+							<br />
+							<span id="support_corporate_basic_content">Comprising key details such as contact information, website URL, company size, founding year, industry sector,
+								headquarters location, and descriptive tags, this section offers a comprehensive overview of your organization. </span>
+							<br /><br />
+							<b id="support_corporate_team">Team Information:</b>
+							<br />
+							<span id="support_corporate_team_content">
+								Enable potential customers to connect effortlessly by showcasing your dedicated team members and their roles within your
+								company.</span>
+							<br /><br />
+							<b id="support_corporate_product">Product List:</b>
+							<br />
+							<span id="support_corporate_product_content">
+								Presenting detailed product information such as product photos, brochures, names, and descriptions, this section offers
+								easy access to the array of offerings provided to your customers.</span>
+							<br /><br />
+							<b id="support_corporate_financials">Financials:</b>
+							<span id="support_corporate_financials_content"
+								>By detailing your funding stage, this section provides clients with insights into your company's stability and growth
+								trajectory, fostering confidence in your business.</span>
+							<br /><br />
+							<span id="support_corporate_save"
+								>Once you have filled in your information, click on save to save the information you have inputed and then verify account
+								to verify that you are really from the company that you state you are from.</span>
+						</p>
+						<p class="greybkg">
+							<span id="support_corporate_additional"
+								>Hold on! There are some additional things you can do to make the most out of your corporate account!</span>
+							<br /><br />
+							<span id="support_corporate_multiple_account"
+								>For enterprise users, we provide a joint account access that allows multiple accounts to share information within our
+								platform!</span>
+						</p>
+						<br /><br />
+						<p class="StartlineSupportContent">
+							<b id="support_corporate_team">Team Member Invitation:</b><br />
+							<span id="support_corporate_team_content"
+								>In this section, input your team member’s email and click send invitation to invite your co-worker onto the Startline
+								workspace under your team. </span>
+							<br /><br />
+							<b id="support_corporate_search">Search Customization:</b><br />
+							<span id="support_corporate_search_content"
+								>This contains some questions we have for you so that we can better manage what kind of companies we should recommend to
+								you!
+							</span>
+						</p>
+						<br />
+						<p id="support_corporate_complete" class="greenbkg">
+							And thats it! Once you have completed up till here, you are good to go to start searching!
+						</p>
+						<br />
+						<br />
+					</article>
+					<article class="flex_spacebetween">
+						<button
+							onclick="GettingStartedContent('CreatingAnAccount'); window.scrollTo({ top: 0, behavior: 'smooth' });"
+							class="StartlineSupport_button">
+							<span id="support_previous_2">Previous</span>
+							<br />
+							<span id="support_previous_2_create_account">Creating an account</span>
+						</button>
+						<button class="StartlineSupport_button" ;>
+							<a href="/support/features">
+								<span id="support_next_2"> Next </span>
+								<br />
+								<span id="support_next_2_features">Features</span>
+							</a>
+						</button>
+					</article>
+					<br /><br /><br />
+				</article>
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features.js}"></script>
+	<script type="module" th:src="@{../js/languagecache.js}"></script>
+	<script type="module" th:src="@{../js/language_change_support_getting_started.js}"></script>
+	<script th:src="@{../js/org_profile_content_support.js}"></script>
+	<script>
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const contentId = urlParams.get("show");
+
+	    if (contentId && document.getElementById(contentId)) {
+	      GettingStartedContent(contentId);
+	    }
+	  </script>
+</html>

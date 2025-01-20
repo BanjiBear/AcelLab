@@ -1,0 +1,392 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+			rel="stylesheet"/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"/>
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
+		<link rel="stylesheet" th:href="@{../css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a id="nav1" href="/aboutus">Why Startline</a>
+					<a id="nav2" href="/price">Price</a>
+					<article class="dropdown">
+						<span id="nav3">Resources</span>
+						<div class="dropdown-content">
+							<a id="nav4" href="/support">Support</a><br />
+							<a id="nav5" href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<article class="dropdown_language">
+						<img th:src="@{../images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
+						</div>
+					</article>
+					<a id="nav6" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav7" href="/register" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="support">
+			<article class="support_navbar">
+				<p id="support_welcome">Welcome to</p>
+				<p class="support_navbar_MainTitle"><a id="support_startline_support" href="/support">Startline Support</a></p>
+				<br />
+				<p class="support_navbar_title"><a id="support_getting_started" href="/support/general">GETTING STARTED</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_plan_and_pricing" href="/support/general?show=PlanAndPricing">Plan and pricing</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_creating_an_account" href="/support/general?show=CreatingAnAccount">Creating an account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_setting_up_an_account" href="/support/general?show=SettingUpAccount">Setting up an account</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_features" href="/support/features">FEATURES</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_personalization" href="/support/features?show=Personalization">Personalization</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_technologytagging" href="/support/features?show=TechnologyTagging">Technology Tagging</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_daily_recommendations" href="/support/features?show=DailyRecommendations">Daily Recommendation</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_search" href="/support/features?show=Search">Search</a>
+				</p>
+
+				<p class="support_navbar_subtitle">
+					<a id="support_multi_account" href="/support/features?show=MultiAccount">Multi-Account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_create_company_card" href="/support/features?show=CreateCompanyCard">Create Company Card</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_location_identifier" href="/support/features?show=LocationIdentifier">Location Identifier</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_settings" href="/support/settings">SETTINGS</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_account_settings" href="/support/settings?show=accountSetting">Account Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_team_settings" href="/support/settings?show=teamSetting">Collaborators Settings</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_bookmark_settings" href="/support/settings?show=bookmarkSetting">Bookmark Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_plan_settings" href="/support/settings?show=planSetting">Plan Settings</a></p>
+				<br />
+				<p id="support_frequently_asked_questions" class="support_navbar_title">Frequently Asked Questions</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_choose_a_funding_round_i_belong" href="/faq/fundinground">Choosing a funding round I belong</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_how_to_verify_my_account" href="/faq/verification">How to verify my account</a>
+				</p>
+			</article>
+			<article class="support_content">
+				<article id="choosingfundinground">
+					<p id="support_choose_funding_rnd" class="StartlineSupportHeader1">Choosing Funding Round</p>
+					<p class="StartlineSupportContent">
+						<span id="support_choose_funding_rnd_content_1">Confused on which funding round you should select?</span>
+						<br />
+						<span id="support_choose_funding_rnd_content_2">We have a page dedicated just for that!</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_accelerator">Accelerator Round:</b>
+						<br />
+						<span id="support_funding_accelerator_content">Funding provided by startup accelerators in exchange for equity, typically in the early stages of a startup's development.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_pre_seed">Pre-Seed Round:</b>
+						<br />
+						<span id="support_funding_pre_seed_content">Initial funding to help a startup develop its product before seeking further investment.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_seed">Seed Round:</b>
+						<br />
+						<span id="support_funding_seed_content">Early stage funding used to prove a concept, typically used for market research and product development.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_pre_a">Pre-A Round:</b>
+						<br />
+						<span id="support_funding_pre_a_content">Funding round that comes before a Series A round, often used to bridge the gap between seed funding and a larger Series A round.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_a">Series A:</b>
+						<br />
+						<span id="support_funding_series_a_content">First significant round of venture capital financing, used to scale a company that has already developed a product or service.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_a_plus">Series A+:</b>
+						<br />
+						<span id="support_funding_series_a_plus_content">Additional funding round that follows the Series A round to further support the growth of the company.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_pre_b">Pre-B Round:</b>
+						<br />
+						<span id="support_funding_pre_b_content">Financing round that precedes a Series B round and is aimed at providing additional capital for expansion.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_b">Series B:</b>
+						<br />
+						<span id="support_funding_series_b_content">Funding round that follows the Series A round and is used to grow the company, increase market share, or expand operations.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_b_plus">Series B+:</b>
+						<br />
+						<span id="support_funding_series_b_plus_content">Additional funding round that comes after the Series B round to fuel further growth and expansion.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_c">Series C:</b>
+						<br />
+						<span id="support_funding_series_c_content">Funding round that follows the Series B round and is used for scaling the company to reach profitability.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_c_plus">Series C+:</b>
+						<br />
+						<span id="support_funding_series_c_plus_content">Additional funding round that comes after the Series C round to support continued growth and expansion.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_d">Series D:</b>
+						<br />
+						<span id="support_funding_series_d_content">Funding round that follows the Series C round and is typically used for international expansion or acquisitions.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_d_plus">Series D+:</b>
+						<br />
+						<span id="support_funding_series_d_plus_content">Additional funding round that follows the Series D round to support further international growth or acquisitions.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_e">Series E:</b>
+						<br />
+						<span id="support_funding_series_e_content">Funding round that follows the Series D round and is used for scaling the company globally or preparing for an IPO.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_f">Series F:</b>
+						<br />
+						<span id="support_funding_series_f_content">Funding round that follows the Series E round and is used for continued growth and expansion of the company.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_g">Series G:</b>
+						<br />
+						<span id="support_funding_series_g_content">Funding round that follows the Series F round and is typically used for further scaling and expansion efforts.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_h">Series H:</b>
+						<br />
+						<span id="support_funding_series_h_content">Funding round that follows the Series G round and is often the final round of funding before an IPO or exit event.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_late_stage">Late Stage Round:</b>
+						<br />
+						<span id="support_funding_late_stage_content">Funding provided to mature companies that are close to an IPO or exit event.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_mezzanine_financing">Mezzanine Financing:</b>
+						<br />
+						<span id="support_funding_mezzanine_financing_content">A hybrid of debt and equity financing that is often used for late-stage funding before an IPO or acquisition.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_bridge_round">Bridge Round:</b>
+						<br />
+						<span id="support_funding_bridge_round_content">Short-term financing used to 'bridge' a company to its next major funding milestone.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_strategic_rnd">Strategic Round:</b>
+						<br />
+						<span id="support_funding_strategic_rnd_content">Funding round involving strategic investors who can provide more than just capital, such as industry expertise, partnerships, or market access.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_follow_on">Follow-on Round:</b>
+						<br />
+						<span id="support_funding_follow_on_content">Additional round of funding that follows an initial investment round, typically used to further support a company's growth.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_extension">Extension Round:</b>
+						<br />
+						<span id="support_funding_extension_content">Additional funding round to extend the capital raised in a previous round without a significant change in valuation.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_parallel">Parallel Round:</b>
+						<br />
+						<span id="support_funding_parallel_content">Simultaneous fundraising rounds by a company from different investors, often structured to maintain valuation parity.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_acquisition">Acquisition:</b>
+						<br />
+						<span id="support_funding_acquisition_content">The process of one company purchasing another company, usually involving a transfer of ownership and control.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_acqihire">Acqui-hire:</b>
+						<br />
+						<span id="support_funding_acqihire_content">Acquisition of a company primarily for the skills and expertise of its employees rather than its products or services.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_buyout">Buyout:</b>
+						<br />
+						<span id="support_funding_buyout_content">Acquisition of a company by another entity, often with the goal of taking the company private.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_takeover">Takeover:</b>
+						<br />
+						<span id="support_funding_takeover_content">Acquisition in which one company acquires another against its will or without the approval of its management.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_exit">Exit:</b>
+						<br />
+						<span id="support_funding_exit_content">The event where investors or founders sell their equity stake in a company, often through an acquisition, IPO, or buyback.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_ipo">IPO (Initial Public Offering):</b>
+						<br />
+						<span id="support_funding_ipo_content">The first sale of a company's shares to the public, allowing it to be traded on a stock exchange.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_post_ipo_dept">Post IPO Debt:</b>
+						<br />
+						<span id="support_funding_post_ipo_dept_content">Debt financing obtained by a company after it has gone public.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_post_ipo_equity">Post IPO Equity:</b>
+						<br />
+						<span id="support_funding_post_ipo_equity_content">Additional equity financing raised by a company after its initial public offering.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_not_disclosed">Not disclosed:</b>
+						<br />
+						<span id="support_funding_not_disclosed_content">Refers to financial details or terms of a transaction that are not publicly disclosed.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_convertible">Convertible Note:</b>
+						<br />
+						<span id="support_funding_convertible_content">A type of debt that can convert into equity in the future, often used in early-stage financing.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_corporate_bond">Corporate Bond:</b>
+						<br />
+						<span id="support_funding_corporate_bond_content">Debt security issued by a corporation to raise capital, typically with a fixed interest rate and maturity date.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_corporate_rnd">Corporate Round:</b>
+						<br />
+						<span id="support_funding_corporate_rnd_content">Funding round led by a corporation investing in external companies, often to gain strategic benefits.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_crowdfunding">Crowdfunding:</b>
+						<br />
+						<span id="support_funding_crowdfunding_content">Method of raising capital from a large number of individuals, typically through online platforms.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_debt_financing">Debt Financing:</b>
+						<br />
+						<span id="support_funding_debt_financing_content">Raising capital by borrowing funds that need to be repaid with interest over time.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_debt_financing_equity">Equity:</b>
+						<br />
+						<span id="support_funding_debt_financing_equity_content">Ownership in a company represented by shares of stock.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_equity_crowdfunding">Equity Crowdfunding:</b>
+						<br />
+						<span id="support_funding_equity_crowdfunding_content">Method of raising capital by selling shares of a company to a large number of investors.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_grant">Grant:</b><br />
+						<span id="support_funding_grant_content">Non-repayable fund awarded by a government, organization, or institution for a specific purpose.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_ico">Initial Coin Offering (ICO):</b>
+						<br />
+						<span id="support_funding_ico_content">Fundraising method in which a company issues digital tokens in exchange for cryptocurrency.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_non_equity_assistance">Non-equity Assistance:</b>
+						<br />
+						<span id="support_funding_non_equity_assistance_content">Funding provided to a company that does not involve equity ownership.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_private_equity">Private Equity:</b>
+						<br />
+						<span id="support_funding_private_equity_content">Investment in companies that are not publicly traded, often involving the purchase of equity stakes.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_product_crowdfunding">Product Crowdfunding:</b>
+						<br />
+						<span id="support_funding_product_crowdfunding_content">Crowdfunding campaign focused on raising funds to develop and launch a specific product.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_registered_capital">Registered Capital:</b>
+						<br />
+						<span id="support_funding_registered_capital_content">The total amount of capital that a company is authorized to issue in its charter documents.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_secondary_mkt">Secondary Market:</b>
+						<br />
+						<span id="support_funding_secondary_mkt_content">Platform where existing investors can buy and sell securities from other investors rather than from the issuing company.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_series_unknown">Series Unknown:</b>
+						<br />
+						<span id="support_funding_series_unknown_content">Funding round where the specific series or stage is not disclosed.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_strategic_investment">Strategic Investment:</b>
+						<br />
+						<span id="support_funding_strategic_investment_content">Investment made in a company for reasons beyond financial return, such as gaining a competitive advantage or access to new markets.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_venture">Venture:</b>
+						<br />
+						<span id="support_funding_venture_content">Investment in a startup or early-stage company with high growth potential.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_ico_pre_scale">ICO Pre-sale:</b>
+						<br />
+						<span id="support_funding_ico_pre_scale_content">Initial sale of tokens to a select group before the public ICO launch.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_reg_cf">Regulation Crowdfunding (Reg CF):</b>
+						<br />
+						<span id="support_funding_reg_cf_content">Crowdfunding method that allows companies to raise capital from non-accredited investors within certain regulatory limits.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_safe">Simple Agreement for Future Equity (SAFE):</b>
+						<br />
+						<span id="support_funding_safe_content">Investment contract that gives an investor the right to equity in a future priced financing round.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_funding_angel">Angel Round:</b><br />
+						<span id="support_funding_angel_content">Early-stage funding round provided by angel investors to support a startup's initial growth and development.</span>
+					</p>
+				</article>
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features.js}"></script>
+	<script type="module" th:src="@{../js/languagecache.js}"></script>
+	<script type="module" th:src="@{../js/language_change_support_faq.js}"></script>
+</html>

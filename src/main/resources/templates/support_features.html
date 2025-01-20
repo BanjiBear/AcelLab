@@ -1,0 +1,392 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+			rel="stylesheet"/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"/>
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
+		<link rel="stylesheet" th:href="@{../css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a id="nav1" href="/aboutus">Why Startline</a>
+					<a id="nav2" href="/price">Price</a>
+					<article class="dropdown">
+						<span id="nav3">Resources</span>
+						<div class="dropdown-content">
+							<a id="nav4" href="/support">Support</a><br />
+							<a id="nav5" href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<article class="dropdown_language">
+						<img th:src="@{../images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
+						</div>
+					</article>
+					<a id="nav6" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav7" href="/register" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="support">
+			<article class="support_navbar">
+				<p id="support_welcome">Welcome to</p>
+				<p class="support_navbar_MainTitle"><a id="support_startline_support" href="/support">Startline Support</a></p>
+				<br />
+				<p class="support_navbar_title"><a id="support_getting_started" href="/support/general">GETTING STARTED</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_plan_and_pricing" href="/support/general?show=PlanAndPricing">Plan and pricing</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_creating_an_account" href="/support/general?show=CreatingAnAccount">Creating an account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_setting_up_an_account" href="/support/general?show=SettingUpAccount">Setting up an account</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_features" href="/support/features">FEATURES</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_personalization" href="/support/features?show=Personalization">Personalization</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_technologytagging" href="/support/features?show=TechnologyTagging">Technology Tagging</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_daily_recommendations" href="/support/features?show=DailyRecommendations">Daily Recommendation</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_search" href="/support/features?show=Search">Search</a>
+				</p>
+
+				<p class="support_navbar_subtitle">
+					<a id="support_multi_account" href="/support/features?show=MultiAccount">Multi-Account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_create_company_card" href="/support/features?show=CreateCompanyCard">Create Company Card</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_location_identifier" href="/support/features?show=LocationIdentifier">Location Identifier</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_settings" href="/support/settings">SETTINGS</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_account_settings" href="/support/settings?show=accountSetting">Account Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_team_settings" href="/support/settings?show=teamSetting">Collaborators Settings</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_bookmark_settings" href="/support/settings?show=bookmarkSetting">Bookmark Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_plan_settings" href="/support/settings?show=planSetting">Plan Settings</a></p>
+				<br />
+				<p id="support_frequently_asked_questions" class="support_navbar_title">Frequently Asked Questions</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_choose_a_funding_round_i_belong" href="/faq/fundinground">Choosing a funding round I belong</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_how_to_verify_my_account" href="/faq/verification">How to verify my account</a>
+				</p>
+			</article>
+			<article class="support_content">
+				<p id="support_features_1" class="StartlineSupportHeader1">Features</p>
+				<br />
+				<p id="support_features_1_content" class="StartlineSupportContent">
+					Startline provides various features to improve business efficiency for you and your company. Check out what we have included in
+					our platform make your work life easier and more efficient.
+				</p>
+				<article class="flex_spacebetween">
+					<p class="StartlineSupport_button">
+						<button id="support_features_personalization" onclick="FeatureContent('personalization')">
+							Personalization
+						</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_features_technology_tagging" onclick="FeatureContent('technologytagging')">
+							Technology Tagging
+						</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_features_daily_recommendation" onclick="FeatureContent('dailyrecommendations')">
+							Daily Recommendations
+						</button>
+					</p>
+				</article>
+				<article class="flex_spacebetween">
+					<p class="StartlineSupport_button">
+						<button id="support_features_search" onclick="FeatureContent('search')">Search</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_features_multi_account" onclick="FeatureContent('multiaccount')">
+							Multi-account
+						</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_features_create_card" onclick="FeatureContent('createcompanycard')">
+							Create Company Card
+						</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_features_location" onclick="FeatureContent('locationidentifier')">
+							Location Identifier
+						</button>
+					</p>
+				</article>
+				<article id="Personalization">
+					<p id="support_features_personalization_1" class="StartlineSupportHeader2">Personalization</p>
+					<br />
+					<p class="StartlineSupportContent" id="support_features_personalization_content_1">
+						Startline enables users to customize the platform to suit their individual requirements. 
+					</p>
+					<p class="StartlineSupportContent" id="support_features_personalization_content_2">
+						By providing responses in the AI Fine-Tuning section within the "My Company" tab, Startline's AI algorithm tailors recommendations of distinct companies aligned with your interests, enhancing your personalized user experience.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/personalization.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent">
+						<span id="support_features_personalization_content_3">The bookmark feature on the company cards are another way you can personalize your experience.</span>
+						<br />
+						<span id="support_features_personalization_content_4">By bookmarking companies that you are interested in, you can save it in the bookmark setting (Settings -> Bookmark Settings) so that you can utilize the filter to only compare companies that you have bookmarked.</span>
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/bookmark.png}" class="SupportPage_img" />
+					<br />
+					<br />
+					<br />
+				</article>
+
+				<!-- =========================================================================== -->
+
+				<article id="TechnologyTagging">
+					<p id="support_features_technology_tagging_1" class="StartlineSupportHeader2">Technology Tagging</p>
+					<br />
+					<p id="support_features_technology_tagging_content_1" class="StartlineSupportContent">
+						Startline allows companies to create their own tags during the company profile setup, enabling them to choose words that accurately represent their business and core technology.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/tag.png}" class="SupportPage_img" />
+					<br />
+					<p id="support_features_technology_tagging_content_2" class="StartlineSupportContent">
+						Users can list up to 10 tags that encapsulate their company, aiding potential clients or business partners in grasping the essence of what the company has to offer.
+					</p>
+					<p class="StartlineSupportContent" id="support_features_technology_tagging_content_3">
+						Technology tagging offers benefits not only to the company creating the tags but also to the broader Startline ecosystem. By leveraging these tags, Startline can categorize and group diverse companies, enhancing the quality of Daily Recommendations for users.
+					</p>
+					<p id="support_features_technology_tagging_content_4" class="StartlineSupportContent">
+						Try using Startline to see what that feels like!
+					</p>
+				</article>
+
+				<!-- =========================================================================== -->
+
+				<article id="DailyRecommendations">
+					<p id="support_features_daily_recommendation_1" class="StartlineSupportHeader2">Daily Recommendations</p>
+					<p id="support_features_daily_recommendation_content_1" class="StartlineSupportContent">
+						Startline's AI Model gathers real-time data to offer users distinctive daily recommendations, ensuring up-to-date and personalized suggestions tailored to individual preferences.
+					</p>
+					<p id="support_features_daily_recommendation_content_2" class="StartlineSupportContent">
+						Daily recommendations help users find companies that match their needs based on their personalized information, uncovering
+						hidden options.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/home.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent" id="support_features_daily_recommendation_content_3">
+						Startline has its own way of providing users the best recommendations. We have several ways to learn what you need the most and the first step comes from your company profile setup.
+					</p>
+					<p class="StartlineSupportContent" id="support_features_daily_recommendation_content_4">
+						Through the AI Fine-Tuning questions within the "My Company" tab, Startline's AI algorithm tailors unique recommendations just for you.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/personalization.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent" id="support_features_daily_recommendation_content_5">
+						Secondly, we gather information through our technology tagging system to group companies through our own novel categorization method.
+					</p>
+					<p class="StartlineSupportContent" id="support_features_daily_recommendation_content_6">
+						The rest is our secret sauce for providing you the best service so sit back and enjoy your search!
+					</p>
+				</article>
+
+				<!-- =========================================================================== -->
+
+				<article id="Search">
+					<p id="support_features_search_1" class="StartlineSupportHeader2">Search</p>
+					<br />
+					<p id="support_features_search_content_1" class="StartlineSupportContent">
+						Startline's platform offers a search page for all users. Through this page, users can filter companies according to criteria like location, financial stage, and bookmarks to find what they need.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/searchbar.png}" class="SupportPage_img" />
+					<br />
+					<p id="support_features_search_content_2" class="StartlineSupportContent">
+						Once users apply filters to narrow down the companies they are seeking, they can then browse through various company cards to locate the specific company that meets their requirements.
+					</p>
+					<p id="support_features_search_content_3" class="StartlineSupportContent">
+						Users can access detailed information about each company by clicking on the "More Details" button located in the bottom-right corner of the company card. This information includes basic details, product listings, financial data, and contact information,
+						allowing users to gain a comprehensive understanding of the company.
+					</p>
+					<img th:src="@{../images/snapshot/search.png}" class="SupportPage_img" />
+					<br />
+					<article class="flex_spacebetween">
+						<p class="StartlineSupport_button">
+							<button id="support_features_search_basic_info" onclick="CompanyContentInfo('basic')">Basic Information</button>
+						</p>
+						<p class="StartlineSupport_button">
+							<button id="support_features_search_product" onclick="CompanyContentInfo('product')">Product</button>
+						</p>
+						<p class="StartlineSupport_button">
+							<button id="support_features_search_finance" onclick="CompanyContentInfo('finance')">Finance</button>
+						</p>
+						<p class="StartlineSupport_button">
+							<button id="support_features_search_contacts" onclick="CompanyContentInfo('contact')">Teams</button>
+						</p>
+					</article>
+					<br />
+					<article id="basicinfo">
+						<p class="StartlineSupportContent">
+							<b id="support_features_search_basic_info_title">Basic Information</b>
+						</p>
+						<p class="StartlineSupportContent" id="support_features_search_basic_info_content">
+							This section contains a brief summary about the company
+						</p>
+						<img th:src="@{../images/snapshot/company_info.png}" class="SupportPage_img" />
+						<br />
+						<br />
+						<br />
+					</article>
+
+					<!-- ============= -->
+
+					<article id="productinfo">
+						<p class="StartlineSupportContent">
+							<b id="support_features_search_product_title">Product List</b>
+						</p>
+						<p class="StartlineSupportContent" id="support_features_search_product_content">
+							Product name, product description, product image and product brochure.
+						</p>
+						<img th:src="@{../images/snapshot/company_product.png}" class="SupportPage_img" />
+						<br />
+						<br />
+						<br />
+					</article>
+
+					<!-- ============= -->
+
+					<article id="financeinfo">
+						<p class="StartlineSupportContent">
+							<b id="support_features_search_finance_title">Funding Rounds</b>
+						</p>
+						<p class="StartlineSupportContent" id="support_features_search_finance_content">
+							A summary of the different funding rounds and amount funded for each stage of the funding process.
+						</p>
+						<img th:src="@{../images/snapshot/company_finance.png}" class="SupportPage_img" />
+						<br />
+						<br />
+						<br />
+					</article>
+
+					<!-- ============= -->
+
+					<article id="contactinfo">
+						<p class="StartlineSupportContent">
+							<b id="support_features_search_contacts_title">Team Information</b>
+						</p>
+						<p class="StartlineSupportContent" id="support_features_search_contacts_content">
+							Different contact information of employees of the company you are searching for.
+						</p>
+						<img th:src="@{../images/snapshot/company_team.png}" class="SupportPage_img" />
+						<br />
+						<br />
+						<br />
+					</article>
+				</article>
+
+				<!-- =========================================================================== -->
+
+				<article id="MultiAccount">
+					<p id="support_features_multi_account_1" class="StartlineSupportHeader2">Multi-account</p>
+					<br />
+					<p id="support_features_multi_account_content_1" class="StartlineSupportContent">
+						Startline enables enterprise users to manage multiple accounts under a single admin account.
+						<br />
+						This improves collaboration among users within the same company to streamline the search process and enhance efficiency. The
+						admin account oversees updates in the "My Company" section, while member accounts can leverage the pre-configured AI Fine-Tuning
+						and engage in company searches.
+					</p>
+					<p id="support_features_multi_account_content_2" class="greybkg">
+						For companies with over four members utilizing Startline, opting for an enterprise account proves to be a cost-efficient
+						operational approach.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/personalization.png}" class="SupportPage_img" />
+					<br />
+					<br />
+					<br />
+				</article>
+
+				<!-- =========================================================================== -->
+
+				<article id="CreateCompanyCard">
+					<p id="support_features_create_card_1" class="StartlineSupportHeader2">Create Company Card</p>
+					<br />
+					<p class="StartlineSupportContent" id="support_features_create_card_content_1">
+						Startline enables all users to design their own unique company card, a valuable asset for presenting their business to potential clients and partners.
+					</p>
+					<p class="StartlineSupportContent" id="support_features_create_card_content_2">
+						By creating a company card, users can effectively market their offerings, leveraging the Startline ecosystem not only to explore other businesses but also to be easily found by them.
+					</p>
+					<p class="StartlineSupportContent" id="support_features_create_card_content_3">
+						This exclusive service offers users the opportunity to showcase their company and attract meaningful connections in the business world.
+					</p>
+				</article>
+
+				<!-- =========================================================================== -->
+
+				<article id="LocationIdentifier">
+					<p id="support_features_location_1" class="StartlineSupportHeader2">Location Identifier</p>
+					<br />
+					<p class="StartlineSupportContent" id="support_feature_location_content" >
+						Startline offers a location identifier feature for users to exactly know where the location of the target company is.
+					</p>
+					<img th:src="@{../images/snapshot/company_location.png}" class="SupportPage_img" />
+					<br />
+					<br />
+					<br />
+				</article>
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features.js}"></script>
+	<script th:src="@{../js/feature_dynamic_showcase.js}"></script>
+	<script th:src="@{../js/feature_company_details_dynamic_showcase.js}"></script>
+	<script type="module" th:src="@{../js/languagecache.js}"></script>
+	<script type="module" th:src="@{../js/language_change_support_features.js}"></script>
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+		const contentId = urlParams.get("show");
+
+		if (contentId && document.getElementById(contentId)) {
+			GettingStartedContent(contentId);
+		}
+	</script>
+</html>

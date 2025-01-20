@@ -1,0 +1,220 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+			rel="stylesheet"/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"/>
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
+		<link rel="stylesheet" th:href="@{../css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a id="nav1" href="/aboutus">Why Startline</a>
+					<a id="nav2" href="/price">Price</a>
+					<article class="dropdown">
+						<span id="nav3">Resources</span>
+						<div class="dropdown-content">
+							<a id="nav4" href="/support">Support</a><br />
+							<a id="nav5" href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<article class="dropdown_language">
+						<img th:src="@{../images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
+						</div>
+					</article>
+					<a id="nav6" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav7" href="/register" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="support">
+			<article class="support_navbar">
+				<p id="support_welcome">Welcome to</p>
+				<p class="support_navbar_MainTitle"><a id="support_startline_support" href="/support">Startline Support</a></p>
+				<br />
+				<p class="support_navbar_title"><a id="support_getting_started" href="/support/general">GETTING STARTED</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_plan_and_pricing" href="/support/general?show=PlanAndPricing">Plan and pricing</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_creating_an_account" href="/support/general?show=CreatingAnAccount">Creating an account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_setting_up_an_account" href="/support/general?show=SettingUpAccount">Setting up an account</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_features" href="/support/features">FEATURES</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_personalization" href="/support/features?show=Personalization">Personalization</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_technologytagging" href="/support/features?show=TechnologyTagging">Technology Tagging</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_daily_recommendations" href="/support/features?show=DailyRecommendations">Daily Recommendation</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_search" href="/support/features?show=Search">Search</a>
+				</p>
+
+				<p class="support_navbar_subtitle">
+					<a id="support_multi_account" href="/support/features?show=MultiAccount">Multi-Account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_create_company_card" href="/support/features?show=CreateCompanyCard">Create Company Card</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_location_identifier" href="/support/features?show=LocationIdentifier">Location Identifier</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_settings" href="/support/settings">SETTINGS</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_account_settings" href="/support/settings?show=accountSetting">Account Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_team_settings" href="/support/settings?show=teamSetting">Collaborators Settings</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_bookmark_settings" href="/support/settings?show=bookmarkSetting">Bookmark Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_plan_settings" href="/support/settings?show=planSetting">Plan Settings</a></p>
+				<br />
+				<p id="support_frequently_asked_questions" class="support_navbar_title">Frequently Asked Questions</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_choose_a_funding_round_i_belong" href="/faq/fundinground">Choosing a funding round I belong</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_how_to_verify_my_account" href="/faq/verification">How to verify my account</a>
+				</p>
+			</article>
+			<article class="support_content">
+				<article id="verifyingaccount">
+					<p id="support_faq_verify" class="StartlineSupportHeader1">How to verify your account</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_content_1">
+						Startline implements a thorough verification process for all users before they can create a company card. This process ensures that individuals are genuinely affiliated with the companies they claim, thereby maintaining the accuracy and validity of all information within the Startline ecosystem.
+					</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_content_2">
+						Your may verify your account in Startline through the following steps.
+					</p>
+					<p class="StartlineSupportContent">
+						<span id="support_faq_verify_how_1">1. User clicks on button "Verify Account"</span>
+						<br />
+						<span id="support_faq_verify_how_2">2. Email is sent to the user with information about documents they need to submit to conduct user verification</span>
+						<br />
+						<span id="support_faq_verify_how_3">3. User replies to the email with the related documents</span>
+						<br />
+						<span id="support_faq_verify_how_4">4. User verification is conducted by Startline team</span
+						>
+						<br />
+						<span id="support_faq_verify_how_5">5. Verification result is sent to the user as an email reply</span>
+					</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_doc_list">
+						The related document consists of the following list:
+					</p>
+					<table class="StartlineSupportContent">
+						<tr>
+							<td id="support_faq_verify_doc_1">Employment verification letter</td>
+							<td id="support_faq_verify_doc_2">Company ID badge</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_3">Tax Documents</td>
+							<td id="support_faq_verify_doc_4">Offer letter</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_5">LinkedIn Profiles</td>
+							<td id="support_faq_verify_doc_6">HR Letter</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_7">LinkedIn Recommendations</td>
+							<td id="support_faq_verify_doc_8">Professional License/Certifications</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_9">Social Media Posts</td>
+							<td id="support_faq_verify_doc_10">Conference Badges</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_11">Company Event Invitations</td>
+							<td id="support_faq_verify_doc_12">Recent pay stub</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_13">Work contract</td>
+							<td id="support_faq_verify_doc_14">Business Card</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_15">Training Certificates</td>
+							<td id="support_faq_verify_doc_16">Professional Memberships</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_17">Direct Deposit Form</td>
+							<td id="support_faq_verify_doc_18">Company Newsletter Mentions</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_19">Company Phone Directory</td>
+							<td id="support_faq_verify_doc_20">Employee Recognition Awards</td>
+						</tr>
+						<tr>
+							<td id="support_faq_verify_doc_21">Company Vehicle Registration</td>
+							<td id="support_faq_verify_doc_22">Patent or Publications</td>
+						</tr>
+					</table>
+					<p id="support_faq_verify_content_3" class="greybkg">
+						The validation process may differ depending on whether your work email has its own domain or not.
+					</p>
+					<br />
+				</article>
+				<article class="flex_spacebetween">
+					<p class="StartlineSupport_button">
+						<button id="support_faq_verify_company" onclick="verifyContent('companydomainuser')">Using Company Domain</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_faq_verify_general" onclick="verifyContent('generaluser')">Using General Email</button>
+					</p>
+				</article>
+
+				<article id="CompanyDomainUser">
+					<p id="support_faq_verify_company_domain" class="StartlineSupportHeader2">Using a Company Domain</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_company_domain_content_1">
+						This section refers to users who have their own company domain (i.e. support@startline.vip)
+					</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_company_domain_content_2">
+						For users who have their own company domain, please prepare one supporting document that validates your employment status within your company.
+					</p>
+				</article>
+
+				<!-- ====================================================================== -->
+
+				<article id="GeneralUser">
+					<p id="support_faq_verify_general_domain" class="StartlineSupportHeader2">Using a General Domain</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_general_domain_content_1">
+						This section refers to users who do not have their own company domain and uses general emails such as (i.e. support@gmail.com)
+					</p>
+					<p class="StartlineSupportContent" id="support_faq_verify_general_domain_content_2">For users who do not have their own company domain, please prepare two supporting document that validates your employment status within your company.
+					</p>
+				</article>
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features.js}"></script>
+	<script th:src="@{../js/faq_email_dynamic_showcase.js}"></script>
+	<script type="module" th:src="@{../js/languagecache.js}"></script>
+	<script type="module" th:src="@{../js/language_change_support_faq_verify.js}"></script>
+</html>

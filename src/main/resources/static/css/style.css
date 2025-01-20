@@ -11,17 +11,19 @@ body {
   opacity: 1;
   margin: auto;
 }
+
+button{
+  cursor: pointer;
+}
+
 .navigationbar {
   width: 100vw;
   height: 35px;
   padding: 20px 0px 20px 0px;
-  gap: 0px;
-  border: 0px 0px 1px 0px;
   opacity: 1;
   background: #ffffff;
   border-bottom: 1px solid #e2ecff;
   box-shadow: 0px 1px 2px 0px #1018280d;
-  margin: none;
   position: fixed;
   z-index: 999;
 }
@@ -2187,7 +2189,8 @@ span.signup a {
 
 .support {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  overflow: auto;
 }
 
 .support_navbar {
@@ -2206,10 +2209,10 @@ span.signup a {
 }
 
 .support_content {
-  width: 70vw;
-  height: max-content;
+  min-width: 70vw;
+  max-width: 70vw;
   margin-left: 50px;
-  margin-bottom: 50px;
+  margin-top: 15vh;
 }
 
 .support_navbar_MainTitle {
@@ -2406,8 +2409,9 @@ span.signup a {
 .flex_spacebetween {
   display: flex;
   justify-content: center;
-  column-gap: 10px;
+  column-gap: 30px;
   margin-top: 20px;
+  max-width: 85%;
 }
 
 .dropdown_language {
@@ -2427,7 +2431,7 @@ span.signup a {
   text-decoration: none;
 }
 
-.dropdown-content_language a {
+.dropdown-content_language button {
   width: max-content;
   height: 35px;
   gap: 0px;
@@ -2440,9 +2444,11 @@ span.signup a {
   text-decoration: none;
   padding: 0px 10px 0px 10px;
   margin: none;
+  border: none;
+  background: none;
 }
 
-.dropdown-content_language a:hover {
+.dropdown-content_language button:hover {
   font-weight: 600;
 }
 
@@ -2486,7 +2492,7 @@ span.signup a {
 }
 
 .StartlineSupportHeader1 {
-  width: 401px;
+  width: 700px;
   height: 62px;
   gap: 0px;
   opacity: 0px;
@@ -2495,7 +2501,6 @@ span.signup a {
   line-height: 62.5px;
   letter-spacing: 0.10000000149011612px;
   text-align: left;
-  text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #171b23;
 }
@@ -2517,17 +2522,13 @@ span.signup a {
 
 .StartlineSupportContent {
   width: 90%;
-  height: 52px;
-  gap: 0px;
-  opacity: 0px;
+  height: max-content;
   font-size: 19px;
   font-weight: 400;
   line-height: 26.04px;
   text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #64758f;
-  letter-spacing: 0.01em;
+  margin-bottom: 5vh;
 }
 
 .StartlineSupportSubHeading {
@@ -2543,6 +2544,53 @@ span.signup a {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #171b23;
+}
+
+.StartlineSupport_button {
+  width: 30vw;
+  height: max-content;
+  padding: 15px 0px;
+  gap: 0px;
+  border-radius: 15px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid #d4e0ff;
+  margin-bottom: 10px;
+  text-align: center;
+  background: none;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26.04px;
+  text-decoration-skip-ink: none;
+}
+
+.StartlineSupport_button a {
+  text-decoration: none;
+  color: #171b23;
+}
+
+.StartlineSupport_button button {
+  text-decoration: none;
+  color: #171b23;
+  text-align: center;
+  background: none;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26.04px;
+  text-decoration-skip-ink: none;
+  border: none;
+}
+
+.StartlineSupport_button:hover {
+  color: #64758f;
+}
+
+.StartlineSupport_button button:hover {
+  color: #64758f;
+}
+
+.StartlineSupport_button a:hover {
+  color: #64758f;
 }
 
 .StartlineSupportLinks {
@@ -2634,31 +2682,47 @@ span.signup a {
 .greenbkg {
   background: #f2faf3;
   border-radius: 10px;
-  padding: 15px 20px;
-  width: fit-content;
-  margin-right: 60px;
+  padding: 25px 30px;
+  width: 50vw;
   font-size: 19px;
   letter-spacing: 0.01em;
+  display: block;
+  margin: auto;
+}
+
+.greenbkg ol {
+  padding: 0px 30px;
 }
 
 .greybkg {
   background: #f6f6f6;
   border-radius: 10px;
-  padding: 15px 20px;
-  width: fit-content;
-  margin-right: 60px;
+  padding: 25px 30px;
+  width: 50vw;
   font-size: 19px;
   letter-spacing: 0.01em;
+  display: block;
+  margin: auto;
 }
 
 .redbkg {
   background: #fdf5ef;
   border-radius: 10px;
-  padding: 15px 20px;
-  width: fit-content;
-  margin-right: 60px;
+  padding: 15px 30px;
+  width: 50vw;
   font-size: 19px;
   letter-spacing: 0.01em;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.SupportPage_img {
+  width: 50vw;
+  height: auto;
+  display: block;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #corporateContent {
@@ -2672,5 +2736,52 @@ span.signup a {
   display: none;
 }
 #planSetting {
+  display: none;
+}
+
+#DailyRecommendations {
+  display: none;
+}
+
+#TechnologyTagging {
+  display: none;
+}
+
+#Search {
+  display: none;
+}
+
+#MultiAccount {
+  display: none;
+}
+
+#CreateCompanyCard {
+  display: none;
+}
+
+#LocationIdentifier {
+  display: none;
+}
+
+#productinfo {
+  display: none;
+}
+
+#financeinfo {
+  display: none;
+}
+#contactinfo {
+  display: none;
+}
+
+#CreatingAnAccount {
+  display: none;
+}
+
+#SettingUpAccount {
+  display: none;
+}
+
+#GeneralUser {
   display: none;
 }

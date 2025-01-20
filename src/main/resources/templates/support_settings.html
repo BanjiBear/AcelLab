@@ -1,0 +1,285 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Startline</title>
+		<meta name="author" content="Jeffrey" />
+		<meta name="refresh" content="60" />
+		<meta name="viewport" contents="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap"
+			rel="stylesheet"/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+			rel="stylesheet"/>
+		<link rel="icon" type="image/x-icon" th:href="@{../images/logo/Favicon/favicon.png}">
+		<link rel="stylesheet" th:href="@{../css/style.css}" />
+	</head>
+	<body>
+		<div class="navigationbar">
+			<div class="navigationbox">
+				<div class="nav">
+					<a href="/"><img th:src="@{../images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
+					<a id="nav1" href="/aboutus">Why Startline</a>
+					<a id="nav2" href="/price">Price</a>
+					<article class="dropdown">
+						<span id="nav3">Resources</span>
+						<div class="dropdown-content">
+							<a id="nav4" href="/support">Support</a><br />
+							<a id="nav5" href="/contact">Contact</a>
+						</div>
+					</article>
+				</div>
+				<div class="nav">
+					<article class="dropdown_language">
+						<img th:src="@{../images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
+						</div>
+					</article>
+					<a id="nav6" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav7" href="/register" class="nav_join">Join</a>
+				</div>
+			</div>
+		</div>
+		<div class="support">
+			<article class="support_navbar">
+				<p id="support_welcome">Welcome to</p>
+				<p class="support_navbar_MainTitle"><a id="support_startline_support" href="/support">Startline Support</a></p>
+				<br />
+				<p class="support_navbar_title"><a id="support_getting_started" href="/support/general">GETTING STARTED</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_plan_and_pricing" href="/support/general?show=PlanAndPricing">Plan and pricing</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_creating_an_account" href="/support/general?show=CreatingAnAccount">Creating an account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_setting_up_an_account" href="/support/general?show=SettingUpAccount">Setting up an account</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_features" href="/support/features">FEATURES</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_personalization" href="/support/features?show=Personalization">Personalization</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_technologytagging" href="/support/features?show=TechnologyTagging">Technology Tagging</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_daily_recommendations" href="/support/features?show=DailyRecommendations">Daily Recommendation</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_search" href="/support/features?show=Search">Search</a>
+				</p>
+
+				<p class="support_navbar_subtitle">
+					<a id="support_multi_account" href="/support/features?show=MultiAccount">Multi-Account</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_create_company_card" href="/support/features?show=CreateCompanyCard">Create Company Card</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_location_identifier" href="/support/features?show=LocationIdentifier">Location Identifier</a>
+				</p>
+				<br />
+				<p class="support_navbar_title"><a id="support_settings" href="/support/settings">SETTINGS</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_account_settings" href="/support/settings?show=accountSetting">Account Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_team_settings" href="/support/settings?show=teamSetting">Collaborators Settings</a></p>
+				<p class="support_navbar_subtitle">
+					<a id="support_bookmark_settings" href="/support/settings?show=bookmarkSetting">Bookmark Settings</a>
+				</p>
+				<p class="support_navbar_subtitle"><a id="support_plan_settings" href="/support/settings?show=planSetting">Plan Settings</a></p>
+				<br />
+				<p id="support_frequently_asked_questions" class="support_navbar_title">Frequently Asked Questions</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_choose_a_funding_round_i_belong" href="/faq/fundinground">Choosing a funding round I belong</a>
+				</p>
+				<p class="support_navbar_subtitle">
+					<a id="support_how_to_verify_my_account" href="/faq/verification">How to verify my account</a>
+				</p>
+			</article>
+			<article class="support_content">
+				<p id="support_settings_1" class="StartlineSupportHeader1">Settings</p>
+				<p class="StartlineSupportContent" id="support_settings_content_1">
+					The following section contains detailed information on what each type of setting does and how to effectively modify the information to make the best out of startline.
+				</p>
+				<p class="StartlineSupportContent" id="support_settings_content_2">
+					You may log into your Startline account and go to your Settings by clicking on "Settings" in the bottom left corner.
+				</p>
+				<article class="flex_spacebetween">
+					<p class="StartlineSupport_button">
+						<button id="support_settings_account" onclick="showContent('account')">Account</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_settings_team" onclick="showContent('team')">Collaborators</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_settings_bookmark" onclick="showContent('bookmark')">Bookmark</button>
+					</p>
+					<p class="StartlineSupport_button">
+						<button id="support_settings_plan" onclick="showContent('plan')">Plan</button>
+					</p>
+				</article>
+				<br />
+
+				<article id="accountSetting">
+					<p id="support_settings_account_title" class="StartlineSupportHeader2">Account Settings</p>
+					<p class="StartlineSupportContent" id="support_settings_account_content_1">
+						You may amend your account information in Startline through the following steps. This allows your account information to be the most up-to-date.
+					</p>
+					<p class="StartlineSupportContent" id="support_settings_account_content_2">
+						You can utilize the account settings to amend your personal and billing information.
+					</p>
+					<img th:src="@{../images/snapshot/account.png}" class="SupportPage_img" />
+					<br>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_profile_img">Profile Image</b>
+						<br>
+						<span id="support_settings_account_profile_img_content">Click on the box beside your name to change your profile image.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_name">Name</b>
+						<br />
+						<span id="support_settings_account_name_content">Input your full name in the format of First Name and Last Name</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_dept">Department</b>
+						<br />
+						<span id="support_settings_account_dept_content">Input the department that you are from</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_role">Role</b>
+						<br />
+						<span id="support_settings_account_role_content">Input the role that you take in the department that you are from </span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_email">Work Email</b>
+						<br />
+						<span id="support_settings_account_email_content">Input your email that we can use to reach out to you for any assistance needed. This is the email that you used to sign up for Startline.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_num">Work Number</b>
+						<br />
+						<span id="support_settings_account_num_content">Input your phone number that we can use to reach out to you for any assistance needed.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_linkedin">Linkedin URL</b>
+						<br />
+						<span id="support_settings_account_linkedin_content">Input your Linkedin URL for us to be better connect with you!</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_username">Username</b>
+						<br />
+						<span id="support_settings_account_username_content">In this section, it will show the username that you used to sign up for Startline. Refer to this section to check your username</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_account_pw">Password </b>
+						<br />
+						<span id="support_settings_account_pw_content">In this section, it will show the password that you used to sign up for Startline. Refer to this section to check your password and modify according to your needs. Make sure you click on save to update your changes</span>
+					</p>
+				</article>
+
+				<!-- ============= -->
+
+				<article id="teamSetting">
+					<p id="support_settings_team_title" class="StartlineSupportHeader2">Collaborators Settings</p>
+					<p class="StartlineSupportContent" id="support_settings_team_content_1">
+						You may amend your team settings in Startline through the following steps. This allows your team information to be the most up-to-date.
+					</p>
+					<p class="StartlineSupportContent" id="support_settings_team_content_2">
+						You can utilize the team settings to amend your team members and their permission settings.
+					</p>
+					<p id="support_settings_team_content_3" class="redbkg">
+						This setting is managed by the admin account.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/collaborators.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent">
+						<b id="support_settings_team_profile">Profile Image</b>
+						<br />
+						<span id="support_settings_team_profile_content">Click on the box beside your name to change your profile image.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_team_permission">Permission</b>
+						<br />
+						<span id="support_settings_team_permission_content">By modifying the permission settings, the admin user can either select the account to be an admin or member account.</span>
+					</p>
+					<p class="StartlineSupportContent">
+						<b id="support_settings_team_status">Status</b>
+						<br />
+						<span id="support_settings_team_status_content">By modifying the status settings, the admin user can either select the account to be an active or inactive account. This feature is important for enterprise users to select whether the account should be an active or inactive account to allocate permission to up to 5 accounts to share the Startline platform.</span>
+					</p>
+				</article>
+
+				<!-- ============= -->
+
+				<article id="bookmarkSetting">
+					<p id="support_settings_bookmark_title" class="StartlineSupportHeader2">Bookmark Settings</p>
+					<p class="StartlineSupportContent" id="support_settings_bookmark_content_1">
+						Startline's bookmark feature enables users to save companies for future reference. By utilizing this feature, users can efficiently track and compare the companies they are interested in, facilitating informed decisions when selecting the best company from their list.
+					</p>
+					<p class="StartlineSupportContent" id="support_settings_bookmark_content_2">
+						You may amend your bookmark settings in Startline to modify your bookmarked company list and view the company name along with the industry it belongs to.
+					</p>
+					<img th:src="@{../images/snapshot/bookmark.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent" id="support_settings_bookmark_content_3">
+						To find your previously saved bookmark, use the search box to locate it.
+					</p>
+					<img th:src="@{../images/snapshot/bookmark.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent" id="support_settings_bookmark_content_4">
+						Click on the trash button located on the right side of your screen to delete the bookmark.
+					</p>
+					<img th:src="@{../images/snapshot/bookmark.png}" class="SupportPage_img" />
+					<br />
+					<br />
+					<br />
+				</article>
+
+				<!-- ============= -->
+
+				<article id="planSetting">
+					<p id="support_settings_plan_title" class="StartlineSupportHeader2">Plan Settings</p>
+					<p class="StartlineSupportContent" id="support_settings_plan_content_1">
+						You may amend your plan settings in Startline to change your subscription plan.
+					</p>
+					<p class="StartlineSupportContent" id="support_settings_plan_content_2">
+						When you choose to upgrade your plan, you will unlock a host of additional features that will complement your current subscription. Conversely, opting for a downgrade will result in adjustments to the benefits you currently enjoy. Please note that all changes will come into effect starting from the next billing date.
+					</p>
+					<p id="support_settings_plan_content_3" class="redbkg">
+						This setting is managed by the admin account.
+					</p>
+					<br />
+					<img th:src="@{../images/snapshot/plan.png}" class="SupportPage_img" />
+					<br />
+					<p class="StartlineSupportContent" id="support_settings_plan_content_4">
+						To learn more about the different subscription plans, check
+						<a href="/support/general?show=PlanAndPricing">here</a>.
+					</p>
+				</article>
+			</article>
+		</div>
+	</body>
+	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
+	<script th:src="@{../js/features.js}"></script>
+	<script th:src="@{../js/settings_dynamic_showcase.js}"></script>
+	<script type="module" th:src="@{../js/languagecache.js}"></script>
+	<script type="module" th:src="@{../js/language_change_support_settings.js}"></script>
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+		const contentId = urlParams.get("show");
+
+		if (contentId && document.getElementById(contentId)) {
+			GettingStartedContent(contentId);
+		}
+	</script>
+</html>
