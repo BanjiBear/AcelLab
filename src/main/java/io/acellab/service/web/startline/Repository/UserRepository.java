@@ -94,7 +94,15 @@ public interface UserRepository extends CrudRepository<UserInfo, Long> {
 		+ "linkedIn = :linkedIn, "
 		+ "username = :username, "
 		+ "password = :password "
-	+ "WHERE id = :id", nativeQuery = true)
+	+ "WHERE id = :id;", nativeQuery = true)
 	void updateUserByID(@Param("firstname") String firstname, @Param("lastname") String lastname, @Param("department") String department, @Param("role") String role, @Param("email") String email, @Param("phone") String phone, @Param("linkedIn") String linkedIn, @Param("username") String username, @Param("password") String password, @Param("id") Long id);
+	
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE user "
+	+ "SET isStartup = :isStartup, business_plan_id = :plan_id "
+	+ "WHERE id = :id;", nativeQuery = true)
+	void updateUserPlan(@Param("isStartup") Boolean isStartup, @Param("plan_id") Long plan_id, @Param("id") Long id);
 
 }

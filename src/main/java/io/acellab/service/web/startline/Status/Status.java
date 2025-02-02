@@ -24,6 +24,8 @@ public enum Status {
 			+ "At least 12 characters long"),
 	USER_REGISTER_INVALID_EMAIL_FORMAT(103, "Invalid email format, please verify your input!"),
 	USER_ACCOUNT_UPDATE_INVALID_INPUT_FORMAT(104, "Invalid input format, allows only letters(support multiple language) and whitespaces for firstname, lastname, department, and role!"),
+	SECURITY_REGISTERED_USER_NOT_FOUND(105, "We cannot find your account information, please contact us immediately if this is an error with error code 105!"),
+	SECURITY_INVALID_PLANNAME(106, "We cannot process your payment, please contact us immediately for support with error code 106!"),
 	
 	//Company Related Error
 	COMPANY_SEARCH_INVALID_INPUT(704, "Invalid input format, allows only letters(support multiple language), digits, and spaces for company name or keywords!"),

@@ -4,19 +4,30 @@ package io.acellab.service.web.startline.Service.User;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import io.acellab.service.web.startline.Config.Security.CustomUserDetails;
 import io.acellab.service.web.startline.Config.Security.CustomUserDetailsService;
+import io.acellab.service.web.startline.Entity.CollaboratorsInfo;
 import io.acellab.service.web.startline.Entity.UserInfo;
+import io.acellab.service.web.startline.Repository.CollaboratorsRepository;
 import io.acellab.service.web.startline.Repository.UserRepository;
 import io.acellab.service.web.startline.Status.ResponseFactory;
 import io.acellab.service.web.startline.Status.Status;
 import io.acellab.service.web.startline.Util.Util;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -24,8 +35,14 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
 	
+	//@Autowired
+	//private AuthenticationManager authenticationManager;
+	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private CollaboratorsRepository collaboratorsRepository;
 
 	@Override
 	@Transactional
@@ -154,4 +171,58 @@ public class UserServiceImpl implements UserService {
 		
 		return Util.responseFormation(Status.DATA_UPDATED);
 	}
+
+	@Override
+	public <T> ResponseFactory<T> setNewUserPlanAfterPayment(UserInfo userInfo, String plan) {
+		try {
+			Optional<UserInfo> u = userRepository.findUserByEmail(userInfo.getEmail());
+			if(u.isEmpty()) {
+				return Util.responseFormation(Status.SECURITY_REGISTERED_USER_NOT_FOUND);
+			}
+			Long userid = u.get().getUserId();
+			
+			if(plan.equals("startup")) {
+				userRepository.updateUserPlan(true, (long)1, userid);
+			} else if(plan.equals("free")) {
+				userRepository.updateUserPlan(false, (long)1, userid);
+			} else if(plan.equals("business")) {
+				userRepository.updateUserPlan(false, (long)2, userid);
+			} else if(plan.equals("enterprise")) {
+				userRepository.updateUserPlan(false, (long)3, userid);
+				CollaboratorsInfo collab = new CollaboratorsInfo();
+				collab.setCollabId1(u.get());
+				CollaboratorsInfo newcollaborators = collaboratorsRepository.save(collab);
+				collaboratorsRepository.addCollaboratorsMappingInCollabGroupInfo(userid, newcollaborators.getId());
+			} else {
+				return Util.responseFormation(Status.SECURITY_INVALID_PLANNAME);
+			}
+		} catch(Exception e) {
+			return Util.responseFormation(Status.UNEXPECTED_ERROR);
+		}
+		return Util.responseFormation(Status.DATA_UPDATED);
+	}
+
+	/*@Override
+	public <T> ResponseFactory<T> userLoginUponSuccessRegistration(UserInfo userInfo, HttpServletRequest request) {
+		// Reload user details
+	    UserDetails userDetails = customUserDetailsService.loadUserByUsername(userInfo.getEmail());
+	    Optional<UserInfo> u = userRepository.findUserByEmail(userInfo.getEmail());
+	    if(u.isEmpty()) {
+	    	return null;
+	    }
+	    System.out.println("Attempting to log in with email: " + userInfo.getEmail());
+	    System.out.println("Raw password: " + userInfo.getPassword());
+	    System.out.println("Encoded password in DB: " + userDetails.getPassword());
+	    // Create authentication token with raw password
+	    SecurityContextHolder.getContext().setAuthentication(
+	    		new UsernamePasswordAuthenticationToken(
+	    	    		userInfo.getEmail(), userInfo.getPassword(), userDetails.getAuthorities())
+	        );
+	    System.out.println("Authentication successful: " + SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+	    
+	    HttpSession session = request.getSession();
+	    session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+	            SecurityContextHolder.getContext());
+	    return null;
+	}*/
 }

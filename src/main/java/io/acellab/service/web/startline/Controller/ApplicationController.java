@@ -92,42 +92,40 @@ public class ApplicationController {
 		return "contact";
 	}
 	
-	@GetMapping("/support")
-	public String supportPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
-		UserInfo user;
-		if(customUserDetails != null) {
-			user = customUserDetails.getUser();
-		} else {
-			user = null;
-		}
-		model.addAttribute("user", user);
-		return "support";
+	@GetMapping("/terms")
+	public String termsPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		//useragreement --> terms
+		return "terms";
 	}
 	
-	@GetMapping("/error")
-	public String errorPage(
-			@AuthenticationPrincipal UserDetails userDetails, 
-			@ModelAttribute("errorCode") Integer errorCode, 
-			@ModelAttribute("errorMsg") String errorMsg, 
-			Model model, 
-			HttpServletRequest request) {
-		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
-		UserInfo user;
-		if(customUserDetails != null) {
-			user = customUserDetails.getUser();
-		} else {
-			user = null;
-		}
-		model.addAttribute("user", user);
-		
-		if(errorCode == null) errorCode = 0;
-		if(errorMsg == null) errorMsg = "";
-		model.addAttribute("errorCode", errorCode);
-		model.addAttribute("errorMsg", errorMsg);
-		
-		return "error";
+	@GetMapping("/privacy")
+	public String privacyPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		return "privacy";
 	}
+	
+//	@GetMapping("/error")
+//	public String errorPage(
+//			@AuthenticationPrincipal UserDetails userDetails, 
+//			@ModelAttribute("errorCode") Integer errorCode, 
+//			@ModelAttribute("errorMsg") String errorMsg, 
+//			Model model, 
+//			HttpServletRequest request) {
+//		CustomUserDetails customUserDetails = (CustomUserDetails) userDetails;
+//		UserInfo user;
+//		if(customUserDetails != null) {
+//			user = customUserDetails.getUser();
+//		} else {
+//			user = null;
+//		}
+//		model.addAttribute("user", user);
+//		
+//		if(errorCode == null) errorCode = 0;
+//		if(errorMsg == null) errorMsg = "";
+//		model.addAttribute("errorCode", errorCode);
+//		model.addAttribute("errorMsg", errorMsg);
+//		
+//		return "error";
+//	}
 	
 	@GetMapping("/debug")
 	@ResponseBody
@@ -204,20 +202,15 @@ public class ApplicationController {
 	}
 	
 	@PostMapping("/register")
-	public String register(UserInfo userInfo, Model model, RedirectAttributes redirectAttributes) {
+	public String register(UserInfo userInfo, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		ResponseFactory<?> response = userService.createNewUser(userInfo);
 		if(response.getStatusCode() != 201) {
 			redirectAttributes.addFlashAttribute("errorCode", response.getStatusCode());
 			redirectAttributes.addFlashAttribute("errorMsg", response.getStatusMessage());
 			return "redirect:/error";
 		}
+		request.getSession().setAttribute("userInfo", userInfo);
 		return "redirect:/chooseplan";
-	}
-	
-	@GetMapping("/chooseplan")
-	public String planSelectionPage(Model model) {
-		//join1 --> chooseplan.html
-		return "chooseplan";
 	}
 
 
