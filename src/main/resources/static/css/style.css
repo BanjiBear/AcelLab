@@ -1802,39 +1802,15 @@ button{
   color: #171b23;
 }
 
-ul,
-#myUL {
-  list-style-type: none;
-}
-
-#myUL {
-  margin: 0;
-  padding: 0;
-}
-
-.caret {
-  cursor: pointer;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 40px;
+.details {
+  width: 90%;
+  height: max-content;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 26.04px;
   text-align: left;
-}
-
-.caret::before {
-  content: "\25B6";
-  color: black;
-  display: inline-block;
-  margin-right: 6px;
-}
-
-.caret-down::before {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari */
-  transform: rotate(90deg);
+  color: #64758f;
+  margin-bottom: 2vh;
 }
 
 .nested {
@@ -2784,4 +2760,30 @@ span.signup a {
 
 #GeneralUser {
   display: none;
+}
+
+.termsandprivacy_title {
+  width: 100vw;
+  height: max-content;
+  font-size: 7vh;
+  font-weight: 650px;
+  color: #2962ff;
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  align-items: center;
+}
+
+.termsandprivacy_content {
+  width: 70vw;
+  height: fit-content;
+  font-size: 2vh;
+  line-height: 3vh;
+  color: #64758f;
+  margin: auto;
+}
+
+ol.termsandprivacy_content {
+  list-style-type: decimal;
+  padding-left: 100px;
 }
