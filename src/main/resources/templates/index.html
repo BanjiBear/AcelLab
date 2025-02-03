@@ -19,13 +19,13 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a href="/aboutus">Why Startline</a>
-					<a href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span>Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a href="/support">Support</a><br />
-							<a href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
@@ -33,16 +33,16 @@
 					<article class="dropdown_language">
 						<img th:src="@{/images/language.png}" class="nav_language" />
 						<div class="dropdown-content_language">
-							<a href="">English</a><br />
-							<a href="">Chinese</a><br />
-							<a href="">한국어</a><br />
-							<a href="">Japanese</a>
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
 						</div>
 					</article>
-					<a href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
-					<a href="/home" class="nav_login" th:unless="${user == null}">Home</a>
-					<a href="/register" class="nav_join" th:if="${user == null}">Join</a>
-					<a href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
+					<a id="nav_bar_login" href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
+					<a id="nav_bar_login" href="/home" class="nav_login" th:unless="${user == null}">Home</a>
+					<a id="nav_bar_register" href="/register" class="nav_join" th:if="${user == null}">Join</a>
+					<a id="nav_bar_register" href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -51,17 +51,17 @@
 				<br />
 				<br />
 				<br />
-				<p class="homepage1_1_title">We are the <span class="gradient_text">Startline</span></p>
-				<p class="homepage1_1_content">Where innovation for startups and corporates begins</p>
+				<p class="homepage1_1_title"><span id="index_title" class="gradient_text">We are the Startline</span></p>
+				<p id="index_slogan" class="homepage1_1_content">Where innovation for startups and corporates begins</p>
 				<br />
-				<p class="homepage1_1_content1">
+				<p id="index_context" class="homepage1_1_content1">
 					We empower the collaborative partnership between <span style="color: #2962ff">startups </span> and
 					<span style="color: #2962ff">corporates </span>
 				</p>
 				<br />
-				<p class="blue_btn"><a href="/register">Join Now</a></p>
+				<p class="blue_btn"><a id="join_now" href="/register">Join Now</a></p>
 				<br />
-				<p class="homepage2_1_title">THIS WEEK ON STARTLINE</p>
+				<p id="weekly_startline" class="homepage2_1_title">THIS WEEK ON STARTLINE</p>
 			</article>
 		</div>
 		<br />
@@ -86,18 +86,18 @@
 		</p>
 		<div class="homepage3">
 			<article class="homepage3_1">
-				<p class="page_title"><img th:src="@{/images/OurProduct.png}" class="page_title_ICON" />OUR PRODUCT</p>
-				<p class="page_subtitle">Empowering futures at the <span class="gradient_text"> Startline</span> for startups and corporates</p>
+				<p class="page_title"><img th:src="@{/images/OurProduct.png}" class="page_title_ICON" /><span id="our_product">OUR PRODUCT</span></p>
+				<p id="product_slogan" class="page_subtitle">Empowering futures at the <span class="gradient_text"> Startline</span> for startups and corporates</p>
 			</article>
 		</div>
 		<div class="features">
 			<article class="features_left">
-				<p class="features_title"><img th:src="@{/images/Personalized.png}" class="page_title_ICON" />PERSONALIZED</p>
-				<p class="features_subtitle">Tailored recommendations that fit your unique needs</p>
+				<p class="features_title"><img th:src="@{/images/Personalized.png}" class="page_title_ICON" /><span id="feature_title_1">PERSONALIZED</span></p>
+				<p id="feature_slogan_1" class="features_subtitle">Tailored recommendations that fit your unique needs</p>
 				<br />
-				<p class="features_content">Everyone has different needs. Tell us what you want and we will provide it to you!</p>
+				<p id="feature_content_1" class="features_content">Everyone has different needs. Tell us what you want and we will provide it to you!</p>
 				<br />
-				<p class="features_link"><a href="/aboutus">Learn more</a></p>
+				<p class="features_link"><a id="learn_more_1" href="/aboutus">Learn more</a></p>
 			</article>
 			<article class="features_right"></article>
 		</div>
@@ -108,12 +108,12 @@
 		<div class="features">
 			<article class="features_right1"></article>
 			<article class="features_left">
-				<p class="features_title"><img th:src="@{/images/TimelyInsights.png}" class="page_title_ICON" />TIMELY INSIGHTS</p>
-				<p class="features_subtitle">Real-time data platform with up-to-date information</p>
+				<p class="features_title"><img th:src="@{/images/TimelyInsights.png}" class="page_title_ICON" /><span id="feature_title_2">TIMELY INSIGHTS</span></p>
+				<p id="feature_slogan_2" class="features_subtitle">Real-time data platform with up-to-date information</p>
 				<br />
-				<p class="features_content">We want to keep you up to date. Our platform runs 24/7 to find the latest information.</p>
+				<p id="feature_content_2" class="features_content">We want to keep you up to date. Our platform runs 24/7 to find the latest information.</p>
 				<br />
-				<p class="features_link"><a href="/aboutus">Learn more</a></p>
+				<p class="features_link"><a id="learn_more_2" href="/aboutus">Learn more</a></p>
 			</article>
 		</div>
 		<br />
@@ -122,38 +122,38 @@
 		<br />
 		<div class="features">
 			<article class="features_left">
-				<p class="features_title"><img th:src="@{/images/NewConnections.png}" class="page_title_ICON" />NEW CONNECTIONS</p>
-				<p class="features_subtitle">An interactive social channel to expand your network</p>
+				<p class="features_title"><img th:src="@{/images/NewConnections.png}" class="page_title_ICON" /><span id="feature_title_3">NEW CONNECTIONS</span></p>
+				<p id="feature_slogan_3" class="features_subtitle">An interactive social channel to expand your network</p>
 				<br />
-				<p class="features_content">
+				<p id="feature_content_3" class="features_content">
 					Whether you are a startup or a corporate, we got it covered. Join our ecosystem to be connected with the trend setting companies!
 				</p>
 				<br />
 				<br />
-				<p class="features_link"><a href="/aboutus">Learn more</a></p>
+				<p class="features_link"><a id="learn_more_3" href="/aboutus">Learn more</a></p>
 			</article>
 			<img th:src="@{/images/ComingSoon.png}" class="features_right" />
 		</div>
 
 		<div class="homepage4">
 			<article class="homepage4_1">
-				<p class="homepage4_title">Simple, but efficient</p>
+				<p id="simeff" class="homepage4_title">Simple, but efficient</p>
 				<br />
-				<p class="homepage4_subtitle">Your start-up data intelligence platform — ready to use in 5 mins.</p>
+				<p id="simeff_title" class="homepage4_subtitle">Your start-up data intelligence platform — ready to use in 5 mins.</p>
 			</article>
 			<br />
 			<br />
 			<br />
 			<article class="homepage4_2">
-				<p class="homepage4_2_btn1"><a href="/register">Use Startline Free</a></p>
-				<p class="homepage4_2_btn2"><a href="/contact">Request a Free Demo</a></p>
+				<p class="homepage4_2_btn1"><a id="simeff_content" href="/register">Use Startline Free</a></p>
+				<p class="homepage4_2_btn2"><a id="simeff_demo" href="/contact">Request a Free Demo</a></p>
 			</article>
 		</div>
 
 		<div class="homepage5">
 			<article class="homepage5_1">
 				<p class="homepage5_11"></p>
-				<p class="homepage5_12">PARTNERS AND CLIENTS</p>
+				<p id="partners_clients" class="homepage5_12">PARTNERS AND CLIENTS</p>
 				<p class="homepage5_13"></p>
 			</article>
 			<article class="containers">
@@ -172,31 +172,31 @@
 
 		<div class="homepage6">
 			<article class="homepage6_1">
-				<p class="page_title"><img th:src="@{/images/WhatWeDo.png}" class="page_title_ICON" />WHAT WE DO</p>
+				<p class="page_title"><img th:src="@{/images/WhatWeDo.png}" class="page_title_ICON" /><span id="whatwedo">WHAT WE DO</span></p>
 				<br />
-				<p class="homepage6_subtitle">We see problems and we want to solve it for you!</p>
+				<p id="whatwedo_slogan" class="homepage6_subtitle">We see problems and we want to solve it for you!</p>
 				<br />
-				<p class="homepage6_content">
+				<p id="whatwedo_content" class="homepage6_content">
 					Centralized platforms are burning bridges between startups and corporates, making it harder to access valuable information,
 					hindering business growth, and driving up costs.
 				</p>
 				<br />
 				<br />
 				<br />
-				<p class="blue_btn"><a href="/price">Get Started</a></p>
+				<p class="blue_btn"><a id="get_started" href="/price">Get Started</a></p>
 			</article>
 		</div>
 		<div class="footer1">
 			<div class="footer1_1">
-				<h3>Questions? Talk to us</h3>
-				<h4>We are here around the clock to assist you</h4>
+				<h3 id="questions">Questions? Talk to us</h3>
+				<h4 id="questions_slogan">We are here around the clock to assist you</h4>
 			</div>
 			<br />
 			<br />
 			<br />
 			<div class="footer1_2">
-				<a href="/register" class="trystartlinenow_btn">Try Startline Now</a>
-				<a href="/contact" class="contactus_btn">Contact Us</a>
+				<a id="questions_content" href="/register" class="trystartlinenow_btn">Try Startline Now</a>
+				<a id="questions_contact" href="/contact" class="contactus_btn">Contact Us</a>
 			</div>
 		</div>
 		<div class="footer2">
@@ -204,7 +204,7 @@
 				<article>
 					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
 					<br />
-					<p class="footer_logo_content">
+					<p id="footer" class="footer_logo_content">
 						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
 					</p>
 				</article>
@@ -212,7 +212,7 @@
 					<article class="footer2_12">
 						<p class="footer_title">Product</p>
 						<br />
-						<p class="footer_content"><a href="/aboutus"> Why Startline</a></p>
+						<p class="footer_content"><a href="/aboutus">Why Startline</a></p>
 						<br />
 						<p class="footer_content"><a href="/price">What we offer</a></p>
 					</article>
@@ -224,13 +224,13 @@
 						<p class="footer_content"><a href="/contact">Contact</a></p>
 					</article>
 					<article class="footer2_12">
-						<p class="footer_title">Company</p>
+						<p class="footer_title">Statements</p>
 						<br />
 						<p class="footer_content"><a href="/aboutus">About</a></p>
 						<br />
-						<p class="footer_content"><a href="/terms" target="_blank">Terms</a></p>
+						<p class="footer_content"><a id="terms" href="/terms" target="_blank">Terms</a></p>
 						<br />
-						<p class="footer_content"><a href="/privacy" target="_blank">Privacy</a></p>
+						<p class="footer_content"><a id="privacy" href="/privacy" target="_blank">Privacy</a></p>
 					</article>
 				</article>
 			</div>
@@ -242,7 +242,8 @@
 		</div>
 	</body>
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-	<script th:src="@{/js/smoothScroll.js}"></script>
 	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{/js/logoscroll.js}"></script>
+	<script type="module" th:src="@{/js/language_cache.js}"></script>
+	<script type="module" th:src="@{/js/language_change_index.js}"></script>
 </html>

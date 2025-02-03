@@ -19,13 +19,13 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a href="/aboutus">Why Startline</a>
-					<a href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span>Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a href="/support">Support</a><br />
-							<a href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
@@ -33,16 +33,16 @@
 					<article class="dropdown_language">
 						<img th:src="@{/images/language.png}" class="nav_language" />
 						<div class="dropdown-content_language">
-							<a href="">English</a><br />
-							<a href="">Chinese</a><br />
-							<a href="">한국어</a><br />
-							<a href="">Japanese</a>
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
 						</div>
 					</article>
-					<a href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
-					<a href="/home" class="nav_login" th:unless="${user == null}">Home</a>
-					<a href="/register" class="nav_join" th:if="${user == null}">Join</a>
-					<a href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
+					<a id="nav_bar_login" href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
+					<a id="nav_bar_login" href="/home" class="nav_login" th:unless="${user == null}">Home</a>
+					<a id="nav_bar_register" href="/register" class="nav_join" th:if="${user == null}">Join</a>
+					<a id="nav_bar_register" href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -50,127 +50,142 @@
 			<article class="homepage3_1">
 				<br />
 				<br />
-				<p class="page_title"><img th:src="@{/images/Problem.png}" class="page_title_ICON" />THE PROBLEM</p>
-				<p class="page_subtitle">Centralized platforms <span style="color: #2962ff">burn bridges</span> between startups and corporates</p>
+				<p class="page_title"><img th:src="@{/images/Problem.png}" class="page_title_ICON" /><span id="problem_1">THE PROBLEM</span></p>
+				<p id="problem_title_1" class="page_subtitle">Centralized platforms burn bridges between startups and corporates</p>
 			</article>
 		</div>
 		<div class="problem">
 			<article class="problem1">
 				<button class="problemIcon" id="lowOutreach">
-					<span><img th:src="@{/images/LowOutreach.png}" class="problemIconPNG" /><br />Low Outreach</span>
+					<span>
+						<img th:src="@{/images/LowOutreach.png}" class="problemIconPNG" />
+						<br />
+						<p id="problem_topic_low_outreach">Low Outreach</p>
+					</span>
 				</button>
 				<button class="problemIcon" id="DataInaccuracy">
-					<span><img th:src="@{/images/DataInaccuracy.png}" class="problemIconPNG" /><br />Data Inaccuracy</span>
+					<span>
+						<img th:src="@{/images/DataInaccuracy.png}" class="problemIconPNG" />
+						<br />
+						<p id="problem_topic_data_inaccuracy">Data Inaccuracy</p>
+					</span>
 				</button>
 				<button class="problemIcon" id="ComplexEngagement">
-					<span> <img th:src="@{/images/ComplexEngagement.png}" class="problemIconPNG" /><br />Complex Engagement </span>
+					<span>
+						<img th:src="@{/images/ComplexEngagement.png}" class="problemIconPNG" />
+						<br />
+						<p id="problem_topic_complex_engagement">Complex Engagement</p>
+					</span>
 				</button>
 				<button class="problemIcon" id="LackofManpower">
-					<span> <img th:src="@{/images/LackofManpower.png}" class="problemIconPNG" /><br />Lack of Manpower </span>
+					<span>
+						<img th:src="@{/images/LackofManpower.png}" class="problemIconPNG" />
+						<br />
+						<p id="problem_topic_lack_of_manpower">Lack of Manpower</p>
+					</span>
 				</button>
 				<button class="problemIcon" id="PoorVisualization">
-					<span> <img th:src="@{/images/PoorVisualization.png}" class="problemIconPNG" /><br />Poor Visualization</span>
+					<span>
+						<img th:src="@{/images/PoorVisualization.png}" class="problemIconPNG" />
+						<br />
+						<p id="problem_topic_poor_visualization">Poor Visualization</p>
+					</span>
 				</button>
 			</article>
 			<article id="problemText" class="problemIcon_text">
-				<!-- Content will be dynamically updated here -->Start-ups struggle to find effective channels to showcase their products, while
-				corporations face difficulty in discovering innovative solutions for their business needs.
+				Start-ups struggle to find effective channels to showcase their products, while corporations face difficulty in discovering innovative solutions for their business needs.
 			</article>
 			<br />
 			<br />
 			<br />
 			<br />
-			<p class="blue_btn"><a href="/register"> Let's Fix It</a></p>
+			<p class="blue_btn"><a id="lets_fix" href="/register"> Let's Fix It</a></p>
 			<br />
 			<br />
 			<br />
 			<br />
 			<br />
-			<p class="page_title"><img th:src="@{/images/OurSolution.png}" class="page_title_ICON" />OUR SOLUTION</p>
+			<p class="page_title"><img th:src="@{/images/OurSolution.png}" class="page_title_ICON" /><span id="solution">OUR SOLUTION</span></p>
 			<br />
-			<p class="page_subtitle">
-				Startline is a social platform <br />for <span style="color: #2962ff">corporates</span> and
-				<span style="color: #2962ff">startups</span>
-			</p>
+			<p id="solution_title" class="page_subtitle">Startline is a social platform for corporates and innovators</p>
 			<div class="solution">
 				<article class="solution1">
-					<p class="solution_content1">For Startups</p>
+					<p id="solution_startup_slogan" class="solution_content1">For Innovators</p>
 					<p><img th:src="@{/images/Startup.png}" class="solution_content2" /></p>
-					<p class="solution_content3">We amplify your tech and create pathways for collaboration with those who need it most.</p>
+					<p id="solution_startup_content" class="solution_content3">We amplify your tech and create pathways for collaboration with those who need it most.</p>
 				</article>
 				<article class="solution1_1">
 					<p><img th:src="@{/images/AI.png}" class="solution_content2_1" /></p>
 				</article>
 				<article class="solution1">
-					<p class="solution_content1">For Corporates</p>
+					<p id="solution_corporate_slogan" class="solution_content1">For Corporates</p>
 					<p><img th:src="@{/images/Corporate.png}" class="solution_content2" /></p>
-					<p class="solution_content3">We connect you with emerging innovators who have the perfect solutions to your challenges.</p>
+					<p id="solution_corporate_content" class="solution_content3">We connect you with emerging innovators who have the perfect solutions to your challenges.</p>
 				</article>
 			</div>
 			<br />
 			<br />
 			<br />
-			<p class="blue_btn"><a href="/register"> Try Startline Now</a></p>
+			<p class="blue_btn"><a id="try_startline" href="/register">Try Startline Now</a></p>
 		</div>
 		<br />
 		<div class="problem2">
-			<p class="page_title"><img th:src="@{/images/HowItWorks.png}" class="page_title_ICON" />HOW IT WORKS</p>
-			<p class="page_subtitle">
-				Startline fuses and validates <span style="color: #2962ff">multiple data sources </span>to provide the best information
+			<p class="page_title"><img th:src="@{/images/HowItWorks.png}" class="page_title_ICON" /><span id="how_it_works">HOW IT WORKS</span></p>
+			<p id="how_it_works_slogan_1" class="page_subtitle">
+				Startline fuses and validates multiple data sources to provide the best information
 			</p>
 			<br />
-			<p class="page_content">We pick out what you need from our own database that is accurate and up-to-date.</p>
+			<p id="how_it_works_content_1" class="page_content">
+				We pick out what you need from our own database that is accurate and up-to-date
+			</p>
 			<br />
 			<br />
 			<article class="howitworks3">
 				<article class="howitworks3_1">
 					<p><img th:src="@{/images/MultipleDataSources.png}" class="howitworks3_1_ICON" /></p>
-					<p class="howitworks3_title">Multiple Data Sources</p>
-					<p class="solution_content3">We gather information from various sources.</p>
+					<p id="how_it_works_option_1" class="howitworks3_title">Multiple Data Sources</p>
+					<p id="how_it_works_option_content_1" class="solution_content3">We gather information from various sources.</p>
 				</article>
 				<article class="howitworks3_2">
 					<p><img th:src="@{/images/arrow.png}" class="howitworks3_2_ICON" /></p>
 				</article>
 				<article class="howitworks3_1">
 					<p><img th:src="@{/images/CompanyProfiles.png}" class="howitworks3_1_ICON" /></p>
-					<p class="howitworks3_title">Customer Profile</p>
-					<p class="solution_content3">Our curated databases outline each company’s information.</p>
+					<p id="how_it_works_option_2" class="howitworks3_title">Company Profile</p>
+					<p id="how_it_works_option_content_2" class="solution_content3">Our curated databases outline each company’s information.</p>
 				</article>
 				<article class="howitworks3_2">
 					<p><img th:src="@{/images/arrowL.png}" class="howitworks3_2_ICON" /></p>
 				</article>
 				<article class="howitworks3_1">
 					<p><img th:src="@{/images/UserFeedback.png}" class="howitworks3_1_ICON" /></p>
-					<p class="howitworks3_title">User Feedback</p>
-					<p class="solution_content3">Our matching algorithm constantly improves with feedback.</p>
+					<p id="how_it_works_option_3" class="howitworks3_title">User Feedback</p>
+					<p id="how_it_works_option_content_3" class="solution_content3">Our matching algorithm constantly improves with feedback.</p>
 				</article>
 			</article>
-			<p class="page_subtitle">
-				Our data-driven technology has an <span style="color: #2962ff">AI model </span>optimized
-				<span style="color: #2962ff">just for you </span>
+			<p id="how_it_works_slogan_2" class="page_subtitle">Our data-driven technology has an AI model optimized just for you</p>
+			<p id="how_it_works_content_2" class="page_content">
+				We leverage AI to deliver clear, relevant, and timely insights that will help corporates and startups find each other
 			</p>
-			<p class="page_content">
-				We leverage AI to deliver clear, relevant, and timely insights that will help corporates and startups find each other.
-			</p>
-			<p class="page_content1">HOW IT WORKS</p>
+			<p id="how_it_works_1" class="page_content1">HOW IT WORKS</p>
 			<article class="howitworks4">
 				<article class="howitworks4_1">
 					<article class="howitworks4_11">
 						<article class="howitworks_block">
-							<p class="howitworks_block_title">Integrating Data</p>
-							<p class="howitworks_block_content">We transform the accumulated data into structured datasets.</p>
+							<p id="how_it_works_title_integrate_data" class="howitworks_block_title">Integrating Data</p>
+							<p id="how_it_works_content_integrate_data" class="howitworks_block_content">We transform the accumulated data into structured datasets.</p>
 						</article>
 						<br />
 						<br />
 						<article class="howitworks_block_1">
-							<p class="howitworks_block_title">Processing Data</p>
-							<p class="howitworks_block_content">We leverage machine learning to categorize, tag, and evaluate companies.</p>
+							<p id="how_it_works_title_processing_data" class="howitworks_block_title">Processing Data</p>
+							<p id="how_it_works_content_processing_data" class="howitworks_block_content">We leverage machine learning to categorize, tag, and evaluate companies.</p>
 						</article>
 						<br />
 						<br />
 						<article class="howitworks_block_1">
-							<p class="howitworks_block_title">Creating Insights</p>
-							<p class="howitworks_block_content">
+							<p id="how_it_works_title_creating_insights" class="howitworks_block_title">Creating Insights</p>
+							<p id="how_it_works_content_creating_insights" class="howitworks_block_content">
 								Through AI, we pinpoint the information that matters the most and match you with companies that meet your needs.
 							</p>
 						</article>
@@ -180,20 +195,20 @@
 				<article class="howitworks4_1">
 					<article class="howitworks4_11">
 						<article class="howitworks_block_1">
-							<p class="howitworks_block_title">Integrating Data</p>
-							<p class="howitworks_block_content">We transform the accumulated data into structured datasets.</p>
+							<p id="how_it_works_title_integrate_data_1" class="howitworks_block_title">Integrating Data</p>
+							<p id="how_it_works_content_integrate_data_1" class="howitworks_block_content">We transform the accumulated data into structured datasets.</p>
 						</article>
 						<br />
 						<br />
 						<article class="howitworks_block">
-							<p class="howitworks_block_title">Processing Data</p>
-							<p class="howitworks_block_content">We leverage machine learning to categorize, tag, and evaluate companies.</p>
+							<p id="how_it_works_title_processing_data_1" class="howitworks_block_title">Processing Data</p>
+							<p id="how_it_works_content_processing_data_1" class="howitworks_block_content">We leverage machine learning to categorize, tag, and evaluate companies.</p>
 						</article>
 						<br />
 						<br />
 						<article class="howitworks_block_1">
-							<p class="howitworks_block_title">Creating Insights</p>
-							<p class="howitworks_block_content">
+							<p id="how_it_works_title_creating_insights_1" class="howitworks_block_title">Creating Insights</p>
+							<p id="how_it_works_content_creating_insights_1" class="howitworks_block_content">
 								Through AI, we pinpoint the information that matters the most and match you with companies that meet your needs.
 							</p>
 						</article>
@@ -203,20 +218,20 @@
 				<article class="howitworks4_1">
 					<article class="howitworks4_11">
 						<article class="howitworks_block_1">
-							<p class="howitworks_block_title">Integrating Data</p>
-							<p class="howitworks_block_content">We transform the accumulated data into structured datasets.</p>
+							<p id="how_it_works_title_integrate_data_2" class="howitworks_block_title">Integrating Data</p>
+							<p id="how_it_works_content_integrate_data_2" class="howitworks_block_content">We transform the accumulated data into structured datasets.</p>
 						</article>
 						<br />
 						<br />
 						<article class="howitworks_block_1">
-							<p class="howitworks_block_title">Processing Data</p>
-							<p class="howitworks_block_content">We leverage machine learning to categorize, tag, and evaluate companies.</p>
+							<p id="how_it_works_title_processing_data_2" class="howitworks_block_title">Processing Data</p>
+							<p id="how_it_works_content_processing_data_2" class="howitworks_block_content">We leverage machine learning to categorize, tag, and evaluate companies.</p>
 						</article>
 						<br />
 						<br />
 						<article class="howitworks_block">
-							<p class="howitworks_block_title">Creating Insights</p>
-							<p class="howitworks_block_content">
+							<p id="how_it_works_title_creating_insights_2" class="howitworks_block_title">Creating Insights</p>
+							<p id="how_it_works_content_creating_insights_2" class="howitworks_block_content">
 								Through AI, we pinpoint the information that matters the most and match you with companies that meet your needs.
 							</p>
 						</article>
@@ -225,81 +240,88 @@
 				</article>
 			</article>
 
-			<p class="page_subtitle">
-				Our match-making process ensures that<br />
-				<span style="color: #2962ff">each request meets a solution</span>
-			</p>
+			<p id="how_it_works_slogan_3" class="page_subtitle">Our match-making process ensures that each request meets a solution</p>
 		</div>
 		<div class="problem3">
-			<p class="page_title"><img th:src="@{/images/WhyStartline.png}" class="page_title_ICON" />WHY STARTLINE</p>
+			<p class="page_title"><img th:src="@{/images/WhyStartline.png}" class="page_title_ICON" /><span id="why_startline_title_why_startline"> WHY STARTLINE</span></p>
 			<br />
 			<br />
 			<div class="flip-box">
 				<div class="flip-box-inner">
 					<div class="flip-box-front">
-						<p><br /><img th:src="@{/images/card1.png}" class="problemIconPNG" /><br />Exceptional data quality</p>
+						<br />
+						<img th:src="@{/images/card1.png}" class="problemIconPNG" />
+						<p id="why_startline_title_exceptional_data_quality">Exceptional data quality</p>
 					</div>
 					<div class="flip-box-back">
-						<p>Our AI model scrapes and cleans until you are satisfied with what you have.</p>
+						<p id="why_startline_content_exceptional_data_quality">Our AI model scrapes and cleans until you are satisfied with what you have.</p>
 					</div>
 				</div>
 				<div class="flip-box-inner">
 					<div class="flip-box-front">
-						<p class="problem_WhyStartline_box"><br /><img th:src="@{/images/card2.png}" class="problemIconPNG" /><br />In-depth data</p>
+						<br />
+						<img th:src="@{/images/card2.png}" class="problemIconPNG" />
+						<p id="why_startline_title_indepth_data" class="problem_WhyStartline_box">In-depth data</p>
 					</div>
 					<div class="flip-box-back">
-						<p>We deliver the real stories behind companies. These stories help you verify what you really need.</p>
+						<p id="why_startline_content_indepth_data">We deliver the real stories behind companies. These stories help you verify what you really need.</p>
 					</div>
 				</div>
 				<div class="flip-box-inner">
 					<div class="flip-box-front">
-						<p class="problem_WhyStartline_box"><br /><img th:src="@{/images/card3.png}" class="problemIconPNG" /><br />Extensive access</p>
+						<br />
+						<img th:src="@{/images/card3.png}" class="problemIconPNG" />
+						<p id="why_startline_title_extensive_access" class="problem_WhyStartline_box">Extensive access</p>
 					</div>
 					<div class="flip-box-back">
-						<p>Access to tech markets that no one else has.</p>
+						<p id="why_startline_content_extensive_acess">Access to tech markets that no one else has.</p>
 					</div>
 				</div>
 			</div>
 			<div class="flip-box">
 				<div class="flip-box-inner">
 					<div class="flip-box-front">
-						<p class="problem_WhyStartline_box">
-							<br /><img th:src="@{/images/card4.png}" class="problemIconPNG" /><br />Efficiency at its finest
-						</p>
+						<br />
+						<img th:src="@{/images/card4.png}" class="problemIconPNG" />
+						<p id="why_startline_title_efficiency" class="problem_WhyStartline_box">Efficiency at its finest</p>
 					</div>
 					<div class="flip-box-back">
-						<p>The simpliest, most efficient way to look for what you need.</p>
+						<p id="why_startline_content_efficiency">The simpliest, most efficient way to look for what you need.</p>
 					</div>
 				</div>
 				<div class="flip-box-inner">
 					<div class="flip-box-front">
-						<p class="problem_WhyStartline_box"><br /><img th:src="@{/images/card5.png}" class="problemIconPNG" /><br />Complete solution</p>
+						<br />
+						<img th:src="@{/images/card5.png}" class="problemIconPNG" />
+						<p id="why_startline_title_complete_solution" class="problem_WhyStartline_box">Complete solution</p>
 					</div>
 					<div class="flip-box-back">
-						<p>We provide a solution rather than a pile of databases</p>
+						<p id="why_startline_content_complete_solution">We provide a solution rather than a pile of databases</p>
 					</div>
 				</div>
 				<div class="flip-box-inner">
 					<div class="flip-box-front">
-						<p class="problem_WhyStartline_box"><br /><img th:src="@{/images/card6.png}" class="problemIconPNG" /><br />Fully automated</p>
+						<br />
+						<img th:src="@{/images/card6.png}" class="problemIconPNG" />
+						<p id="why_startline_title_fully_automated" class="problem_WhyStartline_box">Fully automated</p>
 					</div>
 					<div class="flip-box-back">
-						<p>Our AI model allows us to work 24/7 to satisfy your needs and provide new information everyday.</p>
+						<p id="why_startline_content_fully_automated">Our AI model allows us to work 24/7 to satisfy your needs and provide new information everyday.</p>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="footer1">
 			<div class="footer1_1">
-				<h3>Questions? Talk to us</h3>
-				<h4>We are here around the clock to assist you</h4>
+				<h3 id="questions">Questions? Talk to us</h3>
+				<h4 id="questions_slogan">We are here around the clock to assist you</h4>
 			</div>
 			<br />
 			<br />
 			<br />
 			<div class="footer1_2">
-				<a href="/register" class="trystartlinenow_btn">Try Startline Now</a>
-				<a href="/contact" class="contactus_btn">Contact Us</a>
+				<a id="questions_content" href="/register" class="trystartlinenow_btn">Try Startline Now</a>
+				<a id="questions_contact" href="/contact" class="contactus_btn">Contact Us</a>
 			</div>
 		</div>
 
@@ -308,7 +330,7 @@
 				<article class="footer2_11">
 					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
 					<br />
-					<p class="footer_logo_content">
+					<p id="footer" class="footer_logo_content">
 						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
 					</p>
 				</article>
@@ -327,13 +349,13 @@
 					<p class="footer_content"><a href="/contact">Contact</a></p>
 				</article>
 				<article class="footer2_12">
-					<p class="footer_title">Company</p>
+					<p class="footer_title">Statements</p>
 					<br />
 					<p class="footer_content"><a href="/aboutus">About</a></p>
 					<br />
-					<p class="footer_content"><a href="/terms" target="_blank">Terms</a></p>
+					<p class="footer_content"><a id="terms" href="/terms" target="_blank">Terms</a></p>
 					<br />
-					<p class="footer_content"><a href="/privacy" target="_blank">Privacy</a></p>
+					<p class="footer_content"><a id="privacy" href="/privacy" target="_blank">Privacy</a></p>
 				</article>
 			</div>
 			<br />
@@ -346,7 +368,8 @@
 		</div>
 	</body>
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-	<script th:src="@{/js/smoothScroll.js}"></script>
 	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{/js/problembubbles.js}"></script>
+	<script type="module" th:src="@{/js/language_cache.js}"></script>
+	<script type="module" th:src="@{/js/language_change_aboutus.js}"></script>
 </html>

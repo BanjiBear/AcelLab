@@ -21,13 +21,13 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a id="nav1" href="/aboutus">Why Startline</a>
-					<a id="nav2" href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span id="nav3">Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a id="nav4" href="/support">Support</a><br />
-							<a id="nav5" href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
@@ -41,8 +41,8 @@
 							<button id="switchToJapanese">日本語</button>
 						</div>
 					</article>
-					<a id="nav6" href="/startup/login" class="nav_login">Login</a>
-					<a id="nav7" href="/register" class="nav_join">Join</a>
+					<a id="nav_bar_login" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav_bar_register" href="/register" class="nav_join">Join</a>
 				</div>
 			</div>
 		</div>
@@ -123,6 +123,6 @@
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 	<script th:src="@{./js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/features.js}"></script>
-	<script type="module" th:src="@{./js/languagecache.js}"></script>
+	<script type="module" th:src="@{./js/language_cache.js}"></script>
 	<script type="module" th:src="@{./js/language_change_support.js}"></script>
 </html>

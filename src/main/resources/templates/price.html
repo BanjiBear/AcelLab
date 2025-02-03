@@ -19,13 +19,13 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a href="/aboutus">Why Startline</a>
-					<a href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span>Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a href="/support">Support</a><br />
-							<a href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
@@ -33,124 +33,124 @@
 					<article class="dropdown_language">
 						<img th:src="@{/images/language.png}" class="nav_language" />
 						<div class="dropdown-content_language">
-							<a href="">English</a><br />
-							<a href="">Chinese</a><br />
-							<a href="">한국어</a><br />
-							<a href="">Japanese</a>
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
 						</div>
 					</article>
-					<a href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
-					<a href="/home" class="nav_login" th:unless="${user == null}">Home</a>
-					<a href="/register" class="nav_join" th:if="${user == null}">Join</a>
-					<a href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
+					<a id="nav_bar_login" href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
+					<a id="nav_bar_login" href="/home" class="nav_login" th:unless="${user == null}">Home</a>
+					<a id="nav_bar_register" href="/register" class="nav_join" th:if="${user == null}">Join</a>
+					<a id="nav_bar_register" href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
 				</div>
 			</div>
 		</div>
 		<div class="pricing">
 			<br />
 			<br />
-			<p class="page_title"><img th:src="@{/images/Pricing.png}" class="page_title_ICON" />PRICING</p>
+			<p class="page_title"><img th:src="@{/images/Pricing.png}" class="page_title_ICON" /><span id="pricing_1">PRICING</span></p>
 			<br />
-			<p class="pricing_subtitle">Choose the plan that matches your needs</p>
+			<p id="pricing_slogan" class="pricing_subtitle">Choose the plan that matches your needs</p>
 			<article class="pricing1">
 				<article class="pricing2">
-					<p class="pricing2_1">Free Forever</p>
+					<p id="pricing_free" class="pricing2_1">Free Forever</p>
 					<br />
-					<p class="pricing2_2">$0</p>
+					<p id="pricing_free_price" class="pricing2_2">$0</p>
 					<br />
-					<p class="pricing2_3">Global Database</p>
+					<p id="pricing_free_tag"  class="pricing2_3">Global Database</p>
 					<p class="pricing2_3"></p>
 					<p class="pricing2_3"></p>
 					<br />
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Unlock Startline's AI-powered Matching Features</p>
+						<p id="pricing_free_feature_1" class="pricing2_4">Unlock Startline's AI-powered Matching Features</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Search 100 company profiles per month with basic content</p>
+						<p id="pricing_free_feature_2" class="pricing2_4">Search 100 company profiles per month with basic content</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Access to basic information</p>
+						<p id="pricing_free_feature_3" class="pricing2_4">Access to basic information</p>
 					</article>
 				</article>
 				<article class="pricing2">
-					<p class="pricing2_1">Business</p>
+					<p id="pricing_business" class="pricing2_1">Business</p>
 					<br />
-					<p class="pricing2_2">$49/month</p>
+					<p id="pricing_business_price" class="pricing2_2">$49/month</p>
 					<br />
-					<p class="pricing2_3">Global Database</p>
-					<p class="pricing2_3">Data Customization</p>
+					<p id="pricing_business_tag_1" class="pricing2_3">Global Database</p>
+					<p id="pricing_business_tag_2" class="pricing2_3">Data Customization</p>
 					<p class="pricing2_3"></p>
 					<br />
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Unlock Startline's AI-powered Matching Features</p>
+						<p id="pricing_business_feature_1" class="pricing2_4">Unlock Startline's AI-powered Matching Features</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Search 600 company profiles per month with full content</p>
+						<p id="pricing_business_feature_2" class="pricing2_4">Search 600 company profiles per month with full content</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Receive customized content from our dedicated success manager</p>
+						<p id="pricing_business_feature_3" class="pricing2_4">Receive customized content from our dedicated success manager</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Free upgrade to future platform features</p>
+						<p id="pricing_business_feature_4" class="pricing2_4">Free upgrade to future platform features</p>
 					</article>
 				</article>
 				<article class="pricing2">
-					<p class="pricing2_1">Enterprise</p>
+					<p id="pricing_enterprise" class="pricing2_1">Enterprise</p>
 					<br />
-					<p class="pricing2_2">$199/month</p>
+					<p id="pricing_enterprise_price" class="pricing2_2">$199/month</p>
 					<br />
-					<p class="pricing2_3">Global Database</p>
-					<p class="pricing2_3">Data Customization</p>
-					<p class="pricing2_3">Professional Consulting Support</p>
+					<p id="pricing_enterprise_tag_1" class="pricing2_3">Global Database</p>
+					<p id="pricing_enterprise_tag_2" class="pricing2_3">Data Customization</p>
+					<p id="pricing_enterprise_tag_3" class="pricing2_3">Professional Consulting Support</p>
 					<br />
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Unlock Startline's AI-powered Matching Features</p>
+						<p id="pricing_enterprise_feature_1" class="pricing2_4">Unlock Startline's AI-powered Matching Features</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Access to unlimited company profiles with full results</p>
+						<p id="pricing_enterprise_feature_2" class="pricing2_4">Access to unlimited company profiles with full results</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Receive customized content from our assigned success manager</p>
+						<p id="pricing_enterprise_feature_3" class="pricing2_4">Receive customized content from our assigned success manager</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Get professional consulting support from industry renowned subject matter expert</p>
+						<p id="pricing_enterprise_feature_4" class="pricing2_4">Get professional consulting support from industry renowned subject matter expert</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Free upgrade to future platform features</p>
+						<p id="pricing_enterprise_feature_5" class="pricing2_4">Free upgrade to future platform features</p>
 					</article>
 					<article class="flex_left">
 						<img th:src="@{/images/check.png}" class="checkIcon" />
-						<p class="pricing2_4">Collaborate with up to 5 team members</p>
+						<p id="pricing_enterprise_feature_6" class="pricing2_4">Collaborate with up to 5 team members</p>
 					</article>
 				</article>
 			</article>
 			<br />
 			<br />
-			<p class="pricing_label">All prices are in USD</p>
+			<p id="pricing_price_usd" class="pricing_label">All prices are in USD</p>
 		</div>
 		<div class="footer1">
 			<div class="footer1_1">
-				<h3>Questions? Talk to us</h3>
-				<h4>We are here around the clock to assist you</h4>
+				<h3 id="questions">Questions? Talk to us</h3>
+				<h4 id="questions_slogan">We are here around the clock to assist you</h4>
 			</div>
 			<br />
 			<br />
 			<br />
 			<div class="footer1_2">
-				<a href="/register" class="trystartlinenow_btn">Try Startline Now</a>
-				<a href="/contact" class="contactus_btn">Contact Us</a>
+				<a id="questions_content" href="/register" class="trystartlinenow_btn">Try Startline Now</a>
+				<a id="questions_contact" href="/contact" class="contactus_btn">Contact Us</a>
 			</div>
 		</div>
 
@@ -159,7 +159,7 @@
 				<article class="footer2_11">
 					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
 					<br />
-					<p class="footer_logo_content">
+					<p id="footer" class="footer_logo_content">
 						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
 					</p>
 				</article>
@@ -178,13 +178,13 @@
 					<p class="footer_content"><a href="/contact">Contact</a></p>
 				</article>
 				<article class="footer2_12">
-					<p class="footer_title">Company</p>
+					<p class="footer_title">Statements</p>
 					<br />
 					<p class="footer_content"><a href="/aboutus">About</a></p>
 					<br />
-					<p class="footer_content"><a href="/terms" target="_blank">Terms</a></p>
+					<p class="footer_content"><a id="terms" href="/terms" target="_blank">Terms</a></p>
 					<br />
-					<p class="footer_content"><a href="/privacy" target="_blank">Privacy</a></p>
+					<p class="footer_content"><a id="privacy" href="/privacy" target="_blank">Privacy</a></p>
 				</article>
 			</div>
 			<br />
@@ -197,7 +197,8 @@
 		</div>
 	</body>
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-	<script th:src="@{/js/smoothScroll.js}"></script>
 	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{/js/priceshowcase.js}"></script>
+	<script type="module" th:src="@{/js/language_cache.js}"></script>
+	<script type="module" th:src="@{/js/language_change_price.js}"></script>
 </html>

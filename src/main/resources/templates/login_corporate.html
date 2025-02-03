@@ -19,13 +19,13 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a href="/aboutus">Why Startline</a>
-					<a href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span>Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a href="/support">Support</a><br />
-							<a href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
@@ -33,14 +33,14 @@
 					<article class="dropdown_language">
 						<img th:src="@{/images/language.png}" class="nav_language" />
 						<div class="dropdown-content_language">
-							<a href="">English</a><br />
-							<a href="">Chinese</a><br />
-							<a href="">한국어</a><br />
-							<a href="">Japanese</a>
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
 						</div>
 					</article>
-					<a href="/corporate/login" class="nav_login">Login</a>
-					<a href="/register" class="nav_join">Join</a>
+					<a id="nav_bar_login" href="/corporate/login" class="nav_login">Login</a>
+					<a id="nav_bar_register" href="/register" class="nav_join">Join</a>
 				</div>
 			</div>
 		</div>
@@ -50,32 +50,33 @@
 			<br />
 			<br />
 			<article class="join_title_btn">
-				<p class="join_btn2"><a href="/startup/login">STARTUP</a></p>
-				<p class="join_btn1"><a href="#">CORPORATE</a></p>
+				<p class="join_btn2"><a id="login_startup" href="/startup/login">INNOVATOR</a></p>
+				<p class="join_btn1"><a id="login_corporate" href="#">CORPORATE</a></p>
 			</article>
 			<article class="join_main">
-				<p class="join_main1">Welcome Back</p>
-				<p class="join_main2">To connecting you with solutions</p>
+				<p id="login_welcome_back" class="join_main1">Welcome Back</p>
+				<p id="login_corporate_slogan" class="join_main2">To connecting you with solutions</p>
 				<br />
 
 				<form th:action="@{/login}" method="post">
 					<div class="container">
-						<label for="uname" class="login_label">Work Email</label> <br />
+						<label id="login_work_email" for="uname" class="login_label">Work Email</label> <br />
 						<input type="email" placeholder="name@company.com" name="username" class="longin_label_content" required />
 						<br />
-						<label for="psw" class="login_label">Password</label> <br />
+						<label id="login_password" for="psw" class="login_label">Password</label> <br />
 						<div class="password-input">
 							<input type="password" id="pwordInput" placeholder="Input your password" name="password" class="longin_label_content" required />
 							<img th:src="@{/images/password.png}" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" class="nav_language" />
 						</div>
 					</div>
 					<div class="container">
-						<label> <input type="checkbox" checked="checked" name="remember" class="checkbox" /> Remember me </label>
-						<span class="psw"><a href="/register" class="psw">password?</a></span>
+						<input type="checkbox" checked="checked" name="remember" class="checkbox" />
+						<span id="login_remember">Remember me</span>
+						<span class="psw"><a id="login_forgot_pwd" href="/register" class="psw">Forget password?</a></span>
 					</div>
-					<button type="submit" class="login_btn">Sign In</button>
+					<button id="login_sign_in" type="submit" class="login_btn">Sign In</button>
 					<p class="join_main3">
-						Don't have an account?<span class="signup"><a href="/register"> Sign up</a></span>
+						<span class="signup"><a id="login_sign_up" href="/register">Don't have an account? Sign up</a></span>
 					</p>
 				</form>
 
@@ -86,7 +87,7 @@
 				<article class="footer2_11">
 					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
 					<br />
-					<p class="footer_logo_content">
+					<p id="footer" class="footer_logo_content">
 						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
 					</p>
 				</article>
@@ -105,13 +106,13 @@
 					<p class="footer_content"><a href="/contact">Contact</a></p>
 				</article>
 				<article class="footer2_12">
-					<p class="footer_title">Company</p>
+					<p class="footer_title">Statements</p>
 					<br />
 					<p class="footer_content"><a href="/aboutus">About</a></p>
 					<br />
-					<p class="footer_content"><a href="/terms" target="_blank">Terms</a></p>
+					<p class="footer_content"><a id="terms" href="/terms" target="_blank">Terms</a></p>
 					<br />
-					<p class="footer_content"><a href="/privacy" target="_blank">Privacy</a></p>
+					<p class="footer_content"><a id="privacy" href="/privacy" target="_blank">Privacy</a></p>
 				</article>
 			</div>
 			<br />
@@ -124,7 +125,8 @@
 		</div>
 	</body>
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-	<script th:src="@{../js/smoothScroll.js}"></script>
 	<script th:src="@{../js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{../js/showpassword.js}"></script>
+	<script type="module" th:src="@{../js/language_cache.js}"></script>
+	<script type="module" th:src="@{../js/language_change_logincorporate.js}"></script>
 </html>

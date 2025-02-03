@@ -19,13 +19,13 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a href="/aboutus">Why Startline</a>
-					<a href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span>Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a href="/support">Support</a><br />
-							<a href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
@@ -33,14 +33,14 @@
 					<article class="dropdown_language">
 						<img th:src="@{/images/language.png}" class="nav_language" />
 						<div class="dropdown-content_language">
-							<a href="#">English</a><br />
-							<a href="">Chinese</a><br />
-							<a href="">한국어</a><br />
-							<a href="">Japanese</a>
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
 						</div>
 					</article>
-					<a href="/startup/login" class="nav_login">Login</a>
-					<a href="/register" class="nav_join">Join</a>
+					<a id="nav_bar_login" href="/startup/login" class="nav_login">Login</a>
+					<a id="nav_bar_register" href="/register" class="nav_join">Join</a>
 				</div>
 			</div>
 		</div>
@@ -50,44 +50,45 @@
 			<br />
 			<br />
 			<article class="join_main">
-				<p class="join_main1">Welcome to <span class="gradient_text">Startline</span></p>
-				<p class="join_main2">Kickstart innovation with us</p>
+				<p id="join_title" class="join_main1">Welcome to <span class="gradient_text">Startline</span></p>
+				<p id="join_slogan" class="join_main2">Kickstart innovation with us</p>
 				<br />
 
 				<form role="form" th:action="@{/register}" th:object="${userinfo}" method="post">
 					<div class="container">
-						<label for="uname" class="login_label">Username*</label> <br />
-						<input type="text" placeholder="This is how you'll appear to others" th:field="*{username}" name="uname" class="longin_label_content" required />
+						<label id="join_username" for="uname" class="login_label">Username*</label> <br />
+						<input id="join__input_username" type="text" placeholder="This is how you'll appear to others" th:field="*{username}" name="uname" class="longin_label_content" required />
 						<br />
-						<label for="psw" class="login_label">Password*</label> <br />
+						<label id="join_pwd" for="psw" class="login_label">Password*</label> <br />
 						<div class="password-input">
-							<input type="password" id="pwordInput" placeholder="At least 12 characters" th:field="*{password}" name="psw" class="longin_label_content" required />
+							<input type="password" id="join_input_pwd" placeholder="At least 12 characters" th:field="*{password}" name="psw" class="longin_label_content" required />
 							<img th:src="@{/images/password.png}" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" class="nav_language" />
 						</div>
 						<br />
-						<label for="name" class="login_label">Name*</label> <br />
-						<input type="text" placeholder="First Name" th:field="*{firstname}" class="short_label_content" required />
-						<input type="text" placeholder="Last Name" th:field="*{lastname}" class="short_label_content" required />
+						<label id="join_name" for="name" class="login_label">Name*</label> <br />
+						<input id="join_input_first_name" type="text" placeholder="First Name" th:field="*{firstname}" class="short_label_content" required />
+						<input id="join_input_last_name" type="text" placeholder="Last Name" th:field="*{lastname}" class="short_label_content" required />
 						<br />
 						<br />
-						<label for="email" class="login_label">Work Email*</label> <br />
-						<input type="email" placeholder="Input your email" th:field="*{email}" name="email" class="longin_label_content" required />
+						<label id="join_work_email" for="email" class="login_label">Work Email*</label> <br />
+						<input id="join_input_work_email" type="email" placeholder="Input your email" th:field="*{email}" name="email" class="longin_label_content" required />
 						<br />
 						<br />
 					</div>
 					<div class="container">
-						<label> <input type="checkbox" checked="checked" name="remember" class="checkbox" /> Remember me </label>
-						<span class="psw"><a href="#">Forgot password?</a></span>
+						<input type="checkbox" checked="checked" name="remember" class="checkbox" />
+						<span id="join_remember">Remember me</span>
+						<span class="psw"><a id="join_forgot_pwd" href="#">Forgot password?</a></span>
 					</div>
-					<p class="signupFooter">
+					<p id="join_tc_pp_content" class="signupFooter">
 						By signing up, you are agreeing to our 
 						<span class="signup"><a href="/terms" target="_blank"> Terms and Conditions</a></span>
 						and
 						<span class="signup"><a href="/privacy" target="_blank"> Privacy Policy.</a></span>
 					</p>
-					<button type="submit" class="login_btn">Sign Up</button>
+					<button id="join_sign_up" type="submit" class="login_btn">Sign Up</button>
 					<p class="join_main3">
-						Already have an account?<span class="signup"><a href="/startup/login"> Sign in</a></span>
+						<span class="signup"><a id="join_sign_in" href="/startup/login">Already have an account? Sign in</a></span>
 					</p>
 				</form>
 			</article>
@@ -97,7 +98,7 @@
 				<article class="footer2_11">
 					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
 					<br />
-					<p class="footer_logo_content">
+					<p id="footer" class="footer_logo_content">
 						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
 					</p>
 				</article>
@@ -120,9 +121,9 @@
 					<br />
 					<p class="footer_content"><a href="/aboutus">About</a></p>
 					<br />
-					<p class="footer_content"><a href="/terms" target="_blank">Terms</a></p>
+					<p class="footer_content"><a id="terms" href="/terms" target="_blank">Terms</a></p>
 					<br />
-					<p class="footer_content"><a href="/privacy" target="_blank">Privacy</a></p>
+					<p class="footer_content"><a id="privacy" href="/privacy" target="_blank">Privacy</a></p>
 				</article>
 			</div>
 			<br />
@@ -138,4 +139,6 @@
 	<script th:src="@{/js/smoothScroll.js}"></script>
 	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
 	<script th:src="@{/js/showpassword.js}"></script>
+	<script type="module" th:src="@{/js/language_cache.js}"></script>
+	<script type="module" th:src="@{/js/language_change_register.js}"></script>
 </html>

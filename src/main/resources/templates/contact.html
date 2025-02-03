@@ -19,28 +19,37 @@
 			<div class="navigationbox">
 				<div class="nav">
 					<a href="/"><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="nav_logo" /></a>
-					<a href="/aboutus">Why Startline</a>
-					<a href="/price">Price</a>
+					<a id="nav_bar_aboutus" href="/aboutus">Why Startline</a>
+					<a id="nav_bar_price" href="/price">Price</a>
 					<article class="dropdown">
-						<span>Resources</span>
+						<span id="nav_bar_resources">Resources</span>
 						<div class="dropdown-content">
-							<a href="/support">Support</a><br />
-							<a href="/contact">Contact</a>
+							<a id="nav_bar_support" href="/support">Support</a><br />
+							<a id="nav_bar_contact" href="/contact">Contact</a>
 						</div>
 					</article>
 				</div>
 				<div class="nav">
-					<a href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
-					<a href="/home" class="nav_login" th:unless="${user == null}">Home</a>
-					<a href="/register" class="nav_join" th:if="${user == null}">Join</a>
-					<a href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
+					<article class="dropdown_language">
+						<img th:src="@{/images/language.png}" class="nav_language" />
+						<div class="dropdown-content_language">
+							<button id="switchToEnglish">English</button><br />
+							<button id="switchToChinese">简体中文</button><br />
+							<button id="switchToKorean">한국어</button><br />
+							<button id="switchToJapanese">日本語</button>
+						</div>
+					</article>
+					<a id="nav_bar_login" href="/startup/login" class="nav_login" th:if="${user == null}">Login</a>
+					<a id="nav_bar_login" href="/home" class="nav_login" th:unless="${user == null}">Home</a>
+					<a id="nav_bar_register" href="/register" class="nav_join" th:if="${user == null}">Join</a>
+					<a id="nav_bar_register" href="/logout" class="nav_login" th:unless="${user == null}">Logout</a>
 				</div>
 			</div>
 		</div>
 		<div class="contact">
 			<br />
 			<br />
-			<p class="contact_title">Contact</p>
+			<p id="contact" class="contact_title">Contact</p>
 			<article class="contact1">
 				<!-- <p><img src="Logo/High Resolution Logo Files/Original on Transparent.png" class="footer_logo" /></p> -->
 				<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player
@@ -55,41 +64,35 @@
 					<form>
 						<!-- <label for="reason">asdf</label> -->
 						<select id="reason" name="reason" class="contact_reason" required>
-							<option value="reason">Please choose the reason for reaching out</option>
-							<option value="canada">Seeking detailed market information</option>
-							<option value="usa">Exploring potential strategic partnership opportunities</option>
-							<option value="usa">Interested in reviewing additional services</option>
-							<option value="usa">Providing feedback on the platform/service</option>
-							<option value="usa">Other inquiries (please specifiy)</option>
+							<option id="contact_question_1" value="reason">Please choose the reason for reaching out</option>
+							<option id="contact_question_2" value="canada">Seeking detailed market information</option>
+							<option id="contact_question_3" value="usa">Exploring potential strategic partnership opportunities</option>
+							<option id="contact_question_4" value="usa">Interested in reviewing additional services</option>
+							<option id="contact_question_5" value="usa">Providing feedback on the platform/service</option>
+							<option id="contact_question_6" value="usa">Other inquiries (please specifiy)</option>
 						</select>
 						<br />
-						<!-- <label for="fname">asdf</label> -->
-						<input type="text" id="fname" name="firstname" placeholder="First Name*" class="short_blk" required />
-						<!-- <label for="lname">asdf</label> -->
-						<input type="text" id="lname" name="lastname" placeholder="Last Name*" class="short_blk" required /> <br />
-						<!-- <label for="cname">asdf</label> -->
-						<input type="text" id="cname" name="companyname" placeholder="Company Name*" class="long_blk" required /><br />
-						<!-- <label for="pnumber">asdf</label> -->
-						<input type="tel" id="pnumber" name="phonenumber" placeholder="Phone*" class="short_blk" required />
-						<!-- <label for="email">asdf</label> -->
-						<input type="email" id="email" name="emailaddress" placeholder="Email*" class="short_blk" required /> <br />
-						<!-- <label for="message">asdf</label> -->
-						<input type="text" id="message" name="message" placeholder="Message*" class="long_blk" required />
-						<input type="submit" value="Submit" class="login_btn" />
+						<input id="contact_fname" type="text" name="firstname" placeholder="First Name*" class="short_blk" required />
+						<input id="contact_lname" type="text" name="lastname" placeholder="Last Name*" class="short_blk" required /> <br />
+						<input id="contact_company_name" type="text" name="companyname" placeholder="Company Name*" class="long_blk" required /><br />
+						<input id="contact_phone" type="tel" name="phonenumber" placeholder="Phone*" class="short_blk" required />
+						<input id="contact_email" type="email" name="emailaddress" placeholder="Email*" class="short_blk" required /> <br />
+						<input id="contact_message" type="text" name="message" placeholder="Message*" class="long_blk" required />
+						<input id="contact_submit" type="submit" value="Submit" class="login_btn" />
 					</form>
 				</article>
 			</article>
 		</div>
 		<div class="footer1">
 			<div class="footer1_1">
-				<h3>Ready to get started?</h3>
-				<h4>Kickstart innovation with us</h4>
+				<h3 id="price_ready_to_start">Ready to get started?</h3>
+				<h4 id="price_kickstart_innovation">Kickstart innovation with us</h4>
 			</div>
 			<br />
 			<br />
 			<br />
 			<div class="footer1_2">
-				<a href="/register" class="trystartlinenow_btn">Try Startline Now</a>
+				<a id="price_try_startline_now" href="/register" class="trystartlinenow_btn">Try Startline Now</a>
 			</div>
 		</div>
 
@@ -98,7 +101,7 @@
 				<article class="footer2_11">
 					<p><img th:src="@{/images/logo/High Resolution Logo Files/Original on Transparent.png}" class="footer_logo" /></p>
 					<br />
-					<p class="footer_logo_content">
+					<p id="footer" class="footer_logo_content">
 						Helping companies like yours improve efficiency and boost productivity with a personalized platform to boost your satisfaction.
 					</p>
 				</article>
@@ -117,13 +120,13 @@
 					<p class="footer_content"><a href="/contact">Contact</a></p>
 				</article>
 				<article class="footer2_12">
-					<p class="footer_title">Company</p>
+					<p class="footer_title">Statements</p>
 					<br />
 					<p class="footer_content"><a href="/aboutus">About</a></p>
 					<br />
-					<p class="footer_content"><a href="/terms" target="_blank">Terms</a></p>
+					<p class="footer_content"><a id="terms" href="/terms" target="_blank">Terms</a></p>
 					<br />
-					<p class="footer_content"><a href="/privacy" target="_blank">Privacy</a></p>
+					<p class="footer_content"><a id="privacy" href="/privacy" target="_blank">Privacy</a></p>
 				</article>
 			</div>
 			<br />
@@ -138,4 +141,6 @@
 	<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 	<script th:src="@{/js/smoothScroll.js}"></script>
 	<script th:src="@{/js/lightbox-plus-jquery.js}"></script>
+	<script type="module" th:src="@{/js/language_cache.js}"></script>
+	<script type="module" th:src="@{/js/language_change_contact.js}"></script>
 </html>
