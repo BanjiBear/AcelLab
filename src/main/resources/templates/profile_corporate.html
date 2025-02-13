@@ -317,28 +317,55 @@
 					<br />
 					<label for="organization_name" class="profile_heading1">Company Name*</label>
 					<input 
+						th:if="${user.getIsAdmin()}" 
 						type="text" 
 						id="organization_name" 
 						name="organization_name" 
 						placeholder="Input your company name" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(corporate.getCorporateName())} ? ${corporate.getCorporateName()}"/>
+					<input 
+						th:unless="${user.getIsAdmin()}" 
+						type="text" 
+						id="organization_name" 
+						name="organization_name" 
+						placeholder="Input your company name" 
+						class="filters2" disabled 
+						th:value="${!#strings.isEmpty(corporate.getCorporateName())} ? ${corporate.getCorporateName()}"/>
 					<br />
 					<label for="introduction" style="vertical-align: top;" class="profile_heading1">Company Introduction*</label>
-					<textarea id="organization_introduction" name="introduction" rows="5" class="filters2" required 
+					<textarea th:if="${user.getIsAdmin()}"  id="organization_introduction" name="introduction" rows="5" class="filters2" required 
+						th:text="${!#strings.isEmpty(corporate.getIntroduction())} ? ${corporate.getIntroduction()}"></textarea>
+					<textarea th:unless="${user.getIsAdmin()}"  id="organization_introduction" name="introduction" rows="5" class="filters2" disabled 
 						th:text="${!#strings.isEmpty(corporate.getIntroduction())} ? ${corporate.getIntroduction()}"></textarea>
 					<br />
 					<label for="email" class="profile_heading1">Company Email*</label>
 					<input 
+						th:if="${user.getIsAdmin()}" 
 						type="email" 
 						id="organization_email" 
 						name="email" 
 						placeholder="Input your email" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(corporate.getEmail1())} ? ${corporate.getEmail1()}"/>
+					<input 
+						th:unless="${user.getIsAdmin()}" 
+						type="email" 
+						id="organization_email" 
+						name="email" 
+						placeholder="Input your email" 
+						class="filters2" disabled 
+						th:value="${!#strings.isEmpty(corporate.getEmail1())} ? ${corporate.getEmail1()}"/>
 					<br />
 					<label for="phone" class="profile_heading1">Company Phone*</label>
-					<select id="organization_areacode" name="areaCode" class="filters">
+					<select th:if="${user.getIsAdmin()}" id="organization_areacode" name="areaCode" class="filters">
+						<option 
+							th:each="code : ${countrycodes}"
+							th:value="${code}"
+							th:text="${code}"
+							th:selected="${#strings.substringBefore(corporate.getPhone(), '-') == code}"></option>
+					</select>
+					<select th:unless="${user.getIsAdmin()}" id="organization_areacode" name="areaCode" class="filters" disabled>
 						<option 
 							th:each="code : ${countrycodes}"
 							th:value="${code}"
@@ -346,28 +373,53 @@
 							th:selected="${#strings.substringBefore(corporate.getPhone(), '-') == code}"></option>
 					</select>
 					<input 
+						th:if="${user.getIsAdmin()}" 
 						type="tel" 
 						id="organization_phone" 
 						name="phone" 
 						placeholder="12345678" 
 						class="filters5" required 
 						th:value="${!#strings.isEmpty(corporate.getPhone())} ? ${#strings.substringAfter(corporate.getPhone(), '-')} : ''"/>
+					<input 
+						th:unless="${user.getIsAdmin()}" 
+						type="tel" 
+						id="organization_phone" 
+						name="phone" 
+						placeholder="12345678" 
+						class="filters5" disabled 
+						th:value="${!#strings.isEmpty(corporate.getPhone())} ? ${#strings.substringAfter(corporate.getPhone(), '-')} : ''"/>
 					<br />
 					<label for="website" class="profile_heading1">Company Website*</label>
 					<input 
+						th:if="${user.getIsAdmin()}" 
 						type="url" 
 						id="organization_website" 
 						name="website" 
 						placeholder="www.startline.vip" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(corporate.getWebsite())} ? ${corporate.getWebsite()}"/>
+					<input 
+						th:unless="${user.getIsAdmin()}" 
+						type="url" 
+						id="organization_website" 
+						name="website" 
+						placeholder="www.startline.vip" 
+						class="filters2" disabled 
+						th:value="${!#strings.isEmpty(corporate.getWebsite())} ? ${corporate.getWebsite()}"/>
 					<br />
 					<label for="employee" class="profile_heading1">Company Size*</label>
 					<div style="position: relative; display: inline-block;">
 						<input 
+							th:if="${user.getIsAdmin()}" 
 							type="text" id="organization_size" name="employee" 
 							placeholder="201-500" 
 							class="filters2" required 
+							th:value="${!#strings.isEmpty(corporate.getCorporateSize())} ? ${corporate.getCorporateSize()}"/>
+						<input 
+							th:unless="${user.getIsAdmin()}" 
+							type="text" id="organization_size" name="employee" 
+							placeholder="201-500" 
+							class="filters2" disabled 
 							th:value="${!#strings.isEmpty(corporate.getCorporateSize())} ? ${corporate.getCorporateSize()}"/>
 						<span class="suffix" style="
 						position: absolute;
@@ -380,15 +432,33 @@
 					<br />
 					<label for="foundingyr" class="profile_heading1">Founded Year*</label>
 					<input 
+						th:if="${user.getIsAdmin()}" 
 						type="number" min="1800" max="2100" step="1" 
 						id="organization_foundedyear" 
 						name="foundingyr" 
 						placeholder="2024" 
 						class="filters2" required 
 						th:value="${!#strings.isEmpty(corporate.getFoundYear())} ? ${corporate.getFoundYear()}"/>
+					<input 
+						th:unless="${user.getIsAdmin()}" 
+						type="number" min="1800" max="2100" step="1" 
+						id="organization_foundedyear" 
+						name="foundingyr" 
+						placeholder="2024" 
+						class="filters2" disabled 
+						th:value="${!#strings.isEmpty(corporate.getFoundYear())} ? ${corporate.getFoundYear()}"/>
 					<div>
 						<label for="industry" class="profile_heading1">Industry*</label>
-						<select id="organization_industry" name="industry" class="filters2" required>
+						<select th:if="${user.getIsAdmin()}"  id="organization_industry" name="industry" class="filters2" required>
+							<option value="">Select Industry</option>
+							<option 
+								th:each="industry : ${industries}"
+								th:value="${industry}"
+								th:text="${industry}"
+								th:selected="${corporate.getIndustry() == industry}"></option>
+							<option value="Others">Others</option>
+						</select>
+						<select th:unless="${user.getIsAdmin()}"  id="organization_industry" name="industry" class="filters2" disabled>
 							<option value="">Select Industry</option>
 							<option 
 								th:each="industry : ${industries}"
@@ -400,7 +470,15 @@
 					</div>
 					<div>
 						<label for="headquarter" class="profile_heading1">Headquarter Location*</label>
-						<select id="organization_headquarter" name="headquarter" class="filters2" required>
+						<select th:if="${user.getIsAdmin()}" id="organization_headquarter" name="headquarter" class="filters2" required>
+							<option value="">Select Country</option>
+							<option 
+								th:each="country : ${countries}"
+								th:value="${country}"
+								th:text="${country}"
+								th:selected="${corporate.getHeadquarter() == country}"></option>
+						</select>
+						<select th:unless="${user.getIsAdmin()}" id="organization_headquarter" name="headquarter" class="filters2" disabled>
 							<option value="">Select Country</option>
 							<option 
 								th:each="country : ${countries}"
@@ -415,55 +493,106 @@
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag0())}" 
 								th:text="${corporate.getTag0()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag0())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag0())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag0())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag1())}" 
 								th:text="${corporate.getTag1()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag1())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag1())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag1())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag2())}" 
 								th:text="${corporate.getTag2()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag2())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag2())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag2())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag3())}" 
 								th:text="${corporate.getTag3()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag3())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag3())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag3())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag4())}" 
 								th:text="${corporate.getTag4()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag4())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag4())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag4())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag5())}" 
 								th:text="${corporate.getTag5()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag5())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag5())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag5())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag6())}" 
 								th:text="${corporate.getTag6()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag6())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag6())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag6())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag7())}" 
 								th:text="${corporate.getTag7()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag7())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag7())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag7())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag8())}" 
 								th:text="${corporate.getTag8()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag8())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag8())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag8())}" disabled>X</button>
+								</div>
 							</li>
 							<li 
 								th:if="${!#strings.isEmpty(corporate.getTag9())}" 
 								th:text="${corporate.getTag9()}">
-								<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag9())}">X</button>
+								<div th:if="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag9())}">X</button>
+								</div>
+								<div th:unless="${user.getIsAdmin()}">
+									<button class="delete-button" th:if="${!#strings.isEmpty(corporate.getTag9())}" disabled>X</button>
+								</div>
 							</li>
 						</ul>
-						<input type="text" id="input-tag" placeholder="tag1" />
+						<input th:if="${user.getIsAdmin()}"  type="text" id="input-tag" placeholder="tag1" />
+						<input th:unless="${user.getIsAdmin()}"  type="text" id="input-tag" placeholder="tag1" disabled />
 					</div>
 					<br />
 					<br />
@@ -475,41 +604,77 @@
 							<br />
 							<p class="Member_title">
 								<span th:text="'Member ' + ${stat.count}"></span>
-								<a onclick="deleteElementByAncestor('TeamInfo')">
+								<a th:if="${user.getIsAdmin()}" onclick="deleteElementByAncestor('TeamInfo')">
+									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
+								</a>
+								<a th:unless="${user.getIsAdmin()}" onclick="">
 									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
 								</a>
 							</p>
 							<label for="member_name" class="profile_heading1">Name*</label>
 							<input 
+								th:if="${user.getIsAdmin()}"
 								type="text" 
 								name="member_name" 
 								placeholder="Input your full name" 
 								class="filters2" required 
 								th:value="${!#strings.isEmpty(member.getName())} ? ${member.getName()}"
 								th:attr="data-member-id=${member.getId() != null} ? ${member.getId()} : '-1'"/>
+							<input 
+								th:unless="${user.getIsAdmin()}"
+								type="text" 
+								name="member_name" 
+								placeholder="Input your full name" 
+								class="filters2" disabled 
+								th:value="${!#strings.isEmpty(member.getName())} ? ${member.getName()}"
+								th:attr="data-member-id=${member.getId() != null} ? ${member.getId()} : '-1'"/>
 							<br />
 							<label for="member_department" class="profile_heading1">Department*</label>
 							<input
+								th:if="${user.getIsAdmin()}" 
 								type="text"
 								name="member_department"
 								placeholder="Input the department you belong to"
 								class="filters2" required
 								th:value="${!#strings.isEmpty(member.getDepartment())} ? ${member.getDepartment()}"/>
+							<input
+								th:unless="${user.getIsAdmin()}" 
+								type="text"
+								name="member_department"
+								placeholder="Input the department you belong to"
+								class="filters2" disabled
+								th:value="${!#strings.isEmpty(member.getDepartment())} ? ${member.getDepartment()}"/>
 							<br />
 							<label for="member_position" class="profile_heading1">Position*</label>
 							<input 
+								th:if="${user.getIsAdmin()}" 
 								type="text" 
 								name="member_position" 
 								placeholder="Tell us your role or position" 
 								class="filters2" required 
 								th:value="${!#strings.isEmpty(member.getRole())} ? ${member.getRole()}"/>
+							<input 
+								th:unless="${user.getIsAdmin()}" 
+								type="text" 
+								name="member_position" 
+								placeholder="Tell us your role or position" 
+								class="filters2" disabled 
+								th:value="${!#strings.isEmpty(member.getRole())} ? ${member.getRole()}"/>
 							<br />
 							<label for="member_email" class="profile_heading1">Contact Email*</label>
 							<input 
+								th:if="${user.getIsAdmin()}" 
 								type="email" 
 								name="member_email" 
 								placeholder="Input your email" 
 								class="filters2" required 
+								th:value="${!#strings.isEmpty(member.getEmail())} ? ${member.getEmail()}"/>
+							<input 
+								th:unless="${user.getIsAdmin()}" 
+								type="email" 
+								name="member_email" 
+								placeholder="Input your email" 
+								class="filters2" disabled 
 								th:value="${!#strings.isEmpty(member.getEmail())} ? ${member.getEmail()}"/>
 							<br />
 							<label for="member_phone" class="profile_heading1">Contact Number*</label>
@@ -522,23 +687,40 @@
 								</option>
 							</select>
 							<input 
+								th:if="${user.getIsAdmin()}" 
 								type="tel" 
 								name="member_phone" 
 								placeholder="12345678" 
 								class="filters5" required 
 								th:value="${!#strings.isEmpty(member.getPhone())} ? ${#strings.substringAfter(member.getPhone(), '-')} : ''"/>
+							<input 
+								th:unless="${user.getIsAdmin()}" 
+								type="tel" 
+								name="member_phone" 
+								placeholder="12345678" 
+								class="filters5" disabled 
+								th:value="${!#strings.isEmpty(member.getPhone())} ? ${#strings.substringAfter(member.getPhone(), '-')} : ''"/>
 							<br />
 							<label for="member_linkedin" class="profile_heading1">Linkedin URL</label>
 							<input
+								th:if="${user.getIsAdmin()}" 
 								type="url"
 								name="member_linkedin"
 								placeholder="https://linkedin.com/company/acel-lab-limited"
 								class="filters2"
 								th:value="${!#strings.isEmpty(member.getLinkedin())} ? ${member.getLinkedin()}"/>
+							<input
+								th:unless="${user.getIsAdmin()}" 
+								type="url"
+								name="member_linkedin"
+								placeholder="https://linkedin.com/company/acel-lab-limited"
+								class="filters2" disabled
+								th:value="${!#strings.isEmpty(member.getLinkedin())} ? ${member.getLinkedin()}"/>
 							<br />
 						</div>
 					</div>
-					<p class="AddRow" onclick="addTeamMembers()">+ Add Member</p>
+					<p th:if="${user.getIsAdmin()}" class="AddRow" onclick="addTeamMembers()">+ Add Member</p>
+					<p th:unless="${user.getIsAdmin()}" class="AddRow" onclick="">+ Add Member</p>
 					<br />
 					<br />
 					<!-- ========================================================================== -->
@@ -549,18 +731,33 @@
 							<br />
 							<p class="Products_title">
 								<span th:text="'Product ' + ${stat.count}"></span>
-								<a onclick="deleteElementByAncestor('product')">
+								<a th:if="${user.getIsAdmin()}" onclick="deleteElementByAncestor('product')">
+									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
+								</a>
+								<a th:unless="${user.getIsAdmin()}" onclick="">
 									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
 								</a>
 							</p>
-							<input type="file" id="fileInput1" name="filename1" /> <input type="file" id="fileInput2" name="filename2" />
+							<input th:if="${user.getIsAdmin()}" type="file" id="fileInput1" name="filename1" />
+							<input th:unless="${user.getIsAdmin()}" type="file" id="fileInput1" name="filename1" disabled />
+							<input th:if="${user.getIsAdmin()}" type="file" id="fileInput2" name="filename2" />
+							<input th:unless="${user.getIsAdmin()}" type="file" id="fileInput2" name="filename2" disabled />
 							<br />
 							<label for="product_name" class="profile_heading1">Product*</label>
 							<input 
+								th:if="${user.getIsAdmin()}"
 								type="text" 
 								name="product_name" 
 								placeholder="Product Name" 
 								class="filters2" required 
+								th:value="${!#strings.isEmpty(product.getProductName())} ? ${product.getProductName()}"
+								th:attr="data-product-id=${product.getId() != null} ? ${product.getId()} : '-1'"/>
+							<input 
+								th:unless="${user.getIsAdmin()}"
+								type="text" 
+								name="product_name" 
+								placeholder="Product Name" 
+								class="filters2" disabled 
 								th:value="${!#strings.isEmpty(product.getProductName())} ? ${product.getProductName()}"
 								th:attr="data-product-id=${product.getId() != null} ? ${product.getId()} : '-1'"/>
 							<br />
@@ -573,7 +770,8 @@
 							<br />
 						</div>
 					</div>
-					<p class="AddRow" onclick="addProducts()">+ Add more products</p>
+					<p th:if="${user.getIsAdmin()}" class="AddRow" onclick="addProducts()">+ Add more products</p>
+					<p th:unless="${user.getIsAdmin()}" class="AddRow" onclick="">+ Add more products</p>
 					<br />
 					<br />
 					<!-- ========================================================================== -->
@@ -584,16 +782,27 @@
 							<br />
 							<p class="Financials_title">
 								<span th:text="'Round ' + ${stat.count}"></span>
-								<a onclick="deleteElementByAncestor('section')">
+								<a th:if="${user.getIsAdmin()}" onclick="deleteElementByAncestor('section')">
+									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
+								</a>
+								<a th:unless="${user.getIsAdmin()}" onclick="">
 									<img th:src="@{../images/icon/Trash.png}" class="DeleteRow"/>
 								</a>
 							</p>
 							<label for="announcedDate" class="profile_heading1">Announced Date*</label>
 							<input 
+								th:if="${user.getIsAdmin()}"
 								type="date" 
 								name="announcedDate" 
 								placeholder="YYYY-MM-DD" 
 								class="filters2" required
+								th:value="${!#strings.isEmpty(funding.getFundingDate())} ? ${#strings.substringBefore(funding.getFundingDate(), ' ')}"/>
+							<input 
+								th:unless="${user.getIsAdmin()}"
+								type="date" 
+								name="announcedDate" 
+								placeholder="YYYY-MM-DD" 
+								class="filters2" disabled 
 								th:value="${!#strings.isEmpty(funding.getFundingDate())} ? ${#strings.substringBefore(funding.getFundingDate(), ' ')}"/>
 							<br />
 							<label for="roundInfo" class="profile_heading1">Round Info*</label>
@@ -609,25 +818,43 @@
 							<br />
 							<label for="amountRaised" class="profile_heading1">Amount Raised*</label>
 							<input 
+								th:if="${user.getIsAdmin()}" 
 								type="text" 
 								name="amountRaised" 
 								placeholder="Amount raised in USD" 
 								class="filters2" required
 								th:value="${!#strings.isEmpty(funding.getFundingAmount())} ? ${funding.getFundingAmount()}"/>
+							<input 
+								th:unless="${user.getIsAdmin()}" 
+								type="text" 
+								name="amountRaised" 
+								placeholder="Amount raised in USD" 
+								class="filters2" disabled 
+								th:value="${!#strings.isEmpty(funding.getFundingAmount())} ? ${funding.getFundingAmount()}"/>
 							<br />
 							<label for="leadInvestors" class="profile_heading1">Lead Investors*</label>
 							<input 
+								th:if="${user.getIsAdmin()}" 
 								type="text" 
 								name="leadInvestors" 
 								placeholder="Lead investors' names" 
 								class="filters2" required
 								th:value="${!#strings.isEmpty(funding.getFundingInvestors())} ? ${funding.getFundingInvestors()}"/>
+							<input 
+								th:unless="${user.getIsAdmin()}" 
+								type="text" 
+								name="leadInvestors" 
+								placeholder="Lead investors' names" 
+								class="filters2" disabled 
+								th:value="${!#strings.isEmpty(funding.getFundingInvestors())} ? ${funding.getFundingInvestors()}"/>
 							<br />
 						</div>
 					</div>
-					<p class="AddRow" onclick="addFinancialRounds()">+ Add financial round</p>
+					<p th:if="${user.getIsAdmin()}" class="AddRow" onclick="addFinancialRounds()">+ Add financial round</p>
+					<p th:unless="${user.getIsAdmin()}" class="AddRow" onclick="">+ Add financial round</p>
 					<br />
-					<button type="submit" class="button">Save</button>
+					<button th:if="${user.getIsAdmin()}" type="submit" class="button">Save</button>
+					<button th:unless="${user.getIsAdmin()}" type="submit" class="button" disabled>Save</button>
 					<a th:if="${#strings.isEmpty(corporate.getCorporateName())}" id="Valbutton" class="Valbutton" onclick="promptSave('Corporate')">Verify Account</a>
 					<a th:unless="${#strings.isEmpty(corporate.getCorporateName())}" id="Valbutton" class="Valbutton" onclick="verify(event, 'updatecorporateinfo', '/verifycorporate')">Verify Account</a>
 				</form>
@@ -640,8 +867,10 @@
 				<form id="emailForm" th:action="@{/inviteuser}" method="post">
 					<br />
 					<label for="email" class="profile_heading1">Team Member Email</label>
-					<input type="email" name="email" placeholder="Input your team member's email" class="filters2" required />
-					<input type="submit" value="Send Invitation" class="Valbutton" />
+					<input th:if="${user.getIsAdmin()}"  type="email" name="email" placeholder="Input your team member's email" class="filters2" required />
+					<input th:unless="${user.getIsAdmin()}"  type="email" name="email" placeholder="Input your team member's email" class="filters2" disabled />
+					<input th:if="${user.getIsAdmin()}" type="submit" value="Send Invitation" class="Valbutton" />
+					<input th:unless="${user.getIsAdmin()}" type="submit" value="Send Invitation" class="Valbutton" disabled />
 				</form>
 				<br />
 				<br />
@@ -653,24 +882,41 @@
 					<label for="answer1" class="profile_heading_survey">Precisely and consicely describe the key pain points you would want to solve*</label>
 					<br />
 					<input
+						th:if="${user.getIsAdmin()}" 
 						type="text"
 						id="survey1"
 						name="answer1"
 						placeholder="User experience, cost effectiveness, comeptition"
 						class="filters2" required/>
+					<input
+						th:unless="${user.getIsAdmin()}" 
+						type="text"
+						id="survey1"
+						name="answer1"
+						placeholder="User experience, cost effectiveness, comeptition"
+						class="filters2" disabled/>
 					<br />
 					<br />
 					<label for="answer2" class="profile_heading_survey">What type of category of technology/solutions are you looking for?*</label>
 					<br />
 					<input 
+						th:if="${user.getIsAdmin()}" 
 						type="text" 
 						id="survey2" 
 						name="answer2" 
 						placeholder="Data engineering" 
 						class="filters2" required />
+					<input 
+						th:unless="${user.getIsAdmin()}" 
+						type="text" 
+						id="survey2" 
+						name="answer2" 
+						placeholder="Data engineering" 
+						class="filters2" disabled />
 					<br />
 					<br />
-					<button type="submit" class="button">Fine-Tune</button>
+					<button th:if="${user.getIsAdmin()}" type="submit" class="button">Fine-Tune</button>
+					<button th:unless="${user.getIsAdmin()}" type="submit" class="button" disabled>Fine-Tune</button>
 				</form>
 				<br />
 				<br />
